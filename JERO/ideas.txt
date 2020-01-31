@@ -2,4 +2,3 @@ Ground Penetrating Radar (GPR) to geolocate the robot
 Using Ultrasonic sensors to map out the pipe/tunnel
 	https://www.hackster.io/paramaggarwal/mapping-a-room-wh-ultrasonic-distance-sensors-9725b7
 	https://www.instructables.com/id/Sonar-Room-Mapper-MAKE-Course/
-IG0605NLUX
