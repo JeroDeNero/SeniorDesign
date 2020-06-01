@@ -1,0 +1,95 @@
+html,
+body {
+    height: 100%;
+    padding: 0px;
+    margin: 0px;
+    background-color: rgb(0, 0, 0);
+    color: white;
+}
+
+div {
+    margin: 0px;
+    border-radius: 15px;
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    object-position: 50% 50%;
+}
+
+div.page {
+    width: calc(100% - 20px);
+    height: calc(100% - 20px);
+    flex-wrap: wrap;
+    padding: 10px;
+    background-color: rgb(0, 0, 0);
+}
+
+div.mainPage {
+    width: auto;
+    height: calc(100% - 4px);
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1px;
+    margin: 0px;
+    background-color: #fbb034;
+    background-image: linear-gradient(315deg, #f5a626 0%, #ffcc00 74%);
+}
+
+div.sidePage {
+    width: 400px;
+    height: calc(100% - 4px);
+    float: right;
+    flex-wrap: wrap;
+    padding: 1px;
+    margin: 0px;
+    margin-left: 10px;
+    background-color: #fbb034;
+    background-image: linear-gradient(315deg, #f5a626 0%, #ffcc00 74%);
+}
+
+div.innerSidePage {
+    height: calc(100% - 20px);
+    flex-wrap: wrap;
+    padding: 10px;
+    background-color: #7c7c7c;
+    background-image: linear-gradient(147deg, #7c7c7c 0%, #000000 82%);
+}
+
+div.video {
+    width: 100%;
+    height: calc(60% - 10px);
+    flex-wrap: wrap;
+    border-radius: 15px 15px 0 0;
+    padding: 10px;
+    background-color: #2d3436;
+    background-image: linear-gradient(315deg, #2d3436 0%, #d3d3d3 74%);
+}
+
+div.bottomPanel {
+    width: 100%;
+    height: calc(40% - 22px);
+    border-radius: 0 0 15px 15px;
+    padding: 5px;
+    margin-top: 1px;
+    background-color: #434343;
+    background-image: linear-gradient(147deg, #c4c4c4 0%, #242424 92%);
+}
+
+div.controls {
+    height: calc(100% - 20px);
+    display: flex;
+    justify-content: left;
+    flex-wrap: wrap;
+    padding: 10px;
+}
+
+div.logo {
+    height: calc(100%);
+    float: right;
+    overflow: hidden;
+    justify-content: left;
+    flex-wrap: wrap;
+}
