@@ -3,93 +3,228 @@ body {
     height: 100%;
     padding: 0px;
     margin: 0px;
-    background-color: rgb(0, 0, 0);
-    color: white;
+    background-color: #f9f9f9
+}
+
+button {
+    margin: 5px;
+    width: 200px;
 }
 
 div {
-    margin: 0px;
-    border-radius: 15px;
+    margin: auto;
 }
 
 img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: cover;
+    width: 100%;
+    max-width: 300px;
+    max-height: 300px;
     object-position: 50% 50%;
+}
+
+input {
+    width: 100%;
+    margin: 0px;
+}
+
+h5 {
+    margin-top: 35px;
+    margin-bottom: 5px;
+}
+
+button.dropdown {
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    float: right;
+}
+
+button.download {
+    position: relative;
+    left: 6px;
 }
 
 div.page {
     width: calc(100% - 20px);
     height: calc(100% - 20px);
+    max-width: 1615px;
     flex-wrap: wrap;
     padding: 10px;
-    background-color: rgb(0, 0, 0);
 }
 
 div.mainPage {
     width: auto;
+    min-width: 1125px;
+    max-width: 1215px;
     height: calc(100% - 4px);
     display: flex;
     flex-wrap: wrap;
-    padding: 1px;
-    margin: 0px;
-    background-color: #fbb034;
-    background-image: linear-gradient(315deg, #f5a626 0%, #ffcc00 74%);
 }
 
 div.sidePage {
-    width: 400px;
+    text-align: center;
+    width: 331px;
     height: calc(100% - 4px);
     float: right;
     flex-wrap: wrap;
-    padding: 1px;
+    padding: 3px;
     margin: 0px;
-    margin-left: 10px;
+    margin-left: 30px;
+}
+
+div.searchSec {
+    width: calc(100% - 20px);
+    height: 100px;
+    margin-bottom: 10px;
+    padding: 10px;
+    padding-right: 15px;
+    background-color: white;
+    border-width: 1px;
+    border-color: lightgray;
+    border-style: solid;
+}
+
+div.horLine {
+    width: calc(100% - 5px);
+    height: 1px;
+    border-radius: 100%;
     background-color: #fbb034;
-    background-image: linear-gradient(315deg, #f5a626 0%, #ffcc00 74%);
+    background-image: linear-gradient(338deg, #f5a626 0%, #ffcc00 74%);
+    opacity: 0.3;
+    box-shadow: inset 60px 0 120px #f5a626, inset -60px 0 120px #ffcc00;
+}
+
+div.verLine {
+    width: 3px;
+    height: 100%;
+    float: right;
+    border-radius: 100%;
+    background-color: #fbb034;
+    background-image: linear-gradient(338deg, #f5a626 0%, #ffcc00 74%);
+    opacity: 0.3;
+    box-shadow: inset 60px 0 120px #f5a626, inset -60px 0 120px #ffcc00;
 }
 
 div.innerSidePage {
     height: calc(100% - 20px);
     flex-wrap: wrap;
     padding: 10px;
-    background-color: #7c7c7c;
-    background-image: linear-gradient(147deg, #7c7c7c 0%, #000000 82%);
 }
 
 div.video {
     width: 100%;
-    height: calc(60% - 10px);
+    height: calc(60% - 35px);
     flex-wrap: wrap;
-    border-radius: 15px 15px 0 0;
+    margin-bottom: 25px;
     padding: 10px;
-    background-color: #2d3436;
-    background-image: linear-gradient(315deg, #2d3436 0%, #d3d3d3 74%);
+    background-color: aqua;
 }
 
 div.bottomPanel {
     width: 100%;
-    height: calc(40% - 22px);
-    border-radius: 0 0 15px 15px;
+    height: calc(40% - 40px);
     padding: 5px;
-    margin-top: 1px;
-    background-color: #434343;
-    background-image: linear-gradient(147deg, #c4c4c4 0%, #242424 92%);
+    margin-top: 10px;
 }
 
 div.controls {
     height: calc(100% - 20px);
-    display: flex;
-    justify-content: left;
     flex-wrap: wrap;
-    padding: 10px;
+}
+
+div.flex-grid {
+    display: flex;
+    height: 33%;
+}
+
+div.col {
+    flex: 1;
+}
+
+div.colLong {
+    flex: 2;
 }
 
 div.logo {
-    height: calc(100%);
+    height: 100%;
+    max-height: 300px;
+    display: flex;
+    align-items: center;
     float: right;
     overflow: hidden;
-    justify-content: left;
-    flex-wrap: wrap;
+}
+
+div.extraBar {
+    display: none;
+    position: absolute;
+    top: calc(50% - 30px);
+    left: calc(100% - 21px);
+    height: 60px;
+    width: 20px;
+    text-align: center;
+    background-color: rgb(118, 135, 152, .30);
+    border-radius: 10px 0 0 10px;
+    border-color: black;
+    border-style: solid;
+    border-width: 1px;
+    border-right: none;
+    z-index: 20;
+    opacity: 0.6;
+}
+
+div.extraBar:hover {
+    opacity: 1;
+    transition: all .4s ease;
+}
+
+div.pic {
+    height: 70px;
+    width: 100%;
+    border-width: 1px;
+    border-color: black;
+    border-style: solid;
+    background-color: deepskyblue;
+    float: left;
+}
+
+div.item {
+    margin-top: -20px;
+}
+
+div.info {
+    position: relative;
+    text-align: left;
+    padding-left: 10px;
+}
+
+div.taggedBox {
+    height: 100px;
+    padding: 5px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    border-color: black;
+    border-style: solid;
+    border-width: 1px;
+}
+
+div.taggedBox:button {
+    left: 20px;
+}
+
+@media screen and (max-width: 1775px) {
+    div.sidePage {
+        display: none;
+        position: absolute;
+        top: 10px;
+        left: calc(50% - 207px);
+        height: calc(100% - 30px);
+        background-color: #f2f2f2;
+        border: black;
+        border-width: 1px;
+        border-style: solid;
+        z-index: 20;
+    }
+    div.extraBar {
+        display: block;
+    }
 }
