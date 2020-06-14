@@ -3,7 +3,6 @@ body {
     height: 100%;
     padding: 0px;
     margin: 0px;
-    background-color: #f9f9f9
 }
 
 button {
@@ -72,14 +71,13 @@ div.sidePage {
 }
 
 div.searchSec {
-    width: calc(100% - 20px);
+    width: calc(100% - 22px);
     height: 100px;
+    margin: -3px;
     margin-bottom: 10px;
     padding: 10px;
     padding-right: 15px;
-    background-color: white;
     border-width: 1px;
-    border-color: lightgray;
     border-style: solid;
 }
 
@@ -87,10 +85,6 @@ div.horLine {
     width: calc(100% - 5px);
     height: 1px;
     border-radius: 100%;
-    background-color: #fbb034;
-    background-image: linear-gradient(338deg, #f5a626 0%, #ffcc00 74%);
-    opacity: 0.3;
-    box-shadow: inset 60px 0 120px #f5a626, inset -60px 0 120px #ffcc00;
 }
 
 div.verLine {
@@ -98,10 +92,6 @@ div.verLine {
     height: 100%;
     float: right;
     border-radius: 100%;
-    background-color: #fbb034;
-    background-image: linear-gradient(338deg, #f5a626 0%, #ffcc00 74%);
-    opacity: 0.3;
-    box-shadow: inset 60px 0 120px #f5a626, inset -60px 0 120px #ffcc00;
 }
 
 div.innerSidePage {
@@ -112,14 +102,12 @@ div.innerSidePage {
 
 div.video {
     width: 100%;
-    height: calc(60% - 35px);
+    height: 60%;
     min-height: 450px;
     flex-wrap: wrap;
     margin-bottom: 25px;
     border-width: 1px;
     border-style: solid;
-    border-color: black;
-    background-color: aqua;
     display: flex;
     align-items: center;
     overflow: hidden;
@@ -175,14 +163,11 @@ div.extraBar {
     height: 60px;
     width: 20px;
     text-align: center;
-    background-color: rgb(118, 135, 152, .30);
     border-radius: 10px 0 0 10px;
-    border-color: black;
     border-style: solid;
     border-width: 1px;
     border-right: none;
     z-index: 20;
-    opacity: 0.6;
 }
 
 div.extraBar:hover {
@@ -194,9 +179,7 @@ div.pic {
     height: 70px;
     width: 100%;
     border-width: 1px;
-    border-color: black;
     border-style: solid;
-    background-color: deepskyblue;
     float: left;
 }
 
@@ -215,7 +198,6 @@ div.taggedBox {
     padding: 5px;
     overflow-y: scroll;
     overflow-x: hidden;
-    border-color: black;
     border-style: solid;
     border-width: 1px;
 }
@@ -231,8 +213,6 @@ div.taggedBox:button {
         top: 10px;
         left: calc(50% - 207px);
         height: calc(100% - 30px);
-        background-color: #f2f2f2;
-        border: black;
         border-width: 1px;
         border-style: solid;
         z-index: 20;
