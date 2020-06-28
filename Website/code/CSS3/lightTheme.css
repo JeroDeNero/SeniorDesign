@@ -1,0 +1,54 @@
+html,
+body {
+    background-color: #f9f9f9
+}
+
+div.searchSec {
+    background-color: white;
+    border-color: lightgray;
+}
+
+div.horLine {
+    background-color: #fbb034;
+    background-image: linear-gradient(338deg, #f5a626 0%, #ffcc00 74%);
+    opacity: 0.3;
+    box-shadow: inset 60px 0 120px #f5a626, inset -60px 0 120px #ffcc00;
+}
+
+div.verLine {
+    background-color: #fbb034;
+    background-image: linear-gradient(338deg, #f5a626 0%, #ffcc00 74%);
+    opacity: 0.3;
+    box-shadow: inset 60px 0 120px #f5a626, inset -60px 0 120px #ffcc00;
+}
+
+div.video {
+    border-color: black;
+    background-color: aqua;
+}
+
+div.extraBar {
+    background-color: rgb(118, 135, 152, .30);
+    border-color: black;
+    opacity: 0.6;
+}
+
+div.pic {
+    border-color: black;
+    background-color: deepskyblue;
+}
+
+div.taggedBox {
+    border-color: black;
+}
+
+div.taggedBox:button {
+    left: 20px;
+}
+
+@media screen and (max-width: 1775px) {
+    div.sidePage {
+        background-color: #f2f2f2;
+        border: black;
+    }
+}
