@@ -1,3 +1,26 @@
-<h1>
-  {{title}}
-</h1>
+<div class="page">
+    <div class="sidePage">
+        <div id="searchSec" class="searchSec">
+            <div class="tab">
+                <a class="tablink" routerLink="/search">Search</a>
+                <a class="tablink" routerLink="/filter">Filter</a>
+            </div>
+            <router-outlet></router-outlet>
+        </div>
+        <router-outlet name="options"></router-outlet>
+        <router-outlet name="sideMenu"></router-outlet>
+    </div>
+
+
+    <div class="mainPage">
+        <div class="video">
+            <img class="maxWidth" src="assets/Images/screenHolder.jpg" alt="">
+        </div>
+
+        <div class="horLine"></div>
+
+        <div class="bottomPanel">
+            <app-controls></app-controls>
+        </div>
+    </div>
+</div>

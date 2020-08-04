@@ -1,24 +1,28 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
 
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RobotComponent } from './robot/robot.component';
+import { ControlsComponent } from './controls/controls.component';
 import { SearchComponent } from './search/search.component';
 import { FilterComponent } from './filter/filter.component';
+import { ListComponent } from './list/list.component';
+import { SideMenuComponent } from './side-menu/side-menu.component';
+import { FilterOptionsComponent } from './filter-options/filter-options.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    RobotComponent,
+    ControlsComponent,
     SearchComponent,
-    FilterComponent
+    FilterComponent,
+    ListComponent,
+    SideMenuComponent,
+    FilterOptionsComponent,
   ],
   imports: [
     BrowserModule,
-    FormsModule,
-    HttpModule
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

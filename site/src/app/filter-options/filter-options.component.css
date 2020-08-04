@@ -1,0 +1,30 @@
+div.filter {
+    float: left;
+}
+
+input {
+    padding: 0;
+    margin: 0;
+    top: -1px;
+    *overflow: hidden;
+}
+
+select {
+    width: 135px;
+    height: 15px;
+}
+
+input.checks {
+    width: 15px;
+    height: 15px;
+}
+
+input.number {
+    width: 49px;
+    height: 15px;
+}
+
+input.date {
+    width: 120px;
+    height: 15px;
+}
