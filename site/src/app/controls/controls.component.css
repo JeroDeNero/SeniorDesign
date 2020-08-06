@@ -11,3 +11,25 @@ div.logo {
     float: right;
     overflow: hidden;
 }
+
+svg {
+    fill: transparent;
+    stroke: black;
+    stroke-width: 2px;
+}
+
+svg.right {
+    transform: rotate(0deg);
+}
+
+svg.left {
+    transform: rotate(180deg);
+}
+
+svg.up {
+    transform: rotate(270deg);
+}
+
+svg.down {
+    transform: rotate(90deg);
+}
