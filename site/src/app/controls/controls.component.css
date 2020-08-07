@@ -1,3 +1,10 @@
+button.action {
+    height: 80px;
+    width: 80px;
+    border-radius: 100%;
+    background-color: red;
+}
+
 div.controls {
     height: calc(100% - 20px);
     flex-wrap: wrap;

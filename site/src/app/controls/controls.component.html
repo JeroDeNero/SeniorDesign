@@ -5,7 +5,7 @@
     <div class="flex-grid">
         <div class="col"></div>
         <svg width="90" height="90" class="up">
-            <a href="#">
+            <a (mousedown)="onClickD('forward')" (mouseup)="onClickR('forward')" (mouseleave)="onClickR('forward')">
                 <path d="
                 M 2 45
                 C 2,50 2,35 2,30
@@ -23,7 +23,7 @@
         <div class="col"></div>
         <div class="col"></div>
         <svg width="90" height="90" class="up">
-            <a href="#">
+            <a (click)="onClick('incSpd')" >
                 <path d="
                 M 2 45
                 C 2,50 2,35 2,30
@@ -46,7 +46,7 @@
     <div class="flex-grid">
         <div class="col">
             <svg width="90" height="90" class="left">
-                <a href="#">
+                <a (mousedown)="onClickD('left')" (mouseup)="onClickR('left')" (mouseleave)="onClickR('left')">
                     <path d="
                     M 2 45
                     C 2,50 2,35 2,30
@@ -60,10 +60,12 @@
                     />
                 </a>
             </svg></div>
-        <div class="col"></div>
+        <div class="col">
+            <button class="action" (mousedown)="onClickD('binaryAct')" (mouseup)="onClickR('binaryAct')" (mouseleave)="onClickR('binaryAct')"></button>
+        </div>
         <div class="col">
             <svg width="90" height="90" class="right">
-                <a href="#">
+                <a (mousedown)="onClickD('right')" (mouseup)="onClickR('right')" (mouseleave)="onClickR('right')">
                     <path d="
                     M 2 45
                     C 2,50 2,35 2,30
@@ -83,14 +85,16 @@
         <div class="col"></div>
         <div class="col"></div>
         <div class="col"></div>
-        <div class="col"><img src="assets/Images/red_Button.png" alt="Horse with wings"></div>
+        <div class="col">
+            <button class="action" (click)="newRun()"></button>
+        </div>
         <div class="col"></div>
     </div>
 
     <div class="flex-grid">
         <div class="col"></div>
         <svg width="90" height="90" class="down">
-            <a href="#">
+            <a  (mousedown)="onClickD('backward')"  (mouseup)="onClickR('backward')" (mouseleave)="onClickR('backward')">
                 <path d="
                 M 2 45
                 C 2,50 2,35 2,30
@@ -108,7 +112,7 @@
         <div class="col"></div>
         <div class="col"></div>
         <svg width="90" height="90" class="down">
-            <a href="#">
+            <a  (click)="onClick('decSpd')">
                 <path d="
                 M 2 45
                 C 2,50 2,35 2,30
