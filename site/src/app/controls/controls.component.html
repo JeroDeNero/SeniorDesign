@@ -1,0 +1,134 @@
+<div class="logo">
+    <img src="assets/Images/UCF_logo_2.0.png" alt="Horse with wings">
+</div>
+<div class="controls">
+    <div class="flex-grid">
+        <div class="col"></div>
+        <svg width="90" height="90" class="up">
+            <a (mousedown)="onClickD('forward')" (mouseup)="onClickR('forward')" (mouseleave)="onClickR('forward')">
+                <path d="
+                M 2 45
+                C 2,50 2,35 2,30
+                C 3,20 20,40 30,35
+                C 40,30 10,10 25,10
+                C 70,10 88,40 88,45
+                C 88,50 70,80 25,80
+                C 10,80 40,60 30,55
+                C 20,50 3,70 2,60
+                Z"
+                />
+            </a>
+        </svg>
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="col"></div>
+        <svg width="90" height="90" class="up">
+            <a (click)="onClick('incSpd')" >
+                <path d="
+                M 2 45
+                C 2,50 2,35 2,30
+                C 3,20 20,40 30,35
+                C 40,30 10,10 25,10
+                C 70,10 88,40 88,45
+                C 88,50 70,80 25,80
+                C 10,80 40,60 30,55
+                C 20,50 3,70 2,60
+                Z"
+                />
+            </a>
+        </svg>
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="col"></div>
+    </div>
+
+    <div class="flex-grid">
+        <div class="col">
+            <svg width="90" height="90" class="left">
+                <a (mousedown)="onClickD('left')" (mouseup)="onClickR('left')" (mouseleave)="onClickR('left')">
+                    <path d="
+                    M 2 45
+                    C 2,50 2,35 2,30
+                    C 3,20 20,40 30,35
+                    C 40,30 10,10 25,10
+                    C 70,10 88,40 88,45
+                    C 88,50 70,80 25,80
+                    C 10,80 40,60 30,55
+                    C 20,50 3,70 2,60
+                    Z"
+                    />
+                </a>
+            </svg></div>
+        <div class="col">
+            <button class="action" (mousedown)="onClickD('binaryAct')" (mouseup)="onClickR('binaryAct')" (mouseleave)="onClickR('binaryAct')"></button>
+        </div>
+        <div class="col">
+            <svg width="90" height="90" class="right">
+                <a (mousedown)="onClickD('right')" (mouseup)="onClickR('right')" (mouseleave)="onClickR('right')">
+                    <path d="
+                    M 2 45
+                    C 2,50 2,35 2,30
+                    C 3,20 20,40 30,35
+                    C 40,30 10,10 25,10
+                    C 70,10 88,40 88,45
+                    C 88,50 70,80 25,80
+                    C 10,80 40,60 30,55
+                    C 20,50 3,70 2,60
+                    Z"
+                    />
+                </a>
+            </svg>
+        </div>
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="col">
+            <button class="action" (click)="newRun()"></button>
+        </div>
+        <div class="col"></div>
+    </div>
+
+    <div class="flex-grid">
+        <div class="col"></div>
+        <svg width="90" height="90" class="down">
+            <a  (mousedown)="onClickD('backward')"  (mouseup)="onClickR('backward')" (mouseleave)="onClickR('backward')">
+                <path d="
+                M 2 45
+                C 2,50 2,35 2,30
+                C 3,20 20,40 30,35
+                C 40,30 10,10 25,10
+                C 70,10 88,40 88,45
+                C 88,50 70,80 25,80
+                C 10,80 40,60 30,55
+                C 20,50 3,70 2,60
+                Z"
+                />
+            </a>
+        </svg>
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="col"></div>
+        <svg width="90" height="90" class="down">
+            <a  (click)="onClick('decSpd')">
+                <path d="
+                M 2 45
+                C 2,50 2,35 2,30
+                C 3,20 20,40 30,35
+                C 40,30 10,10 25,10
+                C 70,10 88,40 88,45
+                C 88,50 70,80 25,80
+                C 10,80 40,60 30,55
+                C 20,50 3,70 2,60
+                Z"
+                />
+            </a>
+        </svg>
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="col"></div>
+    </div>
+</div>

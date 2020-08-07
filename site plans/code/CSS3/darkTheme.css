@@ -1,0 +1,66 @@
+html,
+body {
+    background-color: #272727;
+    color: white;
+}
+
+div.searchSec {
+    background-color: #f7a521;
+    background-image: linear-gradient(315deg, #f7a521 0%, #ffcc00 74%);
+    border-color: darkgrey;
+}
+
+div.sidePage {
+    background-color: #27272760;
+    background-image: linear-gradient(147deg, #70707060 0%, #0f0f0f60 92%);
+}
+
+div.horLine {
+    background-color: #fbb034;
+    background-image: linear-gradient(338deg, #f5a626 0%, #ffcc00 74%);
+    opacity: 1;
+    box-shadow: inset 60px 0 120px #f5a626, inset -60px 0 120px #ffcc00;
+}
+
+div.verLine {
+    background-color: #fbb034;
+    background-image: linear-gradient(338deg, #f5a626 0%, #ffcc00 74%);
+    opacity: 1;
+    box-shadow: inset 60px 0 120px #f5a626, inset -60px 0 120px #ffcc00;
+}
+
+div.video {
+    border-color: black;
+    background-color: aqua;
+}
+
+div.bottomPanel {
+    background-color: #27272760;
+    background-image: linear-gradient(147deg, #70707060 0%, #0f0f0f60 92%);
+}
+
+div.extraBar {
+    background-color: rgb(118, 135, 152, .30);
+    border-color: black;
+    opacity: 0.6;
+}
+
+div.pic {
+    border-color: black;
+    background-color: deepskyblue;
+}
+
+div.taggedBox {
+    border-color: black;
+}
+
+div.taggedBox:button {
+    left: 20px;
+}
+
+@media screen and (max-width: 1775px) {
+    div.sidePage {
+        background-color: #f2f2f2;
+        border: black;
+    }
+}
