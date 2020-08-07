@@ -3,6 +3,12 @@ button.action {
     width: 80px;
     border-radius: 100%;
     background-color: red;
+    opacity: 0.85;
+}
+
+button.action:hover {
+    opacity: 1;
+    cursor: pointer;
 }
 
 div.controls {
@@ -23,6 +29,11 @@ svg {
     fill: transparent;
     stroke: black;
     stroke-width: 2px;
+}
+
+path:hover {
+    fill: dimgray;
+    cursor: pointer;
 }
 
 svg.right {

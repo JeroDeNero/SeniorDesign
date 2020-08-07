@@ -26,14 +26,17 @@ export class ControlsComponent implements OnInit {
   }
 
   onClickD(button) {
+    window.alert("hi")
     //TODO contact server with button (if the server could return true on sucessfully recieving info)
     this.movementState[button] = true;
+    window.alert(this.movementState[button])
   }
 
   onClickR(button) {
     if (this.movementState[button]) {
       //TODO contact server with button
       this.movementState[button] = false;
+      window.alert(this.movementState[button])
     }
   }
 
