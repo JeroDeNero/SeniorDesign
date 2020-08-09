@@ -24,3 +24,7 @@
         </div>
     </div>
 </div>
+
+<div id="popUp" class="popUp" *ngIf="isShown" (click)="toggleShow()">
+    <app-run-pop-up-menu></app-run-pop-up-menu>
+</div>

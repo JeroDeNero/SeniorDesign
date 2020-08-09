@@ -6,5 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
+  isShown: boolean = false;
   title = 'site';
+
+  toggleShow() {
+    this.isShown = false;
+  }
+
 }

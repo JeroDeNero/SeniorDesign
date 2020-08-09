@@ -9,6 +9,7 @@ import { FilterComponent } from './filter/filter.component';
 import { ListComponent } from './list/list.component';
 import { SideMenuComponent } from './side-menu/side-menu.component';
 import { FilterOptionsComponent } from './filter-options/filter-options.component';
+import { RunPopUpMenuComponent } from './run-pop-up-menu/run-pop-up-menu.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { FilterOptionsComponent } from './filter-options/filter-options.componen
     ListComponent,
     SideMenuComponent,
     FilterOptionsComponent,
+    RunPopUpMenuComponent,
   ],
   imports: [
     BrowserModule,
