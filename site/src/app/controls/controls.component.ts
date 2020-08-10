@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-controls',
@@ -11,7 +12,7 @@ export class ControlsComponent implements OnInit {
 
   movementState: Ihash;
 
-  constructor() {
+  constructor(private app: AppComponent) {
   }
 
   ngOnInit(): void {
@@ -42,7 +43,8 @@ export class ControlsComponent implements OnInit {
 
   newRun() {
 
-    window.alert('new run');
+    this.app.toggleShow();
+
     //TODO will pull up the form asking for the details about the details
   }
 

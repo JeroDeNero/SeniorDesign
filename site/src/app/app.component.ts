@@ -11,7 +11,14 @@ export class AppComponent {
   title = 'site';
 
   toggleShow() {
-    this.isShown = false;
+    this.isShown = !this.isShown;
   }
 
+  fillData(runID) {
+    if (runID === null) {
+      return;
+    } else if (runID === "newRun") {
+
+    }
+  }
 }

@@ -77,8 +77,7 @@ div.popUp {
     position: absolute;
     left: 0px;
     top: 0px;
-    z-index: 20;
-    /*visibility: hidden;*/
+    z-index: 18;
 }
 
 

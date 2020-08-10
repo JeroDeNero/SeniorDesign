@@ -1,24 +1,29 @@
-<div class="window">
+<div class="window" (click)=null>
     <div class="container">
         <form action="">
             <label for="name">Name:  </label>
-            <input name="name" type="text">
+            <input name="name" type="text" [(ngModel)]="run.name" />
+            <br>
+            <label for="driver">Operators Name:  </label>
+            <input name="driver" type="text" [(ngModel)]="run.driver" />
             <br>
             <label for="pipeID">PipeID*:  </label>
-            <input name="pipeID" type="text">
+            <input name="pipeID" type="text" [(ngModel)]="run.pipeID" />
             <br>
             <label for="direction">Direction*:  </label>
-            <input name="direction" type="text">
+            <input name="direction" type="text" [(ngModel)]="run.direction" />
             <br>
             <label for="lat">Latitude:  </label>
-            <input name="lat" type="number" min="-90" max="90">
+            <input name="lat" type="number" min="-90" max="90" [(ngModel)]="run.lat" />
             <br>
             <label for="long">Longitude:  </label>
-            <input name="long" type="number" min="-180" max="180">
+            <input name="long" type="number" min="-180" max="180" [(ngModel)]="run.long" />
             <br>
             <br>
             <br>
+
             <button id="comfirm">Submit</button>
         </form>
+        <button id="close" (click)="toggleShow()">Close</button>
     </div>
 </div>
