@@ -23,7 +23,7 @@ export class ControlsComponent implements OnInit {
   }
 
   onClick(button) {
-    // TODO call server, if the erver could return set speed that would be perfect.
+    // TODO call server, if the server could return set speed that would be perfect.
   }
 
   onClickD(button) {
@@ -39,13 +39,6 @@ export class ControlsComponent implements OnInit {
       this.movementState[button] = false;
       window.alert(this.movementState[button])
     }
-  }
-
-  newRun() {
-
-    this.app.toggleShow();
-
-    //TODO will pull up the form asking for the details about the details
   }
 
 }

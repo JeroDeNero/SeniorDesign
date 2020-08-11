@@ -23,7 +23,7 @@ export class RunPopUpMenuComponent implements OnInit {
   }
 
   getRun() {
-    this.runService.getRuns()
+    this.runService.getRun(-1) // How to make it so -1's data is remembered
       .subscribe(run => this.run = run);
   }
 

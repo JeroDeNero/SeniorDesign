@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Run } from '../run';
+import { RunService } from '../run.service';
 
 @Component({
   selector: 'app-list',
@@ -7,9 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListComponent implements OnInit {
 
-  constructor() { }
+  runs: Run[];
+
+  constructor(
+    private runService: RunService
+  ) { }
 
   ngOnInit(): void {
+    this.getRuns();
+  }
+
+  getRuns() {
+    this.runService.getFavRuns()
+      .subscribe(runs => this.runs = runs)
+    console.log("list of runs: ");
+    this.runs.forEach(element => {
+      console.log(element.name);
+    });
   }
 
 }

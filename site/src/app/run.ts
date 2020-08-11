@@ -1,9 +1,20 @@
 export interface Run {
     videoID: number;
-    name: string;
-    driver: string; // does this want to be an enum?
     pipeID: string;
     direction: string; // does this want to be number or string?
+    name?: string;
+    date?: string;
+    driver?: string; // does this want to be an enum?
+    lat?: number;
+    long?: number;
+    image?: HTMLImageElement;
+    tag?: Tag[];
+}
+
+export interface Tag {
+    locationNum: number;
     lat: number;
     long: number;
+    image?: HTMLImageElement;
+    timeStamp?: number;
 }

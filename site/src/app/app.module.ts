@@ -11,6 +11,7 @@ import { ListComponent } from './list/list.component';
 import { SideMenuComponent } from './side-menu/side-menu.component';
 import { FilterOptionsComponent } from './filter-options/filter-options.component';
 import { RunPopUpMenuComponent } from './run-pop-up-menu/run-pop-up-menu.component';
+import { GetNumOfTags } from './list/getNumOfTags.pipe'
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { RunPopUpMenuComponent } from './run-pop-up-menu/run-pop-up-menu.compone
     SideMenuComponent,
     FilterOptionsComponent,
     RunPopUpMenuComponent,
+    GetNumOfTags
   ],
   imports: [
     FormsModule,
