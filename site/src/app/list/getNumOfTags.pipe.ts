@@ -14,7 +14,6 @@ export class GetNumOfTags implements PipeTransform {
     }
 
     getNumOfTags(tags: Tag[]): number {
-        console.log("get num tags ran " + tags);
         if (isUndefined(tags)) {
             return 0;
         } else {

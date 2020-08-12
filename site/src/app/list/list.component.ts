@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Run } from '../run';
 import { RunService } from '../run.service';
 
@@ -10,6 +10,7 @@ import { RunService } from '../run.service';
 export class ListComponent implements OnInit {
 
   runs: Run[];
+  @Input() runType: number;
 
   constructor(
     private runService: RunService
@@ -20,12 +21,11 @@ export class ListComponent implements OnInit {
   }
 
   getRuns() {
-    this.runService.getFavRuns()
+    this.runService.getRuns(this.runType)
       .subscribe(runs => this.runs = runs)
     console.log("list of runs: ");
     this.runs.forEach(element => {
       console.log(element.name);
     });
   }
-
 }

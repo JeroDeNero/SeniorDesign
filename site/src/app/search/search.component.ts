@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { RunService } from '../run.service';
-import { Run, Tag } from '../run';
+import { Run } from '../run';
 
 @Component({
   selector: 'app-search',
@@ -10,22 +10,14 @@ import { Run, Tag } from '../run';
 })
 export class SearchComponent implements OnInit {
 
-  runs: Run[] = []
+  runs: Run[] = [];
 
   constructor(
     private runService: RunService
   ) { }
 
   ngOnInit(): void {
-    this.getRuns();
   }
 
-  getRuns() {
-    this.runService.getFavRuns()
-      .subscribe(runs => this.runs = runs)
-    console.log("list of runs: ");
-    this.runs.forEach(element => {
-      console.log(element.name);
-    });
-  }
+
 }
