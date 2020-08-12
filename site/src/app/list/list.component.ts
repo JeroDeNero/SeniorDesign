@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Run } from '../run';
+import { Run, numHash } from '../interfaces';
 import { RunService } from '../run.service';
 
 @Component({
@@ -7,9 +7,11 @@ import { RunService } from '../run.service';
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.css']
 })
+
 export class ListComponent implements OnInit {
 
   runs: Run[];
+  tagBoxes: numHash;
   @Input() runType: number;
 
   constructor(
@@ -18,6 +20,15 @@ export class ListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getRuns();
+  }
+
+  toggleTags(target) {
+    target = !target;
+  }
+
+  makeTagVar(target) {
+    this.tagBoxes[target] = false;
+    console.log("targ making :" + target + ", " + this.tagBoxes[target]);
   }
 
   getRuns() {

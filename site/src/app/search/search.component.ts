@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { RunService } from '../run.service';
-import { Run } from '../run';
+import { Run } from '../interfaces';
 
 @Component({
   selector: 'app-search',

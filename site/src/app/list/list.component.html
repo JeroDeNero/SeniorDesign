@@ -16,8 +16,8 @@
         </div>
     </div>
     <button class="download"> Download File </button>
-    <button class="dropdown"> v </button>
-    <div class="taggedBox">
+    <input class="dropdown" type="checkbox" ngModel="{{'button'}}">
+    <div class="taggedBox" *ngIf="run.tag ">
         <div *ngFor="let tag of run.tag">
             <pre>
 Tagged Location {{tag.locationNum}}

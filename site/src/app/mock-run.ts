@@ -1,11 +1,11 @@
-import { Run } from './run';
+import { Run } from './interfaces';
 
 export const RUNS: Run[][] =
     [
         [
             {
-                videoID: -1,
-                name: "xyz",
+                videoID: 1,
+                name: "xy",
                 driver: "Tom",
                 pipeID: "xyzf",
                 direction: "SSW",
@@ -33,15 +33,6 @@ export const RUNS: Run[][] =
                         long: 1,
                     }
                 ]
-            },
-            {
-                videoID: 1,
-                name: "xy",
-                driver: "Tom",
-                pipeID: "xyzf",
-                direction: "SSW",
-                lat: 20,
-                long: 0
             },
             {
                 videoID: 2,
@@ -115,6 +106,16 @@ export const RUNS: Run[][] =
                 direction: "SSW",
                 lat: 20,
                 long: 0
+            }
+        ], [
+            {
+                videoID: -1,
+                name: "xyz",
+                driver: "Tom",
+                pipeID: "xyzf",
+                direction: "SSW",
+                lat: 20,
+                long: 0,
             }
         ]
     ]

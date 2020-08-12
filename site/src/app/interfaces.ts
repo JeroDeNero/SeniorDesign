@@ -18,3 +18,7 @@ export interface Tag {
     image?: HTMLImageElement;
     timeStamp?: number;
 }
+
+export interface numHash {
+    [index: number]: boolean;
+}

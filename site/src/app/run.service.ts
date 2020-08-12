@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { Observable, of } from 'rxjs';
 
-import { Run, Tag } from './run';
+import { Run, Tag } from './interfaces';
 import { RUNS } from './mock-run';
 import { isUndefined } from 'util';
 

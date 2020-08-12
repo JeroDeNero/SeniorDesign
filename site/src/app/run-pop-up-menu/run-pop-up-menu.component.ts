@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppComponent } from '../app.component';
 
-import { Run } from '../run';
+import { Run } from '../interfaces';
 import { RunService } from '../run.service'
 
 @Component({

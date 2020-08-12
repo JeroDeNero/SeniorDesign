@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from "@angular/core";
-import { Tag } from "../run";
+import { Tag } from '../interfaces';
 import { isNull, isUndefined } from "util";
 
 @Pipe({
