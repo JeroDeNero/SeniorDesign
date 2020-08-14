@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms'
 import { NgModule } from '@angular/core';
 
@@ -12,6 +13,10 @@ import { SideMenuComponent } from './side-menu/side-menu.component';
 import { FilterOptionsComponent } from './filter-options/filter-options.component';
 import { RunPopUpMenuComponent } from './run-pop-up-menu/run-pop-up-menu.component';
 import { GetNumOfTags } from './list/getNumOfTags.pipe'
+
+//web memory API for testing only
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService } from './in-memory-data.service';
 
 @NgModule({
   declarations: [
@@ -28,9 +33,19 @@ import { GetNumOfTags } from './list/getNumOfTags.pipe'
   imports: [
     FormsModule,
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
+    // and returns simulated server responses.
+    // Remove it when a real server is ready to receive requests.
+    HttpClientInMemoryWebApiModule.forRoot(
+      InMemoryDataService, { dataEncapsulation: false }
+    )
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
+
+
+
 export class AppModule { }
