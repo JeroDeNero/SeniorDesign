@@ -28,15 +28,10 @@ export class ListComponent implements OnInit {
 
   makeTagVar(target) {
     this.tagBoxes[target] = false;
-    console.log("targ making :" + target + ", " + this.tagBoxes[target]);
   }
 
   getRuns() {
-    this.runService.getRuns(this.runType)
-      .subscribe(runs => this.runs = runs)
-    console.log("list of runs: ");
-    this.runs.forEach(element => {
-      console.log(element.name);
-    });
+    this.runService.getRuns()
+      .subscribe(runs => this.runs = runs[this.runType]);
   }
 }
