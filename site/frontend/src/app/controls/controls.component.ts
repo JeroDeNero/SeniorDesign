@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppComponent } from '../app.component';
+import { isUndefined } from 'util';
 
 @Component({
   selector: 'app-controls',
@@ -16,10 +17,11 @@ export class ControlsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.movementState["forward"] = false;
-    this.movementState["backward"] = false;
-    this.movementState["right"] = false;
-    this.movementState["left"] = false;
+    this.setMovementStates();
+  }
+
+  setMovementStates() {
+    this.movementState = { 'forward': false, 'backward': false, 'left': false, 'right': false };
   }
 
   onClick(button) {
@@ -27,14 +29,13 @@ export class ControlsComponent implements OnInit {
   }
 
   onClickD(button) {
-    window.alert("hi")
     //TODO contact server with button (if the server could return true on sucessfully recieving info)
     this.movementState[button] = true;
     window.alert(this.movementState[button])
   }
 
   onClickR(button) {
-    if (this.movementState[button]) {
+    if (!isUndefined(this.movementState[button]) && this.movementState[button]) {
       //TODO contact server with button
       this.movementState[button] = false;
       window.alert(this.movementState[button])

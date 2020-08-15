@@ -32,4 +32,9 @@ export class RunPopUpMenuComponent implements OnInit {
     this.app.toggleShow();
   }
 
+  newRun() {
+    this.run.videoID = -1;
+    this.run.date = new Date;
+    //this.runService.addRun(this.run);
+  }
 }

@@ -3,7 +3,7 @@ export interface Run {
     pipeID: string;
     direction: string; // does this want to be number or string?
     name?: string;
-    date?: string;
+    date?: Date;
     driver?: string; // does this want to be an enum?
     lat?: number;
     long?: number;
