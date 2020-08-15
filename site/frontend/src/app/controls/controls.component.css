@@ -3,6 +3,7 @@ button.action {
     width: 80px;
     border-radius: 100%;
     background-color: red;
+    color: black;
     opacity: 0.85;
 }
 

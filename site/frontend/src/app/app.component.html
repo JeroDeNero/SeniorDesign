@@ -4,6 +4,7 @@
             <div class="tab">
                 <a class="tablink" routerLink="/search">Search</a>
                 <a class="tablink" routerLink="/filter">Filter</a>
+                <a class="tablink" (click)="toggleShow()">New Run</a>
             </div>
             <router-outlet></router-outlet>
         </div>
@@ -23,4 +24,8 @@
             <app-controls></app-controls>
         </div>
     </div>
+</div>
+
+<div id="popUp" class="popUp" *ngIf="isShown">
+    <app-run-pop-up-menu></app-run-pop-up-menu>
 </div>

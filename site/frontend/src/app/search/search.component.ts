@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+import { RunService } from '../run.service';
+import { Run } from '../interfaces';
+
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -7,9 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchComponent implements OnInit {
 
-  constructor() { }
+  runs: Run[] = [];
+
+  constructor(
+    private runService: RunService
+  ) { }
 
   ngOnInit(): void {
   }
+
 
 }
