@@ -1,10 +1,10 @@
 export interface Run {
-    videoID: number;
-    pipeID: string;
+    Id: number;
+    PipeID: string;
     direction: string; // does this want to be number or string?
-    name?: string;
-    date?: Date;
-    driver?: string; // does this want to be an enum?
+    Name?: string;
+    Date?: Date;
+    Driver?: string; // does this want to be an enum?
     lat?: number;
     long?: number;
     image?: HTMLImageElement;
@@ -13,8 +13,8 @@ export interface Run {
 
 export interface Tag {
     locationNum: number;
-    lat: number;
-    long: number;
+    Lat: number;
+    Longi: number;
     image?: HTMLImageElement;
     timeStamp?: number;
 }

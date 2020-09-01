@@ -4,50 +4,50 @@ export const RUNS: Run[][] =
     [
         [
             {
-                videoID: 1,
-                name: "xy",
-                driver: "Tom",
-                pipeID: "xyzf",
+                Id: 1,
+                Name: "xy",
+                Driver: "Tom",
+                PipeID: "xyzf",
                 direction: "SSW",
                 lat: 20,
                 long: 0,
                 tag: [
                     {
                         locationNum: 1,
-                        lat: 0,
-                        long: 0,
+                        Lat: 0,
+                        Longi: 0,
                     },
                     {
                         locationNum: 2,
-                        lat: 1,
-                        long: 0,
+                        Lat: 1,
+                        Longi: 0,
                     },
                     {
                         locationNum: 3,
-                        lat: 0,
-                        long: 1,
+                        Lat: 0,
+                        Longi: 1,
                     },
                     {
                         locationNum: 4,
-                        lat: 1,
-                        long: 1,
+                        Lat: 1,
+                        Longi: 1,
                     }
                 ]
             },
             {
-                videoID: 2,
-                name: "x",
-                driver: "Tom",
-                pipeID: "xyzf",
+                Id: 2,
+                Name: "x",
+                Driver: "Tom",
+                PipeID: "xyzf",
                 direction: "SSW",
                 lat: 20,
                 long: 0
             },
             {
-                videoID: 3,
-                name: "xz",
-                driver: "Tom",
-                pipeID: "xyzf",
+                Id: 3,
+                Name: "xz",
+                Driver: "Tom",
+                PipeID: "xyzf",
                 direction: "SSW",
                 lat: 20,
                 long: 0
@@ -55,28 +55,28 @@ export const RUNS: Run[][] =
         ],
         [
             {
-                videoID: 4,
-                name: "xy",
-                driver: "Tom",
-                pipeID: "xyzf",
+                Id: 4,
+                Name: "xy",
+                Driver: "Tom",
+                PipeID: "xyzf",
                 direction: "SSW",
                 lat: 20,
                 long: 0
             },
             {
-                videoID: 5,
-                name: "x",
-                driver: "Tom",
-                pipeID: "xyzf",
+                Id: 5,
+                Name: "x",
+                Driver: "Tom",
+                PipeID: "xyzf",
                 direction: "SSW",
                 lat: 20,
                 long: 0
             },
             {
-                videoID: 6,
-                name: "xz",
-                driver: "Tom",
-                pipeID: "xyzf",
+                Id: 6,
+                Name: "xz",
+                Driver: "Tom",
+                PipeID: "xyzf",
                 direction: "SSW",
                 lat: 20,
                 long: 0
@@ -84,35 +84,35 @@ export const RUNS: Run[][] =
         ],
         [
             {
-                videoID: 7,
-                driver: "Tom",
-                pipeID: "xyzf",
+                Id: 7,
+                Driver: "Tom",
+                PipeID: "xyzf",
                 direction: "SSW",
                 lat: 20,
                 long: 0
             },
             {
-                videoID: 8,
-                driver: "Tom",
-                pipeID: "xyzf",
+                Id: 8,
+                Driver: "Tom",
+                PipeID: "xyzf",
                 direction: "SSW",
                 lat: 20,
                 long: 0
             },
             {
-                videoID: 9,
-                driver: "Tom",
-                pipeID: "xyzf",
+                Id: 9,
+                Driver: "Tom",
+                PipeID: "xyzf",
                 direction: "SSW",
                 lat: 20,
                 long: 0
             }
         ], [
             {
-                videoID: -1,
-                name: "xyz",
-                driver: "Tom",
-                pipeID: "xyzf",
+                Id: -1,
+                Name: "xyz",
+                Driver: "Tom",
+                PipeID: "xyzf",
                 direction: "SSW",
                 lat: 20,
                 long: 0,

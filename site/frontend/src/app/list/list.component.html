@@ -1,5 +1,5 @@
 <div *ngFor="let run of runs" class="item">
-    <h5>{{run.name}}</h5>
+    <h5>{{run.Name}}</h5>
     <div class="flex-grid">
         <div class="col">
             <div class="pic">
@@ -8,20 +8,20 @@
         </div>
         <div class="colLong">
             <div class="info">
-                {{run.date}}<br>
-                <a>{{run.videoID}}</a>
+                {{run.Date}}<br>
+                <a>{{run.Id}}</a>
                 <!--TODO make into a video link-->
-                <br> {{run.tag | getNumOfTags}} tagged Spots<br> {{run.pipeID}} / {{run.direction}}
+                <br> {{run.tag | getNumOfTags}} tagged Spots<br> {{run.PipeID}} / {{run.direction}}
             </div>
         </div>
     </div>
     <button class="download"> Download File </button>
-    <input class="dropdown" type="checkbox" ngModel="{{'button'}}">
-    <div class="taggedBox" *ngIf="run.tag ">
+    <button class="dropdown" *ngIf="(run.tag | getNumOfTags)" ngModel="{{'button'}}"> v </button>
+    <div class="taggedBox" *ngIf="(run.tag | getNumOfTags)">
         <div *ngFor="let tag of run.tag">
             <pre>
 Tagged Location {{tag.locationNum}}
-Lat: {{tag.lat}}       Long: {{tag.long}}</pre>
+Lat: {{tag.Lat}}       Long: {{tag.long}}</pre>
             <button>Export Coords</button>
         </div>
     </div>

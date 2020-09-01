@@ -7,13 +7,14 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { Run } from './interfaces';
 import { RUNS } from './mock-run';
 
+import { API_URL } from './env';
+
 @Injectable({
   providedIn: 'root'
 })
 
 export class RunService {
 
-  private RunsUrl = 'api/runs'
 
   /**
  * Handle Http operation that failed.
@@ -35,10 +36,11 @@ export class RunService {
   ) { }
 
   getRuns(): Observable<Run[][]> {
-    return this.http.get<Run[][]>(this.RunsUrl)
+    console.log()
+    return this.http.get<Run[][]>(`${API_URL}/run/getRuns`)
       .pipe(
         tap(_ => console.log('fetched runs')),
-        catchError(this.handleError<Run[][]>('this.getRuns', []))
+        catchError(this.handleError<Run[][]>(`${API_URL}/run/getRuns`, []))
       );
   }
 
@@ -51,26 +53,26 @@ export class RunService {
   }
 
   getRun(id: number): Observable<Run> {
-    return of(this.flatIt(RUNS).find(run => run.videoID === id));
+    return of(this.flatIt(RUNS).find(run => run.Id === id));
   }
 
   addRun(run: Run): Observable<Run> {
-    return this.http.post<Run>(this.RunsUrl, run, this.httpOptions).pipe(
-      tap((newRun: Run) => console.log('added run w/ id={newRun.videoID}')),
+    return this.http.post<Run>(`${API_URL}`, run, this.httpOptions).pipe(
+      tap((newRun: Run) => console.log('added run w/ id={newRun.Id}')),
       catchError(this.handleError<Run>('addHero'))
     );
   }
 
   updateRun(run: Run): Observable<any> {
-    return this.http.put(this.RunsUrl, run, this.httpOptions).pipe(
-      tap(_ => console.log('updated run id =${run.videoID}')),
+    return this.http.put(`${API_URL}`, run, this.httpOptions).pipe(
+      tap(_ => console.log('updated run id =${run.Id}')),
       catchError(this.handleError<any>('updateHero'))
     );
   }
 
   deleteRun(run: Run | number): Observable<Run> {
-    const id = (typeof run === 'number') ? run : run.videoID;
-    const url = `${this.RunsUrl}/${id}`;
+    const id = (typeof run === 'number') ? run : run.Id;
+    const url = `${API_URL}/${id}`;
 
     return this.http.delete<Run>(url, this.httpOptions).pipe(
       tap(_ => console.log('seleted hero id=${id}')),

@@ -14,9 +14,6 @@ import { FilterOptionsComponent } from './filter-options/filter-options.componen
 import { RunPopUpMenuComponent } from './run-pop-up-menu/run-pop-up-menu.component';
 import { GetNumOfTags } from './list/getNumOfTags.pipe'
 
-//web memory API for testing only
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from './in-memory-data.service';
 
 @NgModule({
   declarations: [
@@ -35,12 +32,6 @@ import { InMemoryDataService } from './in-memory-data.service';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
-    // and returns simulated server responses.
-    // Remove it when a real server is ready to receive requests.
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, { dataEncapsulation: false }
-    )
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,15 +1,3 @@
-CREATE TABLE Video (
-  Id int unsigned not null auto_increment,
-  Name varchar(32),
-  VideoLoc varchar(512),
-  VideoClipLoc varchar(512),
-  Tagged smallint,
-  DateTaken datetime not null,
-  DriverName varchar(32),
-  
-  primary key (Id)
-);
-
 CREATE TABLE TaggedLocs(
   Id int unsigned not null auto_increment,
   Longi smallint not null,
@@ -35,7 +23,27 @@ CREATE Table Pipe (
   Longi smallint,
   Direction varchar(8),
 
+  UNIQUE(Lat, Longi, Direction),
+
   primary key (Id)
+);
+
+CREATE TABLE Video (
+  Id int unsigned not null auto_increment,
+  Name varchar(32),
+  VideoLoc varchar(512),
+  VideoClipLoc varchar(512),
+  Tagged smallint,
+  DateTaken datetime not null,
+  DriverName varchar(32),
+  PipeID varchar(128) ,
+  
+  primary key (Id),
+
+  foreign key (PipeID)
+          references Pipe (Id)
+          ON DELETE SET NULL
+          ON UPDATE CASCADE
 );
 
 CREATE TABLE RoughLocation (
@@ -43,7 +51,10 @@ CREATE TABLE RoughLocation (
   Name varchar(64) not null,
   Lat smallint not null,
   Longi smallint not null,
-  raduis smallint not null,
+  Raduis smallint not null,
+
+  UNIQUE (Name),
+  UNIQUE (Lat, Longi, Raduis),
 
   primary key (Id)
 );
@@ -55,47 +66,46 @@ CREATE TABLE VideoToTags (
   primary key (VideoID, TagID),
 
   foreign key (VideoID)
-          references Video(Id),
+          references Video (Id)
+          ON DELETE CASCADE
+          ON UPDATE CASCADE,
 
-  foreign key (TagID)
+  foreign key   (TagID)
           references TaggedLocs(Id)
+          ON DELETE CASCADE
+          ON UPDATE CASCADE
 );
 
 CREATE TABLE TagToHighlights (
-  LocationId int unsigned not null,
-  HighlightId int unsigned not null,
+  LocationID int unsigned not null,
+  HighlightID int unsigned not null,
 
-  primary key (LocationId, HighlightId),
+  primary key (LocationID, HighlightID),
 
-  foreign key (LocationId)
-          references TaggedLocs(Id),
+  foreign key (LocationID)
+          references TaggedLocs (Id)
+          ON DELETE CASCADE
+          ON UPDATE CASCADE,
 
-  foreign key (HighlightId)
-          references HighlightedZones(Id)
-);
-
-CREATE TABLE PipeToVid0 (
-  VideoID int unsigned not null,
-  PipeID varchar(128) not null,
-
-  primary key (VideoID, PipeID),
-
-  foreign key (VideoID)
-          references Video(Id),
-
-  foreign key (PipeID)
-          references Pipe(Id)
+  foreign key (HighlightID)
+          references HighlightedZones (Id)
+          ON DELETE CASCADE
+          ON UPDATE CASCADE
 );
 
 CREATE TABLE PipeToRoughLoc (
   PipeID varchar(128) not null,
-  RoughLocId int  not null,
+  RoughLocID int  not null,
 
-  primary key (PipeID, RoughLocId),
+  primary key (PipeID, RoughLocID),
 
   foreign key (PipeID)
-          references Pipe(Id),
+          references Pipe (Id)
+          ON DELETE CASCADE
+          ON UPDATE CASCADE,
 
-  foreign key (RoughLocId)
-          references RoughLocation(Id)
+  foreign key (RoughLocID)
+          references RoughLocation (Id)
+          ON DELETE CASCADE
+          ON UPDATE CASCADE
 );
