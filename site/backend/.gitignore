@@ -1,6 +1,5 @@
 venv/
 
-*.py
 __pycache__/
 
 instance/

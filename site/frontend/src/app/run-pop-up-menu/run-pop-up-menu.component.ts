@@ -33,8 +33,8 @@ export class RunPopUpMenuComponent implements OnInit {
   }
 
   newRun() {
-    this.run.videoID = -1;
-    this.run.date = new Date;
+    this.run.Id = -1;
+    this.run.Date = new Date;
     //this.runService.addRun(this.run);
   }
 }
