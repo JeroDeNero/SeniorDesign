@@ -1,6 +1,7 @@
 import functools
 import datetime
 import mysql.connector
+import json
 
 from backend.db import getDb
 
@@ -70,16 +71,17 @@ def getRuns():
 # could also be called getVideo, as a run is equivialant the the video and all its info
 
 
-@bp.route('/getRun', methods=(['GET']))
+@bp.route('/getRun', methods=(['POST']))
 def getRun():
 
-    id = request.form['id']
-    return jsonify(buildRun(id))
+    target = request.json
+    return jsonify(buildRun(target["id"]))
 
 
-@bp.route('/deleteRun', methods=(['GET']))
+@bp.route('/deleteRun', methods=(['POST']))
 def deleteRun():
-    id = request.form['id']
+
+    id = request.json["id"]
 
     db = getDb()
     tagCursor = db.cursor(dictionary=True, buffered=True)
@@ -116,8 +118,6 @@ def deleteRun():
     db.commit()
     db.close
 
-    return 'TODO Callum'
-
 
 def buildRun(target):
 
@@ -128,7 +128,7 @@ def buildRun(target):
     vidTags = []
 
     for tag in tags:
-        vidTags.append(getTag(db, tag.get('Id')))
+        vidTags.append(getTag(db, tag[0]))
 
     run.update({'tag': vidTags})
 
@@ -148,12 +148,10 @@ def buildRun(target):
 def getVideo(db, vidID):
     getter = db.cursor(dictionary=True, buffered=True)
 
-    target = request.form['id']
+    query = ("SELECT * FROM Video "
+             "WHERE Id = {}".format(vidID))
 
-    query = ("SELECT * FROM Video"
-             "WHERE Id = %s")
-
-    getter.execute(query, target)
+    getter.execute(query)
 
     results = getter.fetchone()
     getter.close

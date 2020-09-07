@@ -9,16 +9,16 @@
         <div class="colLong">
             <div class="info">
                 {{run.Date}}<br>
-                <a>{{run.Id}}</a>
+                <a (click)="editData(run.id)">edit</a> | <a (click)="deleteData(run.id)">delete</a>
                 <!--TODO make into a video link-->
                 <br> {{run.tag | getNumOfTags}} tagged Spots<br> {{run.PipeID}} / {{run.direction}}
             </div>
         </div>
     </div>
-    <button class="download"> Download File </button>
-    <button class="dropdown" *ngIf="(run.tag | getNumOfTags)" ngModel="{{'button'}}"> v </button>
-    <div class="taggedBox" *ngIf="(run.tag | getNumOfTags)">
-        <div *ngFor="let tag of run.tag">
+    <button class="download "> Download File </button>
+    <button class="dropdown " *ngIf="(run.tag | getNumOfTags) " ngModel="{{ 'button'}} "> v </button>
+    <div class="taggedBox " *ngIf="(run.tag | getNumOfTags) ">
+        <div *ngFor="let tag of run.tag ">
             <pre>
 Tagged Location {{tag.locationNum}}
 Lat: {{tag.Lat}}       Long: {{tag.long}}</pre>
