@@ -56,7 +56,7 @@ def getRuns():
 
         if (run.get('Tagged') != None):
             tagVids.append(run)
-        elif (run.get('Tagged') == None and run.get('Name') != 'None'):
+        elif (run.get('Tagged') == None and run.get('Name') != None):
             namVids.append(run)
         else:
             noNamVids.append(run)
