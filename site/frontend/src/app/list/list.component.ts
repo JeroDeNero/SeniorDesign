@@ -28,10 +28,10 @@ export class ListComponent implements OnInit {
   }
 
   deleteRun(target) {
-    this.runService.deleteRun(target);
+    this.runService.deleteRun(target).subscribe();
   }
 
   deleteTag(target) {
-    this.runService.deleteTag(target);
+    this.runService.deleteTag(target).subscribe();
   }
 }

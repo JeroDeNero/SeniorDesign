@@ -5,31 +5,35 @@ import json
 from backend.db import getDb
 
 from flask import(
-    Blueprint, request
+    Blueprint, request, jsonify
 )
 
 bp = Blueprint('delete', __name__, url_prefix='/delete')
 
 
 @bp.route('/run', methods=(['POST']))
-def deleteRun():
+def run():
     db = getDb()
     deleteRunTask(db, request.json["Id"])
     db.close
 
+    return jsonify({})
 
-@bp.route('/deleteTag', methods=(['POST']))
+
+@bp.route('/tag', methods=(['POST']))
 def deleteTag():
     db = getDb()
     deleteTagTask(db, request.json["Id"])
     db.close()
 
+    return jsonify({})
+
 
 def deleteRunTask(db, id):
 
     tagCursor = db.cursor(dictionary=True, buffered=True)
-
-    requestTags = ("SELECT TagID FROM VideoToTags"
+    print(id)
+    requestTags = ("SELECT TagID FROM VideoToTags "
                    "WHERE VideoID = {}".format(id))
 
     tagCursor.execute(requestTags)
@@ -39,14 +43,13 @@ def deleteRunTask(db, id):
 
     tagCursor.close()
 
-    db.execute('DELETE FROM Video WHERE Id = {}'.format(id))
-    db.commit()
+    deleteIt(db, 'DELETE FROM Video WHERE Id = {}'.format(id))
 
 
 def deleteTagTask(db, id):
 
     highlightedZones = db.cursor(dictionary=True, buffered=True)
-    requestHL = ("SELECT HighlightID FROM TagToHighlights"
+    requestHL = ("SELECT HighlightID FROM TagToHighlights "
                  "WHERE LocationID = {}".format(id))
     highlightedZones.execute(requestHL)
 
@@ -56,22 +59,24 @@ def deleteTagTask(db, id):
 
     highlightedZones.close()
 
-    db.execute('DELETE FROM TaggedLocs WHERE Id = {}'.format(id))
-    db.commit()
+    deleteIt(db, 'DELETE FROM TaggedLocs WHERE Id = {}'.format(id))
 
 
 def deleteHighlightTask(db, id):
-    db.execute('DELETE FROM HighlightedZones WHERE Id = {}'.format(id))
-    db.commit()
+    deleteIt(db, 'DELETE FROM HighlightedZones WHERE Id = {}'.format(id))
 
 
 def deletePipeTask(db, id):
-    db.execute('DELETE FROM Pipe WHERE Id = {}'.format(id))
-    db.commit()
+    deleteIt(db, 'DELETE FROM Pipe WHERE Id = {}'.format(id))
 
 
 def deleteRoughLocTask(db, id):
-    db.execute('DELETE FROM PipeToRoughLoc WHERE RoughLocID = {}'.format(id))
+    deleteIt(db, 'DELETE FROM PipeToRoughLoc WHERE RoughLocID = {}'.format(id))
+    deleteIt(db, 'DELETE FROM RoughLocation WHERE Id = {}'.format(id))
+
+
+def deleteIt(db, queury):
+    delCursor = db.cursor(dictionary=True, buffered=True)
+    delCursor.execute(queury)
     db.commit()
-    db.execute('DELETE FROM RoughLocation WHERE Id = {}'.format(id))
-    db.commit()
+    delCursor.close()

@@ -12,7 +12,7 @@ export interface Run {
 }
 
 export interface Tag {
-  locationNum: number;
+  Id: number;
   Lat: number;
   Longi: number;
   image?: HTMLImageElement;

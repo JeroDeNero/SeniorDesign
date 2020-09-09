@@ -11,7 +11,7 @@
             <div class="info">
                 {{(run.DateTaken | date:'mediumDate')}}
                 <div class="linkHolder">
-                    <a class="edit" (click)="editData(run.id)">Edit</a><a class="delete" (click)="deleteRun(run.id)">Delete</a>
+                    <a class="edit" (click)="editData(run.Id)">Edit</a><a class="delete" (click)="deleteRun(run.Id)">Delete</a>
                 </div>{{run.tag | getNumOfTags}} tagged Spots<br> {{run.PipeID}} / {{run.direction}}
             </div>
         </div>
@@ -23,10 +23,12 @@
         <div class="horLine"></div>
         <div *ngFor="let tag of run.tag ">
             <pre>
-Tagged Location {{tag.locationNum}}
+Tagged Location {{tag.Id}}
 Lat: {{tag.Lat}}       Long: {{tag.long}}</pre>
             <div class="linkHolder">
-                <a class="">Export</a> <a class="">View</a> <a class="delete">Delete</a>
+                <a class="export">Export</a>
+                <a class="view">View</a>
+                <a class="delete" (click)="deleteTag(tag.Id)">Delete</a>
             </div>
             <div class="horLine"></div>
         </div>
