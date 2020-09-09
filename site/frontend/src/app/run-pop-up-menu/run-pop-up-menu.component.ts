@@ -14,15 +14,7 @@ export class RunPopUpMenuComponent implements OnInit {
 
   constructor(private app: AppComponent, private runService: RunService) {}
 
-  ngOnInit(): void {
-    this.getRun();
-  }
-
-  getRun() {
-    this.runService
-      .getRun(-1) // How to make it so -1's data is remembered
-      .subscribe((run) => (this.run = run));
-  }
+  ngOnInit(): void {}
 
   toggleShow() {
     this.app.operation = 'New Run';
@@ -31,7 +23,7 @@ export class RunPopUpMenuComponent implements OnInit {
 
   newRun() {
     this.run.Id = -1;
-    this.run.Date = new Date();
+    this.run.DateTaken = new Date();
     //this.runService.addRun(this.run);
   }
 }
