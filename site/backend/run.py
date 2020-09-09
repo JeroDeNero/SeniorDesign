@@ -78,47 +78,6 @@ def getRun():
     return jsonify(buildRun(target["id"]))
 
 
-@bp.route('/deleteRun', methods=(['POST']))
-def deleteRun():
-
-    id = request.json["id"]
-
-    db = getDb()
-    tagCursor = db.cursor(dictionary=True, buffered=True)
-
-    requestTags = ("SELECT TagID FROM VideoToTags"
-                   "WHERE VideoID = {}".format(id))
-
-    tagCursor.execute(requestTags)
-
-    for tag in tagCursor:
-
-        highlightedZones = db.cursor(dictionary=True, buffered=True)
-
-        requestHL = ("SELECT HighlightID FROM TagToHighlights"
-                     "WHERE LocationID = {}".format(tag.get('TagID')))
-
-        highlightedZones.execute(requestHL)
-
-        for HL in highlightedZones:
-
-            db.execute('DELETE FROM HighlightedZones WHERE Id = {}'.format(
-                HL.get('HighlightID')))
-            db.commit()
-
-        highlightedZones.close()
-
-        db.execute('DELETE FROM TaggedLocs WHERE Id = {}'.format(
-            tag.get('TagID')))
-        db.commit()
-
-    tagCursor.close()
-
-    db.execute('DELETE FROM Video WHERE Id = {}'.format(id))
-    db.commit()
-    db.close
-
-
 def buildRun(target):
 
     db = getDb()
