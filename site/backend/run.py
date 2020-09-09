@@ -5,15 +5,36 @@ import mysql.connector
 from backend.db import getDb
 
 from flask import(
-    Blueprint, jsonify, request
+    Blueprint, flash, jsonify, request
 )
 
 bp = Blueprint('run', __name__, url_prefix='/run')
 
 
-@bp.route('/newRun', methods=(['GET']))
+@bp.route('/newRun', methods=(['GET', 'POST']))
 def newRun():
-    return 'TODO Jero'
+    if request.method == 'POST':
+        PipeID = request.form['PipeID']
+        Direction = request.form['Direction']
+        db = getDb()
+        error = None
+
+        if PipeID
+            error = 'PipeID is required.'
+        elif not Direction
+            error = 'Direction is required.'
+
+        if error is None:
+            query = 'INSERT INTO pipe (PipeID, Direction, Latitude, Longitude) VALUES (?, ?, ?, ?)'
+            db.execute(query, (PipeID, Direction, Latitude, Longitude))
+
+            query = 'INSERT INTO Videos (RunName, PipeID, DriverName, DateTaken) VALUES (?, ?, ?, ?)'
+            db.execute(query, (RunName, PipeID, DriverName, DateTaken))
+            db.commit()
+
+        flash(error)
+
+    return jsonify()#redirect url to page with videofeed?
 
 
 @bp.route('/editRun', methods=(['GET']))
