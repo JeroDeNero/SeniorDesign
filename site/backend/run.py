@@ -1,6 +1,7 @@
 import functools
 import datetime
 import mysql.connector
+import json
 
 from backend.db import getDb
 
@@ -70,53 +71,11 @@ def getRuns():
 # could also be called getVideo, as a run is equivialant the the video and all its info
 
 
-@bp.route('/getRun', methods=(['GET']))
+@bp.route('/getRun', methods=(['POST']))
 def getRun():
 
-    id = request.form['id']
-    return jsonify(buildRun(id))
-
-
-@bp.route('/deleteRun', methods=(['GET']))
-def deleteRun():
-    id = request.form['id']
-
-    db = getDb()
-    tagCursor = db.cursor(dictionary=True, buffered=True)
-
-    requestTags = ("SELECT TagID FROM VideoToTags"
-                   "WHERE VideoID = {}".format(id))
-
-    tagCursor.execute(requestTags)
-
-    for tag in tagCursor:
-
-        highlightedZones = db.cursor(dictionary=True, buffered=True)
-
-        requestHL = ("SELECT HighlightID FROM TagToHighlights"
-                     "WHERE LocationID = {}".format(tag.get('TagID')))
-
-        highlightedZones.execute(requestHL)
-
-        for HL in highlightedZones:
-
-            db.execute('DELETE FROM HighlightedZones WHERE Id = {}'.format(
-                HL.get('HighlightID')))
-            db.commit()
-
-        highlightedZones.close()
-
-        db.execute('DELETE FROM TaggedLocs WHERE Id = {}'.format(
-            tag.get('TagID')))
-        db.commit()
-
-    tagCursor.close()
-
-    db.execute('DELETE FROM Video WHERE Id = {}'.format(id))
-    db.commit()
-    db.close
-
-    return 'TODO Callum'
+    target = request.json
+    return jsonify(buildRun(target["id"]))
 
 
 def buildRun(target):
@@ -128,7 +87,7 @@ def buildRun(target):
     vidTags = []
 
     for tag in tags:
-        vidTags.append(getTag(db, tag.get('Id')))
+        vidTags.append(getTag(db, tag[0]))
 
     run.update({'tag': vidTags})
 
@@ -148,12 +107,10 @@ def buildRun(target):
 def getVideo(db, vidID):
     getter = db.cursor(dictionary=True, buffered=True)
 
-    target = request.form['id']
+    query = ("SELECT * FROM Video "
+             "WHERE Id = {}".format(vidID))
 
-    query = ("SELECT * FROM Video"
-             "WHERE Id = %s")
-
-    getter.execute(query, target)
+    getter.execute(query)
 
     results = getter.fetchone()
     getter.close

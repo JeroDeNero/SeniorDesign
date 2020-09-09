@@ -33,6 +33,17 @@ h5 {
     margin-bottom: 5px;
 }
 
+button.pullOutMenu {
+    color: #FFFFFF20;
+    border-color: #FFFFFF80;
+    background-color: #272727;
+    background-image: linear-gradient(147deg, #70707060 0%, #0f0f0f60 92%);
+}
+
+button.pullOutMenu {
+   color: #FFFFFF;
+}
+
 div.list {
     height: calc(100% - 177px);
     overflow-y: scroll;
@@ -134,7 +145,8 @@ div.window {
 
 @media screen and (max-width: 1775px) {
     div.sidePage {
-        background-color: #f2f2f2;
+    background-color: #272727;
+    background-image: linear-gradient(147deg, #70707060 0%, #0f0f0f60 92%);
         border: black;
     }
 }

@@ -1,23 +1,21 @@
-import { Pipe, PipeTransform } from "@angular/core";
+import { Pipe, PipeTransform } from '@angular/core';
 import { Tag } from '../interfaces';
-import { isNull, isUndefined } from "util";
+import { isNull, isUndefined } from 'util';
 
 @Pipe({
-    name: 'getNumOfTags',
-    pure: true
+  name: 'getNumOfTags',
+  pure: true,
 })
-
 export class GetNumOfTags implements PipeTransform {
+  transform(value: Tag[], args?: any): any {
+    return this.getNumOfTags(value);
+  }
 
-    transform(value: Tag[], args?: any): any {
-        return this.getNumOfTags(value);
+  getNumOfTags(tags: Tag[]): number {
+    if (isUndefined(tags)) {
+      return 0;
+    } else {
+      return tags.length;
     }
-
-    getNumOfTags(tags: Tag[]): number {
-        if (isUndefined(tags)) {
-            return 0;
-        } else {
-            return tags.length;
-        }
-    }
+  }
 }
