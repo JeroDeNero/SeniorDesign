@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 
-import { Run } from './interfaces';
+import { Run, Tag } from './interfaces';
 
 import { API_URL } from './env';
 
@@ -66,14 +66,24 @@ export class RunService {
     );
   }
 
-  deleteRun(run: Run | number) {
+  deleteRun(run: Run | number): Observable<any> {
     const id = typeof run === 'number' ? run : run.Id;
-    const url = `${API_URL}/${id}`;
+    return this.http
+      .post<any>(`${API_URL}/delete/run`, { Id: id }, this.httpOptions)
+      .pipe(
+        tap((_) => console.log('deleted run')),
+        catchError(this.handleError<Run>())
+      );
+  }
 
-    return this.http.post(url, { Id: id }, this.httpOptions).pipe(
-      tap((_) => console.log('seleted hero id=${id}')),
-      catchError(this.handleError<Run>())
-    );
+  deleteTag(tag: Tag | number): Observable<any> {
+    const id = typeof tag === 'number' ? tag : tag.Id;
+    return this.http
+      .post<any>(`${API_URL}/delete/tag`, { Id: id }, this.httpOptions)
+      .pipe(
+        tap((_) => console.log('deleted tag')),
+        catchError(this.handleError<Run>())
+      );
   }
 
   httpOptions = {
