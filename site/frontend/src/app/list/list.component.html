@@ -1,28 +1,36 @@
 <div *ngFor="let run of runs" class="item">
-    <h5>{{run.Name}}</h5>
+    <h5>{{run.Name || run.DateTaken }}</h5>
     <div class="flex-grid">
         <div class="col">
             <div class="pic">
+                <!--TODO make into a video link-->
                 <img class="maxWidth" src="assets/Images/screenHolder.jpg" alt="">
             </div>
         </div>
         <div class="colLong">
             <div class="info">
-                {{run.Date}}<br>
-                <a>{{run.Id}}</a>
-                <!--TODO make into a video link-->
-                <br> {{run.tag | getNumOfTags}} tagged Spots<br> {{run.PipeID}} / {{run.direction}}
+                {{(run.DateTaken | date:'mediumDate')}}
+                <div class="linkHolder">
+                    <a class="edit" (click)="editData(run.Id)">Edit</a><a class="delete" (click)="deleteRun(run.Id)">Delete</a>
+                </div>{{run.tag | getNumOfTags}} tagged Spots<br> {{run.PipeID}} / {{run.direction}}
             </div>
         </div>
     </div>
-    <button class="download"> Download File </button>
-    <button class="dropdown" *ngIf="(run.tag | getNumOfTags)" ngModel="{{'button'}}"> v </button>
-    <div class="taggedBox" *ngIf="(run.tag | getNumOfTags)">
-        <div *ngFor="let tag of run.tag">
+    <button class="download "> Download File </button>
+    <button class="dropdown " *ngIf="(run.tag | getNumOfTags) "> v </button>
+    <div class="taggedBox " *ngIf="(run.tag | getNumOfTags) ">
+
+        <div class="horLine"></div>
+        <div *ngFor="let tag of run.tag ">
             <pre>
-Tagged Location {{tag.locationNum}}
+Tagged Location {{tag.Id}}
 Lat: {{tag.Lat}}       Long: {{tag.long}}</pre>
-            <button>Export Coords</button>
+            <div class="linkHolder">
+                <a class="export">Export</a>
+                <a class="view">View</a>
+                <a class="delete" (click)="deleteTag(tag.Id)">Delete</a>
+            </div>
+            <div class="horLine"></div>
         </div>
     </div>
 </div>

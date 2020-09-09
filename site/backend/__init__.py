@@ -28,7 +28,9 @@ def create_app(test_config=None):
 
     from . import db
     from . import run
+    from . import delete
 
     app.register_blueprint(run.bp)
+    app.register_blueprint(delete.bp)
 
     return app

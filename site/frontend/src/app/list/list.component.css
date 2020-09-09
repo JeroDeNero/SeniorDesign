@@ -25,3 +25,54 @@ div.taggedBox {
 div.taggedBox:button {
     left: 20px;
 }
+
+div.linkHolder {
+    overflow: hidden;
+}
+
+a {
+    margin: auto 5px;
+    padding: 4px 6px;
+    border: none;
+    outline: none;
+    float: center;
+    cursor: pointer;
+    transition: 0.3s;
+    background-color: inherit;
+}
+
+
+/* Change background color of buttons on hover */
+
+a:hover {
+    color: black;
+    background-color: rgb(238, 238, 238);
+}
+
+
+/* Create an active/current tablink class */
+
+a .active {
+    color: black;
+    background-color: rgb(238, 238, 238);
+}
+
+a.delete {
+    color: red;
+}
+
+
+/* Change background color of buttons on hover */
+
+a.delete:hover {
+    color: black;
+    background-color: red;
+}
+
+
+/* Create an active/current tablink class */
+
+a.delete .active {
+    color: black;
+    background-color: red;
+}
