@@ -3,26 +3,32 @@
     <div class="flex-grid">
         <div class="col">
             <div class="pic">
+                <!--TODO make into a video link-->
                 <img class="maxWidth" src="assets/Images/screenHolder.jpg" alt="">
             </div>
         </div>
         <div class="colLong">
             <div class="info">
-                {{run.Date}}<br>
-                <a (click)="editData(run.id)">edit</a> | <a (click)="deleteData(run.id)">delete</a>
-                <!--TODO make into a video link-->
-                <br> {{run.tag | getNumOfTags}} tagged Spots<br> {{run.PipeID}} / {{run.direction}}
+                {{run.Date}}
+                <div class="linkHolder">
+                    <a class="edit" (click)="editData(run.id)">Edit</a><a class="delete" (click)="deleteData(run.id)">Delete</a>
+                </div>{{run.tag | getNumOfTags}} tagged Spots<br> {{run.PipeID}} / {{run.direction}}
             </div>
         </div>
     </div>
     <button class="download "> Download File </button>
     <button class="dropdown " *ngIf="(run.tag | getNumOfTags) " ngModel="{{ 'button'}} "> v </button>
     <div class="taggedBox " *ngIf="(run.tag | getNumOfTags) ">
+
+        <div class="horLine"></div>
         <div *ngFor="let tag of run.tag ">
             <pre>
 Tagged Location {{tag.locationNum}}
 Lat: {{tag.Lat}}       Long: {{tag.long}}</pre>
-            <button>Export Coords</button>
+            <div class="linkHolder">
+                <a class="">Export</a> <a class="">View</a> <a class="delete">Delete</a>
+            </div>
+            <div class="horLine"></div>
         </div>
     </div>
 </div>

@@ -70,7 +70,7 @@ export class RunService {
     const id = typeof run === 'number' ? run : run.Id;
     const url = `${API_URL}/${id}`;
 
-    return this.http.post(url, { id: id }, this.httpOptions).pipe(
+    return this.http.post(url, { Id: id }, this.httpOptions).pipe(
       tap((_) => console.log('seleted hero id=${id}')),
       catchError(this.handleError<Run>())
     );
