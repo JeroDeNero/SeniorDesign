@@ -8,15 +8,12 @@ import { RunService } from '../run.service';
   styleUrls: ['./list.component.css'],
 })
 export class ListComponent implements OnInit {
-  runs: Run[];
+  @Input('runs') runs: Run[];
   tagBoxes: numHash;
-  @Input() runType: number;
 
   constructor(private runService: RunService) {}
 
-  ngOnInit(): void {
-    this.getRuns();
-  }
+  ngOnInit(): void {}
 
   toggleTags(target) {
     target = !target;
@@ -26,15 +23,15 @@ export class ListComponent implements OnInit {
     this.tagBoxes[target] = false;
   }
 
-  getRuns() {
-    this.runService
-      .getRuns()
-      .subscribe((runs) => (this.runs = runs[this.runType]));
+  editData(target) {
+    this.runService.deleteTag(target);
   }
 
-  editData(target) {}
-
-  deleteData(target) {
+  deleteRun(target) {
     this.runService.deleteRun(target);
+  }
+
+  deleteTag(target) {
+    this.runService.deleteTag(target);
   }
 }
