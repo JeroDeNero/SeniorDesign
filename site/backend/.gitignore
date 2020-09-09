@@ -11,3 +11,8 @@ htmlcov/
 dist/
 build/
 *egg-info
+
+stream/
+
+streams.py
+videos.py
