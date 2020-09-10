@@ -29,6 +29,17 @@ export class ListComponent implements OnInit {
 
   deleteRun(target) {
     this.runService.deleteRun(target).subscribe();
+
+    console.log(this.runs);
+
+    const lamda = (element: Run) => element.Id === target;
+    const index = this.runs.findIndex(lamda);
+
+    console.log('removing: ' + this.runs[index]);
+
+    this.runs.splice(index, 1);
+
+    console.log(this.runs);
   }
 
   deleteTag(target) {
