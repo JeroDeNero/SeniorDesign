@@ -13,30 +13,47 @@ bp = Blueprint('run', __name__, url_prefix='/run')
 def newRun():
 
     db = getDb()
-    
-    PipeID = request.form['PipeID']
-    Direction = request.form['Direction']
-    Lat = request.form['Lat']
-    Longi = request.form['Longi']
+
+    input = request.json
+
+    Name = input['Name']
+    DriverName = input['DriverName']
+    tagged = input['Tagged']
+    PipeID = input['PipeID']
+    Direction = input['Direction']
+    Lat = input['Lat']
+    Longi = input['Longi']
     error = None
 
-    def deleteIt(db, query):
-        delCursor = db.cursor(dictionary = True, buffered = True)
-        delCursor.execute(query)
-        db.commit()
-        delCursor.close()
-
-    if PipeID:
+    if not PipeID:
         error = 'PipeID is required.'
     elif not Direction:
         error = 'Direction is required.'
 
     if error is None:
-        query = "INSERT INTO pipe (PipeID, Direction, Lat, Longi) VALUES {}, {}, {}, {}".format(PipeID, Direction, Lat, Longi)
-        deleteIt(db, query)
 
-        query = "INSERT INTO Videos (RunName, PipeID, DriverName, DateTaken) VALUES {}, {}, {}, {}".format(Name, PipeID, DriverName, DateTaken)
-        deleteIt(db, query)
+        checker = db.cursor(dictionary=True, buffered=True)
+        query = ("SELECT * "
+                 "FROM Pipe "
+                 "WHERE Id = '{}'".format(PipeID))
+
+        checker.execute(query)
+
+        if(not checker.fetchall()):
+            query = ("INSERT INTO Pipe (Id, Direction, Lat, Longi)"
+                     "VALUES ('{}', '{}', {}, {})".format(
+                         PipeID, Direction, Lat, Longi))
+            sendCommand(db, query)
+            print(query)
+
+        checker.close()
+
+        query = ("INSERT INTO Video (Name, PipeID, DriverName, DateTaken, Tagged) VALUES"
+                 "('{}', '{}', '{}', CURDATE(), {})".format(
+                     Name, PipeID, DriverName, tagged))
+        sendCommand(db, query)
+
+        print(query)
 
     return jsonify({})
 

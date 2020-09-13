@@ -1,5 +1,5 @@
 export interface Run {
-  Id: number;
+  Id?: number;
   PipeID: string;
   Direction: string; // does this want to be number or string?
   ShowRun: Boolean;

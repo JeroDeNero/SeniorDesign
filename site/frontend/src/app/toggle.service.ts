@@ -23,6 +23,7 @@ export class ToggleService {
       this.toggleHideNew();
       this.setButtonOp('End Run');
     } else {
+      this.runService.addRun().subscribe();
       this.setButtonOp('New Run');
     }
   }
