@@ -4,7 +4,7 @@
             <div class="tab">
                 <a class="tablink" routerLink="/search">Search</a>
                 <a class="tablink" routerLink="/filter">Filter</a>
-                <a class="tablink" (click)="toggleOption()">{{operation}}</a>
+                <a class="tablink" (click)="toggleNewMenu()">{{operation}}</a>
             </div>
             <router-outlet></router-outlet>
         </div>
@@ -26,8 +26,8 @@
     </div>
 </div>
 
-<div id="popUp" class="popUp" [hidden]="!isShown">
-    <app-run-pop-up-menu></app-run-pop-up-menu>
-</div>
+<app-run-pop-up-menu></app-run-pop-up-menu>
+
+<app-edit-menu></app-edit-menu>
 
 <button class="pullOutMenu" (click)="toggleSideMenu()" [hidden]="!pullOutBar"> {{pullOutCont}} </button>

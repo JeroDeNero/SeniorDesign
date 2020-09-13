@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 
 import { Run, Tag } from './interfaces';
@@ -12,6 +12,10 @@ import { API_URL } from './env';
   providedIn: 'root',
 })
 export class RunService {
+  private editRun: BehaviorSubject<Run> = new BehaviorSubject<Run>(
+    this.createEmptyRun()
+  );
+
   /**
    * Handle Http operation that failed.
    * Let the app continue.
@@ -27,6 +31,16 @@ export class RunService {
   }
 
   constructor(private http: HttpClient) {}
+
+  setEditRun(run: Run): void {
+    if (run.Id !== this.editRun.getValue().Id) {
+      this.editRun.next(run);
+    }
+  }
+
+  getEditRun(): Observable<Run> {
+    return this.editRun.asObservable();
+  }
 
   getRuns(): Observable<Run[][]> {
     return this.http.get<Run[][]>(`${API_URL}/run/getRuns`).pipe(
@@ -89,4 +103,18 @@ export class RunService {
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
+
+  createEmptyRun() {
+    return {
+      Id: -1,
+      Name: '',
+      DriverName: '',
+      PipeID: '',
+      Direction: '',
+      lat: 0,
+      long: 0,
+      ShowRun: false,
+      ShowTag: false,
+    };
+  }
 }

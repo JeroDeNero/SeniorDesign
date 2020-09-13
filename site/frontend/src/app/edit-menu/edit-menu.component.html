@@ -6,28 +6,28 @@
     <div class="window" (click)=null>
         <div class="container">
             <label for="name">Name:  </label>
-            <input id="name" type="text" value="{{this.newRun.Name}}" />
+            <input id="name" type="text" value="{{this.targRun.Name}}" />
             <br>
             <label for="DriverName">Operators Name:  </label>
-            <input id="DriverName" type="text" value="{{this.newRun.DriverName}}" />
+            <input id="DriverName" type="text" value="{{this.targRun.DriverName}}" />
             <br>
             <label for="PipeID">PipeID*:  </label>
-            <input id="PipeID" type="text" value="{{this.newRun.PipeID}}" />
+            <input id="PipeID" type="text" value="{{this.targRun.PipeID}}" />
             <br>
             <label for="Direction">Direction*:  </label>
-            <input id="Direction" type="text" value="{{this.newRun.Direction}}" />
+            <input id="Direction" type="text" value="{{this.targRun.Direction}}" />
             <br>
             <label for="lat">Latitude:  </label>
-            <input id="lat" type="number" min="-90" max="90" value="{{this.newRun.Lat}}" />
+            <input id="lat" type="number" min="-90" max="90" value="{{this.targRun.Lat}}" />
             <br>
             <label for="long">Longitude:  </label>
-            <input id="long" type="number" min="-180" max="180" value="{{this.newRun.Longi}}" />
+            <input id="long" type="number" min="-180" max="180" value="{{this.targRun.Longi}}" />
             <br>
             <br>
             <br>
 
-            <button id="comfirm" (click)='comfirmBut()'>Create</button>
-            <button id="close" (click)="cancelBut()">Close</button>
+            <button id="comfirm" (click)='comfirmBut()'>Edit</button>
+            <button id="close" (click)="cancelBut()">close</button>
         </div>
     </div>
 </div>

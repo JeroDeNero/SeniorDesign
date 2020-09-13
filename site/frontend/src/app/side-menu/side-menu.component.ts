@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injectable } from '@angular/core';
 import { RunService } from '../run.service';
 import { SortService } from '../sortService.service';
 import { Run } from '../interfaces';
 
+@Injectable({
+  providedIn: 'root',
+})
 @Component({
   selector: 'app-side-menu',
   templateUrl: './side-menu.component.html',
@@ -18,7 +21,7 @@ export class SideMenuComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.runService.getRuns().subscribe((runs) => (this.allRuns = runs));
+    this.getRuns();
   }
 
   getRuns() {

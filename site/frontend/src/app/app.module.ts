@@ -14,7 +14,8 @@ import { FilterOptionsComponent } from './filter-options/filter-options.componen
 import { RunPopUpMenuComponent } from './run-pop-up-menu/run-pop-up-menu.component';
 import { GetNumOfTags } from './list/getNumOfTags.pipe';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { environment } from '../environments/environment'
+import { environment } from '../environments/environment';
+import { EditMenuComponent } from './edit-menu/edit-menu.component'
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { environment } from '../environments/environment'
     SideMenuComponent,
     FilterOptionsComponent,
     RunPopUpMenuComponent,
-    GetNumOfTags
+    GetNumOfTags,
+    EditMenuComponent
   ],
   imports: [
     FormsModule,

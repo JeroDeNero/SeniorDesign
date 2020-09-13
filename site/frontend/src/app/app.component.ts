@@ -2,6 +2,8 @@ import { Component, ViewChild, HostListener } from '@angular/core';
 import { VideoService, loadBinaryResource } from './video.service';
 import { Observable } from 'rxjs';
 
+import { ToggleService } from './toggle.service';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -10,16 +12,20 @@ import { Observable } from 'rxjs';
 export class AppComponent {
   @ViewChild('videoElement') videoElement: any;
   video: any;
-  isShown: boolean = false;
+  newIsShown: boolean = false;
+  editIsShown: boolean = false;
   sideList: boolean = true;
   pullOutBar: boolean = true;
   title = 'site';
-  operation = 'New Run';
+  operation: string;
   pullOutCont = '<===';
   innerWidth: any;
   primaryCam;
 
-  constructor(private videoService: VideoService) {}
+  constructor(
+    private videoService: VideoService,
+    private toggleService: ToggleService
+  ) {}
 
   ngOnInit() {
     this.primaryCam = this.getVideo;
@@ -32,6 +38,10 @@ export class AppComponent {
       this.sideList = true;
       this.pullOutBar = false;
     }
+
+    this.toggleService.getButtonOp().subscribe((value) => {
+      this.operation = value;
+    });
   }
 
   @HostListener('window:resize', ['$event'])
@@ -51,17 +61,8 @@ export class AppComponent {
     }
   }
 
-  toggleOption() {
-    if (this.operation === 'New Run') {
-      this.toggleShow();
-      this.operation = '';
-    } else if (this.operation === '') {
-      this.toggleShow();
-      this.operation = 'End Run';
-    } else {
-      this.operation = 'New Run';
-      //TODO send data to server
-    }
+  toggleNewMenu() {
+    this.toggleService.operateNewWindow();
   }
 
   toggleSideMenu() {
@@ -74,8 +75,8 @@ export class AppComponent {
     }
   }
 
-  toggleShow() {
-    this.isShown = !this.isShown;
+  toggleNewShow() {
+    this.newIsShown = !this.newIsShown;
   }
 
   fillData(runID) {
