@@ -73,11 +73,13 @@ export class RunService {
     );
   }
 
-  updateRun(run: Run): Observable<any> {
-    return this.http.post(`${API_URL}`, run, this.httpOptions).pipe(
-      tap((_) => console.log('updated run id =${run.Id}')),
-      catchError(this.handleError<any>())
-    );
+  updateRun(): Observable<any> {
+    return this.http
+      .post(`${API_URL}/run/editRun`, this.editRun.getValue(), this.httpOptions)
+      .pipe(
+        tap((_) => console.log('updated run id =${run.Id}')),
+        catchError(this.handleError<any>())
+      );
   }
 
   deleteRun(run: Run | number): Observable<any> {

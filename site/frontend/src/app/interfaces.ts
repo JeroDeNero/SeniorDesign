@@ -10,7 +10,7 @@ export interface Run {
   Lat?: number;
   Longi?: number;
   image?: HTMLImageElement;
-  tagged?: number;
+  Tagged?: number;
   tag?: Tag[];
 }
 

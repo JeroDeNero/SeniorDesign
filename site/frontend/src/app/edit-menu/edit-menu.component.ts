@@ -28,8 +28,16 @@ export class EditMenuComponent implements OnInit {
     });
   }
 
-  comfirmBut() {
-    this.runService.updateRun(this.targRun);
+  comfirmBut(name, driverName, pipeID, dir, lat, long) {
+    this.targRun.Name = name;
+    this.targRun.DriverName = driverName;
+    this.targRun.PipeID = pipeID;
+    this.targRun.Direction = dir;
+    this.targRun.Lat = lat;
+    this.targRun.Longi = long;
+
+    this.runService.setEditRun(this.targRun);
+    this.runService.updateRun().subscribe();
   }
 
   cancelBut() {

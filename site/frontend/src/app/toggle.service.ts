@@ -39,6 +39,10 @@ export class ToggleService {
     this.hideEdit.next(!this.hideEdit.getValue());
   }
 
+  setHideEdit(targ): void {
+    this.hideEdit.next(targ);
+  }
+
   getHideEdit(): Observable<boolean> {
     return this.hideEdit.asObservable();
   }
