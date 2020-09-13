@@ -1,6 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { Tag } from '../interfaces';
-import { isNull, isUndefined } from 'util';
 
 @Pipe({
   name: 'getNumOfTags',
@@ -12,10 +11,10 @@ export class GetNumOfTags implements PipeTransform {
   }
 
   getNumOfTags(tags: Tag[]): number {
-    if (isUndefined(tags)) {
-      return 0;
-    } else {
+    if (tags) {
       return tags.length;
+    } else {
+      return 0;
     }
   }
 }
