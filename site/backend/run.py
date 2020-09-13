@@ -4,17 +4,41 @@ import mysql.connector
 import json
 
 from backend.db import getDb
-
-from flask import(
-    Blueprint, jsonify, request
-)
+from flask import Blueprint, jsonify, request
 
 bp = Blueprint('run', __name__, url_prefix='/run')
 
 
-@bp.route('/newRun', methods=(['GET']))
+@bp.route('/newRun', methods=(['POST']))
 def newRun():
-    return 'TODO Jero'
+
+    db = getDb()
+    
+    PipeID = request.form['PipeID']
+    Direction = request.form['Direction']
+    Lat = request.form['Lat']
+    Longi = request.form['Longi']
+    error = None
+
+    def deleteIt(db, query):
+        delCursor = db.cursor(dictionary = True, buffered = True)
+        delCursor.execute(query)
+        db.commit()
+        delCursor.close()
+
+    if PipeID:
+        error = 'PipeID is required.'
+    elif not Direction:
+        error = 'Direction is required.'
+
+    if error is None:
+        query = "INSERT INTO pipe (PipeID, Direction, Lat, Longi) VALUES {}, {}, {}, {}".format(PipeID, Direction, Lat, Longi)
+        deleteIt(db, query)
+
+        query = "INSERT INTO Videos (RunName, PipeID, DriverName, DateTaken) VALUES {}, {}, {}, {}".format(Name, PipeID, DriverName, DateTaken)
+        deleteIt(db, query)
+
+    return jsonify({})
 
 
 @bp.route('/editRun', methods=(['POST']))
