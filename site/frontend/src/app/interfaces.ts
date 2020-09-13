@@ -1,13 +1,16 @@
 export interface Run {
   Id: number;
   PipeID: string;
-  direction: string; // does this want to be number or string?
+  Direction: string; // does this want to be number or string?
+  ShowRun: Boolean;
+  ShowTag: Boolean;
   Name?: string;
   DateTaken?: Date;
-  Driver?: string; // does this want to be an enum?
-  lat?: number;
-  long?: number;
+  DriverName?: string; // does this want to be an enum?
+  Lat?: number;
+  Longi?: number;
   image?: HTMLImageElement;
+  tagged?: number;
   tag?: Tag[];
 }
 
