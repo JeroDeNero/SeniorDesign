@@ -4,38 +4,41 @@ import mysql.connector
 import json
 
 from backend.db import getDb
-
-from flask import(
-    Blueprint, flash, jsonify, request
-)
+from flask import Blueprint, jsonify, request
 
 bp = Blueprint('run', __name__, url_prefix='/run')
 
 
-@bp.route('/newRun', methods=(['GET', 'POST']))
+@bp.route('/newRun', methods=(['POST']))
 def newRun():
-    if request.method == 'POST':
-        PipeID = request.form['PipeID']
-        Direction = request.form['Direction']
-        db = getDb()
-        error = None
 
-        if PipeID
-            error = 'PipeID is required.'
-        elif not Direction
-            error = 'Direction is required.'
+    db = getDb()
+    
+    PipeID = request.form['PipeID']
+    Direction = request.form['Direction']
+    Lat = request.form['Lat']
+    Longi = request.form['Longi']
+    error = None
 
-        if error is None:
-            query = 'INSERT INTO pipe (PipeID, Direction, Latitude, Longitude) VALUES (?, ?, ?, ?)'
-            db.execute(query, (PipeID, Direction, Latitude, Longitude))
+    def deleteIt(db, query):
+        delCursor = db.cursor(dictionary = True, buffered = True)
+        delCursor.execute(query)
+        db.commit()
+        delCursor.close()
 
-            query = 'INSERT INTO Videos (RunName, PipeID, DriverName, DateTaken) VALUES (?, ?, ?, ?)'
-            db.execute(query, (RunName, PipeID, DriverName, DateTaken))
-            db.commit()
+    if PipeID:
+        error = 'PipeID is required.'
+    elif not Direction:
+        error = 'Direction is required.'
 
-        flash(error)
+    if error is None:
+        query = "INSERT INTO pipe (PipeID, Direction, Lat, Longi) VALUES {}, {}, {}, {}".format(PipeID, Direction, Lat, Longi)
+        deleteIt(db, query)
 
-    return jsonify()#redirect url to page with videofeed?
+        query = "INSERT INTO Videos (RunName, PipeID, DriverName, DateTaken) VALUES {}, {}, {}, {}".format(Name, PipeID, DriverName, DateTaken)
+        deleteIt(db, query)
+
+    return jsonify({})
 
 
 @bp.route('/editRun', methods=(['GET']))
