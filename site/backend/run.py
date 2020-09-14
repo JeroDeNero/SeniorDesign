@@ -1,19 +1,44 @@
 import functools
 import datetime
 import mysql.connector
+import json
 
 from backend.db import getDb
-
-from flask import(
-    Blueprint, jsonify, request
-)
+from flask import Blueprint, jsonify, request
 
 bp = Blueprint('run', __name__, url_prefix='/run')
 
 
-@bp.route('/newRun', methods=(['GET']))
+@bp.route('/newRun', methods=(['POST']))
 def newRun():
-    return 'TODO Jero'
+
+    db = getDb()
+    
+    PipeID = request.form['PipeID']
+    Direction = request.form['Direction']
+    Lat = request.form['Lat']
+    Longi = request.form['Longi']
+    error = None
+
+    def deleteIt(db, query):
+        delCursor = db.cursor(dictionary = True, buffered = True)
+        delCursor.execute(query)
+        db.commit()
+        delCursor.close()
+
+    if PipeID:
+        error = 'PipeID is required.'
+    elif not Direction:
+        error = 'Direction is required.'
+
+    if error is None:
+        query = "INSERT INTO pipe (PipeID, Direction, Lat, Longi) VALUES {}, {}, {}, {}".format(PipeID, Direction, Lat, Longi)
+        deleteIt(db, query)
+
+        query = "INSERT INTO Videos (RunName, PipeID, DriverName, DateTaken) VALUES {}, {}, {}, {}".format(Name, PipeID, DriverName, DateTaken)
+        deleteIt(db, query)
+
+    return jsonify({})
 
 
 @bp.route('/editRun', methods=(['GET']))
@@ -33,52 +58,32 @@ def getRuns():
     namVids = []
     noNamVids = []
 
-    for row in Videos:
+    for run in Videos:
 
-        video = db.cursor(buffered=True)
-        query = ("SELECT TagID FROM VideoToTags "
-                 "WHERE VideoID = {}".format(row.get('Id')))
-
-        video.execute(query)
+        tags = getTagIDs(db, run.get('Id'))
         vidTags = []
 
-        for tagID in video:
+        for tag in tags:
+            vidTags.append(getTag(db, tag[0]))
 
-            tags = db.cursor(dictionary=True, buffered=True)
-            query = ("SELECT * FROM TaggedLocs "
-                     "WHERE Id = {}".format(tagID[0]))
+        run.update({'tag': vidTags})
 
-            tags.execute(query)
-            vidTags.append(tags.fetchone())
-            tags.close
-
-        row.update({'tag': vidTags})
-        video.close()
-
-        if (row.get('PipeID') != None):
-            pipe = db.cursor(dictionary=True, buffered=True)
-            query = ("SELECT * FROM Pipe "
-                     "WHERE Id = '{}'".format(row.get('PipeID')))
-
-            pipe.execute(query)
-            value = pipe.fetchone()
-
-            row.update({'direction': value.get('Direction')})
-            row.update({'lat': value.get('Lat')})
-            row.update({'long': value.get('Longi')})
-
-            pipe.close()
+        if run.get("PipeID"):
+            pipe = getPipe(db, run.get("PipeID"))
+            run.update({'direction': pipe.get('Direction')})
+            run.update({'lat': pipe.get('Lat')})
+            run.update({'long': pipe.get('Longi')})
         else:
-            row.update({'direction': None})
-            row.update({'lat': None})
-            row.update({'long': None})
+            run.update({'direction': None})
+            run.update({'lat': None})
+            run.update({'long': None})
 
-        if (row.get('Tagged') != None):
-            tagVids.append(row)
-        elif (row.get('Tagged') == None and row.get('Name') != 'None'):
-            namVids.append(row)
+        if (run.get('Tagged') != None):
+            tagVids.append(run)
+        elif (run.get('Tagged') == None and run.get('Name') != None):
+            namVids.append(run)
         else:
-            noNamVids.append(row)
+            noNamVids.append(run)
 
     Videos.close()
     db.close()
@@ -87,46 +92,85 @@ def getRuns():
 
     return jsonify(allVideos)
 
+# could also be called getVideo, as a run is equivialant the the video and all its info
 
-@ bp.route('/deleteRun', methods=(['GET']))
-def deleteRun():
-    id = request.form['id']
 
-    print(id)
+@bp.route('/getRun', methods=(['POST']))
+def getRun():
+
+    target = request.json
+    return jsonify(buildRun(target["id"]))
+
+
+def buildRun(target):
 
     db = getDb()
-    tagCursor = db.cursor(dictionary=True, buffered=True)
 
-    requestTags = ("SELECT TagID FROM VideoToTags"
-                   "WHERE VideoID = {}".format(id))
+    run = getVideo(db, target)
+    tags = getTagIDs(db, run.get('Id'))
+    vidTags = []
 
-    tagCursor.execute(requestTags)
+    for tag in tags:
+        vidTags.append(getTag(db, tag[0]))
 
-    for tag in tagCursor:
+    run.update({'tag': vidTags})
 
-        highlightedZones = db.cursor(dictionary=True, buffered=True)
+    if run.get("PipeID"):
+        pipe = getPipe(db, run.get("PipeID"))
+        run.update({'direction': pipe.get('Direction')})
+        run.update({'lat': pipe.get('Lat')})
+        run.update({'long': pipe.get('Longi')})
+    else:
+        run.update({'direction': None})
+        run.update({'lat': None})
+        run.update({'long': None})
 
-        requestHL = ("SELECT HighlightID FROM TagToHighlights"
-                     "WHERE LocationID = {}".format(tag.get('TagID')))
+    return run
 
-        highlightedZones.execute(requestHL)
 
-        for HL in highlightedZones:
+def getVideo(db, vidID):
+    getter = db.cursor(dictionary=True, buffered=True)
 
-            db.execute('DELETE FROM HighlightedZones WHERE Id = {}'.format(
-                HL.get('HighlightID')))
-            db.commit()
+    query = ("SELECT * FROM Video "
+             "WHERE Id = {}".format(vidID))
 
-        highlightedZones.close()
+    getter.execute(query)
 
-        db.execute('DELETE FROM TaggedLocs WHERE Id = {}'.format(
-            tag.get('TagID')))
-        db.commit()
+    results = getter.fetchone()
+    getter.close
+    return results
 
-    tagCursor.close()
 
-    db.execute('DELETE FROM Video WHERE Id = {}'.format(id))
-    db.commit()
-    db.close
+def getTagIDs(db, vidID):
+    tags = db.cursor(buffered=True)
+    query = ("SELECT TagID FROM VideoToTags "
+             "WHERE VideoID = {}".format(vidID))
 
-    return 'TODO Callum'
+    tags.execute(query)
+    results = tags.fetchall()
+    tags.close
+    return results
+
+
+def getTag(db, tagID):
+    tag = db.cursor(dictionary=True, buffered=True)
+    query = ("SELECT * FROM TaggedLocs "
+             "WHERE Id = {}".format(tagID))
+
+    tag.execute(query)
+
+    results = tag.fetchone()
+    tag.close
+    return results
+
+
+def getPipe(db, pipeID):
+    pipe = db.cursor(dictionary=True, buffered=True)
+    query = ("SELECT * FROM Pipe "
+             "WHERE Id = '{}'".format(pipeID))
+
+    pipe.execute(query)
+
+    results = pipe.fetchone()
+    pipe.close
+    return results

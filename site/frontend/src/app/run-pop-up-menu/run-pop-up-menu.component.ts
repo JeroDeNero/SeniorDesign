@@ -1,40 +1,40 @@
-import { Component, OnInit } from '@angular/core';
-import { AppComponent } from '../app.component';
+import { Component, Injectable, OnInit } from '@angular/core';
+import { ToggleService } from '../toggle.service';
 
 import { Run } from '../interfaces';
-import { RunService } from '../run.service'
+import { RunService } from '../run.service';
 
+@Injectable({
+  providedIn: 'root',
+})
 @Component({
   selector: 'app-run-pop-up-menu',
   templateUrl: './run-pop-up-menu.component.html',
-  styleUrls: ['./run-pop-up-menu.component.css']
+  styleUrls: ['./run-pop-up-menu.component.css'],
 })
 export class RunPopUpMenuComponent implements OnInit {
-
-  run: Run;
+  newRun: Run = this.runService.createEmptyRun();
+  hideHTML: boolean;
 
   constructor(
-    private app: AppComponent,
-    private runService: RunService
-  ) { }
+    private runService: RunService,
+    private toggleService: ToggleService
+  ) {}
 
   ngOnInit(): void {
-    this.getRun();
+    this.toggleService.getHideNew().subscribe((value) => {
+      this.hideHTML = value;
+    });
   }
 
-  getRun() {
-    console.log("here we go");
-    this.runService.getRun(-1) // How to make it so -1's data is remembered
-      .subscribe(run => this.run = run);
+  comfirmBut() {
+    this.newRun.Id = -1;
+    this.newRun.DateTaken = new Date();
+    this.runService.addRun(this.newRun);
   }
 
-  toggleShow() {
-    this.app.toggleShow();
-  }
-
-  newRun() {
-    this.run.Id = -1;
-    this.run.Date = new Date;
-    //this.runService.addRun(this.run);
+  cancelBut() {
+    this.toggleService.setButtonOp('New Run');
+    this.toggleService.toggleHideNew();
   }
 }

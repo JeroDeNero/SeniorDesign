@@ -1,10 +1,10 @@
 <div class="page">
-    <div class="sidePage">
+    <div class="sidePage" [hidden]="!sideList">
         <div id="searchSec" class="searchSec">
             <div class="tab">
                 <a class="tablink" routerLink="/search">Search</a>
                 <a class="tablink" routerLink="/filter">Filter</a>
-                <a class="tablink" (click)="toggleShow()">New Run</a>
+                <a class="tablink" (click)="toggleNewMenu()">{{operation}}</a>
             </div>
             <router-outlet></router-outlet>
         </div>
@@ -15,7 +15,7 @@
 
     <div class="mainPage">
         <div class="video">
-            <img class="maxWidth" src="assets/Images/screenHolder.jpg" alt="">
+            <img class="maxWidth" src="{{getVideo()}}" alt="derp">
         </div>
 
         <div class="horLine"></div>
@@ -26,6 +26,8 @@
     </div>
 </div>
 
-<div id="popUp" class="popUp" *ngIf="isShown">
-    <app-run-pop-up-menu></app-run-pop-up-menu>
-</div>
+<app-run-pop-up-menu></app-run-pop-up-menu>
+
+<app-edit-menu></app-edit-menu>
+
+<button class="pullOutMenu" (click)="toggleSideMenu()" [hidden]="!pullOutBar"> {{pullOutCont}} </button>
