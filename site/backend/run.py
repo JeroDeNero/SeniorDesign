@@ -13,39 +13,86 @@ bp = Blueprint('run', __name__, url_prefix='/run')
 def newRun():
 
     db = getDb()
-    
-    PipeID = request.form['PipeID']
-    Direction = request.form['Direction']
-    Lat = request.form['Lat']
-    Longi = request.form['Longi']
+
+    input = request.json
+
+    Name = input['Name']
+    DriverName = input['DriverName']
+    tagged = input['Tagged']
+    PipeID = input['PipeID']
+    Direction = input['Direction']
+    Lat = input['Lat']
+    Longi = input['Longi']
     error = None
 
-    def deleteIt(db, query):
-        delCursor = db.cursor(dictionary = True, buffered = True)
-        delCursor.execute(query)
-        db.commit()
-        delCursor.close()
-
-    if PipeID:
+    if not PipeID:
         error = 'PipeID is required.'
     elif not Direction:
         error = 'Direction is required.'
 
     if error is None:
-        query = "INSERT INTO pipe (PipeID, Direction, Lat, Longi) VALUES {}, {}, {}, {}".format(PipeID, Direction, Lat, Longi)
-        deleteIt(db, query)
 
-        query = "INSERT INTO Videos (RunName, PipeID, DriverName, DateTaken) VALUES {}, {}, {}, {}".format(Name, PipeID, DriverName, DateTaken)
-        deleteIt(db, query)
+        checker = db.cursor(dictionary=True, buffered=True)
+        query = ("SELECT * "
+                 "FROM Pipe "
+                 "WHERE Id = '{}'".format(PipeID))
+
+        checker.execute(query)
+
+        if(not checker.fetchall()):
+            query = ("INSERT INTO Pipe (Id, Direction, Lat, Longi)"
+                     "VALUES ('{}', '{}', {}, {})".format(
+                         PipeID, Direction, Lat, Longi))
+            sendCommand(db, query)
+            print(query)
+
+        checker.close()
+
+        query = ("INSERT INTO Video (Name, PipeID, DriverName, DateTaken, Tagged) VALUES"
+                 "('{}', '{}', '{}', CURDATE(), {})".format(
+                     Name, PipeID, DriverName, tagged))
+        sendCommand(db, query)
+
+        print(query)
 
     return jsonify({})
 
 
-@bp.route('/editRun', methods=(['GET']))
+@bp.route('/editRun', methods=(['POST']))
 def editRun():
-    return 'TODO Callum'
+    db = getDb()
+    input = request.json
+
+    updateVideo(db, input["Id"], input["Name"],
+                input["DriverName"], input["Tagged"])
+    return jsonify({})
 
 
+def updateVideo(db, targ, name, driverName, tagged):
+    query = ("UPDATE Video SET "
+             "Name = '{}', DriverName = '{}', Tagged = {} "
+             "WHERE Id = {} ".format(name, driverName, tagged, targ))
+
+    sendCommand(db, query)
+
+
+def updatePipe(db, targ, newName, lat, long, dir):
+    query = (" UPDATE Pipe SET "
+             "Id = '{}', Lat = {}, Longi = {}, Direction = '{}' "
+             "WHERE Id = '{}' ".format(newName, lat, long, dir, targ))
+
+    sendCommand(db, query)
+
+
+def updateRoughLoc(db, targ, name, lat, long, rad):
+    query = ("UPDATE RoughLocation "
+             "Name = {}, Lat = {}, Longi = {}, Raduis = {} "
+             "WHERE Id = {} ".format(name, lat, long, rad, targ))
+
+    sendCommand(db, query)
+
+
+# To be moved into a new files, and move it into a file
 @bp.route('/getRuns', methods=(['GET']))
 def getRuns():
 
@@ -78,9 +125,12 @@ def getRuns():
             run.update({'lat': None})
             run.update({'long': None})
 
-        if (run.get('Tagged') != None):
+        run.update({'ShowRun': True})
+        run.update({'ShowTag': False})
+
+        if (run.get('Tagged') != None and run.get('Tagged') > 0):
             tagVids.append(run)
-        elif (run.get('Tagged') == None and run.get('Name') != None):
+        elif ((run.get('Tagged') == None or run.get('Tagged') == 0) and run.get('Name') != None and run.get('Name') != ''):
             namVids.append(run)
         else:
             noNamVids.append(run)
@@ -124,6 +174,9 @@ def buildRun(target):
         run.update({'direction': None})
         run.update({'lat': None})
         run.update({'long': None})
+
+        run.update({'ShowRun': True})
+        run.update({'ShowTag': False})
 
     return run
 
@@ -174,3 +227,10 @@ def getPipe(db, pipeID):
     results = pipe.fetchone()
     pipe.close
     return results
+
+
+def sendCommand(db, query):
+    update = db.cursor(dictionary=True, buffered=True)
+    update.execute(query)
+    db.commit()
+    update.close()

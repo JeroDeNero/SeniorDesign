@@ -15,6 +15,9 @@ export class RunService {
   private editRun: BehaviorSubject<Run> = new BehaviorSubject<Run>(
     this.createEmptyRun()
   );
+  private newRun: BehaviorSubject<Run> = new BehaviorSubject<Run>(
+    this.createEmptyRun()
+  );
 
   /**
    * Handle Http operation that failed.
@@ -31,6 +34,14 @@ export class RunService {
   }
 
   constructor(private http: HttpClient) {}
+
+  setNewRun(run: Run): void {
+    this.newRun.next(run);
+  }
+
+  getNewRun(): Observable<Run> {
+    return this.newRun.asObservable();
+  }
 
   setEditRun(run: Run): void {
     if (run.Id !== this.editRun.getValue().Id) {
@@ -66,18 +77,26 @@ export class RunService {
     }, initialVal);
   }
 
-  addRun(run: Run): Observable<Run> {
-    return this.http.post<Run>(`${API_URL}`, run, this.httpOptions).pipe(
-      tap(() => console.log('added run w/ id={newRun.Id}')),
-      catchError(this.handleError<Run>())
-    );
+  addRun(): Observable<Run> {
+    return this.http
+      .post<Run>(
+        `${API_URL}/run/newRun`,
+        this.newRun.getValue(),
+        this.httpOptions
+      )
+      .pipe(
+        tap(() => console.log('added run')),
+        catchError(this.handleError<Run>())
+      );
   }
 
-  updateRun(run: Run): Observable<any> {
-    return this.http.post(`${API_URL}`, run, this.httpOptions).pipe(
-      tap((_) => console.log('updated run id =${run.Id}')),
-      catchError(this.handleError<any>())
-    );
+  updateRun(): Observable<any> {
+    return this.http
+      .post(`${API_URL}/run/editRun`, this.editRun.getValue(), this.httpOptions)
+      .pipe(
+        tap((_) => console.log('updated run id =${run.Id}')),
+        catchError(this.handleError<any>())
+      );
   }
 
   deleteRun(run: Run | number): Observable<any> {
@@ -106,13 +125,12 @@ export class RunService {
 
   createEmptyRun() {
     return {
-      Id: -1,
-      Name: '',
       DriverName: '',
       PipeID: '',
       Direction: '',
-      lat: 0,
-      long: 0,
+      Tagged: 0,
+      Lat: 0,
+      Longi: 0,
       ShowRun: false,
       ShowTag: false,
     };

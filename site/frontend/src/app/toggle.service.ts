@@ -23,6 +23,7 @@ export class ToggleService {
       this.toggleHideNew();
       this.setButtonOp('End Run');
     } else {
+      this.runService.addRun().subscribe();
       this.setButtonOp('New Run');
     }
   }
@@ -37,6 +38,10 @@ export class ToggleService {
 
   toggleHideEdit(): void {
     this.hideEdit.next(!this.hideEdit.getValue());
+  }
+
+  setHideEdit(targ): void {
+    this.hideEdit.next(targ);
   }
 
   getHideEdit(): Observable<boolean> {

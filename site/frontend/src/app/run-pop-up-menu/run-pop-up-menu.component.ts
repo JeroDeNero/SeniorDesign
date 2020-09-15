@@ -13,7 +13,8 @@ import { RunService } from '../run.service';
   styleUrls: ['./run-pop-up-menu.component.css'],
 })
 export class RunPopUpMenuComponent implements OnInit {
-  newRun: Run = this.runService.createEmptyRun();
+  newRun: Run;
+  temp: Run;
   hideHTML: boolean;
 
   constructor(
@@ -25,12 +26,24 @@ export class RunPopUpMenuComponent implements OnInit {
     this.toggleService.getHideNew().subscribe((value) => {
       this.hideHTML = value;
     });
+    this.runService.getNewRun().subscribe((value) => {
+      this.newRun = value;
+    });
+    this.temp = this.runService.createEmptyRun();
   }
 
-  comfirmBut() {
-    this.newRun.Id = -1;
-    this.newRun.DateTaken = new Date();
-    this.runService.addRun(this.newRun);
+  comfirmBut(name, driverName, pipeID, dir, lat, long) {
+    this.temp.Name = name;
+    this.temp.DriverName = driverName;
+    this.temp.PipeID = pipeID;
+    this.temp.Direction = dir;
+    this.temp.Lat = lat;
+    this.temp.Longi = long;
+    this.temp.Tagged = 0;
+
+    this.runService.setNewRun(this.temp);
+
+    this.toggleService.operateNewWindow();
   }
 
   cancelBut() {

@@ -1,5 +1,5 @@
 export interface Run {
-  Id: number;
+  Id?: number;
   PipeID: string;
   Direction: string; // does this want to be number or string?
   ShowRun: Boolean;
@@ -10,7 +10,7 @@ export interface Run {
   Lat?: number;
   Longi?: number;
   image?: HTMLImageElement;
-  tagged?: number;
+  Tagged?: number;
   tag?: Tag[];
 }
 

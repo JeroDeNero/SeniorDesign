@@ -30,7 +30,7 @@ export class ListComponent implements OnInit {
 
   editData(target) {
     this.runService.setEditRun(target);
-    this.toggleService.toggleHideEdit();
+    this.toggleService.setHideEdit(false);
   }
 
   deleteRun(target) {
