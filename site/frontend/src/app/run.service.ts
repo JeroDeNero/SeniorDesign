@@ -54,7 +54,7 @@ export class RunService {
   }
 
   getRuns(): Observable<Run[][]> {
-    return this.http.get<Run[][]>(`${API_URL}/run/getRuns`).pipe(
+    return this.http.get<Run[][]>(`${API_URL}/get/runs`).pipe(
       tap((_) => console.log('fetched runs')),
       catchError(this.handleError<Run[][]>([]))
     );
@@ -62,7 +62,7 @@ export class RunService {
 
   getRun(id: number): Observable<Run> {
     return this.http
-      .post<Run>(`${API_URL}/run/getRun`, { id: id }, this.httpOptions)
+      .post<Run>(`${API_URL}/get/run`, { id: id }, this.httpOptions)
       .pipe(
         tap((_) => console.log('fetched run')),
         catchError(this.handleError<Run>(null))
@@ -80,7 +80,7 @@ export class RunService {
   addRun(): Observable<Run> {
     return this.http
       .post<Run>(
-        `${API_URL}/run/newRun`,
+        `${API_URL}/save/newRun`,
         this.newRun.getValue(),
         this.httpOptions
       )
@@ -92,7 +92,11 @@ export class RunService {
 
   updateRun(): Observable<any> {
     return this.http
-      .post(`${API_URL}/run/editRun`, this.editRun.getValue(), this.httpOptions)
+      .post(
+        `${API_URL}/save/editRun`,
+        this.editRun.getValue(),
+        this.httpOptions
+      )
       .pipe(
         tap((_) => console.log('updated run id =${run.Id}')),
         catchError(this.handleError<any>())

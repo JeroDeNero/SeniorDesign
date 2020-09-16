@@ -27,10 +27,12 @@ def create_app(test_config=None):
         pass
 
     from . import db
-    from . import run
+    from . import save
     from . import delete
+    from . import get
 
-    app.register_blueprint(run.bp)
+    app.register_blueprint(save.bp)
     app.register_blueprint(delete.bp)
+    app.register_blueprint(get.bp)
 
     return app

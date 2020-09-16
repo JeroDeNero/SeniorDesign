@@ -1,7 +1,3 @@
-<!-- TODO change out of form, this info WILL NOT be sent to the server as it is
-    rather all the data will be compiled post run, then sent to flask as a JSON object
--->
-
 <div class="popUp" [hidden]="hideHTML">
     <div class="window" (click)=null>
         <div class="container">
@@ -18,7 +14,7 @@
             <input #dir id="Direction" type="text" value="{{this.targRun.Direction || ''}}" />
             <br>
             <label for="lat">Latitude:  </label>
-            <input #lat id="lat" type="number" min="-90" max="90" value="{{this.targRun.Lat || 0}" />
+            <input #lat id="lat" type="number" min="-90" max="90" value="{{this.targRun.Lat || 0}}" />
             <br>
             <label for="long">Longitude:  </label>
             <input #long id="long" type="number" min="-180" max="180" value="{{this.targRun.Longi || 0}}" />
