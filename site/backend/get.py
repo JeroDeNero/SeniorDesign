@@ -143,3 +143,13 @@ def getPipe(db, pipeID):
     results = pipe.fetchone()
     pipe.close
     return results
+
+
+def getOldest(db):
+    # Jero here
+    # TODO
+    # gets oldest untagged unamed file
+    # if none exist, go to named and unpinned
+    # else go to pinned
+    # code exist above for how to find out, try to do all comparisons in mySQL
+    return

@@ -80,3 +80,12 @@ def deleteIt(db, queury):
     delCursor.execute(queury)
     db.commit()
     delCursor.close()
+
+
+def garbageCollector():
+    # Jero here
+    # TODO
+    # Get available space
+    # while space is less that 20% delete oldest unamed file
+    # get oldest takes db, and
+    return
