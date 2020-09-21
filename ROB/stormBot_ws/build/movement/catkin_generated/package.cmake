@@ -1,6 +1,6 @@
 set(_CATKIN_CURRENT_PACKAGE "movement")
 set(movement_VERSION "0.0.0")
-set(movement_MAINTAINER "rob <rob@todo.todo>")
+set(movement_MAINTAINER "Robert Lee <rlee373@knights.ucf.edu>")
 set(movement_PACKAGE_FORMAT "2")
 set(movement_BUILD_DEPENDS "roscpp" "rospy" "std_msgs")
 set(movement_BUILD_EXPORT_DEPENDS "roscpp" "rospy" "std_msgs")
