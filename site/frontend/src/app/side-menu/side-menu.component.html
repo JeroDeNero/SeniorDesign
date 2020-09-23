@@ -1,13 +1,13 @@
-<div class="list" *ngIf="allRuns">
+<div class="list">
     Favorites
     <div class="horLine"></div>
-    <app-list [runs]="allRuns[0]" *ngIf="allRuns[0]"></app-list>
+    <app-list [id]="0" *ngIf="showFavorites"></app-list>
 
     Named
     <div class="horLine"></div>
-    <app-list [runs]="allRuns[1]" *ngIf="allRuns[1]"></app-list>
+    <app-list [id]="1" *ngIf="showNamed"></app-list>
 
     Unamed
     <div class="horLine"></div>
-    <app-list [runs]="allRuns[2]" *ngIf="allRuns[2]"></app-list>
+    <app-list [id]="2" *ngIf="showUnamed"></app-list>
 </div>

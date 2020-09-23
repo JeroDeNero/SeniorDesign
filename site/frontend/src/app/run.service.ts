@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, Observer, of, Subject } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 
 import { Run, Tag } from './interfaces';
@@ -19,12 +19,23 @@ export class RunService {
     this.createEmptyRun()
   );
 
+  private allRuns: BehaviorSubject<Run[][]> = new BehaviorSubject<Run[][]>([]);
+
+  constructor(private http: HttpClient) {
+    this.getRuns().subscribe((data) => {
+      console.log(data);
+      this.setAllRuns(data);
+    });
+    console.log(this.allRuns);
+  }
+
   /**
    * Handle Http operation that failed.
    * Let the app continue.
    * @param operation - name of the operation that failed
    * @param result - optional value to return as the observable result
    */
+
   private handleError<T>(result?: T) {
     return (error: any): Observable<T> => {
       console.log(error);
@@ -33,7 +44,13 @@ export class RunService {
     };
   }
 
-  constructor(private http: HttpClient) {}
+  setAllRuns(data: Run[][]) {
+    this.allRuns.next(data);
+  }
+
+  getAllRuns(): Observable<Run[][]> {
+    return this.allRuns.asObservable();
+  }
 
   setNewRun(run: Run): void {
     this.newRun.next(run);
