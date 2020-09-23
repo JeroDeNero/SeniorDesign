@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Run } from './interfaces';
-import { isArray } from 'util';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +16,7 @@ export class SortService {
       return this.compare(this.valueSwap(target, desc));
     };
 
-    isArray(list[0]) ? this.apply2d(list, lambda) : this.apply1d(list, lambda);
+    list[0].isArray ? this.apply2d(list, lambda) : this.apply1d(list, lambda);
   }
 
   sortNoneString(list: any[][] | any[], item, desc: boolean) {
@@ -29,7 +28,7 @@ export class SortService {
       return this.compare(this.valueSwap(target, desc));
     };
 
-    isArray(list[0]) ? this.apply2d(list, lambda) : this.apply1d(list, lambda);
+    list[0].isArray ? this.apply2d(list, lambda) : this.apply1d(list, lambda);
   }
 
   compare(target) {
