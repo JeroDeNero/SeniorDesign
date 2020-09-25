@@ -1,3 +1,9 @@
+button {
+    font-size: 18px;
+    margin-top: 17px;
+    width: 100px;
+}
+
 div.filter {
     float: left;
 }
@@ -7,6 +13,12 @@ input {
     margin: 0;
     top: -1px;
     *overflow: hidden;
+}
+
+div.text {
+    font-size: 20px;
+    margin-top: 20px;
+    text-align: center;
 }
 
 select {
