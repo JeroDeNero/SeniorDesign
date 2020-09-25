@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 
 import { ToggleService } from './toggle.service';
 import { StreamService } from './stream.service';
+import { FilterService } from './filter.service';
 
 @Component({
   selector: 'app-root',
@@ -29,7 +30,7 @@ export class AppComponent {
   constructor(
     private videoService: VideoService,
     private toggleService: ToggleService,
-    private streamService: StreamService
+    private filterService: FilterService
   ) {}
 
   ngOnInit() {
