@@ -15,18 +15,24 @@ export class RunService {
   private editRun: BehaviorSubject<Run> = new BehaviorSubject<Run>(
     this.createEmptyRun()
   );
+
+  arrayIndex: number[];
+
   private newRun: BehaviorSubject<Run> = new BehaviorSubject<Run>(
     this.createEmptyRun()
   );
 
   private allRuns: BehaviorSubject<Run[][]> = new BehaviorSubject<Run[][]>([]);
 
+  allRunsData: Run[][];
+
   constructor(private http: HttpClient) {
     this.getRuns().subscribe((data) => {
-      console.log(data);
       this.setAllRuns(data);
     });
-    console.log(this.allRuns);
+    this.getAllRuns().subscribe((data) => {
+      this.allRunsData = data;
+    });
   }
 
   /**
@@ -108,6 +114,10 @@ export class RunService {
   }
 
   updateRun(): Observable<any> {
+    this.allRunsData[this.arrayIndex[0]][
+      this.arrayIndex[1]
+    ] = this.editRun.getValue();
+
     return this.http
       .post(
         `${API_URL}/save/editRun`,

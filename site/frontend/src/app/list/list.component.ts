@@ -33,12 +33,13 @@ export class ListComponent implements OnInit {
     this.tagBoxes[target] = false;
   }
 
-  editData(target) {
+  editData(target: Run) {
     this.runService.setEditRun(target);
+    this.runService.arrayIndex = [this.id, this.getRunIndex(target)];
     this.toggleService.setHideEdit(false);
   }
 
-  deleteRun(target) {
+  deleteRun(target: Run) {
     this.runService.deleteRun(target).subscribe();
 
     this.runs.splice(this.getRunIndex(target), 1);
