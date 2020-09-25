@@ -15,8 +15,14 @@ import { RunPopUpMenuComponent } from './run-pop-up-menu/run-pop-up-menu.compone
 import { GetNumOfTags } from './list/getNumOfTags.pipe';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
-import { EditMenuComponent } from './edit-menu/edit-menu.component'
+import { EditMenuComponent } from './edit-menu/edit-menu.component';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import { API_URL } from './env';
 
+const config: SocketIoConfig = {
+  url: API_URL,
+  options: { cors_allowed_origins: '*' },
+};
 
 @NgModule({
   declarations: [
@@ -29,14 +35,17 @@ import { EditMenuComponent } from './edit-menu/edit-menu.component'
     FilterOptionsComponent,
     RunPopUpMenuComponent,
     GetNumOfTags,
-    EditMenuComponent
+    EditMenuComponent,
   ],
   imports: [
     FormsModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+    }),
+    SocketIoModule.forRoot(config),
   ],
   providers: [],
   bootstrap: [AppComponent]

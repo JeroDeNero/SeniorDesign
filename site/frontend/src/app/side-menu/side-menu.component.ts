@@ -14,19 +14,16 @@ import { Run } from '../interfaces';
 export class SideMenuComponent implements OnInit {
   allRuns: Run[][];
   runTemp: Run;
+  showFavorites: boolean = true;
+  showNamed: boolean = true;
+  showUnamed: boolean = true;
 
   constructor(
     private runService: RunService,
     private sortService: SortService
   ) {}
 
-  ngOnInit(): void {
-    this.getRuns();
-  }
-
-  getRuns() {
-    this.runService.getRuns().subscribe((runs) => (this.allRuns = runs));
-  }
+  ngOnInit(): void {}
 
   sort(column: any, desc: boolean) {
     typeof this.runTemp[column] === 'string'

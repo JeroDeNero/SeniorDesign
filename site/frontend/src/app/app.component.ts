@@ -1,8 +1,10 @@
 import { Component, ViewChild, HostListener } from '@angular/core';
 import { VideoService, loadBinaryResource } from './video.service';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
 
 import { ToggleService } from './toggle.service';
+import { StreamService } from './stream.service';
 
 @Component({
   selector: 'app-root',
@@ -20,15 +22,17 @@ export class AppComponent {
   operation: string;
   pullOutCont = '<===';
   innerWidth: any;
-  primaryCam;
+  primaryCam: any;
+
+  IsPrimaryCamLoading: boolean = false;
 
   constructor(
     private videoService: VideoService,
-    private toggleService: ToggleService
+    private toggleService: ToggleService,
+    private streamService: StreamService
   ) {}
 
   ngOnInit() {
-    this.primaryCam = this.getVideo;
     this.innerWidth = window.innerWidth;
 
     if (this.innerWidth < 1775) {
@@ -41,6 +45,9 @@ export class AppComponent {
 
     this.toggleService.getButtonOp().subscribe((value) => {
       this.operation = value;
+    });
+    this.streamService.watchVideo().subscribe((data) => {
+      this.primaryCam = data;
     });
   }
 
@@ -77,16 +84,5 @@ export class AppComponent {
 
   toggleNewShow() {
     this.newIsShown = !this.newIsShown;
-  }
-
-  fillData(runID) {
-    if (runID === null) {
-      return;
-    } else if (runID === 'newRun') {
-    }
-  }
-
-  getVideo(): Observable<any> {
-    return <any>loadBinaryResource();
   }
 }

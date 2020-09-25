@@ -2,7 +2,7 @@ import functools
 import mysql.connector
 import json
 
-from backend.db import getDb
+from data_management.db import getDb
 
 from flask import(
     Blueprint, request, jsonify

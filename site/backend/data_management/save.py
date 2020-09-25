@@ -3,7 +3,7 @@ import datetime
 import mysql.connector
 import json
 
-from backend.db import getDb
+from data_management.db import getDb
 from flask import Blueprint, jsonify, request
 
 bp = Blueprint('save', __name__, url_prefix='/save')

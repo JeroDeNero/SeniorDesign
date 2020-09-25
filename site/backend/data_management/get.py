@@ -3,7 +3,7 @@ import datetime
 import mysql.connector
 import json
 
-from backend.db import getDb
+from data_management.db import getDb
 from flask import Blueprint, jsonify, request
 
 bp = Blueprint('get', __name__, url_prefix='/get')
@@ -54,7 +54,7 @@ def getRuns():
     Videos.close()
     db.close()
 
-    allVideos = [tagVids, namVids, noNamVids, {'videoID': -1}]
+    allVideos = [tagVids, namVids, noNamVids]
 
     return jsonify(allVideos)
 

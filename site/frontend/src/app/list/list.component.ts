@@ -9,7 +9,8 @@ import { ToggleService } from '../toggle.service';
   styleUrls: ['./list.component.css'],
 })
 export class ListComponent implements OnInit {
-  @Input('runs') runs: Run[];
+  @Input('id') id: number;
+  runs: Run[];
   tagBoxes: numHash;
 
   constructor(
@@ -17,7 +18,11 @@ export class ListComponent implements OnInit {
     private toggleService: ToggleService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.runService.getAllRuns().subscribe((runsList) => {
+      this.runs = runsList[this.id];
+    });
+  }
 
   toggleTag(target) {
     const index = this.getRunIndex(target);
