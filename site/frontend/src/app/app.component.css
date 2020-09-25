@@ -1,3 +1,15 @@
+input.searchIn {
+    font-size: 18px;
+    margin-top: 16px;
+    text-align: center;
+}
+
+button {
+    font-size: 18px;
+    margin-top: 12px;
+    width: 100px;
+}
+
 div.page {
     width: calc(100% - 20px);
     height: calc(100% - 20px);
@@ -59,6 +71,7 @@ div.sidePage {
 div.searchSec {
     width: calc(100% - 22px);
     height: 150px;
+    max-height: 150px;
     margin: -3px;
     margin-bottom: 10px;
     padding: 10px;
@@ -68,9 +81,11 @@ div.searchSec {
 }
 
 div.tab {
-    overflow: hidden;
+    display: flex;
+    height: 49px;
     border: 1px solid #ccc;
     background-color: #f1f1f1;
+    z-index: 18;
 }
 
 div.popUp {
@@ -79,21 +94,31 @@ div.popUp {
     position: absolute;
     left: 0px;
     top: 0px;
+}
+
+div.dropDown-Content {
+    background-color: #f1f1f1;
+    display: relative;
     z-index: 18;
 }
 
+.tabLink {
+    flex: 1;
+}
 
-/* Style the buttons that are used to open the tab content */
+a.sort {
+    width: 100%;
+    z-index: 16;
+}
 
-a.tablink {
+a {
     background-color: inherit;
     color: black;
     float: left;
     border: none;
     outline: none;
     cursor: pointer;
-    margin: -1.5px;
-    padding: 14px 23px;
+    padding: 14px 0px;
     transition: 0.3s;
     text-decoration: none;
 }
@@ -101,14 +126,14 @@ a.tablink {
 
 /* Change background color of buttons on hover */
 
-a.tablink:hover {
+a:hover {
     background-color: #ddd;
 }
 
 
 /* Create an active/current tablink class */
 
-a.tablink .active {
+a.active {
     background-color: #ccc;
 }
 
