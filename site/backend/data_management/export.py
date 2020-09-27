@@ -17,27 +17,27 @@ bp = Blueprint('export', __name__, url_prefix='/export')
 @bp.route('/tag', methods=(['POST']))
 def exportTag():
 
-    db = getDB() # access the DB
-
+    db = getDb() # access the DB
     rid = getRun() # obtain the run ID i.e. PipeID
     tid = getTag(db, rid) # use to get tag ID for coords
     video = getVideo(db, rid) # get the video info i.e. date
-
-    date = ("SELECT Id, DateTaken FROM Video"
-            "WHERE Id = ")
-    
     path = #what is the path?
+
+    theDate = video[5] # retrieve the date
+    longitude = tid[1] # retrieve the x coordinate
+    latitude = tid[2] # retrieve the y coordinate
 
     sfw = shapefile.Writer(path, shapeType = shapefile.POINT) #writing a new shapefile
     sfw.autobalance = True #alternatively can be set to 1 for true
 
     #setting up the fields for writing the data to the shapefile
-    sfw.field('Date', 'D') #input the date
     sfw.field('xcord', 'N') #xcoordinate
     sfw.field('ycord', 'N') #ycoordinate
+    sfw.field('Date', 'D') #input the date
 
-    #iterate through the coordinates to write the shapefile
-    
+    #write the shapefile
+    sfw.point(longitude, latitude)
+    sfw.record(longitude, latitude, theDate)
 
     sfw.close()
     db.close()
