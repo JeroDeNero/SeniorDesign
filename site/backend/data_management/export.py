@@ -23,10 +23,14 @@ def exportTag():
     
     path = #what is the path?
 
-    sfw = shapefile.Writer(path)
-    sfw.field('Date', 'D')
-    sfw.field('xcord', 'N')
-    sfw.field('ycord', 'N')
+    sfw = shapefile.Writer(path, shapeType = shapefile.POINT) #writing a new shapefile
+    sfw.autobalance = True #alternatively can be set to 1 for true
+
+    #setting up the fields for writing the data to the shapefile
+    sfw.field('Date', 'D') #input the date
+    sfw.field('xcord', 'N') #xcoordinate
+    sfw.field('ycord', 'N') #ycoordinate
+
 
     sfw.close()
     db.close()
