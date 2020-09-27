@@ -1,6 +1,7 @@
 import functools
 import mysql.connector
 import json
+import shapefile
 
 from data_management.db import getDb
 from data_management.get import getOldest, getRun, getTag, getVideo
@@ -16,14 +17,18 @@ bp = Blueprint('export', __name__, url_prefix='/export')
 @bp.route('/tag', methods=(['POST']))
 def exportTag():
 
-    db = getDB()
-    tag = getTag(db, tagID)
-    video = getVideo()
+    db = getDB() # access the DB
+    tag = getTag(db, tagID) # get the coordinates
+    video = getVideo() # get the Date
+    
+    path = #what is the path?
 
-    query = ("SELECT * FROM Video "
-         "WHERE Id = {}".format(video))
-    date = query.DateTaken
+    sfw = shapefile.Writer(path)
+    sfw.field('Date', 'D')
+    sfw.field('xcord', 'N')
+    sfw.field('ycord', 'N')
 
+    sfw.close()
     db.close()
 
     return jsonify({})
