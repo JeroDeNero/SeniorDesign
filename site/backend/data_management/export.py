@@ -18,8 +18,13 @@ bp = Blueprint('export', __name__, url_prefix='/export')
 def exportTag():
 
     db = getDB() # access the DB
-    tag = getTag(db, tagID) # get the coordinates
-    video = getVideo() # get the Date
+
+    rid = getRun() # obtain the run ID i.e. PipeID
+    tid = getTag(db, rid) # use to get tag ID for coords
+    video = getVideo(db, rid) # get the video info i.e. date
+
+    date = ("SELECT Id, DateTaken FROM Video"
+            "WHERE Id = ")
     
     path = #what is the path?
 
@@ -31,6 +36,8 @@ def exportTag():
     sfw.field('xcord', 'N') #xcoordinate
     sfw.field('ycord', 'N') #ycoordinate
 
+    #iterate through the coordinates to write the shapefile
+    
 
     sfw.close()
     db.close()
