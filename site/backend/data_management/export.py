@@ -34,9 +34,8 @@ def exportTag():
     sfw.field('ycord', 'N') # ycoordinate
     sfw.field('Date', 'D') # input the date
 
-    # write the shapefile
-    sfw.point(longitude, latitude)
-    sfw.record(longitude, latitude, theDate)
+    sfw.point(longitude, latitude) # write to shapefile
+    sfw.record(longitude, latitude, theDate) # recording and saving the the shapefile
 
     sfw.close()
     db.close()
