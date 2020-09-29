@@ -40,4 +40,7 @@ def exportTag():
     sfw.close()
     db.close()
 
-    return send_file('/TEMP/tmp_coord.shp', attachment_filename = 'coord.shp')
+    try:
+        return send_file('/TEMP/tmp_coord.shp', attachment_filename = 'coord.shp')
+    except Exception as e:
+        return str(e)
