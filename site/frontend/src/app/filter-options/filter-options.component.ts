@@ -38,7 +38,6 @@ export class FilterOptionsComponent implements OnInit {
     datet,
     operator
   ) {
-
     this.filterService.filtered = true;
     this.filterService.showFavorites(!favorites);
     this.filterService.showNamed(!named);

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, ReplaySubject } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { RunService } from './run.service';
+import { StreamService } from './stream.service';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +19,10 @@ export class ToggleService {
 
   buttonOp: BehaviorSubject<string> = new BehaviorSubject<string>('New Run');
 
-  constructor(private runService: RunService) {}
+  constructor(
+    private runService: RunService,
+    private streamService: StreamService
+  ) {}
 
   ngOnInit() {}
 
@@ -28,9 +32,11 @@ export class ToggleService {
       this.setButtonOp('');
     } else if (this.buttonOp.getValue() === '') {
       this.toggleHideNew();
+      this.streamService.startRecording();
       this.setButtonOp('End Run');
     } else {
       this.runService.addRun().subscribe();
+      this.streamService.endRecording();
       this.setButtonOp('New Run');
     }
   }
