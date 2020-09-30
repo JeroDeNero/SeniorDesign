@@ -1,27 +1,31 @@
 import { Component, OnInit } from '@angular/core';
 import { AppComponent } from '../app.component';
-import { isUndefined } from 'util';
+import { StreamService } from '../stream.service';
 
 @Component({
   selector: 'app-controls',
   templateUrl: './controls.component.html',
-  styleUrls: ['./controls.component.css']
+  styleUrls: ['./controls.component.css'],
 })
-
-
 export class ControlsComponent implements OnInit {
-
   movementState: Ihash;
 
-  constructor(private app: AppComponent) {
-  }
+  constructor(
+    private app: AppComponent,
+    private streamService: StreamService
+  ) {}
 
   ngOnInit(): void {
     this.setMovementStates();
   }
 
   setMovementStates() {
-    this.movementState = { 'forward': false, 'backward': false, 'left': false, 'right': false };
+    this.movementState = {
+      forward: false,
+      backward: false,
+      left: false,
+      right: false,
+    };
   }
 
   onClick(button) {
@@ -31,17 +35,20 @@ export class ControlsComponent implements OnInit {
   onClickD(button) {
     //TODO contact server with button (if the server could return true on sucessfully recieving info)
     this.movementState[button] = true;
-    window.alert(this.movementState[button])
+    window.alert(this.movementState[button]);
   }
 
   onClickR(button) {
-    if (!isUndefined(this.movementState[button]) && this.movementState[button]) {
+    if (!this.movementState[button]) {
       //TODO contact server with button
       this.movementState[button] = false;
-      window.alert(this.movementState[button])
+      window.alert(this.movementState[button]);
     }
   }
 
+  caputerImage() {
+    this.streamService.caputerImage();
+  }
 }
 
 interface Ihash {

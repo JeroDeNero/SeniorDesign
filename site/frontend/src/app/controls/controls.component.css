@@ -13,6 +13,7 @@ button.action:hover {
 }
 
 div.controls {
+    padding-top: 10px;
     height: calc(100% - 20px);
     flex-wrap: wrap;
 }
@@ -26,14 +27,51 @@ div.logo {
     overflow: hidden;
 }
 
+input.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 1px;
+    background: black;
+    border-radius: 5px;
+    border-width: 10px;
+    outline: none;
+    opacity: 0.9;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+input.slider:hover {
+    opacity: 1;
+}
+
+input.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    background-image: url(../../assets/Images/Mini_UCF_logo_2.0.png);
+    background-color: rgba(0, 0, 0, 0);
+    cursor: pointer;
+}
+
+input.slider::-moz-range-thumb {
+    background-image: url(../../assets/Images/Mini_UCF_logo_2.0.png);
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+}
+
 svg {
-    fill: transparent;
+    fill: white;
     stroke: black;
     stroke-width: 2px;
 }
 
 path:hover {
-    fill: dimgray;
+    fill: #f7a521;
+    fill-opacity: 1;
     cursor: pointer;
 }
 

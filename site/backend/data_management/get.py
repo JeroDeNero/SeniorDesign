@@ -31,15 +31,18 @@ def getRuns():
 
         run.update({'tag': vidTags})
 
+        print(run)
+        print(run.get("PipeID"))
+
         if run.get("PipeID"):
             pipe = getPipe(db, run.get("PipeID"))
             run.update({'direction': pipe.get('Direction')})
-            run.update({'lat': pipe.get('Lat')})
-            run.update({'long': pipe.get('Longi')})
+            run.update({'Lat': pipe.get('Lat')})
+            run.update({'Longi': pipe.get('Longi')})
         else:
             run.update({'direction': None})
-            run.update({'lat': None})
-            run.update({'long': None})
+            run.update({'Lat': None})
+            run.update({'Longi': None})
 
         run.update({'ShowRun': True})
         run.update({'ShowTag': False})
@@ -84,12 +87,12 @@ def buildRun(target):
     if run.get("PipeID"):
         pipe = getPipe(db, run.get("PipeID"))
         run.update({'direction': pipe.get('Direction')})
-        run.update({'lat': pipe.get('Lat')})
-        run.update({'long': pipe.get('Longi')})
+        run.update({'Lat': pipe.get('Lat')})
+        run.update({'Longi': pipe.get('Longi')})
     else:
         run.update({'direction': None})
-        run.update({'lat': None})
-        run.update({'long': None})
+        run.update({'Lat': None})
+        run.update({'Longi': None})
 
         run.update({'ShowRun': True})
         run.update({'ShowTag': False})

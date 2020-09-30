@@ -2,14 +2,35 @@
     <div class="sidePage" [hidden]="!sideList">
         <div id="searchSec" class="searchSec">
             <div class="tab">
-                <a class="tablink" routerLink="/search">Search</a>
-                <a class="tablink" routerLink="/filter">Filter</a>
-                <a class="tablink" (click)="toggleNewMenu()">{{operation}}</a>
+                <div class="tabLink">
+                    <a class="sort" (click)="toggleSort()">Sort</a>
+                    <div class="dropDown-Content" *ngIf='sort'>
+                        <a class="sort" (click)="sortAlpha()">{{alpha}}</a>
+                        <a class="sort" (click)="sortDate()">{{date}}</a>
+                    </div>
+                </div>
+                <a class="tabLink" (click)="toggleShowFilter()">{{filter}}</a>
+                <a class="tabLink" (click)="toggleNewMenu()">{{operation}}</a>
             </div>
-            <router-outlet></router-outlet>
+            <input #target class="searchIn" type="text">
+            <button (click)="search(target.value)">Search</button> <button (click)="reset()">Reset</button>
         </div>
-        <router-outlet name="options"></router-outlet>
-        <router-outlet name="sideMenu"></router-outlet>
+        <div class="list">
+            <app-filter-options [hidden]="hideFilter" *ngIf="resetFilter"></app-filter-options>
+            Favorites
+            <div class="horLine"></div>
+            <app-list [id]="0" *ngIf="showFavorites"></app-list>
+
+            <div class="horLine"></div>
+            Named
+            <div class="horLine"></div>
+            <app-list [id]="1" *ngIf="showNamed"></app-list>
+
+            <div class="horLine"></div>
+            Unamed
+            <div class="horLine"></div>
+            <app-list [id]="2" *ngIf="showUnamed"></app-list>
+        </div>
     </div>
 
 

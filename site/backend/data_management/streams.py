@@ -2,17 +2,21 @@
 # import subprocess as sp
 # import time
 
-from . import socketio
 from flask import Flask, render_template, request, Blueprint
-import asyncio
-import _thread
-import time
+from . import tempFileManger
+from .video import Video
+from . import socketio
 from cv2 import cv2
+
+import _thread
+import asyncio
 import base64
+import time
 
 count = 0
 tagCount = 0
-# video
+
+video = [None, None]
 
 
 @socketio.on('connect')
@@ -30,62 +34,47 @@ def on_disconnect():
     global count
     count = count - 1
 
+    if count < 1 and video[0] != None:
+        del video[0]
+
 
 @socketio.on('capture')
-def capture():
+def capture(cam):
     global video
     global tagCount
+    print(tagCount)
 
-    if not (video == None):
-        print('Captured Image')
-        img = getFrame(video)
-        cv2.imwrite('./temp/tag{}.jpeg'.format(tagCount), img)
+    if video[cam]:
+        img = video[cam].getFrame()
+        write = cv2.imwrite(
+            'data_management/temp/tag{}.jpg'.format(tagCount), img)
         tagCount = tagCount + 1
+        print('data_management/temp/tag{}.jpg'.format(tagCount))
 
 
-# @socketio.on('startRecord')
-# def record():
+@socketio.on('startRecording')
+def startRecording():
+    global video
+    global tagCount
+    tagCount = 0
+    tempFileManger.clearAll()
+    video[0].startWriting()
 
-    # @bp.route('/videoFeed')
-    # def videoFeed():
-    #    return Response(gen(Camera()))
+
+@socketio.on('endRecording')
+def endRecording():
+    global video
+    video[0].stopWriting()
 
 
 def emitCams():
-    fps = 0.2
     global count
-    #global video
-    video = cv2.VideoCapture(-1)
+    global video
+    if (count > 0 and not video[0]):
+        video[0] = Video(-1, 0.2)
 
     while count > 0:
-        genMainCam(video, fps)
+        video[0].genCam()
 
-    video.release()
-
-
-def genMainCam(video, fps):
-    frame = encodeFrame(getFrame(video))
-    socketio.emit("primaryStreamOut", frame)
-    time.sleep(1/fps)
-
-
-def getFrame(video):
-    _ret, frame = video.read()
-    _ret, jpeg = cv2.imencode('.jpg', frame)
-    return jpeg
-
-
-def encodeFrame(frame):
-    return base64.b64encode(frame.tobytes()).decode('utf-8')
-
-
-'''
-async def genSecondCam():
-    fps = 1
-
-    while True:
-        frame = Camera().getFrame()
-        await asyncio.sleep(1/fps)
-        print('emitting')
-        socketio.emit("primaryStreamOut", frame)
-'''
+    if count < 1:
+        del video[0]
