@@ -26,7 +26,7 @@ def exportTag():
     longitude = tagData.get("Longi") # retrieve the x coordinate
     latitude = tagData.get("Lat") # retrieve the y coordinate
 
-    sfw = shapefile.Writer('TEMP/tmp_coord.shp', shapeType = shapefile.POINT) # writing a new shapefile
+    sfw = shapefile.Writer('data_management/temp/tmp_coord.shp', shapeType = shapefile.POINT) # writing a new shapefile
     sfw.autobalance = True # alternatively can be set to 1 for true
 
     # setting up the fields for writing the data to the shapefile
@@ -41,6 +41,6 @@ def exportTag():
     db.close()
 
     try:
-        return send_file('/TEMP/tmp_coord.shp', attachment_filename = 'coord.shp')
+        return send_file('data_management/temp/tmp_coord.shp', attachment_filename = 'coord.shp')
     except Exception as e:
         return str(e)
