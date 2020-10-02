@@ -2,12 +2,14 @@ input.searchIn {
     font-size: 18px;
     margin-top: 16px;
     text-align: center;
+    z-index: 5;
 }
 
 button {
     font-size: 18px;
     margin-top: 12px;
     width: 100px;
+    z-index: 5;
 }
 
 div.page {
@@ -104,6 +106,12 @@ div.dropDown-Content {
 
 .tabLink {
     flex: 1;
+    z-index: 18;
+}
+
+.tabLinkShort {
+    flex: 0.45;
+    z-index: 18;
 }
 
 a.sort {

@@ -11,6 +11,7 @@
                 </div>
                 <a class="tabLink" (click)="toggleShowFilter()">{{filter}}</a>
                 <a class="tabLink" (click)="toggleNewMenu()">{{operation}}</a>
+                <a class="tabLinkShort" (click)="toggleNewMenu()">⚙️</a>
             </div>
             <input #target class="searchIn" type="text">
             <button (click)="search(target.value)">Search</button> <button (click)="reset()">Reset</button>
