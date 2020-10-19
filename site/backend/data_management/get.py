@@ -151,7 +151,15 @@ def getPipe(db, pipeID):
 def getOldest(db):
     # Jero here
     # TODO
+    video = db.cursor(dictionary = True, buffered = True)
+    query = ("SELECT * FROM Video ORDER BY DateTaken DESC") # pulls the video table organized by date
+    video.execute(query)
+    results = video.fetchall() # fetches all the rows in the query and returns a list of tuples
+    flag = 0
+    oldest = None
+
     # gets oldest untagged unamed file
+<<<<<<< HEAD
     ##For MySQL I can probably use the LEAST() function to find the oldest Date of a run
     # if none exist, go to named and untagged
     # else go to tagged
@@ -167,3 +175,37 @@ def getOldest(db):
 
     query = ("DELETE FROM Video WHERE DateTaken = '{}'".format(date))
     return
+=======
+    for vid in results:
+        theID = vid[0]
+        if(vid[2] == 0 and vid[1] == None and flag == 0):
+            query = ("SELECT FROM Video "
+                     "WHERE Id = '{}'".format(theID))
+            video.execute(query)
+            oldest = video.fetchone()
+            flag = 1
+            break
+    
+    # if none exist, go to named and unpinned
+    if(flag == 0):
+        for vid in results:
+            theID = vid[0]
+            if(vid[2] == 0):
+                query = ("SELECT FROM Video "
+                         "WHERE Id = '{}'".format(theID))
+                video.execute(query)
+                oldest = video.fetchone()
+                flag = 1
+                break
+
+    # else go to pinned
+    if(flag == 0):
+        theID = results[0][0]
+        query = ("SELECT FROM Video "
+                 "WHERE Id = '{}'".format(theID))
+        video.execute(query)
+        oldest = video.fetchone()
+
+    video.close()
+    return oldest
+>>>>>>> 760cab42517506660517418a832aba9c2ce32cf6
