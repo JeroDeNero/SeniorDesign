@@ -151,7 +151,20 @@ def getPipe(db, pipeID):
 def getOldest(db):
     # Jero here
     # TODO
-    # gets oldest untagged unamed file
+    video = db.cursor(dictionary = True, buffered = True)
+    query = ("SELECT * FROM Video ORDER BY DateTaken ASC") # pulls the video table organized by date
+    video.execute(query)
+    results = video.fetchall() # fetches all the rows in the query and returns a list of tuples
+    video.close()
+
+    for vid in results:
+        # gets oldest untagged unamed file
+        if(vid[2] == 0):
+            theID = vid[0]
+            query = ("DELETE FROM Video "
+                     "WHERE Id = '{}' ".format(theID))
+        
+
     # if none exist, go to named and unpinned
     # else go to pinned
     # code exist above for how to find out, try to do all comparisons in mySQL
