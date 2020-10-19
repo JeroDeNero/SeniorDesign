@@ -152,7 +152,18 @@ def getOldest(db):
     # Jero here
     # TODO
     # gets oldest untagged unamed file
-    # if none exist, go to named and unpinned
-    # else go to pinned
+    ##For MySQL I can probably use the LEAST() function to find the oldest Date of a run
+    # if none exist, go to named and untagged
+    # else go to tagged
     # code exist above for how to find out, try to do all comparisons in mySQL
+    videos = db.cursor(dictionary = True, buffered = True)
+    query = ("SELECT * FROM Video ORDER BY DateTaken ASC")
+    videos.execute(query)
+    results = videos.fetchall()
+    videos.close
+
+    ## Search for oldest unnamed file here ##
+    # possibly a while loop to search through all the rows
+
+    query = ("DELETE FROM Video WHERE DateTaken = '{}'".format(date))
     return
