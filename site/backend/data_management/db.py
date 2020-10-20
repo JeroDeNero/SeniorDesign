@@ -1,11 +1,9 @@
 import mysql.connector
-
-import click
-from flask import current_app, g
-from flask.cli import with_appcontext
+from flask import g
 
 
 def getDb():
+    """Gets a database"""
     if 'db' not in g:
         g.db = mysql.connector.connect(user='roboto',
                                        password='password',
@@ -16,6 +14,7 @@ def getDb():
 
 
 def closeDb():
+    """Closing a database"""
     db = g.pop('db', None)
 
     if db is not None:
