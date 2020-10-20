@@ -30,6 +30,7 @@ export class AppComponent {
   pullOutCont = '<===';
   innerWidth: any;
   primaryCam: any;
+  videoSrc: string = null;
 
   IsPrimaryCamLoading: boolean = false;
 
@@ -71,6 +72,10 @@ export class AppComponent {
 
     this.toggleService.getResetFilter().subscribe((value) => {
       this.resetFilter = value;
+    });
+
+    this.toggleService.getVideo().subscribe((value) => {
+      this.videoSrc = value;
     });
   }
 
@@ -118,6 +123,10 @@ export class AppComponent {
     this.newIsShown = !this.newIsShown;
   }
 
+  toggleSettings() {
+    this.toggleService.toggleShowSettings();
+  }
+
   search(targ) {
     this.filterService.search(targ);
   }
@@ -125,6 +134,9 @@ export class AppComponent {
   reset() {
     this.filterService.reset();
     this.toggleService.toggleResetFilter();
+  }
+  closeRewatch(){
+    this.toggleService.setVideo(null);
   }
 
   toggleSort() {
