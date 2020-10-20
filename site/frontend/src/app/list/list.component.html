@@ -5,14 +5,16 @@
             <div class="col">
                 <div class="pic">
                     <!--TODO make into a video link-->
-                    <img class="maxWidth" src="assets/Images/screenHolder.jpg" alt="">
+                    <a class="video" (click)="setVideo(run.PipeID, run.DateTaken)">
+                        <img class="maxWidth" src='{{run | makeDirectory}}' alt="Image not found.">
+                    </a>
                 </div>
             </div>
             <div class="colLong">
                 <div class="info">
                     {{(run.DateTaken | date:'mediumDate')}}
                     <div class="linkHolder">
-                        <a class="edit" (click)="editData(run)">Edit</a><a class="delete" (click)="deleteRun(run.Id)">Delete</a>
+                        <a class="edit button" (click)="editData(run)">Edit</a> <a class="delete button" (click)="deleteRun(run.Id)">Delete</a>
                     </div>{{run.tag | getNumOfTags}} tagged Spots<br> {{run.PipeID}} / {{run.Direction}}
                 </div>
             </div>
@@ -27,9 +29,9 @@
 Tagged Location {{tag.Id}}
 Lat: {{tag.Lat}}       Long: {{tag.long}}</pre>
                 <div class="linkHolder ">
-                    <a class="export ">Export</a>
-                    <a class="view ">View</a>
-                    <a class="delete " (click)="deleteTag(tag.Id) ">Delete</a>
+                    <a class="export button ">Export</a>
+                    <a class="view button">View</a>
+                    <a class="delete button" (click)="deleteTag(tag.Id) ">Delete</a>
                 </div>
             </div>
             <div class="horLine "></div>

@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, ReplaySubject } from 'rxjs';
-import { delay } from 'rxjs/operators';
 import { RunService } from './run.service';
 import { StreamService } from './stream.service';
 
@@ -11,6 +10,8 @@ export class ToggleService {
   hideNew: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
   hideEdit: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
 
+  showSettings: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+
   showFavorites: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
   showNamed: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
   showUnamed: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
@@ -18,6 +19,8 @@ export class ToggleService {
   resetFilter: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
 
   buttonOp: BehaviorSubject<string> = new BehaviorSubject<string>('New Run');
+
+  video: BehaviorSubject<string> = new BehaviorSubject<string>('assets/Data/output1.mp4');
 
   constructor(
     private runService: RunService,
@@ -35,8 +38,8 @@ export class ToggleService {
       this.streamService.startRecording();
       this.setButtonOp('End Run');
     } else {
-      this.runService.addRun().subscribe();
       this.streamService.endRecording();
+      this.runService.addRun().subscribe();
       this.setButtonOp('New Run');
     }
   }
@@ -70,6 +73,26 @@ export class ToggleService {
 
   getHideEdit(): Observable<boolean> {
     return this.hideEdit.asObservable();
+  }
+
+  toggleShowSettings(): void {
+    this.showSettings.next(!this.showSettings.getValue());
+  }
+
+  setShowSettings(targ): void {
+    this.showSettings.next(targ);
+  }
+
+  getShowSettings(): Observable<boolean> {
+    return this.showSettings.asObservable();
+  }
+
+  setVideo(word): void {
+      this.video.next(word);
+  }
+
+  getVideo(): Observable<string> {
+    return this.video.asObservable();
   }
 
   setButtonOp(word): void {

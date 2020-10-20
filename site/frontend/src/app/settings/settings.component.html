@@ -1,0 +1,20 @@
+<div class="popUp">
+    <div class="window" (click)=null *ngIf="showSettings">
+        <div class="container">
+            <label for="wheelRadius">Wheel Radius (inches):  </label>
+            <input #wheelRadius id="wheelRadius" type="number" min="0" value="{{this.wheelRaduis || 0}}" />
+            <br>
+            <label for="mainCamFPS">FPS of main camera:  </label>
+            <input #mainCamFPS id="mainCamFPS" type="number" min="1" max="60" value="{{this.mainCameraFPS || 30}}" />
+            <br>
+            <label for="backCamFPS">FPS of back camera:  </label>
+            <input #backCamFPS id="backCamFPS" type="number" min="1" max="60" value="{{this.backCameraFPS || 30}}" />
+            <br>
+            <br>
+            <br>
+
+            <button id="comfirm" (click)="comfirmBut(wheelRadius.value, mainCamFPS.value, backCamFPS.value)">Create</button>
+            <button id="close" (click)="cancelBut()">close</button>
+        </div>
+    </div>
+</div>

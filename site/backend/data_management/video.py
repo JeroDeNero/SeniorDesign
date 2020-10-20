@@ -1,11 +1,17 @@
-from . import socketio
-from cv2 import cv2
+# pylint: disable=no-member
+"""to stop pylint from complainign about cv2"""
 
-import time
 import base64
+import time
+import cv2
 
+from data_management import socketio
+
+VIDEOTYPE = 'mp4'
+CODEC = 'XVID'
 
 class Video(object):
+    """object that contains all command each camera may need"""
     fps = None
     cameraTarg = None
     captureDev = None
@@ -14,7 +20,6 @@ class Video(object):
     frameHeight = 480
 
     def __init__(self, target, fps):
-        print(target)
         self.fps = fps
         self.cameraTarg = target
         self.captureDev = cv2.VideoCapture(target)
@@ -29,10 +34,11 @@ class Video(object):
         frame = self.getFrame()
         if self.recording:
             self.writeVid(frame)
+        else:
+            time.sleep(1/self.fps)
 
         frame = self.encodeFrame(self.toJPG(frame))
         socketio.emit("primaryStreamOut", frame)
-        time.sleep(1/self.fps)
 
     def getFrame(self):
         _ret, frame = self.captureDev.read()
@@ -46,9 +52,15 @@ class Video(object):
         return base64.b64encode(frame.tobytes()).decode('utf-8')
 
     def startWriting(self):
+        global CODEC
+        global VIDEOTYPE
+
         cv2.imwrite('data_management/temp/imageFront.jpg', self.getFrame())
-        self.record = cv2.VideoWriter('data_management/temp/outputtedVideo.avi',
-                                      cv2.VideoWriter_fourcc(*'MJPG'), 1, (self.frameWidth, self.frameHeight))
+        fourcc = cv2.VideoWriter_fourcc(*CODEC)
+        self.record = cv2.VideoWriter('data_management/temp/outputtedVideo.{}'.format(VIDEOTYPE),
+                                      fourcc, 
+                                      self.fps, 
+                                      (self.frameWidth, self.frameHeight))
         self.recording = True
 
     def writeVid(self, frame):

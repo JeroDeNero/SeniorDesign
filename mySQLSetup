@@ -21,7 +21,7 @@ CREATE TABLE HighlightedZones (
   Id int unsigned not null auto_increment,
   XPos int not null,
   YPos int not null,
-  raduis int not null,
+  radius int not null,
 
   primary key (Id)
 );
@@ -60,10 +60,10 @@ CREATE TABLE RoughLocation (
   Name varchar(64) not null,
   Lat smallint not null,
   Longi smallint not null,
-  Raduis smallint not null,
+  Radius smallint not null,
 
   UNIQUE (Name),
-  UNIQUE (Lat, Longi, Raduis),
+  UNIQUE (Lat, Longi, Radius),
 
   primary key (Id)
 );

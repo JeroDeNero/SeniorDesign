@@ -3,14 +3,15 @@
         <div id="searchSec" class="searchSec">
             <div class="tab">
                 <div class="tabLink">
-                    <a class="sort" (click)="toggleSort()">Sort</a>
+                    <a class="sort ribbon" (click)="toggleSort()">Sort</a>
                     <div class="dropDown-Content" *ngIf='sort'>
-                        <a class="sort" (click)="sortAlpha()">{{alpha}}</a>
-                        <a class="sort" (click)="sortDate()">{{date}}</a>
+                        <a class="sort ribbon" (click)="sortAlpha()">{{alpha}}</a>
+                        <a class="sort ribbon" (click)="sortDate()">{{date}}</a>
                     </div>
                 </div>
-                <a class="tabLink" (click)="toggleShowFilter()">{{filter}}</a>
-                <a class="tabLink" (click)="toggleNewMenu()">{{operation}}</a>
+                <a class="tabLink ribbon" (click)="toggleShowFilter()">{{filter}}</a>
+                <a class="tabLink ribbon" (click)="toggleNewMenu()">{{operation}}</a>
+                <a class="tabLinkShort ribbon" *ngIf="operation === 'New Run'" (click)='toggleSettings()'>⚙️</a>
             </div>
             <input #target class="searchIn" type="text">
             <button (click)="search(target.value)">Search</button> <button (click)="reset()">Reset</button>
@@ -36,10 +37,10 @@
 
     <div class="mainPage">
         <div class="video">
-            <img class="maxWidth" [src]="'data:image/jpeg;base64,' + primaryCam" [alt]="'data:image/jpeg;base64,' + primaryCam">
-
+            <img [hidden]="videoSrc" class="maxWidth" [src]="'data:image/jpeg;base64,' + primaryCam" [alt]="'data:image/jpeg;base64,' + primaryCam">
+            <video #rewatch controls class="maxWidth" *ngIf="videoSrc" [src]="videoSrc" type="video/mp4"></video>
+            <a *ngIf="videoSrc" class="close" (click)="closeRewatch()">X</a>
         </div>
-
         <div class="horLine"></div>
 
         <div class="bottomPanel">
@@ -52,15 +53,6 @@
 
 <app-edit-menu></app-edit-menu>
 
+<app-settings></app-settings>
+
 <button class="pullOutMenu" (click)="toggleSideMenu()" [hidden]="!pullOutBar"> {{pullOutCont}} </button>
-<!--
-<script src="https://cdnjs.cloudflare.come/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
-<script>
-    const socket = io.connect('http://localhost:5000');
-    socket.on('primaryStreamOut', (data) => {
-        console.log('data got got');
-        const image = document.getElementById('primCam');
-        primCam.src = data
-    })
-</script>
--->
