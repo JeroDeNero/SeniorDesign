@@ -9,11 +9,13 @@ import { ListComponent } from './list/list.component';
 import { FilterOptionsComponent } from './filter-options/filter-options.component';
 import { RunPopUpMenuComponent } from './run-pop-up-menu/run-pop-up-menu.component';
 import { GetNumOfTags } from './list/getNumOfTags.pipe';
+import { MakeDirectory } from './list/makeDirectory.pipe';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { EditMenuComponent } from './edit-menu/edit-menu.component';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { API_URL } from './env';
+import { SettingsComponent } from './settings/settings.component';
 
 const config: SocketIoConfig = {
   url: API_URL,
@@ -28,7 +30,9 @@ const config: SocketIoConfig = {
     FilterOptionsComponent,
     RunPopUpMenuComponent,
     GetNumOfTags,
+    MakeDirectory,
     EditMenuComponent,
+    SettingsComponent,
   ],
   imports: [
     FormsModule,

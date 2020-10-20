@@ -15,3 +15,7 @@
 */stream/
 
 robot_py/robot-env/
+
+*/output*
+*/test*
+*/*/temp/*
