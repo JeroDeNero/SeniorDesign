@@ -287,6 +287,9 @@ _gtest_INCLUDES:FILEPATH=/usr/include/gtest/gtest.h
 //Path to a file.
 _gtest_SOURCES:FILEPATH=/usr/src/gtest/src/gtest.cc
 
+//Path to a file.
+_path_name:FILEPATH=/home/rob/Desktop/repo/SeniorDesign/ROB/stormBot_ws/src/diff_drive/tests
+
 //The directory containing a CMake configuration file for actionlib.
 actionlib_DIR:PATH=/opt/ros/melodic/share/actionlib/cmake
 
@@ -304,6 +307,12 @@ cpp_common_DIR:PATH=/opt/ros/melodic/share/cpp_common/cmake
 
 //The directory containing a CMake configuration file for cv_bridge.
 cv_bridge_DIR:PATH=/opt/ros/melodic/share/cv_bridge/cmake
+
+//Value Computed by CMake
+diff_drive_BINARY_DIR:STATIC=/home/rob/Desktop/repo/SeniorDesign/ROB/stormBot_ws/build/diff_drive
+
+//Value Computed by CMake
+diff_drive_SOURCE_DIR:STATIC=/home/rob/Desktop/repo/SeniorDesign/ROB/stormBot_ws/src/diff_drive
 
 //The directory containing a CMake configuration file for dynamic_reconfigure.
 dynamic_reconfigure_DIR:PATH=/opt/ros/melodic/share/dynamic_reconfigure/cmake
@@ -504,6 +513,9 @@ rospack_DIR:PATH=/opt/ros/melodic/share/rospack/cmake
 //The directory containing a CMake configuration file for rospy.
 rospy_DIR:PATH=/opt/ros/melodic/share/rospy/cmake
 
+//The directory containing a CMake configuration file for rostest.
+rostest_DIR:PATH=/opt/ros/melodic/share/rostest/cmake
+
 //The directory containing a CMake configuration file for rostime.
 rostime_DIR:PATH=/opt/ros/melodic/share/rostime/cmake
 
@@ -665,7 +677,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=10
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=11
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP
