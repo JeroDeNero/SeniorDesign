@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { DateHandlerService } from '../date-handler.service';
 import { Run, numHash } from '../interfaces';
 import { RunService } from '../run.service';
 import { ToggleService } from '../toggle.service';
@@ -9,15 +10,21 @@ import { ToggleService } from '../toggle.service';
   styleUrls: ['./list.component.css'],
 })
 export class ListComponent implements OnInit {
-  @Input('runs') runs: Run[];
+  @Input('id') id: number;
+  runs: Run[];
   tagBoxes: numHash;
-
+  
   constructor(
     private runService: RunService,
-    private toggleService: ToggleService
-  ) {}
+    private toggleService: ToggleService,
+    private datahandlerService: DateHandlerService
+    ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.runService.getAllRuns().subscribe((runsList) => {
+      this.runs = runsList[this.id];
+    });
+  }
 
   toggleTag(target) {
     const index = this.getRunIndex(target);
@@ -28,12 +35,13 @@ export class ListComponent implements OnInit {
     this.tagBoxes[target] = false;
   }
 
-  editData(target) {
+  editData(target: Run) {
     this.runService.setEditRun(target);
-    this.toggleService.toggleHideEdit();
+    this.runService.arrayIndex = [this.id, this.getRunIndex(target)];
+    this.toggleService.setHideEdit(false);
   }
 
-  deleteRun(target) {
+  deleteRun(target: Run) {
     this.runService.deleteRun(target).subscribe();
 
     this.runs.splice(this.getRunIndex(target), 1);
@@ -46,5 +54,11 @@ export class ListComponent implements OnInit {
 
   deleteTag(target) {
     this.runService.deleteTag(target).subscribe();
+  }
+
+  setVideo(pipeID, date) {
+
+    const video = `assets/Data/${pipeID}/${this.datahandlerService.generateDate(date)}/outputtedVideo.mp4`;
+    this.toggleService.setVideo(video);
   }
 }

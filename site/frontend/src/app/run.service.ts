@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, Observer, of, Subject } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 
 import { Run, Tag } from './interfaces';
@@ -16,12 +16,32 @@ export class RunService {
     this.createEmptyRun()
   );
 
+  arrayIndex: number[];
+
+  private newRun: BehaviorSubject<Run> = new BehaviorSubject<Run>(
+    this.createEmptyRun()
+  );
+
+  private allRuns: BehaviorSubject<Run[][]> = new BehaviorSubject<Run[][]>([]);
+
+  allRunsData: Run[][];
+
+  constructor(private http: HttpClient) {
+    this.getRuns().subscribe((data) => {
+      this.setAllRuns(data);
+    });
+    this.getAllRuns().subscribe((data) => {
+      this.allRunsData = data;
+    });
+  }
+
   /**
    * Handle Http operation that failed.
    * Let the app continue.
    * @param operation - name of the operation that failed
    * @param result - optional value to return as the observable result
    */
+
   private handleError<T>(result?: T) {
     return (error: any): Observable<T> => {
       console.log(error);
@@ -30,7 +50,21 @@ export class RunService {
     };
   }
 
-  constructor(private http: HttpClient) {}
+  setAllRuns(data: Run[][]) {
+    this.allRuns.next(data);
+  }
+
+  getAllRuns(): Observable<Run[][]> {
+    return this.allRuns.asObservable();
+  }
+
+  setNewRun(run: Run): void {
+    this.newRun.next(run);
+  }
+
+  getNewRun(): Observable<Run> {
+    return this.newRun.asObservable();
+  }
 
   setEditRun(run: Run): void {
     if (run.Id !== this.editRun.getValue().Id) {
@@ -43,7 +77,7 @@ export class RunService {
   }
 
   getRuns(): Observable<Run[][]> {
-    return this.http.get<Run[][]>(`${API_URL}/run/getRuns`).pipe(
+    return this.http.get<Run[][]>(`${API_URL}/get/runs`).pipe(
       tap((_) => console.log('fetched runs')),
       catchError(this.handleError<Run[][]>([]))
     );
@@ -51,7 +85,7 @@ export class RunService {
 
   getRun(id: number): Observable<Run> {
     return this.http
-      .post<Run>(`${API_URL}/run/getRun`, { id: id }, this.httpOptions)
+      .post<Run>(`${API_URL}/get/run`, { id: id }, this.httpOptions)
       .pipe(
         tap((_) => console.log('fetched run')),
         catchError(this.handleError<Run>(null))
@@ -66,18 +100,34 @@ export class RunService {
     }, initialVal);
   }
 
-  addRun(run: Run): Observable<Run> {
-    return this.http.post<Run>(`${API_URL}`, run, this.httpOptions).pipe(
-      tap(() => console.log('added run w/ id={newRun.Id}')),
-      catchError(this.handleError<Run>())
-    );
+  addRun(): Observable<Run> {
+    return this.http
+      .post<Run>(
+        `${API_URL}/save/newRun`,
+        this.newRun.getValue(),
+        this.httpOptions
+      )
+      .pipe(
+        tap(() => console.log('added run')),
+        catchError(this.handleError<Run>())
+      );
   }
 
-  updateRun(run: Run): Observable<any> {
-    return this.http.post(`${API_URL}`, run, this.httpOptions).pipe(
-      tap((_) => console.log('updated run id =${run.Id}')),
-      catchError(this.handleError<any>())
-    );
+  updateRun(): Observable<any> {
+    this.allRunsData[this.arrayIndex[0]][
+      this.arrayIndex[1]
+    ] = this.editRun.getValue();
+
+    return this.http
+      .post(
+        `${API_URL}/save/editRun`,
+        this.editRun.getValue(),
+        this.httpOptions
+      )
+      .pipe(
+        tap((_) => console.log('updated run id =${run.Id}')),
+        catchError(this.handleError<any>())
+      );
   }
 
   deleteRun(run: Run | number): Observable<any> {
@@ -106,13 +156,12 @@ export class RunService {
 
   createEmptyRun() {
     return {
-      Id: -1,
-      Name: '',
       DriverName: '',
       PipeID: '',
       Direction: '',
-      lat: 0,
-      long: 0,
+      Tagged: 0,
+      Lat: 0,
+      Longi: 0,
       ShowRun: false,
       ShowTag: false,
     };

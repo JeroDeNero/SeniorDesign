@@ -1,0 +1,4 @@
+site/backend/data_management/temp/*
+site/backend/.vscode/.ropeproject/config.py
+site/backend/.vscode/settings.json
+site/backend/.vscode/.ropeproject/objectdb

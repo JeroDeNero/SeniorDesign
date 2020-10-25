@@ -1,32 +1,28 @@
-<!-- TODO change out of form, this info WILL NOT be sent to the server as it is
-    rather all the data will be compiled post run, then sent to flask as a JSON object
--->
-
 <div class="popUp" [hidden]="hideHTML">
     <div class="window" (click)=null>
         <div class="container">
             <label for="name">Name:  </label>
-            <input id="name" type="text" value="{{this.targRun.Name}}" />
+            <input #name id="name" type="text" value="{{this.targRun.Name || ''}}" />
             <br>
             <label for="DriverName">Operators Name:  </label>
-            <input id="DriverName" type="text" value="{{this.targRun.DriverName}}" />
+            <input #driverName id="DriverName" type="text" value="{{this.targRun.DriverName || ''}}" />
             <br>
             <label for="PipeID">PipeID*:  </label>
-            <input id="PipeID" type="text" value="{{this.targRun.PipeID}}" />
+            <input #pipeID id="PipeID" type="text" value="{{this.targRun.PipeID || ''}}" />
             <br>
             <label for="Direction">Direction*:  </label>
-            <input id="Direction" type="text" value="{{this.targRun.Direction}}" />
+            <input #dir id="Direction" type="text" value="{{this.targRun.Direction || ''}}" />
             <br>
             <label for="lat">Latitude:  </label>
-            <input id="lat" type="number" min="-90" max="90" value="{{this.targRun.Lat}}" />
+            <input #lat id="lat" type="number" min="-90" max="90" value="{{this.targRun.Lat || 0}}" />
             <br>
             <label for="long">Longitude:  </label>
-            <input id="long" type="number" min="-180" max="180" value="{{this.targRun.Longi}}" />
+            <input #long id="long" type="number" min="-180" max="180" value="{{this.targRun.Longi || 0}}" />
             <br>
             <br>
             <br>
 
-            <button id="comfirm" (click)='comfirmBut()'>Edit</button>
+            <button id="comfirm" (click)='comfirmBut(name.value, driverName.value, pipeID.value, dir.value, lat.value, long.value)'>Edit</button>
             <button id="close" (click)="cancelBut()">close</button>
         </div>
     </div>

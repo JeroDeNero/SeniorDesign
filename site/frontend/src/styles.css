@@ -67,12 +67,16 @@ div.flex-grid {
     height: 33%;
 }
 
-div.col {
+div.colSmall {
     flex: 1;
 }
 
-div.colLong {
+div.col {
     flex: 2;
+}
+
+div.colLong {
+    flex: 4;
 }
 
 html,

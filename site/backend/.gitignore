@@ -1,18 +1,21 @@
-venv/
+*/venv/
 
-__pycache__/
+*/__pycache__/
 
-instance/
+*/instance/
 
-.pytest_cache/
-/coverage
-htmlcov/
+*/.pytest_cache/
+*/coverage
+*/htmlcov/
 
-dist/
-build/
+*/dist/
+*/build/
 *egg-info
 
-stream/
+*/stream/
 
-streams.py
-videos.py
+robot_py/robot-env/
+
+*/output*
+*/test*
+*/*/temp/*

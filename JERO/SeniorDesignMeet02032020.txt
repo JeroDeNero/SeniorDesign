@@ -1,0 +1,25 @@
+02/03/2020
+TA Meeting:
+create a weekly meeting with proffesor after initial meeting
+	-be proactive about it, nag if needed
+Figure out what the sponsors want!
+	-we need to get an idea of where we want to go with this robot
+	-create goals with the sponsors idea of a finished product
+Create Milestones
+	-Research
+	-Learn Robotics
+	-Learn the processor and chip
+	-Learning Python, mastering Python
+	-Start building the robot
+	-Learn how to program different components of the robot, wheels, arm, cameras
+
+Team Meeting:
+start 5:47
+Ideas:
+	propellers or paddles
+	water proofing, floating functionality
+	plowing to move debris
+	scissor platform to elevate camera
+	marking the cable to count how far the robot is in
+	wall guides(assuming drains are circular)
+	modularity of onboard tools for the arm
