@@ -80,16 +80,16 @@ install/local/fast: preinstall/fast
 	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local/fast
 
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
 
-# Special rule for the target test
-test/fast: test
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
 
-.PHONY : test/fast
+.PHONY : rebuild_cache/fast
 
 # Special rule for the target list_install_components
 list_install_components:
@@ -124,16 +124,16 @@ install/fast: preinstall/fast
 	/usr/bin/cmake -P cmake_install.cmake
 .PHONY : install/fast
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/usr/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
 
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
+# Special rule for the target test
+test/fast: test
 
-.PHONY : rebuild_cache/fast
+.PHONY : test/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -288,21 +288,6 @@ rosgraph_msgs_generate_messages_lisp/fast:
 .PHONY : rosgraph_msgs_generate_messages_lisp/fast
 
 # Convenience name for target.
-movement/CMakeFiles/storm_bot_node.dir/rule:
-	cd /home/rob/Desktop/repo/SeniorDesign/ROB/stormBot_ws/build && $(MAKE) -f CMakeFiles/Makefile2 movement/CMakeFiles/storm_bot_node.dir/rule
-.PHONY : movement/CMakeFiles/storm_bot_node.dir/rule
-
-# Convenience name for target.
-storm_bot_node: movement/CMakeFiles/storm_bot_node.dir/rule
-
-.PHONY : storm_bot_node
-
-# fast build rule for target.
-storm_bot_node/fast:
-	cd /home/rob/Desktop/repo/SeniorDesign/ROB/stormBot_ws/build && $(MAKE) -f movement/CMakeFiles/storm_bot_node.dir/build.make movement/CMakeFiles/storm_bot_node.dir/build
-.PHONY : storm_bot_node/fast
-
-# Convenience name for target.
 movement/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule:
 	cd /home/rob/Desktop/repo/SeniorDesign/ROB/stormBot_ws/build && $(MAKE) -f CMakeFiles/Makefile2 movement/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
 .PHONY : movement/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
@@ -415,7 +400,7 @@ help:
 	@echo "... depend"
 	@echo "... install/strip"
 	@echo "... install/local"
-	@echo "... test"
+	@echo "... rebuild_cache"
 	@echo "... list_install_components"
 	@echo "... roscpp_generate_messages_py"
 	@echo "... roscpp_generate_messages_eus"
@@ -427,8 +412,6 @@ help:
 	@echo "... install"
 	@echo "... rosgraph_msgs_generate_messages_eus"
 	@echo "... rosgraph_msgs_generate_messages_lisp"
-	@echo "... rebuild_cache"
-	@echo "... storm_bot_node"
 	@echo "... std_msgs_generate_messages_cpp"
 	@echo "... rosgraph_msgs_generate_messages_nodejs"
 	@echo "... rosgraph_msgs_generate_messages_py"
@@ -436,6 +419,7 @@ help:
 	@echo "... std_msgs_generate_messages_nodejs"
 	@echo "... roscpp_generate_messages_nodejs"
 	@echo "... std_msgs_generate_messages_py"
+	@echo "... test"
 .PHONY : help
 
 

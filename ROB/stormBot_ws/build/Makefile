@@ -389,19 +389,6 @@ rosgraph_msgs_generate_messages_lisp/fast:
 .PHONY : rosgraph_msgs_generate_messages_lisp/fast
 
 #=============================================================================
-# Target rules for targets named storm_bot_node
-
-# Build rule for target.
-storm_bot_node: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 storm_bot_node
-.PHONY : storm_bot_node
-
-# fast build rule for target.
-storm_bot_node/fast:
-	$(MAKE) -f movement/CMakeFiles/storm_bot_node.dir/build.make movement/CMakeFiles/storm_bot_node.dir/build
-.PHONY : storm_bot_node/fast
-
-#=============================================================================
 # Target rules for targets named std_msgs_generate_messages_cpp
 
 # Build rule for target.
@@ -522,7 +509,6 @@ help:
 	@echo "... roscpp_generate_messages_cpp"
 	@echo "... rosgraph_msgs_generate_messages_eus"
 	@echo "... rosgraph_msgs_generate_messages_lisp"
-	@echo "... storm_bot_node"
 	@echo "... std_msgs_generate_messages_cpp"
 	@echo "... rosgraph_msgs_generate_messages_nodejs"
 	@echo "... rosgraph_msgs_generate_messages_py"

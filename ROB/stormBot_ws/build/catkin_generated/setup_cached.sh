@@ -8,3 +8,4 @@
 
 # modified environment variables
 export PWD='/home/rob/Desktop/repo/SeniorDesign/ROB/stormBot_ws/build'
+export PYTHONPATH='/opt/ros/melodic/lib/python2.7/dist-packages'
