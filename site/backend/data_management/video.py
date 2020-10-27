@@ -8,7 +8,8 @@ import cv2
 from data_management import socketio
 
 VIDEOTYPE = 'mp4'
-CODEC = 'XVID'
+CODEC = 'avc1'
+
 
 class Video(object):
     """object that contains all command each camera may need"""
@@ -18,6 +19,7 @@ class Video(object):
     recording = False
     frameWidth = 640
     frameHeight = 480
+    recordTime = time.time()
 
     def __init__(self, target, fps):
         self.fps = fps
