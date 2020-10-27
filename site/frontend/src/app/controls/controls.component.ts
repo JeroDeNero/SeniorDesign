@@ -9,6 +9,7 @@ import { StreamService } from '../stream.service';
 })
 export class ControlsComponent implements OnInit {
   movementState: Ihash;
+  slider: number = 50;
 
   constructor(
     private app: AppComponent,
