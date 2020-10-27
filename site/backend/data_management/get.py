@@ -1,7 +1,18 @@
+import os
+
+from flask_cors import CORS
+
 from data_management.db import getDb
 from flask import Blueprint, jsonify, request
 
 bp = Blueprint('get', __name__, url_prefix='/get')
+
+CORS(bp)
+
+
+@bp.route('/settings', methods=(['GET']))
+def getSettings():
+    return jsonify({'mainFPS': os.environ.get('MAIN_FPS'), 'secondaryFPS': os.environ.get('SECONDARY_FPS'), 'wheelRadius': os.environ.get('WHEEL_RADIUS')})
 
 
 @bp.route('/runs', methods=(['GET']))
@@ -40,7 +51,7 @@ def getRuns():
 
         if (run.get('Tagged') and run.get('Tagged') > 0):
             tagVids.append(run)
-        elif ((run.get('Tagged') == None or run.get('Tagged') == 0) and run.get('Name') != None and run.get('Name') != ''):
+        elif ((run.get('Tagged') is None or run.get('Tagged') == 0) and run.get('Name') is not None and run.get('Name') != ''):
             namVids.append(run)
         else:
             noNamVids.append(run)
@@ -75,6 +86,7 @@ def buildRun(target):
     for tag in tags:
         vidTags.append(getTag(db, tag[0]))
 
+    vidTags.sort(key=lambda tag: tag.get('Position'))
     run.update({'tag': vidTags})
 
     if run.get("PipeID"):
@@ -109,8 +121,7 @@ def getTagIDs(db, vidID):
     """Get gets the tags involved in a run"""
     tags = db.cursor(buffered=True)
     query = ("SELECT TagID FROM VideoToTags "
-             "WHERE VideoID = {}"
-             "ORDER BY VideoTime ASC").format(vidID)
+             "WHERE VideoID = {}").format(vidID)
 
     tags.execute(query)
     results = tags.fetchall()
@@ -122,7 +133,7 @@ def getTag(db, tagID):
     """Get gets the tag information for a tagID"""
     tag = db.cursor(dictionary=True, buffered=True)
     query = ("SELECT * FROM TaggedLocs "
-             "WHERE Id = {}".format(tagID))
+             "WHERE Id = {}").format(tagID)
 
     tag.execute(query)
 
@@ -147,10 +158,12 @@ def getPipe(db, pipeID):
 def getOldest(db):
     # Jero here
     # TODO
-    video = db.cursor(dictionary = True, buffered = True)
-    query = ("SELECT * FROM Video ORDER BY DateTaken DESC") # pulls the video table organized by date
+    video = db.cursor(dictionary=True, buffered=True)
+    # pulls the video table organized by date
+    query = ("SELECT * FROM Video ORDER BY DateTaken DESC")
     video.execute(query)
-    results = video.fetchall() # fetches all the rows in the query and returns a list of tuples
+    # fetches all the rows in the query and returns a list of tuples
+    results = video.fetchall()
     flag = 0
     oldest = None
 
@@ -164,7 +177,7 @@ def getOldest(db):
             oldest = video.fetchone()
             flag = 1
             break
-    
+
     # if none exist, go to named and unpinned
     if(flag == 0):
         for vid in results:
