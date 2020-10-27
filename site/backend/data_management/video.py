@@ -36,8 +36,7 @@ class Video(object):
         frame = self.getFrame()
         if self.recording:
             self.writeVid(frame)
-        else:
-            time.sleep(1/self.fps)
+        time.sleep(1/self.fps)
 
         frame = self.encodeFrame(self.toJPG(frame))
         socketio.emit("primaryStreamOut", frame)
@@ -60,8 +59,8 @@ class Video(object):
         cv2.imwrite('data_management/temp/imageFront.jpg', self.getFrame())
         fourcc = cv2.VideoWriter_fourcc(*CODEC)
         self.record = cv2.VideoWriter('data_management/temp/outputtedVideo.{}'.format(VIDEOTYPE),
-                                      fourcc, 
-                                      self.fps, 
+                                      fourcc,
+                                      self.fps,
                                       (self.frameWidth, self.frameHeight))
         self.recording = True
 
@@ -74,6 +73,9 @@ class Video(object):
 
     def captureImage(self):
         return self.getFrame()
+
+    def getTime(self):
+        return time.time() - self.recordTime
 
 # new Video(-1)
 # in dev it would be 0 and 1

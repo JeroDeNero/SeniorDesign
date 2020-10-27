@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 import { BehaviorSubject, Observable, Observer, of, Subject } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
@@ -22,6 +22,8 @@ export class RunService {
     this.createEmptyRun()
   );
 
+  newRunData: Run;
+
   private allRuns: BehaviorSubject<Run[][]> = new BehaviorSubject<Run[][]>([]);
 
   allRunsData: Run[][];
@@ -30,6 +32,7 @@ export class RunService {
     this.getRuns().subscribe((data) => {
       this.setAllRuns(data);
     });
+
     this.getAllRuns().subscribe((data) => {
       this.allRunsData = data;
     });
@@ -58,8 +61,13 @@ export class RunService {
     return this.allRuns.asObservable();
   }
 
+  addTag(tag: Tag): void {
+    this.newRunData.tag.push(tag);
+    console.log(this.newRunData);
+  }
+
   setNewRun(run: Run): void {
-    this.newRun.next(run);
+    this.newRunData = run;
   }
 
   getNewRun(): Observable<Run> {
@@ -70,6 +78,33 @@ export class RunService {
     if (run.Id !== this.editRun.getValue().Id) {
       this.editRun.next(run);
     }
+  }
+
+  getShapeFile(date, lat, long): Observable<any> {
+    return this.http
+      .post<any>(
+        `http://${API_URL}/export/tags`,
+        { date: date, lat: lat, long: long },
+        this.httpOptions
+      )
+      .pipe(
+        tap((_) => console.log('fetched shape file')),
+        catchError(this.handleError<Run>(null))
+      );
+  }
+
+  getFolder(dir) {
+    console.log(dir);
+    return this.http
+      .post<any>(
+        `http://${API_URL}/export/folder`,
+        { dir: dir },
+        this.httpOptions
+      )
+      .pipe(
+        tap((_) => console.log('fetched shape file')),
+        catchError(this.handleError<Run>(null))
+      );
   }
 
   getEditRun(): Observable<Run> {
@@ -101,14 +136,26 @@ export class RunService {
   }
 
   addRun(): Observable<Run> {
+    const runToAdd = this.newRunData;
+    this.newRunData = this.createEmptyRun();
+
+    let type = 2;
+
+    if (runToAdd.Name && runToAdd.Tagged) {
+      type = 0;
+    } else if (runToAdd.Name) {
+      type = 1;
+    }
+
+    console.log(runToAdd);
+
     return this.http
-      .post<Run>(
-        `${API_URL}/save/newRun`,
-        this.newRun.getValue(),
-        this.httpOptions
-      )
+      .post<Run>(`http://${API_URL}/save/newRun`, runToAdd, this.httpOptions)
       .pipe(
-        tap(() => console.log('added run')),
+        tap(() => {
+          console.log('added run');
+          this.allRunsData[type].push(runToAdd);
+        }),
         catchError(this.handleError<Run>())
       );
   }
@@ -156,6 +203,7 @@ export class RunService {
 
   createEmptyRun() {
     return {
+      Name: null,
       DriverName: '',
       PipeID: '',
       Direction: '',
@@ -164,6 +212,7 @@ export class RunService {
       Longi: 0,
       ShowRun: false,
       ShowTag: false,
+      tag: [],
     };
   }
 }

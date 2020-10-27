@@ -65,8 +65,11 @@ def newRun():
     direction = userInput['Direction']
     lat = userInput['Lat']
     longi = userInput['Longi']
-    tags = userInput['Tags']
+    tags = userInput['tags']
     error = None
+
+    print(type(tags))
+    print(tags[0])
 
     if not pipeID:
         error = 'PipeID is required.'
@@ -91,15 +94,15 @@ def newRun():
         checker.close()
 
         query = ("INSERT INTO Video (Name, PipeID, DriverName, DateTaken, Tagged, Direction) VALUES"
-                 "('{}', '{}', '{}', NOW(), {}, {})".format(
+                 "('{}', '{}', '{}', NOW(), {}, '{}')".format(
                      name, pipeID, driverName, tagged, direction))
         videoID = sendCommand(db, query)
-        print(videoID)
         videoData = getVideo(db, videoID)
 
-        moveFiles(videoData.get('PipeID'), str(videoData.get('DateTaken')).replace(' ', '_'))
+        moveFiles(videoData.get('PipeID'), str(
+            videoData.get('DateTaken')).replace(' ', '_'))
 
-        #add tags now
+        # add tags now
 
     return jsonify({})
 
@@ -124,11 +127,11 @@ def updateVideo(db, targ, name, driverName, tagged):
     sendCommand(db, query)
 
 
-def updatePipe(db, targ, newName, lat, long, dir):
+def updatePipe(db, targ, newName, lat, long):
     """updates the information in the pipe table"""
     query = (" UPDATE Pipe SET "
-             "Id = '{}', Lat = {}, Longi = {}, Direction = '{}' "
-             "WHERE Id = '{}' ".format(newName, lat, long, dir, targ))
+             "Id = '{}', Lat = {}, Longi = {} "
+             "WHERE Id = '{}' ".format(newName, lat, long, targ))
 
     sendCommand(db, query)
 
@@ -152,5 +155,5 @@ def sendCommand(db, query):
     db.commit()
     update.close()
 
-    #value is the value of the most recent created ID
+    # value is the value of the most recent created ID
     return value
