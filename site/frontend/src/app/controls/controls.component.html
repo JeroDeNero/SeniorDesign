@@ -1,14 +1,19 @@
 <div class="logo">
-    <img src="assets/Images/UCF_logo_2.0.png" alt="Horse with wings">
+  <img src="assets/Images/UCF_logo_2.0.png" alt="Horse with wings" />
 </div>
 <div class="controls">
-    <div class="flex-grid">
-        <div class="colSmall"></div>
-        <div class="col"></div>
-        <div class="col">
-            <svg width="90" height="90" class="up">
-            <a (mousedown)="onClickD('forward')" (mouseup)="onClickR('forward')" (mouseleave)="onClickR('forward')">
-                <path d="
+  <div class="flex-grid">
+    <div class="colSmall"></div>
+    <div class="col"></div>
+    <div class="col">
+      <svg width="90" height="90" class="up">
+        <a
+          (mousedown)="onClickD('forward')"
+          (mouseup)="onClickR('forward')"
+          (mouseleave)="onClickR('forward')"
+        >
+          <path
+            d="
                 M 2 45
                 C 2,50 2,35 2,30
                 C 3,20 20,40 30,35
@@ -18,80 +23,22 @@
                 C 10,80 40,60 30,55
                 C 20,50 3,70 2,60
                 Z"
-                />
-            </a>
-        </svg>
-        </div>
-        <div class="col"></div>
-        <div class="colSmall"></div>
-        <div class="col"></div>
-        <div class="col">
-            <svg width="90" height="90" class="up">
-            <a (click)="onClick('incSpd')" >
-                <path d="
-                M 2 45
-                C 2,50 2,35 2,30
-                C 3,20 20,40 30,35
-                C 40,30 10,10 25,10
-                C 70,10 88,40 88,45
-                C 88,50 70,80 25,80
-                C 10,80 40,60 30,55
-                C 20,50 3,70 2,60
-                Z"
-                />
-            </a>
-        </svg>
-        </div>
-        <div class="col"></div>
-        <div class="colSmall"></div>
-        <div class="colLong"><input type="range" min="1" max="100" value="50" class="slider"></div>
-        <div class="colSmall"></div>
+          />
+        </a>
+      </svg>
     </div>
-
-    <div class="flex-grid">
-        <div class="colSmall"></div>
-        <div class="col">
-            <svg width="90" height="90" class="left">
-                <a (mousedown)="onClickD('left')" (mouseup)="onClickR('left')" (mouseleave)="onClickR('left')">
-                    <path d="
-                    M 2 45
-                    C 2,50 2,35 2,30
-                    C 3,20 20,40 30,35
-                    C 40,30 10,10 25,10
-                    C 70,10 88,40 88,45
-                    C 88,50 70,80 25,80
-                    C 10,80 40,60 30,55
-                    C 20,50 3,70 2,60
-                    Z"
-                    />
-                </a>
-            </svg>
-        </div>
-        <div class="col">
-            <button class="action" (mousedown)="onClickD('binaryAct')" (mouseup)="onClickR('binaryAct')" (mouseleave)="onClickR('binaryAct')"></button>
-        </div>
-        <div class="col">
-            <svg width="90" height="90" class="right">
-                <a (mousedown)="onClickD('right')" (mouseup)="onClickR('right')" (mouseleave)="onClickR('right')">
-                    <path d="
-                    M 2 45
-                    C 2,50 2,35 2,30
-                    C 3,20 20,40 30,35
-                    C 40,30 10,10 25,10
-                    C 70,10 88,40 88,45
-                    C 88,50 70,80 25,80
-                    C 10,80 40,60 30,55
-                    C 20,50 3,70 2,60
-                    Z"
-                    />
-                </a>
-            </svg>
-        </div>
-        <div class="colSmall"></div>
-        <div class="col">
-            <svg width="90" height="90" class="left">
-            <a (mousedown)="onClickD('left')" (mouseup)="onClickR('left')" (mouseleave)="onClickR('left')">
-                <path d="
+    <div class="col"></div>
+    <div class="colSmall"></div>
+    <div class="col"></div>
+    <div class="col">
+      <svg width="90" height="90" class="up">
+        <a
+          (mousedown)="onCamClickD('up')"
+          (mouseup)="onCamClickR('up')"
+          (mouseleave)="onCamClickR('up')"
+        >
+          <path
+            d="
                 M 2 45
                 C 2,50 2,35 2,30
                 C 3,20 20,40 30,35
@@ -101,44 +48,75 @@
                 C 10,80 40,60 30,55
                 C 20,50 3,70 2,60
                 Z"
-                />
-            </a>
-        </svg>
-        </div>
-        <div class="col">
-            <button class="action" (click)="caputerImage()"> Capture
-            </button>
-        </div>
-        <div class="col">
-            <svg width="90" height="90" class="right">
-                <a (mousedown)="onClickD('right')" (mouseup)="onClickR('right')" (mouseleave)="onClickR('right')">
-                    <path d="
-                    M 2 45
-                    C 2,50 2,35 2,30
-                    C 3,20 20,40 30,35
-                    C 40,30 10,10 25,10
-                    C 70,10 88,40 88,45
-                    C 88,50 70,80 25,80
-                    C 10,80 40,60 30,55
-                    C 20,50 3,70 2,60
-                    Z"
-                    />
-                </a>
-            </svg>
-        </div>
-        <div class="colSmall"></div>
-        <div class="colLong"></div>
-        <div class="colSmall"></div>
+          />
+        </a>
+      </svg>
     </div>
+    <div class="col"></div>
+    <div class="colSmall"></div>
+    <div class="colLong"></div>
+    <div class="colSmall"></div>
+  </div>
 
-    <div class="flex-grid">
-        <div class="colSmall"></div>
-        <div class="col"></div>
-
-        <div class="col">
-            <svg width="90" height="90" class="down">
-            <a  (mousedown)="onClickD('backward')"  (mouseup)="onClickR('backward')" (mouseleave)="onClickR('backward')">
-                <path d="
+  <div class="flex-grid">
+    <div class="colSmall"></div>
+    <div class="col">
+      <svg width="90" height="90" class="left">
+        <a
+          (mousedown)="onClickD('left')"
+          (mouseup)="onClickR('left')"
+          (mouseleave)="onClickR('left')"
+        >
+          <path
+            d="
+                    M 2 45
+                    C 2,50 2,35 2,30
+                    C 3,20 20,40 30,35
+                    C 40,30 10,10 25,10
+                    C 70,10 88,40 88,45
+                    C 88,50 70,80 25,80
+                    C 10,80 40,60 30,55
+                    C 20,50 3,70 2,60
+                    Z"
+          />
+        </a>
+      </svg>
+    </div>
+    <div class="col">
+      <button class="action" (mousedown)="onBinClick()"></button>
+    </div>
+    <div class="col">
+      <svg width="90" height="90" class="right">
+        <a
+          (mousedown)="onClickD('right')"
+          (mouseup)="onClickR('right')"
+          (mouseleave)="onClickR('right')"
+        >
+          <path
+            d="
+                    M 2 45
+                    C 2,50 2,35 2,30
+                    C 3,20 20,40 30,35
+                    C 40,30 10,10 25,10
+                    C 70,10 88,40 88,45
+                    C 88,50 70,80 25,80
+                    C 10,80 40,60 30,55
+                    C 20,50 3,70 2,60
+                    Z"
+          />
+        </a>
+      </svg>
+    </div>
+    <div class="colSmall"></div>
+    <div class="col">
+      <svg width="90" height="90" class="left">
+        <a
+          (mousedown)="onCamClickD('left')"
+          (mouseup)="onCamClickR('left')"
+          (mouseleave)="onCamClickR('left')"
+        >
+          <path
+            d="
                 M 2 45
                 C 2,50 2,35 2,30
                 C 3,20 20,40 30,35
@@ -148,18 +126,53 @@
                 C 10,80 40,60 30,55
                 C 20,50 3,70 2,60
                 Z"
-                />
-            </a>
-        </svg>
-        </div>
-        <div class="col"></div>
-        <div class="colSmall"></div>
-        <div class="col"></div>
+          />
+        </a>
+      </svg>
+    </div>
+    <div class="col">
+      <button class="action" (click)="caputerImage()">Capture</button>
+    </div>
+    <div class="col">
+      <svg width="90" height="90" class="right">
+        <a
+          (mousedown)="onCamClickD('right')"
+          (mouseup)="onCamClickR('right')"
+          (mouseleave)="onCamClickR('right')"
+        >
+          <path
+            d="
+                    M 2 45
+                    C 2,50 2,35 2,30
+                    C 3,20 20,40 30,35
+                    C 40,30 10,10 25,10
+                    C 70,10 88,40 88,45
+                    C 88,50 70,80 25,80
+                    C 10,80 40,60 30,55
+                    C 20,50 3,70 2,60
+                    Z"
+          />
+        </a>
+      </svg>
+    </div>
+    <div class="colSmall"></div>
+    <div class="colLong"></div>
+    <div class="colSmall"></div>
+  </div>
 
-        <div class="col">
-            <svg width="90" height="90" class="down">
-            <a  (click)="onClick('decSpd')">
-                <path d="
+  <div class="flex-grid">
+    <div class="colSmall"></div>
+    <div class="col"></div>
+
+    <div class="col">
+      <svg width="90" height="90" class="down">
+        <a
+          (mousedown)="onClickD('backward')"
+          (mouseup)="onClickR('backward')"
+          (mouseleave)="onClickR('backward')"
+        >
+          <path
+            d="
                 M 2 45
                 C 2,50 2,35 2,30
                 C 3,20 20,40 30,35
@@ -169,15 +182,40 @@
                 C 10,80 40,60 30,55
                 C 20,50 3,70 2,60
                 Z"
-                />
-            </a>
-        </svg>
-        </div>
-        <div class="col"></div>
-        <div class="colSmall"></div>
-        <div class="colLong">
+          />
+        </a>
+      </svg>
+    </div>
+    <div class="col"></div>
+    <div class="colSmall"></div>
+    <div class="col"></div>
 
-            <p class="range-field">
+    <div class="col">
+      <svg width="90" height="90" class="down">
+        <a
+          (mousedown)="onCamClickD('down')"
+          (mouseup)="onCamClickR('down')"
+          (mouseleave)="onCamClickR('down')"
+        >
+          <path
+            d="
+                M 2 45
+                C 2,50 2,35 2,30
+                C 3,20 20,40 30,35
+                C 40,30 10,10 25,10
+                C 70,10 88,40 88,45
+                C 88,50 70,80 25,80
+                C 10,80 40,60 30,55
+                C 20,50 3,70 2,60
+                Z"
+          />
+        </a>
+      </svg>
+    </div>
+    <div class="col"></div>
+    <div class="colSmall"></div>
+    <div class="colLong">
+      <p class="range-field">
         <input
           type="range"
           min="0"
@@ -197,8 +235,8 @@
         >
           <span class="value">{{ this.slider || 0 }}</span></span
         >
-            </p>
-        </div>
-        <div class="colSmall"></div>
+      </p>
     </div>
+    <div class="colSmall"></div>
+  </div>
 </div>
