@@ -77,7 +77,7 @@ export class RunService {
   }
 
   getRuns(): Observable<Run[][]> {
-    return this.http.get<Run[][]>(`${API_URL}/get/runs`).pipe(
+    return this.http.get<Run[][]>(`http://${API_URL}/get/runs`).pipe(
       tap((_) => console.log('fetched runs')),
       catchError(this.handleError<Run[][]>([]))
     );
@@ -85,7 +85,7 @@ export class RunService {
 
   getRun(id: number): Observable<Run> {
     return this.http
-      .post<Run>(`${API_URL}/get/run`, { id: id }, this.httpOptions)
+      .post<Run>(`http://${API_URL}/get/run`, { id: id }, this.httpOptions)
       .pipe(
         tap((_) => console.log('fetched run')),
         catchError(this.handleError<Run>(null))
@@ -120,7 +120,7 @@ export class RunService {
 
     return this.http
       .post(
-        `${API_URL}/save/editRun`,
+        `http://${API_URL}/save/editRun`,
         this.editRun.getValue(),
         this.httpOptions
       )
@@ -133,7 +133,7 @@ export class RunService {
   deleteRun(run: Run | number): Observable<any> {
     const id = typeof run === 'number' ? run : run.Id;
     return this.http
-      .post<any>(`${API_URL}/delete/run`, { Id: id }, this.httpOptions)
+      .post<any>(`http://${API_URL}/delete/run`, { Id: id }, this.httpOptions)
       .pipe(
         tap((_) => console.log('deleted run')),
         catchError(this.handleError<Run>())
@@ -143,7 +143,7 @@ export class RunService {
   deleteTag(tag: Tag | number): Observable<any> {
     const id = typeof tag === 'number' ? tag : tag.Id;
     return this.http
-      .post<any>(`${API_URL}/delete/tag`, { Id: id }, this.httpOptions)
+      .post<any>(`http://${API_URL}/delete/tag`, { Id: id }, this.httpOptions)
       .pipe(
         tap((_) => console.log('deleted tag')),
         catchError(this.handleError<Run>())
