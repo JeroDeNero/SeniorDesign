@@ -158,20 +158,32 @@ export class AppComponent {
   }
 
   sortAlpha() {
-    if (this.alpha == 'A ↘ Z') {
-      this.alpha = 'A ↗ Z';
+    if (this.alpha.includes('A ↘ Z')) {
+      this.alpha = 'A ↗ Z•';
+      this.sortService.sortString(this.runService.allRunsData, 'Name', true);
     } else {
-      this.alpha = 'A ↘ Z';
+      this.alpha = 'A ↘ Z•';
+      this.sortService.sortString(this.runService.allRunsData, 'Name', false);
     }
 
     this.date = 'Date ↓';
   }
 
   sortDate() {
-    if (this.date == 'Date ↓') {
-      this.date = 'Date ↑';
+    if (this.date.includes('Date ↓')) {
+      this.date = 'Date ↑•';
+      this.sortService.sortNoneString(
+        this.runService.allRunsData,
+        'DateTaken',
+        true
+      );
     } else {
-      this.date = 'Date ↓';
+      this.date = 'Date ↓•';
+      this.sortService.sortNoneString(
+        this.runService.allRunsData,
+        'DateTaken',
+        false
+      );
     }
 
     this.alpha = 'A ↘ Z';
