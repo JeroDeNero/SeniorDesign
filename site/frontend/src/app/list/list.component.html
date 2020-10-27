@@ -6,7 +6,7 @@
                 <div class="pic">
                     <!--TODO make into a video link-->
                     <a class="video" (click)="setVideo(run.PipeID, run.DateTaken)">
-                        <img class="maxWidth" src='{{run | makeDirectory}}' alt="Image not found.">
+                        <img class="maxWidth" src='{{run | makeDirectory: "imageFront.jpg"}}' alt="Image not found.">
                     </a>
                 </div>
             </div>
@@ -19,17 +19,17 @@
                 </div>
             </div>
         </div>
-        <button class="download "> Download File </button>
-        <button class="dropdown " *ngIf="(run.tag | getNumOfTags)" (click)="toggleTag(run.Id) "> v </button>
-        <div class="taggedBox " *ngIf="(run.tag | getNumOfTags) && run.ShowTag ">
+        <button class="download" (click)="getFile(run.DateTaken, run.PipeID)"> Download File </button>
+        <button class="dropdown" *ngIf="(run.tag | getNumOfTags)" (click)="toggleTag(run.Id) "> v </button>
+        <div class="taggedBox" *ngIf="(run.tag | getNumOfTags) && run.ShowTag ">
 
             <div class="horLine "></div>
             <div *ngFor=" let tag of run.tag ">
                 <pre>
 Tagged Location {{tag.Id}}
-Lat: {{tag.Lat}}       Long: {{tag.long}}</pre>
+Lat: {{tag.Lat}}       Long: {{tag.Longi}}</pre>
                 <div class="linkHolder ">
-                    <a class="export button ">Export</a>
+                    <a class="export button" (click)="exportShape(run.date, tag.Lat, tag.Longi)" >Export</a>
                     <a class="view button">View</a>
                     <a class="delete button" (click)="deleteTag(tag.Id) ">Delete</a>
                 </div>
