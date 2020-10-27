@@ -62,7 +62,7 @@ export class RunService {
   }
 
   addTag(tag: Tag): void {
-    this.newRunData.tag.push(tag);
+    this.newRunData.tags.push(tag);
     console.log(this.newRunData);
   }
 
@@ -203,16 +203,16 @@ export class RunService {
 
   createEmptyRun() {
     return {
-      Name: null,
+      Name: '',
       DriverName: '',
       PipeID: '',
       Direction: '',
       Tagged: 0,
       Lat: 0,
       Longi: 0,
-      ShowRun: false,
+      ShowRun: true,
       ShowTag: false,
-      tag: [],
+      tags: [],
     };
   }
 }

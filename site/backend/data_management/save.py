@@ -1,4 +1,5 @@
 import os
+import json
 
 from flask import Blueprint, jsonify, request
 from flask_cors import CORS
@@ -99,6 +100,20 @@ def newRun():
         videoID = sendCommand(db, query)
         videoData = getVideo(db, videoID)
 
+        for tag in tags:
+            print(type(tag))
+            query = ("INSERT INTO TaggedLocs (Position, Lat, Longi, VideoTime)"
+                     "VALUES ({}, {}, {}, {})".format(
+                         tag["Position"], tag["Lat"], tag["Longi"], tag["TimeStamp"]))
+            print(query)
+            tagID = sendCommand(db, query)
+
+            query = ("INSERT INTO VideoToTags (VideoID, TagID)"
+                     "VALUES ({}, {})".format(
+                         videoID, tagID))
+            print(query)
+            sendCommand(db, query)
+
         moveFiles(videoData.get('PipeID'), str(
             videoData.get('DateTaken')).replace(' ', '_'))
 
@@ -107,7 +122,7 @@ def newRun():
     return jsonify({})
 
 
-@bp.route('/editRun', methods=(['POST']))
+@ bp.route('/editRun', methods=(['POST']))
 def editRun():
     """edits a runs information"""
     db = getDb()

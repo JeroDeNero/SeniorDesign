@@ -21,7 +21,7 @@
             <a class="edit button" (click)="editData(run)">Edit</a>
             <a class="delete button" (click)="deleteRun(run.Id)">Delete</a>
           </div>
-          {{ run.tag | getNumOfTags }} tagged Spots<br />
+          {{ run.tags | getNumOfTags }} tagged Spots<br />
           {{ run.PipeID }} / {{ run.Direction }}
         </div>
       </div>
@@ -31,14 +31,14 @@
     </button>
     <button
       class="dropdown"
-      *ngIf="run.tag | getNumOfTags"
+      *ngIf="run.tags | getNumOfTags"
       (click)="toggleTag(run.Id)"
     >
       v
     </button>
-    <div class="taggedBox" *ngIf="(run.tag | getNumOfTags) && run.ShowTag">
+    <div class="taggedBox" *ngIf="(run.tags | getNumOfTags) && run.ShowTag">
       <div class="horLine"></div>
-      <div *ngFor="let tag of run.tag">
+      <div *ngFor="let tag of run.tags">
         <pre>
 Tagged Location {{ tag.Id }}
 Lat: {{ tag.Lat }}       Long: {{ tag.Longi }}</pre

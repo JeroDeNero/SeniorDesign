@@ -11,7 +11,7 @@ export interface Run {
   Longi?: number;
   image?: HTMLImageElement;
   Tagged?: number;
-  tag?: Tag[];
+  tags?: Tag[];
 }
 
 export interface Tag {

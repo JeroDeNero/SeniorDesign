@@ -51,10 +51,10 @@ def capture(cam):
         # send frontend details
 
         socketio.emit("addTag",
-                      {"count ": TAGCOUNT,
-                       " lat ": 0,
-                       " long ": 0,
-                       " Timestamp ": timerCapture})
+                      {"Position": TAGCOUNT,
+                       "Lat": 0,
+                       "Longi": 0,
+                       "TimeStamp": timerCapture})
 
         TAGCOUNT = TAGCOUNT + 1
 
