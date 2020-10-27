@@ -1,98 +1,94 @@
 button.dropdown {
-    width: 35px;
-    padding: 0;
-    float: right;
+  width: 35px;
+  padding: 0;
+  float: right;
 }
 
 button.download {
-    position: relative;
-    left: 15px;
+  position: relative;
+  left: 15px;
 }
 
 div.item {
-    margin-top: -20px;
+  margin-top: -20px;
 }
 
 div.taggedBox {
-    height: 100px;
-    padding: 5px;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    border-style: solid;
-    border-width: 1px;
+  height: 100px;
+  padding: 5px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  border-style: solid;
+  border-width: 1px;
 }
 
 div.taggedBox:button {
-    left: 20px;
+  left: 20px;
 }
 
 div.linkHolder {
-    overflow: hidden;
+  overflow: hidden;
 }
 
 div.col {
-    padding: 0;
-    height: 100%;
-    background-repeat: no-repeat;
-    background-size: auto;
+  padding: 0;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: auto;
 }
 
 a {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 a.video {
-    border-radius: 5px;
+  border-radius: 5px;
 }
 
 a.video:hover {
-    background-color: #fbb034;
-    background-image: linear-gradient(338deg, #f5a626 0%, #ffcc00 74%);
+  background-color: #fbb034;
+  background-image: linear-gradient(338deg, #f5a626 0%, #ffcc00 74%);
 }
 
 a.button {
-    margin: auto 5px;
-    padding: 4px 6px;
-    border: none;
-    outline: none;
-    float: center;
-    cursor: pointer;
-    transition: 0.3s;
-    background-color: inherit;
+  margin: auto 5px;
+  padding: 4px 6px;
+  border: none;
+  outline: none;
+  float: center;
+  cursor: pointer;
+  transition: 0.3s;
+  background-color: inherit;
 }
-
 
 /* Change background color of buttons on hover */
 
 a.button:hover {
-    color: black;
-    background-color: rgb(238, 238, 238);
+  color: black;
+  background-color: rgb(238, 238, 238);
 }
-
 
 /* Create an active/current tablink class */
 
 a .active {
-    color: black;
-    background-color: rgb(238, 238, 238);
+  color: black;
+  background-color: rgb(238, 238, 238);
 }
 
 a.delete {
-    color: red;
+  color: red;
 }
-
 
 /* Change background color of buttons on hover */
 
 a.delete:hover {
-    color: black;
-    background-color: red;
+  color: black;
+  background-color: red;
 }
-
 
 /* Create an active/current tablink class */
 
 a.delete .active {
-    color: black;
-    background-color: red;
+  color: black;
+  background-color: red;
 }

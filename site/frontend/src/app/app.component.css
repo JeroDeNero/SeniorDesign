@@ -1,212 +1,210 @@
 input.searchIn {
-    font-size: 18px;
-    margin-top: 16px;
-    text-align: center;
-    z-index: 5;
+  font-size: 18px;
+  margin-top: 16px;
+  text-align: center;
+  z-index: 5;
 }
 
 button {
-    font-size: 18px;
-    margin-top: 12px;
-    width: 100px;
-    z-index: 5;
+  font-size: 18px;
+  margin-top: 12px;
+  width: 100px;
+  z-index: 5;
 }
 
 div.page {
-    width: calc(100% - 20px);
-    height: calc(100% - 20px);
-    max-width: 1615px;
-    flex-wrap: wrap;
-    padding: 10px;
-    overflow: hidden;
+  width: calc(100% - 20px);
+  height: calc(100% - 20px);
+  max-width: 1615px;
+  flex-wrap: wrap;
+  padding: 10px;
+  overflow: hidden;
 }
 
 div.mainPage {
-    width: auto;
-    min-width: 1125px;
-    max-width: 1215px;
-    height: calc(100% - 4px);
-    display: flex;
-    flex-wrap: wrap;
+  width: auto;
+  min-width: 1125px;
+  max-width: 1215px;
+  height: calc(100% - 4px);
+  display: flex;
+  flex-wrap: wrap;
 }
 
 div.video {
-    position: relative;
-    width: 100%;
-    height: 60%;
-    min-height: 450px;
-    flex-wrap: wrap;
-    margin-bottom: 25px;
-    border: none;
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-    text-align: center;
+  position: relative;
+  width: 100%;
+  height: 60%;
+  min-height: 450px;
+  flex-wrap: wrap;
+  margin-bottom: 25px;
+  border: none;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  text-align: center;
 }
 
 .maxWidth {
-    width: 100%;
-    max-width: 100%;
-    max-height: 100%;
-    object-position: 50% 50%;
+  width: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  object-position: 50% 50%;
 }
 
 div.bottomPanel {
-    width: 100%;
-    min-height: 300px;
-    height: calc(40% - 40px);
-    padding: 5px;
-    margin-top: 10px;
+  width: 100%;
+  min-height: 300px;
+  height: calc(40% - 40px);
+  padding: 5px;
+  margin-top: 10px;
 }
 
 div.sidePage {
-    text-align: center;
-    width: 331px;
-    height: calc(100% - 4px);
-    float: right;
-    flex-wrap: wrap;
-    padding: 3px;
-    margin: 0px;
-    margin-left: 30px;
-    z-index: 15;
+  text-align: center;
+  width: 331px;
+  height: calc(100% - 4px);
+  float: right;
+  flex-wrap: wrap;
+  padding: 3px;
+  margin: 0px;
+  margin-left: 30px;
+  z-index: 15;
 }
 
 div.searchSec {
-    width: calc(100% - 22px);
-    height: 150px;
-    max-height: 150px;
-    margin: -3px;
-    margin-bottom: 10px;
-    padding: 10px;
-    padding-right: 15px;
-    border-width: 1px;
-    border-style: solid;
+  width: calc(100% - 22px);
+  height: 150px;
+  max-height: 150px;
+  margin: -3px;
+  margin-bottom: 10px;
+  padding: 10px;
+  padding-right: 15px;
+  border-width: 1px;
+  border-style: solid;
 }
 
 div.tab {
-    display: flex;
-    height: 49px;
-    border: 1px solid #ccc;
-    background-color: #f1f1f1;
-    z-index: 18;
+  display: flex;
+  height: 49px;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+  z-index: 18;
 }
 
 div.popUp {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    left: 0px;
-    top: 0px;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0px;
+  top: 0px;
 }
 
 div.dropDown-Content {
-    background-color: #f1f1f1;
-    display: relative;
-    z-index: 18;
+  background-color: #f1f1f1;
+  display: relative;
+  z-index: 18;
 }
 
 .tabLink {
-    flex: 1;
-    z-index: 18;
+  flex: 1;
+  z-index: 18;
 }
 
 .tabLinkShort {
-    flex: 0.45;
-    z-index: 18;
+  flex: 0.45;
+  z-index: 18;
 }
 
 a.close {
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: 0px;
-    width: 20px;
-    border-radius: 0 0 0 100%;
-    border-style: solid;
-    border-width: 1px;
-    border-right: none;
-    border-top: none;
-    background-color: rgba(255, 0, 0, 0.555);
-    text-align: center;
-    z-index: 20;
-    transition: 0.3s;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0px;
+  width: 20px;
+  border-radius: 0 0 0 100%;
+  border-style: solid;
+  border-width: 1px;
+  border-right: none;
+  border-top: none;
+  background-color: rgba(255, 0, 0, 0.555);
+  text-align: center;
+  z-index: 20;
+  transition: 0.3s;
 }
 
 a.close:hover {
-    background-color: red;
-    padding: 8px;
+  background-color: red;
+  padding: 8px;
 }
 
 a.sort {
-    width: 100%;
-    z-index: 16;
+  width: 100%;
+  z-index: 16;
 }
 
 a {
-    cursor: pointer;
-    text-decoration: none;
+  cursor: pointer;
+  text-decoration: none;
 }
 
 a.ribbon {
-    background-color: inherit;
-    color: black;
-    float: left;
-    border: none;
-    outline: none;
-    padding: 14px 0px;
-    transition: 0.3s;
+  background-color: inherit;
+  color: black;
+  float: left;
+  border: none;
+  outline: none;
+  padding: 14px 0px;
+  transition: 0.3s;
 }
-
 
 /* Change background color of buttons on hover */
 
 a.ribbon:hover {
-    background-color: #ddd;
+  background-color: #ddd;
 }
-
 
 /* Create an active/current tablink class */
 
 a.ribbon.active {
-    background-color: #ccc;
+  background-color: #ccc;
 }
 
 button.pullOutMenu {
-    position: absolute;
-    right: 0;
-    bottom: 30px;
-    width: 35px;
-    height: 100px;
-    margin-right: 0;
-    font: bolder;
-    font-size: 40px;
-    text-align: left;
-    border-radius: 100% 0 0 100%;
-    border-style: solid;
-    border-width: 1px;
-    border-right: none;
-    transition: 0.3s;
-    opacity: 60%;
-    overflow: hidden;
+  position: absolute;
+  right: 0;
+  bottom: 30px;
+  width: 35px;
+  height: 100px;
+  margin-right: 0;
+  font: bolder;
+  font-size: 40px;
+  text-align: left;
+  border-radius: 100% 0 0 100%;
+  border-style: solid;
+  border-width: 1px;
+  border-right: none;
+  transition: 0.3s;
+  opacity: 60%;
+  overflow: hidden;
 }
 
 button.pullOutMenu:hover {
-    width: 60px;
-    opacity: 100%;
-    cursor: pointer;
+  width: 60px;
+  opacity: 100%;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 1775px) {
-    div.sidePage {
-        position: absolute;
-        top: 10px;
-        left: calc(50% - 207px);
-        height: calc(100% - 30px);
-        border-width: 1px;
-        border-style: solid;
-        z-index: 15;
-    }
-    div.extraBar {
-        display: block;
-    }
+  div.sidePage {
+    position: absolute;
+    top: 10px;
+    left: calc(50% - 207px);
+    height: calc(100% - 30px);
+    border-width: 1px;
+    border-style: solid;
+    z-index: 15;
+  }
+  div.extraBar {
+    display: block;
+  }
 }

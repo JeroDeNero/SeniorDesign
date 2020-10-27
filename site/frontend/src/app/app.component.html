@@ -1,52 +1,72 @@
 <div class="page">
-    <div class="sidePage" [hidden]="!sideList">
-        <div id="searchSec" class="searchSec">
-            <div class="tab">
-                <div class="tabLink">
-                    <a class="sort ribbon" (click)="toggleSort()">Sort</a>
-                    <div class="dropDown-Content" *ngIf='sort'>
-                        <a class="sort ribbon" (click)="sortAlpha()">{{alpha}}</a>
-                        <a class="sort ribbon" (click)="sortDate()">{{date}}</a>
-                    </div>
-                </div>
-                <a class="tabLink ribbon" (click)="toggleShowFilter()">{{filter}}</a>
-                <a class="tabLink ribbon" (click)="toggleNewMenu()">{{operation}}</a>
-                <a class="tabLinkShort ribbon" *ngIf="operation === 'New Run'" (click)='toggleSettings()'>⚙️</a>
-            </div>
-            <input #target class="searchIn" type="text">
-            <button (click)="search(target.value)">Search</button> <button (click)="reset()">Reset</button>
+  <div class="sidePage" [hidden]="!sideList">
+    <div id="searchSec" class="searchSec">
+      <div class="tab">
+        <div class="tabLink">
+          <a class="sort ribbon" (click)="toggleSort()">Sort</a>
+          <div class="dropDown-Content" *ngIf="sort">
+            <a class="sort ribbon" (click)="sortAlpha()">{{ alpha }}</a>
+            <a class="sort ribbon" (click)="sortDate()">{{ date }}</a>
+          </div>
         </div>
-        <div class="list">
-            <app-filter-options [hidden]="hideFilter" *ngIf="resetFilter"></app-filter-options>
-            Favorites
-            <div class="horLine"></div>
-            <app-list [id]="0" *ngIf="showFavorites"></app-list>
-
-            <div class="horLine"></div>
-            Named
-            <div class="horLine"></div>
-            <app-list [id]="1" *ngIf="showNamed"></app-list>
-
-            <div class="horLine"></div>
-            Unamed
-            <div class="horLine"></div>
-            <app-list [id]="2" *ngIf="showUnamed"></app-list>
-        </div>
+        <a class="tabLink ribbon" (click)="toggleShowFilter()">{{ filter }}</a>
+        <a class="tabLink ribbon" (click)="toggleNewMenu()">{{ operation }}</a>
+        <a
+          class="tabLinkShort ribbon"
+          *ngIf="operation === 'New Run'"
+          (click)="toggleSettings()"
+          >⚙️</a
+        >
+      </div>
+      <input #target class="searchIn" type="text" />
+      <button (click)="search(target.value)">Search</button>
+      <button (click)="reset()">Reset</button>
     </div>
+    <div class="list">
+      <app-filter-options
+        [hidden]="hideFilter"
+        *ngIf="resetFilter"
+      ></app-filter-options>
+      Favorites
+      <div class="horLine"></div>
+      <app-list [id]="0" *ngIf="showFavorites"></app-list>
 
+      <div class="horLine"></div>
+      Named
+      <div class="horLine"></div>
+      <app-list [id]="1" *ngIf="showNamed"></app-list>
 
-    <div class="mainPage">
-        <div class="video">
-            <img [hidden]="videoSrc" class="maxWidth" [src]="'data:image/jpeg;base64,' + primaryCam" [alt]="'data:image/jpeg;base64,' + primaryCam">
-            <video #rewatch controls class="maxWidth" *ngIf="videoSrc" [src]="videoSrc" type="video/mp4"></video>
-            <a *ngIf="videoSrc" class="close" (click)="closeRewatch()">X</a>
-        </div>
-        <div class="horLine"></div>
-
-        <div class="bottomPanel">
-            <app-controls></app-controls>
-        </div>
+      <div class="horLine"></div>
+      Unamed
+      <div class="horLine"></div>
+      <app-list [id]="2" *ngIf="showUnamed"></app-list>
     </div>
+  </div>
+
+  <div class="mainPage">
+    <div class="video">
+      <img
+        [hidden]="videoSrc"
+        class="maxWidth"
+        [src]="'data:image/jpeg;base64,' + primaryCam"
+        [alt]="'data:image/jpeg;base64,' + primaryCam"
+      />
+      <video
+        #rewatch
+        controls
+        class="maxWidth"
+        *ngIf="videoSrc"
+        [src]="videoSrc"
+        type="video/mp4"
+      ></video>
+      <a *ngIf="videoSrc" class="close" (click)="closeRewatch()">X</a>
+    </div>
+    <div class="horLine"></div>
+
+    <div class="bottomPanel">
+      <app-controls></app-controls>
+    </div>
+  </div>
 </div>
 
 <app-run-pop-up-menu></app-run-pop-up-menu>
@@ -55,4 +75,6 @@
 
 <app-settings *ngIf="showSettings"></app-settings>
 
-<button class="pullOutMenu" (click)="toggleSideMenu()" [hidden]="!pullOutBar"> {{pullOutCont}} </button>
+<button class="pullOutMenu" (click)="toggleSideMenu()" [hidden]="!pullOutBar">
+  {{ pullOutCont }}
+</button>

@@ -1,20 +1,45 @@
 <div class="popUp">
-    <div class="window" (click)=null>
-        <div class="container">
-            <label for="wheelRad">Wheel Radius (inches):  </label>
-            <input #wheelRad id="wheelRad" type="double" min="0" value="{{this.wheelRadius || 6}}" />
-            <br>
-            <label for="mainCamFPS">FPS of main camera:  </label>
-            <input #mainCamFPS id="mainCamFPS" type="number" min="1" max="60" value="{{this.mainCameraFPS || 20}}" />
-            <br>
-            <label for="backCamFPS">FPS of back camera:  </label>
-            <input #backCamFPS id="backCamFPS" type="number" min="1" max="60" value="{{this.backCameraFPS || 20}}" />
-            <br>
-            <br>
-            <br>
+  <div class="window" (click)="(null)">
+    <div class="container">
+      <label for="wheelRad">Wheel Radius (inches): </label>
+      <input
+        #wheelRad
+        id="wheelRad"
+        type="double"
+        min="0"
+        value="{{ this.wheelRadius || 6 }}"
+      />
+      <br />
+      <label for="mainCamFPS">FPS of main camera: </label>
+      <input
+        #mainCamFPS
+        id="mainCamFPS"
+        type="number"
+        min="1"
+        max="60"
+        value="{{ this.mainCameraFPS || 20 }}"
+      />
+      <br />
+      <label for="backCamFPS">FPS of back camera: </label>
+      <input
+        #backCamFPS
+        id="backCamFPS"
+        type="number"
+        min="1"
+        max="60"
+        value="{{ this.backCameraFPS || 20 }}"
+      />
+      <br />
+      <br />
+      <br />
 
-            <button id="udpate" (click)="comfirmBut(wheelRad.value, mainCamFPS.value, backCamFPS.value)">Udpate</button>
-            <button id="close" (click)="cancelBut()">Close</button>
-        </div>
+      <button
+        id="udpate"
+        (click)="comfirmBut(wheelRad.value, mainCamFPS.value, backCamFPS.value)"
+      >
+        Udpate
+      </button>
+      <button id="close" (click)="cancelBut()">Close</button>
     </div>
+  </div>
 </div>

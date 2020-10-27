@@ -149,7 +149,7 @@ export class AppComponent {
     this.filterService.reset();
     this.toggleService.toggleResetFilter();
   }
-  closeRewatch(){
+  closeRewatch() {
     this.toggleService.setVideo(null);
   }
 
