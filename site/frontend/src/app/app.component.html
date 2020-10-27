@@ -53,6 +53,6 @@
 
 <app-edit-menu></app-edit-menu>
 
-<app-settings></app-settings>
+<app-settings *ngIf="showSettings"></app-settings>
 
 <button class="pullOutMenu" (click)="toggleSideMenu()" [hidden]="!pullOutBar"> {{pullOutCont}} </button>

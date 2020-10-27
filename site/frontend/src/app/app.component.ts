@@ -3,6 +3,8 @@ import { Component, ViewChild, HostListener } from '@angular/core';
 import { ToggleService } from './toggle.service';
 import { StreamService } from './stream.service';
 import { FilterService } from './filter.service';
+import { RunService } from './run.service';
+import { SortService } from './sortService.service';
 
 @Component({
   selector: 'app-root',
@@ -17,8 +19,9 @@ export class AppComponent {
   date: string = 'Date ↓';
   newIsShown: boolean = false;
   editIsShown: boolean = false;
+  showSettings: boolean = false;
   sideList: boolean = true;
-  sort: boolean = true;
+  sort: boolean = false;
   pullOutBar: boolean = true;
   hideFilter: boolean = true;
   resetFilter: boolean = true;
@@ -37,7 +40,9 @@ export class AppComponent {
   constructor(
     private toggleService: ToggleService,
     private streamService: StreamService,
-    private filterService: FilterService
+    private filterService: FilterService,
+    private runService: RunService,
+    private sortService: SortService
   ) {}
 
   ngOnInit() {
@@ -54,8 +59,13 @@ export class AppComponent {
     this.toggleService.getButtonOp().subscribe((value) => {
       this.operation = value;
     });
+
     this.streamService.watchVideo().subscribe((data) => {
       this.primaryCam = data;
+    });
+
+    this.streamService.captureReturn().subscribe((data) => {
+      this.runService.addTag(data);
     });
 
     this.toggleService.getShowFavorites().subscribe((value) => {
@@ -76,6 +86,10 @@ export class AppComponent {
 
     this.toggleService.getVideo().subscribe((value) => {
       this.videoSrc = value;
+    });
+
+    this.toggleService.getShowSettings().subscribe((state) => {
+      this.showSettings = state;
     });
   }
 
