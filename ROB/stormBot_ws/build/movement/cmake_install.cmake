@@ -37,18 +37,3 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
   set(CMAKE_CROSSCOMPILING "FALSE")
 endif()
 
-if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/rob/Desktop/repo/SeniorDesign/ROB/stormBot_ws/build/movement/catkin_generated/installspace/movement.pc")
-endif()
-
-if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/movement/cmake" TYPE FILE FILES
-    "/home/rob/Desktop/repo/SeniorDesign/ROB/stormBot_ws/build/movement/catkin_generated/installspace/movementConfig.cmake"
-    "/home/rob/Desktop/repo/SeniorDesign/ROB/stormBot_ws/build/movement/catkin_generated/installspace/movementConfig-version.cmake"
-    )
-endif()
-
-if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/movement" TYPE FILE FILES "/home/rob/Desktop/repo/SeniorDesign/ROB/stormBot_ws/src/movement/package.xml")
-endif()
-
