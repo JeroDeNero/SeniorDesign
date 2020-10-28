@@ -413,7 +413,25 @@ movement/all:
 .PHONY : movement/all
 
 # Convenience name for "clean" pass in the directory.
+<<<<<<< HEAD
 movement/clean:
+=======
+movement/clean: movement/CMakeFiles/roscpp_generate_messages_py.dir/clean
+movement/clean: movement/CMakeFiles/roscpp_generate_messages_eus.dir/clean
+movement/clean: movement/CMakeFiles/roscpp_generate_messages_lisp.dir/clean
+movement/clean: movement/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean
+movement/clean: movement/CMakeFiles/std_msgs_generate_messages_lisp.dir/clean
+movement/clean: movement/CMakeFiles/roscpp_generate_messages_cpp.dir/clean
+movement/clean: movement/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/clean
+movement/clean: movement/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/clean
+movement/clean: movement/CMakeFiles/std_msgs_generate_messages_cpp.dir/clean
+movement/clean: movement/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/clean
+movement/clean: movement/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean
+movement/clean: movement/CMakeFiles/std_msgs_generate_messages_eus.dir/clean
+movement/clean: movement/CMakeFiles/std_msgs_generate_messages_nodejs.dir/clean
+movement/clean: movement/CMakeFiles/roscpp_generate_messages_nodejs.dir/clean
+movement/clean: movement/CMakeFiles/std_msgs_generate_messages_py.dir/clean
+>>>>>>> fb31484fad3229ef1572f22829b12fdf2af1357c
 
 .PHONY : movement/clean
 

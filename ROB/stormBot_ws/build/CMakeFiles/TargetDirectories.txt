@@ -36,6 +36,7 @@
 /home/rob/Desktop/repo/SeniorDesign/ROB/stormBot_ws/build/gtest/googlemock/gtest/CMakeFiles/gtest.dir
 /home/rob/Desktop/repo/SeniorDesign/ROB/stormBot_ws/build/gtest/googlemock/gtest/CMakeFiles/rebuild_cache.dir
 /home/rob/Desktop/repo/SeniorDesign/ROB/stormBot_ws/build/movement/CMakeFiles/install/strip.dir
+<<<<<<< HEAD
 /home/rob/Desktop/repo/SeniorDesign/ROB/stormBot_ws/build/movement/CMakeFiles/edit_cache.dir
 /home/rob/Desktop/repo/SeniorDesign/ROB/stormBot_ws/build/movement/CMakeFiles/list_install_components.dir
 /home/rob/Desktop/repo/SeniorDesign/ROB/stormBot_ws/build/movement/CMakeFiles/test.dir
