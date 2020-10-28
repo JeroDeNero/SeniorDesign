@@ -1,7 +1,11 @@
+# pylint: disable=bare-except
+"""to stop pylint from complainign about any excepts"""
+
 import os
 import glob
 
 TARGETPATH = "data_management/../../frontend/src/assets/Data"
+
 
 def moveFiles(pipeID, dateTaken):
     """relocates the files out of temp files to thier permanent home"""
@@ -9,30 +13,35 @@ def moveFiles(pipeID, dateTaken):
 
     try:
         os.mkdir("{}/{}/".format(TARGETPATH, pipeID))
-    except():
+    except:
         print(pipeID, " pipe already exists.")
 
     try:
         os.mkdir("{}/{}/{}/".format(TARGETPATH, pipeID, dateTaken))
         os.mkdir("{}/{}/{}/tags".format(TARGETPATH, pipeID, dateTaken))
-    except():
-        print("failed to make directories {}/{}/{}/tags".format(TARGETPATH, pipeID, dateTaken))
+    except:
+        print(
+            "failed to make directories {}/{}/{}/tags".format(TARGETPATH, pipeID, dateTaken))
 
     try:
-        os.rename("data_management/temp/imageFront.jpg", "{}/{}/{}/imageFront.jpg".format(TARGETPATH, pipeID, dateTaken))
-    except():
-        print("Error renaming: {}/{}/{}/imageFront.jpg".format(TARGETPATH, pipeID, dateTaken))
+        os.rename("data_management/temp/imageFront.jpg",
+                  "{}/{}/{}/imageFront.jpg".format(TARGETPATH, pipeID, dateTaken))
+    except:
+        print(
+            "Error renaming: {}/{}/{}/imageFront.jpg".format(TARGETPATH, pipeID, dateTaken))
 
     try:
-        os.rename("data_management/temp/outputtedVideo.mp4", "{}/{}/{}/outputtedVideo.mp4".format(TARGETPATH, pipeID, dateTaken))
-    except():
+        os.rename("data_management/temp/outputtedVideo.mp4",
+                  "{}/{}/{}/outputtedVideo.mp4".format(TARGETPATH, pipeID, dateTaken))
+    except:
         print("Error renaming: {}/{}/{}/outputtedVideo.mp4".format(TARGETPATH, pipeID, dateTaken))
 
     files = glob.glob("data_management/temp/tag*.jpg")
     for target in files:
         try:
-            os.rename(target, ("{}/{}/{}/tags/{}".format(TARGETPATH, pipeID, dateTaken, os.path.basename(target))))
-        except():
+            os.rename(target, ("{}/{}/{}/tags/{}".format(TARGETPATH,
+                                                         pipeID, dateTaken, os.path.basename(target))))
+        except:
             print('Error renaming: ', target)
 
 
@@ -55,10 +64,11 @@ def clearVideo():
     files = glob.glob('data_management/temp/imageFront.jpg')
     remove(files)
 
+
 def remove(targets):
-    """removes targeted file or directory"""
+    """removes targeted files or directory"""
     for target in targets:
         try:
             os.remove(target)
-        except():
+        except:
             print('Error while deleteing target: ', target)

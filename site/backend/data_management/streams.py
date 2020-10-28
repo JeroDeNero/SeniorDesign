@@ -4,6 +4,9 @@
 import _thread
 import time
 import cv2
+import os
+
+from dotenv import load_dotenv
 
 from data_management import tempFileManger
 from data_management.video import Video
@@ -12,7 +15,8 @@ from data_management import socketio
 
 COUNT = 0
 TAGCOUNT = 0
-VIDEO = [None, None]
+REBOOT = False
+VIDEO = []
 
 
 @socketio.on('connect')
@@ -40,6 +44,18 @@ def capture(cam):
     if VIDEO[cam]:
         img = VIDEO[cam].getFrame()
         cv2.imwrite('data_management/temp/tag{}.jpg'.format(TAGCOUNT), img)
+
+        timerCapture = VIDEO[cam].getTime()
+
+        # location Request
+        # send frontend details
+
+        socketio.emit("addTag",
+                      {"count ": TAGCOUNT,
+                       " lat ": 0,
+                       " long ": 0,
+                       " Timestamp ": timerCapture})
+
         TAGCOUNT = TAGCOUNT + 1
 
 
@@ -61,11 +77,25 @@ def endRecording():
 def emitCams():
     global COUNT
     global VIDEO
-    if (COUNT > 0 and not VIDEO[0]):
-        VIDEO[0] = Video(-1, 20)
+    global REBOOT
 
-    while COUNT > 0:
+    if (COUNT > 0 and 0 not in VIDEO):
+        REBOOT = False
+        os.environ.pop('MAIN_FPS')
+        os.environ.pop('SECONDARY_FPS')
+        load_dotenv("data_management/../.env")
+        VIDEO.insert(0, Video(-1, int(os.environ.get("MAIN_FPS"))))
+
+    while COUNT > 0 and 0 not in VIDEO and not REBOOT:
         VIDEO[0].genCam()
 
-    if COUNT < 1:
-        del VIDEO[0]
+    del VIDEO[0]
+    VIDEO = []
+
+    if COUNT > 0:
+        emitCams()
+
+
+def rebootStream():
+    global REBOOT
+    REBOOT = True

@@ -8,9 +8,8 @@ describe('RunPopUpMenuComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RunPopUpMenuComponent ]
-    })
-    .compileComponents();
+      declarations: [RunPopUpMenuComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
