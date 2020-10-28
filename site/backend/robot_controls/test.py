@@ -18,12 +18,11 @@ GPIO.setup(targ, GPIO.OUT)
 GPIO.setup(DIR, GPIO.OUT)
 GPIO.setup(DIR2, GPIO.OUT)
 
-pwm = Adafruit_PCA9685.PCA9685(address=0x40, busnum=1)
-#pwm2 = Adafruit_PCA9685.PCA9685(address=0x38, busnum=1)
+pwm = Adafruit_PCA9685.PCA9685(address=0x41, busnum=1)
+pwm1 = Adafruit_PCA9685.PCA9685(address=0x40, busnum=1)
 
-time.sleep(3)
 pwm.set_pwm_freq(1600)
-#pwm2.set_pwm_freq(1600)
+pwm1.set_pwm_freq(50)
 servo_min = 1500
 servo_max = 10000
 
@@ -42,30 +41,42 @@ def setServoPulse(channel, pulse):
 
 print('moving servo on channel 0, press Ctrl-C to quit...')
 
-while True:
 
-    timer = 5
+def setDirectin(direction):
+    duty = a / 180 * direction + b
+    pwm.setDuty(channel, duty)
+    print "direction =", direction, "-> duty =", duty
+    time.sleep(1) # allow to settle
 
-    GPIO.output(DIR, GPIO.LOW)
-    GPIO.output(DIR2, GPIO.LOW)
-    pwm.set_pwm(0,2000,0)
-    pwm.set_pwm(1,2000,0)
-    time.sleep(timer)
-    print('DIR changeed')
-    GPIO.output(DIR, GPIO.HIGH)
-    GPIO.output(DIR2, GPIO.HIGH)
-    time.sleep(timer)
-    print('Power to Max')
-    pwm.set_pwm(0, 4096, 0)
-    pwm.set_pwm(1, 4096, 0)
-    time.sleep(timer)
-    print('DIR changed')
-    GPIO.output(DIR, GPIO.LOW)
-    GPIO.output(DIR2, GPIO.LOW)
-    time.sleep(timer)
-    print('Stopping')
-    pwm.set_pwm(0,0,0)
-    pwm.set_pwm(1,0,0)
-    time.sleep(timer)
+def testMotors():
+    while True:
+        timer = 5
+        GPIO.output(DIR, GPIO.LOW)
+        GPIO.output(DIR2, GPIO.LOW)
+        pwm1.set_pwm(0,2000,0)
+        pwm1.set_pwm(1,2000,0)
+        time.sleep(timer)
+        print('DIR changeed')
+        GPIO.output(DIR, GPIO.HIGH)
+        GPIO.output(DIR2, GPIO.HIGH)
+        time.sleep(timer)
+        print('Power to Max')
+        pwm1.set_pwm(0, 4096, 0)
+        pwm1.set_pwm(1, 4096, 0)
+        time.sleep(timer)
+        print('DIR changed')
+        GPIO.output(DIR, GPIO.LOW)
+        GPIO.output(DIR2, GPIO.LOW)
+        time.sleep(timer)
+        print('Stopping')
+        pwm1.set_pwm(0,0,0)
+        pwm1.set_pwm(1,0,0)
+        time.sleep(timer)
 
-# def 
+def sweep():
+    sweep = range(1,170)
+    for degree in sweep :
+        pwm.servo[0].angle=degree
+        pwm.servo[1].angle=degree
+
+sweep()

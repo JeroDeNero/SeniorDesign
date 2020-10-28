@@ -62,7 +62,7 @@ def emitCams():
     global COUNT
     global VIDEO
     if (COUNT > 0 and not VIDEO[0]):
-        VIDEO[0] = Video(-1, 20)
+        VIDEO[0] = Video(0, 20)
 
     while COUNT > 0:
         VIDEO[0].genCam()
