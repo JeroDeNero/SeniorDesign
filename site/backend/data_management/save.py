@@ -104,7 +104,7 @@ def newRun():
             print(type(tag))
             query = ("INSERT INTO TaggedLocs (Position, Lat, Longi, VideoTime)"
                      "VALUES ({}, {}, {}, {})".format(
-                         tag["Position"], tag["Lat"], tag["Longi"], tag["TimeStamp"]))
+                         tag["Position"], tag["Lat"], tag["Longi"], tag["VideoTime"]))
             print(query)
             tagID = sendCommand(db, query)
 

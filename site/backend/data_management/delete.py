@@ -1,3 +1,4 @@
+from flask_cors import CORS
 from flask import(
     Blueprint, request, jsonify
 )
@@ -7,18 +8,25 @@ from data_management.db import getDb
 
 bp = Blueprint('delete', __name__, url_prefix='/delete')
 
+CORS(bp)
+
 
 @bp.route('/run', methods=(['POST']))
 def run():
     """Recieves a remove run request"""
 
-    targetID = request.json["Id"]
-    date = request.json["date"]
+    data = request.json
+
+    print(data)
+
+    targetID = data.get("Id")
+    pipe = data.get("pipeID")
+    date = data.get("date")
 
     db = getDb()
     deleteRunTask(db, targetID)
     db.close()
-    removeRun(targetID, date)
+    removeRun(pipe, date)
 
     return jsonify({})
 
@@ -26,7 +34,7 @@ def run():
 @bp.route('/tag', methods=(['POST']))
 def deleteTag():
     """Recieves a remove tag request"""
-    
+
     targetID = request.json["Id"]
     date = request.json["date"]
     position = request.json["position"]
@@ -49,19 +57,22 @@ def deleteRunTask(db, targetID):
 
     for tag in tagCursor:
         deleteTagTask(db, tag.get('TagID'))
-        #don't need to worry about the middle table, as it has oncascade delete
+        # don't need to worry about the middle table, as it has oncascade delete
 
     tagCursor.close()
 
     deleteVideoTask(db, targetID)
 
+
 def deleteVideoTask(db, targetID):
     """makes/ and sends the deleteion query for a video using targetID"""
     deleteIt(db, 'DELETE FROM Video WHERE Id = {}'.format(targetID))
 
+
 def deleteTagTask(db, targetID):
     """makes/ and sends the deleteion query for a Tag using targetID"""
     deleteIt(db, 'DELETE FROM TaggedLocs WHERE Id = {}'.format(targetID))
+
 
 def deletePipeTask(db, targetID):
     """makes/ and sends the deleteion query for a Pipe using targetID"""
@@ -70,6 +81,7 @@ def deletePipeTask(db, targetID):
 
 def deleteIt(db, queury):
     """Recieves a delete query then runs it"""
+    print(queury)
     delCursor = db.cursor(dictionary=True, buffered=True)
     delCursor.execute(queury)
     db.commit()

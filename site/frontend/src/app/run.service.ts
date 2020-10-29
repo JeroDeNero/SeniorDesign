@@ -7,6 +7,7 @@ import { catchError, tap } from 'rxjs/operators';
 import { Run, Tag } from './interfaces';
 
 import { API_URL } from './env';
+import { DateHandlerService } from './date-handler.service';
 
 @Injectable({
   providedIn: 'root',
@@ -28,7 +29,10 @@ export class RunService {
 
   allRunsData: Run[][];
 
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+    private dateHandlerService: DateHandlerService
+  ) {
     this.getRuns().subscribe((data) => {
       this.setAllRuns(data);
     });
@@ -81,11 +85,17 @@ export class RunService {
   }
 
   getShapeFile(date, lat, long): Observable<any> {
+    const strDate = this.dateHandlerService.generateDate(date);
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/x-qgis',
+    });
+    const options = { headers: headers };
+
     return this.http
-      .post<any>(
-        `http://${API_URL}/export/tags`,
-        { date: date, lat: lat, long: long },
-        this.httpOptions
+      .get<any>(
+        `http://${API_URL}/export/tag/b${strDate}b${long}b${lat}b`,
+        options
       )
       .pipe(
         tap((_) => console.log('fetched shape file')),
@@ -177,10 +187,18 @@ export class RunService {
       );
   }
 
-  deleteRun(run: Run | number): Observable<any> {
+  deleteRun(run: Run | number, date: Date, pipeID: String): Observable<any> {
     const id = typeof run === 'number' ? run : run.Id;
     return this.http
-      .post<any>(`http://${API_URL}/delete/run`, { Id: id }, this.httpOptions)
+      .post<any>(
+        `http://${API_URL}/delete/run`,
+        {
+          Id: id,
+          date: this.dateHandlerService.generateDate(date),
+          pipeID: pipeID,
+        },
+        this.httpOptions
+      )
       .pipe(
         tap((_) => console.log('deleted run')),
         catchError(this.handleError<Run>())

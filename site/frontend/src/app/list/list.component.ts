@@ -41,8 +41,8 @@ export class ListComponent implements OnInit {
     this.toggleService.setHideEdit(false);
   }
 
-  deleteRun(target: Run) {
-    this.runService.deleteRun(target).subscribe();
+  deleteRun(target: Run, date: Date, pipeID: String) {
+    this.runService.deleteRun(target, date, pipeID).subscribe();
 
     this.runs.splice(this.getRunIndex(target), 1);
   }

@@ -36,7 +36,7 @@ def getRuns():
         for tag in tags:
             vidTags.append(getTag(db, tag[0]))
 
-        run.update({'tag': vidTags})
+        run.update({'tags': vidTags})
 
         if run.get("PipeID"):
             pipe = getPipe(db, run.get("PipeID"))
@@ -139,7 +139,7 @@ def getTag(db, tagID):
 
     results = tag.fetchone()
     tag.close()
-    return results.update()
+    return results
 
 
 def getPipe(db, pipeID):

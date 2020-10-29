@@ -54,7 +54,7 @@ def capture(cam):
                       {"Position": TAGCOUNT,
                        "Lat": 0,
                        "Longi": 0,
-                       "TimeStamp": timerCapture})
+                       "VideoTime": timerCapture})
 
         TAGCOUNT = TAGCOUNT + 1
 

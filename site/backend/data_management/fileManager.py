@@ -12,16 +12,38 @@ def removeRun(pipeID, date):
 
     global TARGETPATH
 
-    target = glob.glob("{}/{}/{}".format(TARGETPATH, pipeID, date))
-    remove(target + "/*")
-    os.rmdir(target)
+    direct = "{}/{}/{}/".format(TARGETPATH, pipeID, date)
+
+    try:
+        target = glob.glob("{}**/*".format(direct))
+        remove(target)
+        os.rmdir("{}tags/".format(direct))
+    except:
+        print("tags failed to delete.  Either already deleted, or images failed to delete")
+
+    try:
+        target = glob.glob("{}*".format(direct))
+        remove(target)
+        os.rmdir("{}".format(direct))
+    except:
+        print("run failed to delete.  Either already deleted, or failed to delete contents prior")
+
+    try:
+        os.rmdir("{}/{}/".format(TARGETPATH, pipeID))
+    except:
+        print("not empty, or does not exist")
 
 
 def removeTag(pipeID, date, tagNumber):
     """Removes saved image of based upon the input"""
-    target = "{}/{}/{}".format(pipeID, date, tagNumber)
-    remove(target + "/*")
-    os.rmdir(target)
+    direct = "{}/{}/{}/tags/".format(pipeID, date, tagNumber)
+
+    remove(direct + "tag" + tagNumber)
+
+    try:
+        os.rmdir(direct)
+    except:
+        print("file doesn't exist or was not the last tag")
 
 
 def remove(targets):

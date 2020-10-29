@@ -19,7 +19,7 @@ export interface Tag {
   Position: number;
   Lat: number;
   Longi: number;
-  TimeStamp?: number;
+  VideoTime?: number;
 }
 
 export interface numHash {
