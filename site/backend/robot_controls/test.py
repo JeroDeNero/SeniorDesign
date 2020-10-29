@@ -4,12 +4,13 @@
 
 from __future__ import division
 import sys
-from imutils.video import FPS
 import time
 import Adafruit_PCA9685
+#import adafruit_servokit as ServoKit
 import Jetson.GPIO as GPIO
 
 GPIO.setmode(GPIO.BOARD)
+
 targ = 35
 DIR = 40
 DIR2 = 38
@@ -18,35 +19,24 @@ GPIO.setup(targ, GPIO.OUT)
 GPIO.setup(DIR, GPIO.OUT)
 GPIO.setup(DIR2, GPIO.OUT)
 
-pwm = Adafruit_PCA9685.PCA9685(address=0x41, busnum=1)
-pwm1 = Adafruit_PCA9685.PCA9685(address=0x40, busnum=1)
+pwm1 = Adafruit_PCA9685.PCA9685(address=0x41, busnum=1)
+#pwm2 = ServoKit(address=0x41, busnum=1)
 
-pwm.set_pwm_freq(1600)
-pwm1.set_pwm_freq(50)
+pwm1.set_pwm_freq(1600)
+#pwm2.set_pwm_freq(50)
 servo_min = 1500
 servo_max = 10000
 
 time.sleep(1)
 
-def setServoPulse(channel, pulse):
-    pulseLength = 1000000
-    pulseLength //= 60
-    print('{}us per perios'.format(pulseLength))
-    pulseLength //= 4096
-    print('{}us per bit'.format(pulseLength))
-    pulse *= 1000
-    pulse //= pulseLength
-    pwm.set_pwm(channel, 0, pulse)
-
-
 print('moving servo on channel 0, press Ctrl-C to quit...')
 
 
-def setDirectin(direction):
-    duty = a / 180 * direction + b
-    pwm.setDuty(channel, duty)
-    print "direction =", direction, "-> duty =", duty
-    time.sleep(1) # allow to settle
+#def setDirectin(direction):
+#    duty = a / 180 * direction + b
+#    pwm2.setDuty(channel, duty)
+#    print("direction = {} -> duty = {}".format(direction, duty))
+#    time.sleep(1) # allow to settle
 
 def testMotors():
     while True:
@@ -73,10 +63,10 @@ def testMotors():
         pwm1.set_pwm(1,0,0)
         time.sleep(timer)
 
-def sweep():
-    sweep = range(1,170)
-    for degree in sweep :
-        pwm.servo[0].angle=degree
-        pwm.servo[1].angle=degree
+#def sweep():
+#    sweep = range(30,150)
+#    for degree in sweep :
+#        pwm2.servo[0].angle=degree
+#        pwm2.servo[1].angle=degree
 
-sweep()
+testMotors()
