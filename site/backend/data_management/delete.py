@@ -87,21 +87,25 @@ def garbageCollector():
     
     # while space is less that 20% delete oldest unamed file
     while(free/total < 0.2):
+        # using shutil to calculate disk usage
         total, used, free = shutil.disk_usage("/")
+
         # get oldest takes db, and
         oldest = getOldest(db)
-        oldID = oldest.get('Id')
+        vidID = oldest.get('Id')
+        pipeID = oldest.get('PipeID')
 
-        runQuery = deleteRunTask(db, oldID)
+        # Create and execute multiple queries to free up space
+        runQuery = deleteRunTask(db, vidID)
         deleteIt(db, runQuery)
 
-        vidQuery = deleteVideoTask(db, oldID)
+        vidQuery = deleteVideoTask(db, vidID)
         deleteIt(db, vidQuery)
 
-        tagQuery = deleteTagTask(db, oldID)
+        tagQuery = deleteTagTask(db, vidID)
         deleteIt(db, tagQuery)
 
-        pipeQuery = deletePipeTask(db, oldID)
+        pipeQuery = deletePipeTask(db, pipeID)
         deleteIt(db, pipeQuery)
 
     return
