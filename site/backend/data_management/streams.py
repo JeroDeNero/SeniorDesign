@@ -77,8 +77,6 @@ def endRecording():
 def emitCams():
     global COUNT
     global VIDEO
-    if (COUNT > 0 and not VIDEO[0]):
-        VIDEO[0] = Video(0, 20)
 
     if (COUNT > 0 and 0 not in VIDEO):
         REBOOT = False
