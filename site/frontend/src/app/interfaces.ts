@@ -16,10 +16,10 @@ export interface Run {
 
 export interface Tag {
   Id: number;
+  Position: number;
   Lat: number;
   Longi: number;
-  image?: HTMLImageElement;
-  timeStamp?: number;
+  TimeStamp?: number;
 }
 
 export interface numHash {

@@ -19,7 +19,7 @@ import { SettingsComponent } from './settings/settings.component';
 
 const config: SocketIoConfig = {
   url: API_URL,
-  options: { cors_allowed_origins: '*' },
+  options: { cors_allowed_origins: '*:*', origins: '*:*' },
 };
 
 @NgModule({

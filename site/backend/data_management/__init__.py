@@ -1,6 +1,6 @@
 import os
 import asyncio
-
+from dotenv import load_dotenv
 from flask import Flask, render_template
 from flask_cors import CORS
 from flask_socketio import SocketIO
@@ -10,8 +10,11 @@ socketio = SocketIO(cors_allowed_origins="*")
 
 def create_app(test_config=None):
     # create and configure the app
+
+    load_dotenv("data_management/../.env")
+
     app = Flask(__name__, instance_relative_config=True)
-    CORS(app)
+    CORS(app, resources={r"/foo": {"origins": "*"}})
     socketio.init_app(app)
 
     app.config.from_mapping(
@@ -33,17 +36,20 @@ def create_app(test_config=None):
         pass
 
     if __name__ == "__main__":
-        socketio.run(app)
+        app.run(host='0.0.0.0')
+        socketio.run(app, host='0.0.0.0', cors_allowed_origins="*")
 
     from . import db
     from . import save
     from . import delete
     from . import get
     from . import streams
+    from . import export
 
     app.register_blueprint(save.bp)
     app.register_blueprint(delete.bp)
     app.register_blueprint(get.bp)
+    app.register_blueprint(export.bp)
 
     @app.route('/')
     def index():

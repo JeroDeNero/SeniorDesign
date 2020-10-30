@@ -20,7 +20,7 @@ export class ToggleService {
 
   buttonOp: BehaviorSubject<string> = new BehaviorSubject<string>('New Run');
 
-  video: BehaviorSubject<string> = new BehaviorSubject<string>('assets/Data/output1.mp4');
+  video: BehaviorSubject<string> = new BehaviorSubject<string>(null);
 
   constructor(
     private runService: RunService,
@@ -88,7 +88,7 @@ export class ToggleService {
   }
 
   setVideo(word): void {
-      this.video.next(word);
+    this.video.next(word);
   }
 
   getVideo(): Observable<string> {
