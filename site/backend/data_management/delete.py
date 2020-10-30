@@ -80,7 +80,7 @@ def deleteIt(db, queury):
 
 def garbageCollector():
     # Jero here
-    db = getDB()
+    db = getDb()
 
     # Get available space
     total, used, free = shutil.disk_usage("/")
