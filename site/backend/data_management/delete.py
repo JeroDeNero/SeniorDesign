@@ -1,3 +1,5 @@
+import shutil
+
 from flask import(
     Blueprint, request, jsonify
 )
@@ -78,8 +80,28 @@ def deleteIt(db, queury):
 
 def garbageCollector():
     # Jero here
-    # TODO
+    db = getDB()
+
     # Get available space
+    total, used, free = shutil.disk_usage("/")
+    
     # while space is less that 20% delete oldest unamed file
-    # get oldest takes db, and
+    while(free/total < 0.2):
+        total, used, free = shutil.disk_usage("/")
+        # get oldest takes db, and
+        oldest = getOldest(db)
+        oldID = oldest.get('Id')
+
+        runQuery = deleteRunTask(db, oldID)
+        deleteIt(db, runQuery)
+
+        vidQuery = deleteVideoTask(db, oldID)
+        deleteIt(db, vidQuery)
+
+        tagQuery = deleteTagTask(db, oldID)
+        deleteIt(db, tagQuery)
+
+        pipeQuery = deletePipeTask(db, oldID)
+        deleteIt(db, pipeQuery)
+
     return
