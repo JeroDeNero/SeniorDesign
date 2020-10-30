@@ -14,6 +14,7 @@ import time
 # Default is to Bus 1; We are using Bus 0, so we need to construct the busio first ...
 print("Initializing Servos")
 print(board.SDA)
+print(board.SCL)
 i2c_bus0=(busio.I2C(board.SCL, board.SDA))
 print("Initializing ServoKit")
 kit = ServoKit(channels=16, i2c=i2c_bus0)
