@@ -2,14 +2,11 @@
 #Code based on JetsonHacks article for the camera access : https://www.jetsonhacks.com/2019/04/02/jetson-nano-raspberry-pi-camera/  
 #WORK IN PROGRESS 
 
-from adafruit_servokit import ServoKit
-from __future__ import division
 from sys import exit
 
 import Jetson.GPIO as GPIO
 import Adafruit_PCA9685
-import signal
-import busio
+from signal import signal, SIGINT
 import time
 import sys
 
@@ -43,6 +40,9 @@ DIR2 = 38
 xEncoderPin = 11
 yEncoderPin = 12
 
+xCount = 0
+yCount = 0
+
 GPIO.setup(safeNumber, GPIO.OUT)
 GPIO.setup(DIR, GPIO.OUT)
 GPIO.setup(DIR2, GPIO.OUT)
@@ -52,8 +52,6 @@ GPIO.setup(yEncoderPin, GPIO.IN)
 GPIO.output(safeNumber, GPIO.HIGH)
 
 #pull the values from the board output for SCL and SDA and plug in
-i2c_bus0=(busio.I2C(board.SCL, board.SDA))
-kit = ServoKit(channels=16, i2c=i2c_bus0)
 
 pwm = Adafruit_PCA9685.PCA9685(address=0x41, busnum=1)
 pwm2 = Adafruit_PCA9685.PCA9685(address=0x40, busnum=1)
@@ -87,6 +85,17 @@ print('moving servo on channel 0, press Ctrl-C to quit...')
 
 GPIO.add_event_detect(xEncoderPin, GPIO.RISING, callback=xCallback)
 GPIO.add_event_detect(yEncoderPin, GPIO.RISING, callback=yCallback)
+
+if GPIO.input(xEncoderPin):
+    print('Input was HIGH')
+else:
+    print('Input was LOW')
+
+if GPIO.input(yEncoderPin):
+    print('Input was HIGH')
+else:
+    print('Input was LOW')
+
 
 signal(SIGINT, handler)
 
@@ -137,9 +146,12 @@ try:
         GPIO.output(DIR2, GPIO.LOW)
 
         time.sleep(timer)
+        end = (time.time() - start)/60
 
-        print(start - time.time())
-
+        print(end)
+        print(xCount)
+        print('x = ' + str((xCount / 1440) / end))
+        print('y = ' + str((yCount / 1440) / end))
         print('Stopping')
         
         pwm2.set_pwm(1,0,servosRest)
@@ -148,7 +160,7 @@ try:
         pwm.set_pwm(1,0,0)
         time.sleep(timer)
 
-    except
+except:
 
         print('error')
 
