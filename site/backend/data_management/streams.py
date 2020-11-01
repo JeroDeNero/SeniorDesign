@@ -83,7 +83,7 @@ def emitCams():
         os.environ.pop('MAIN_FPS')
         os.environ.pop('SECONDARY_FPS')
         load_dotenv("data_management/../.env")
-        VIDEO.insert(0, Video(-1, int(os.environ.get("MAIN_FPS"))))
+        VIDEO.insert(0, Video(-1, int(os.environ.get("MAIN_FPS")), 0, False))
 
     while COUNT > 0 and 0 not in VIDEO and not REBOOT:
         VIDEO[0].genCam()
