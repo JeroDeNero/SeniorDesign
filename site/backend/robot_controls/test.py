@@ -1,42 +1,95 @@
-#Face Follower for Nvidia Jetson Nano by Neurotek
-#Code based on JetsonHacks article for the camera access : https://www.jetsonhacks.com/2019/04/02/jetson-nano-raspberry-pi-camera/  
-#WORK IN PROGRESS 
+# Face Follower for Nvidia Jetson Nano by Neurotek
+# Code based on JetsonHacks article for the camera access : https://www.jetsonhacks.com/2019/04/02/jetson-nano-raspberry-pi-camera/
+# WORK IN PROGRESS
+
+from sys import exit
+from signal import signal, SIGINT
 
 import Jetson.GPIO as GPIO
 import Adafruit_PCA9685
-import busio
 import time
 import sys
 
-from signal import signal, SIGINT
-from sys import exit
 
 def handler(signalRecieved, frame):
     print("exiting with grace")
 
     safeNumber = 7
-
     GPIO.output(safeNumber, GPIO.HIGH)
-    
+
+    GPIO.cleanup()
+
     exit(0)
 
+
+def xCallback(pin):
+    global xCount
+    xCount = xCount + 1
+    print('x')
+
+
+def yCallback(pin):
+    global yCount
+    yCount = yCount + 1
+    print('y')
+
+
+def xCallback2(pin):
+    global xCount2
+    xCount2 = xCount2 + 1
+
+
+def yCallback2(pin):
+    global yCount2
+    yCount2 = yCount2 + 1
+
+
+signal(SIGINT, handler)
+
 GPIO.setmode(GPIO.BOARD)
-targ = 35
+
+safeNumber = 7
+
 DIR = 40
 DIR2 = 38
 safeNumber = 7
 
-GPIO.setup(targ, GPIO.OUT)
+xEncoderPin = 13
+yEncoderPin = 15
+xEncoderPin2 = 11
+yEncoderPin2 = 12
+
+xCount = 0
+yCount = 0
+xCount2 = 0
+yCount2 = 0
+
+GPIO.setup(safeNumber, GPIO.OUT)
 GPIO.setup(DIR, GPIO.OUT)
 GPIO.setup(DIR2, GPIO.OUT)
-GPIO.setup(safeNumber, GPIO.OUT)
+GPIO.setup(xEncoderPin, GPIO.IN)
+GPIO.setup(yEncoderPin, GPIO.IN)
+GPIO.setup(xEncoderPin2, GPIO.IN)
+GPIO.setup(yEncoderPin2, GPIO.IN)
+
+GPIO.output(safeNumber, GPIO.HIGH)
+
+# pull the values from the board output for SCL and SDA and plug in
 
 pwm = Adafruit_PCA9685.PCA9685(address=0x41, busnum=1)
 pwm2 = Adafruit_PCA9685.PCA9685(address=0x40, busnum=1)
 
 time.sleep(3)
 pwm.set_pwm_freq(1600)
-pwm2.set_pwm_freq(50)
+pwm2.set_pwm_freq(60)
+
+servosRest = 303
+
+topServoMin = 303
+topServoMax = 438
+
+botServoMin = 246
+botServoMax = 360
 
 top_servo_min = 303
 top_servo_max = 438
@@ -49,56 +102,88 @@ time.sleep(1)
 
 print('moving servo on channel 0, press Ctrl-C to quit...')
 
+GPIO.add_event_detect(xEncoderPin, GPIO.RISING, callback=xCallback)
+GPIO.add_event_detect(yEncoderPin, GPIO.RISING, callback=yCallback)
+GPIO.add_event_detect(xEncoderPin2, GPIO.RISING, callback=xCallback2)
+GPIO.add_event_detect(yEncoderPin2, GPIO.RISING, callback=yCallback2)
+
 signal(SIGINT, handler)
 
-while True:
-
-    timer = 5
-
+try:
     GPIO.output(safeNumber, GPIO.LOW)
+    while True:
+        start = time.time()
 
-    GPIO.output(DIR, GPIO.LOW)
-    GPIO.output(DIR2, GPIO.LOW)
+        timer = 20
 
-    pwm.set_pwm(0,2000,0)
-    pwm.set_pwm(1,2000,0)
+#        pwm2.set_pwm(0,0,botServoMin)
+#        pwm2.set_pwm(1,0,topServoMin)
+#
+#        GPIO.output(DIR, GPIO.LOW)
+#        GPIO.output(DIR2, GPIO.LOW)
+#
+#
+#        pwm.set_pwm(0,2000,0)
+#        pwm.set_pwm(1,2000,0)
+#
+#        time.sleep(timer)
+#
+#        print('DIR changeed')
+#
+#        pwm2.set_pwm(0,0,botServoMax)
+#        pwm2.set_pwm(1,0,topServoMax)
+#
+#        GPIO.output(DIR, GPIO.HIGH)
+#        GPIO.output(DIR2, GPIO.HIGH)
+#
+#        time.sleep(timer)
+#
+        print('Power to Max')
 
-    pwm2.set_pwm(0, 0, bot_servo_min)
-    pwm2.set_pwm(1, 0, top_servo_min)
+        pwm2.set_pwm(0, 0, servosRest)
+        pwm2.set_pwm(1, 0, topServoMax)
 
-    time.sleep(timer)
+        pwm.set_pwm(0, 4096, 0)
+        pwm.set_pwm(1, 4096, 0)
 
-    print('DIR changeed')
+        time.sleep(timer)
 
-    GPIO.output(DIR, GPIO.HIGH)
-    GPIO.output(DIR2, GPIO.HIGH)
+#        print('DIR changed')
+#
+#        pwm2.set_pwm(1,0,topServoMin)
+#
+#        GPIO.output(DIR, GPIO.LOW)
+#        GPIO.output(DIR2, GPIO.LOW)
+#
+#        time.sleep(timer)
+        end = (time.time() - start)/60
 
-    pwm2.set_pwm(0, 0, bot_servo_max)
+        print(end)
 
-    time.sleep(timer)
+        print(xCount)
+        print(yCount)
+        print(xCount2)
+        print(yCount2)
 
-    print('Power to Max')
+        print('x1 = ' + str((xCount / 1440) / end))
+        print('y1 = ' + str((yCount / 1440) / end))
+        print('x2 = ' + str((xCount2 / 1440) / end))
+        print('y2 = ' + str((yCount2 / 1440) / end))
+        print('Stopping')
 
-    pwm.set_pwm(0, 4096, 0)
-    pwm.set_pwm(1, 4096, 0)
+        pwm2.set_pwm(0, 0, servosRest)
+        pwm2.set_pwm(1, 0, servosRest)
 
-    pwm2.set_pwm(1, 0, top_servo_max)
+        pwm.set_pwm(0, 0, 0)
+        pwm.set_pwm(1, 0, 0)
+        time.sleep(timer)
 
-    time.sleep(timer)
+except:
 
-    print('DIR changed')
+        print('error')
 
-    GPIO.output(DIR, GPIO.LOW)
-    GPIO.output(DIR2, GPIO.LOW)
-
-    pwm2.set_pwm(0, 0, bot_servo_min)
-
-    time.sleep(timer)
-
-    print('Stopping')
-    
-    pwm.set_pwm(0,0,0)
-    pwm.set_pwm(1,0,0)
+        GPIO.output(safeNumber, GPIO.HIGH)
+        GPIO.cleanup()
 
     pwm2.set_pwm(0, 0, 303)
     pwm2.set_pwm(1, 0, 303)

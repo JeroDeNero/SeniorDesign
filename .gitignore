@@ -5,3 +5,7 @@ site/backend/.vscode/.ropeproject/objectdb
 site/backend/temp/coord.dbf
 site/backend/temp/coord.shp
 site/backend/temp/coord.shx
+site/backend/robot_controls/.vscode/.ropeproject/config.py
+site/backend/robot_controls/.vscode/.ropeproject/objectdb
+site/backend/data_management/.vscode/.ropeproject/config.py
+site/backend/data_management/.vscode/.ropeproject/objectdb

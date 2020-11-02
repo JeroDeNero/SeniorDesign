@@ -41,7 +41,7 @@ def capture(cam):
     global VIDEO
     global TAGCOUNT
 
-    if VIDEO[cam]:
+    if (COUNT > 0 and 0 not in VIDEO):
         img = VIDEO[cam].getFrame()
         cv2.imwrite('data_management/temp/tag{}.jpg'.format(TAGCOUNT), img)
 
@@ -58,6 +58,12 @@ def capture(cam):
 
         TAGCOUNT = TAGCOUNT + 1
 
+@socketio.on('refocus')
+def refocus():
+    global VIDEO
+
+    for item in VIDEO:
+        item.refocus()
 
 @socketio.on('startRecording')
 def startRecording():
@@ -77,15 +83,13 @@ def endRecording():
 def emitCams():
     global COUNT
     global VIDEO
-    if (COUNT > 0 and not VIDEO[0]):
-        VIDEO[0] = Video(0, 20)
 
     if (COUNT > 0 and 0 not in VIDEO):
         REBOOT = False
         os.environ.pop('MAIN_FPS')
         os.environ.pop('SECONDARY_FPS')
         load_dotenv("data_management/../.env")
-        VIDEO.insert(0, Video(-1, int(os.environ.get("MAIN_FPS"))))
+        VIDEO.insert(0, Video(-1, int(os.environ.get("MAIN_FPS")), 0, False))
 
     while COUNT > 0 and 0 not in VIDEO and not REBOOT:
         VIDEO[0].genCam()
