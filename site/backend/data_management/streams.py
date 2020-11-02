@@ -41,7 +41,7 @@ def capture(cam):
     global VIDEO
     global TAGCOUNT
 
-    if VIDEO[cam]:
+    if (COUNT > 0 and 0 not in VIDEO):
         img = VIDEO[cam].getFrame()
         cv2.imwrite('data_management/temp/tag{}.jpg'.format(TAGCOUNT), img)
 
@@ -58,6 +58,12 @@ def capture(cam):
 
         TAGCOUNT = TAGCOUNT + 1
 
+@socketio.on('refocus')
+def refocus():
+    global VIDEO
+
+    for item in VIDEO:
+        item.refocus()
 
 @socketio.on('startRecording')
 def startRecording():

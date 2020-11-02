@@ -32,6 +32,10 @@ export class StreamService {
     }
   }
 
+  refocus() {
+    this.socket.emit('refocus');
+  }
+
   captureReturn() {
     return new Observable((observer: Observer<any>) => {
       this.socket.on('addTag', (data) => {

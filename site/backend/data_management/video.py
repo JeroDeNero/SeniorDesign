@@ -33,11 +33,6 @@ class Video(object):
     recordTime = time.time()
 
     def __init__(self, target, fps, flip, jetson):
-        self.fps = fps
-        self.cameraTarg = target
-        self.frameWidth = int(self.captureDev.get(3))#1280
-        self.frameHeight = int(self.captureDev.get(4))#720
-        self.jetson = jetson
 
         if jetson:
             #Jetson setup
@@ -45,6 +40,12 @@ class Video(object):
             self.captureDev = cv2.VideoCapture(jetsonCamSetup(1280, 720, 1280, 720, fps, flip))
         else:
             self.captureDev = cv2.VideoCapture(target)
+            
+        self.fps = fps
+        self.cameraTarg = target
+        self.frameWidth = int(self.captureDev.get(3))#1280
+        self.frameHeight = int(self.captureDev.get(4))#720
+        self.jetson = jetson
 
     def __delete__(self, instance):
         self.record.release()

@@ -290,6 +290,10 @@ export class ControlsComponent implements OnInit {
       //socketEmit(binary, status)
     }
   }
+
+  refocus() {
+    this.streamService.refocus();
+  }
 }
 
 interface Ihash {
