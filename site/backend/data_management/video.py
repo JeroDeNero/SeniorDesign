@@ -39,7 +39,8 @@ class Video(object):
         if jetson:
             #Jetson setup
             #(capture_width, capture_height, display_width, display_height, framerate, flip_method)
-            self.captureDev = cv2.VideoCapture(jetsonCamSetup(1280, 720, 1280, 720, fps, flip), cv2.CAP_GSTREAMER)
+            self.captureDev = cv2.VideoCapture(jetsonCamSetup(capture_width = 1280, capture_height = 720 , display_width = 1280, display_height = 720, framerate = fps, flip_method = flip), cv2.CAP_GSTREAMER)
+            print(jetsonCamSetup(capture_width = 1280, capture_height = 720 , display_width = 1280, display_height = 720, framerate = fps, flip_method = flip))
         else:
             self.captureDev = cv2.VideoCapture(target)
 
@@ -53,12 +54,6 @@ class Video(object):
     def __delete__(self, instance):
         self.record.release()
         self.captureDev.release()
-        self.max_index = 10
-        self.max_value = 0.0
-        self.last_value = 0.0
-        self.dec_count = 0
-        self.focal_distance = 10
-        self.focus_finished = False
 
 
     def genCam(self):
@@ -67,21 +62,24 @@ class Video(object):
             self.writeVid(frame)
 
         if not self.jetson:
-            time.wait(1/fps)
-        elif not self.focus_finished:
-            self.focus(frame)
-
+            time.sleep(1/self.fps)
+        #self.focus(frame)
+        print('hi')
         frame = self.encodeFrame(self.toJPG(frame))
         socketio.emit("primaryStreamOut", frame)
 
 
     def getFrame(self):
         _ret, frame = self.captureDev.read()
+
+        if 'frame' not in locals(): 
+            del self
+
         return frame
 
 
     def toJPG(self, frame):
-        _ret, jpeg = cv.imencode('.jpg', frame)
+        _ret, jpeg = cv2.imencode('.jpg', frame)
         return jpeg
 
 
@@ -122,11 +120,11 @@ class Video(object):
     def focus(self, img):
         if self.dec_count < 6 and self.focal_distance < 1000:
                 #Adjust focus
-                self.focusing(focal_distance)
+                self.focusing(self.focal_distance)
                 #Take image and calculate image clarity
                 val = self.laplacian(img)
                 #Find the maximum image clarity
-                if val > max_value:
+                if val > self.max_value:
                     self.max_index = self.focal_distance
                     self.max_value = val
                     
@@ -141,10 +139,10 @@ class Video(object):
                     #Increase the focal distance
                     self.focal_distance += 10
 
-            elif not focus_finished:
-                #Adjust focus to the best
-                focusing(max_index)
-                focus_finished = True
+        elif not self.focus_finished:
+            #Adjust focus to the best
+            self.focusing(self.max_index)
+            self.focus_finished = True
 
 
     def refocus(self): 
