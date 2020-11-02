@@ -180,12 +180,7 @@ try:
 
 except:
 
-        print('error')
+    print('error')
 
-        GPIO.output(safeNumber, GPIO.HIGH)
-        GPIO.cleanup()
-
-    pwm2.set_pwm(0, 0, 303)
-    pwm2.set_pwm(1, 0, 303)
-
-    time.sleep(timer) 
+    GPIO.output(safeNumber, GPIO.HIGH)
+    GPIO.cleanup()
