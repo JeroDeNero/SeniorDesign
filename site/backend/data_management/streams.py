@@ -23,10 +23,13 @@ VIDEO = []
 def on_connect():
     print('[INFO] WebClient connected.')
     global COUNT
-    if COUNT == 0:
-        time.sleep(1)
-        _thread.start_new_thread(emitCams, ())
+    
     COUNT = COUNT + 1
+
+    if COUNT == 1:
+        time.sleep(1)
+        socketio.start_background_task(emitCams)
+    
 
 
 @socketio.on('disconnect')
@@ -84,20 +87,23 @@ def emitCams():
     global COUNT
     global VIDEO
 
+    print(COUNT)
+
     if (COUNT > 0 and 0 not in VIDEO):
         REBOOT = False
         os.environ.pop('MAIN_FPS')
         os.environ.pop('SECONDARY_FPS')
         load_dotenv("data_management/../.env")
-        VIDEO.insert(0, Video(-1, int(os.environ.get("MAIN_FPS")), 0, False))
+        VIDEO.insert(0, Video( 0, int(os.environ.get("MAIN_FPS")), 0, True))
 
-    while COUNT > 0 and 0 not in VIDEO and not REBOOT:
-        VIDEO[0].genCam()
+    while COUNT > 0  and 0 not in VIDEO and not REBOOT:
+        socketio.start_background_task(VIDEO[0].genCam())
 
-    del VIDEO[0]
+    if 0 in VIDEO:
+        del VIDEO[0]
     VIDEO = []
 
-    if COUNT > 0:
+    if COUNT < 0:
         emitCams()
 
 
