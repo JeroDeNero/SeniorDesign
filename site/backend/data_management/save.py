@@ -23,7 +23,7 @@ def settings():
     mainCam = data['mainCamFPS']
     secondaryCam = data['backCamFPS']
 
-    if 'WHEEL_RADIUS' not in os.environ is None:
+    if 'WHEEL_RADIUS' not in os.environ:
         os.environ['WHEEL_RADIUS'] = '6'
     elif (wheelRadius and wheelRadius != os.environ.get('WHEEL_RADIUS')):
         os.environ.pop('WHEEL_RADIUS')
