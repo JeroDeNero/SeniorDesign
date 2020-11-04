@@ -13,12 +13,12 @@ export class ListComponent implements OnInit {
   @Input('id') id: number;
   runs: Run[];
   tagBoxes: numHash;
-  
+
   constructor(
     private runService: RunService,
     private toggleService: ToggleService,
     private datahandlerService: DateHandlerService
-    ) {}
+  ) {}
 
   ngOnInit(): void {
     this.runService.getAllRuns().subscribe((runsList) => {
@@ -41,8 +41,8 @@ export class ListComponent implements OnInit {
     this.toggleService.setHideEdit(false);
   }
 
-  deleteRun(target: Run) {
-    this.runService.deleteRun(target).subscribe();
+  deleteRun(target: Run, date: Date, pipeID: String) {
+    this.runService.deleteRun(target, date, pipeID).subscribe();
 
     this.runs.splice(this.getRunIndex(target), 1);
   }
@@ -57,8 +57,20 @@ export class ListComponent implements OnInit {
   }
 
   setVideo(pipeID, date) {
-
-    const video = `assets/Data/${pipeID}/${this.datahandlerService.generateDate(date)}/outputtedVideo.mp4`;
+    const video = `assets/Data/${pipeID}/${this.datahandlerService.generateDate(
+      date
+    )}/outputtedVideo.mp4`;
     this.toggleService.setVideo(video);
+  }
+
+  getFile(date, pipeID) {
+    const dir = `assets/Data/${pipeID}/${this.datahandlerService.generateDate(
+      date
+    )}/`;
+    this.runService.getFolder(dir);
+  }
+
+  exportShape(date, lat, long) {
+    this.runService.getShapeFile(date, lat, long).subscribe();
   }
 }

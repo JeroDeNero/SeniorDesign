@@ -11,15 +11,15 @@ export interface Run {
   Longi?: number;
   image?: HTMLImageElement;
   Tagged?: number;
-  tag?: Tag[];
+  tags?: Tag[];
 }
 
 export interface Tag {
   Id: number;
+  Position: number;
   Lat: number;
   Longi: number;
-  image?: HTMLImageElement;
-  timeStamp?: number;
+  VideoTime?: number;
 }
 
 export interface numHash {

@@ -7,25 +7,25 @@ import { Run } from './interfaces';
 export class SortService {
   constructor() {}
 
-  sortString(list: any[][] | any[], item, desc: boolean) {
+  sortString(list: any[][] | any[], item, asc: boolean) {
     const lambda = (element: Run, element2: Run) => {
       const target = {
         a: (element[item] || '').toUpperCase(),
         b: (element2[item] || '').toUpperCase(),
       };
-      return this.compare(this.valueSwap(target, desc));
+      return this.compare(this.valueSwap(target, asc));
     };
 
     list[0].isArray ? this.apply2d(list, lambda) : this.apply1d(list, lambda);
   }
 
-  sortNoneString(list: any[][] | any[], item, desc: boolean) {
+  sortNoneString(list: any[][] | any[], item, asc: boolean) {
     const lambda = (element: any, element2: any) => {
       const target = {
         a: element[item] || '',
         b: element2[item] || '',
       };
-      return this.compare(this.valueSwap(target, desc));
+      return this.compare(this.valueSwap(target, asc));
     };
 
     list[0].isArray ? this.apply2d(list, lambda) : this.apply1d(list, lambda);

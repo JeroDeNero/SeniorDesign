@@ -1,10 +1,54 @@
+import os
+import json
+
 from flask import Blueprint, jsonify, request
+from flask_cors import CORS
 
 from data_management.db import getDb
 from data_management.get import getVideo
+from data_management.streams import rebootStream
 from data_management.tempFileManger import moveFiles
 
 bp = Blueprint('save', __name__, url_prefix='/save')
+
+CORS(bp)
+
+
+@bp.route('/settings', methods=(['POST']))
+def settings():
+    """updates the settings in both the file and backend"""
+    data = request.json
+
+    wheelRadius = data['wheelRad']
+    mainCam = data['mainCamFPS']
+    secondaryCam = data['backCamFPS']
+
+    if 'WHEEL_RADIUS' not in os.environ is None:
+        os.environ['WHEEL_RADIUS'] = '6'
+    elif (wheelRadius and wheelRadius != os.environ.get('WHEEL_RADIUS')):
+        os.environ.pop('WHEEL_RADIUS')
+        os.environ['WHEEL_RADIUS'] = str(wheelRadius)
+
+    if 'MAIN_FPS' not in os.environ:
+        os.environ['MAIN_FPS'] = '20'
+    elif (mainCam and mainCam != os.environ.get('MAIN_FPS')):
+        os.environ.pop('MAIN_FPS')
+        os.environ['MAIN_FPS'] = str(mainCam)
+
+    if "SECONDARY_FPS" not in os.environ:
+        os.environ['SECONDARY_FPS'] = '20'
+    elif (secondaryCam and secondaryCam != os.environ.get('SECONDARY_FPS')):
+        os.environ.pop('SECONDARY_FPS')
+        os.environ['SECONDARY_FPS'] = str(secondaryCam)
+
+    with open("data_management/../.env", "w") as f:
+        f.write("MAIN_FPS={}\n".format(os.environ['MAIN_FPS']))
+        f.write("SECONDARY_FPS={}\n".format(os.environ['SECONDARY_FPS']))
+        f.write("WHEEL_RADIUS={}\n".format(os.environ['WHEEL_RADIUS']))
+
+    rebootStream()
+
+    return jsonify({})
 
 
 @bp.route('/newRun', methods=(['POST']))
@@ -22,8 +66,11 @@ def newRun():
     direction = userInput['Direction']
     lat = userInput['Lat']
     longi = userInput['Longi']
-    tags = userInput['Tags']
+    tags = userInput['tags']
     error = None
+
+    print(type(tags))
+    print(tags[0])
 
     if not pipeID:
         error = 'PipeID is required.'
@@ -48,20 +95,34 @@ def newRun():
         checker.close()
 
         query = ("INSERT INTO Video (Name, PipeID, DriverName, DateTaken, Tagged, Direction) VALUES"
-                 "('{}', '{}', '{}', NOW(), {}, {})".format(
+                 "('{}', '{}', '{}', NOW(), {}, '{}')".format(
                      name, pipeID, driverName, tagged, direction))
         videoID = sendCommand(db, query)
-        print(videoID)
         videoData = getVideo(db, videoID)
 
-        moveFiles(videoData.get('PipeID'), str(videoData.get('DateTaken')).replace(' ', '_'))
+        for tag in tags:
+            print(type(tag))
+            query = ("INSERT INTO TaggedLocs (Position, Lat, Longi, VideoTime)"
+                     "VALUES ({}, {}, {}, {})".format(
+                         tag["Position"], tag["Lat"], tag["Longi"], tag["VideoTime"]))
+            print(query)
+            tagID = sendCommand(db, query)
 
-        #add tags now
+            query = ("INSERT INTO VideoToTags (VideoID, TagID)"
+                     "VALUES ({}, {})".format(
+                         videoID, tagID))
+            print(query)
+            sendCommand(db, query)
+
+        moveFiles(videoData.get('PipeID'), str(
+            videoData.get('DateTaken')).replace(' ', '_'))
+
+        # add tags now
 
     return jsonify({})
 
 
-@bp.route('/editRun', methods=(['POST']))
+@ bp.route('/editRun', methods=(['POST']))
 def editRun():
     """edits a runs information"""
     db = getDb()
@@ -81,11 +142,11 @@ def updateVideo(db, targ, name, driverName, tagged):
     sendCommand(db, query)
 
 
-def updatePipe(db, targ, newName, lat, long, dir):
+def updatePipe(db, targ, newName, lat, long):
     """updates the information in the pipe table"""
     query = (" UPDATE Pipe SET "
-             "Id = '{}', Lat = {}, Longi = {}, Direction = '{}' "
-             "WHERE Id = '{}' ".format(newName, lat, long, dir, targ))
+             "Id = '{}', Lat = {}, Longi = {} "
+             "WHERE Id = '{}' ".format(newName, lat, long, targ))
 
     sendCommand(db, query)
 
@@ -109,5 +170,5 @@ def sendCommand(db, query):
     db.commit()
     update.close()
 
-    #value is the value of the most recent created ID
+    # value is the value of the most recent created ID
     return value

@@ -71,7 +71,8 @@
             "production": {
               "browserTarget": "site:build:production"
             }
-          }
+          },
+          "host": "0.0.0.0"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
@@ -127,6 +128,6 @@
   },
   "defaultProject": "site",
   "cli": {
-    "analytics": "f5b9d1f0-fdee-4e9b-bdef-4b6a3dd947f7"
+    "analytics": "ea3943a1-1d14-4781-9cd7-02a14bac5950"
   }
 }
