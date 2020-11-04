@@ -105,7 +105,12 @@
       </svg>
     </div>
     <div class="col">
-      <button class="action" (mousedown)="onBinClick()"></button>
+      <button
+        class="action"
+        (mousedown)="onBinClick('True')"
+        (mouseup)="onClickR('False')"
+        (mouseleave)="onClickR('False')"
+      ></button>
     </div>
     <div class="col">
       <svg width="90" height="90" class="right">
