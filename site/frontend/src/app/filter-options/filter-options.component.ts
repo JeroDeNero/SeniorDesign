@@ -26,13 +26,6 @@ export class FilterOptionsComponent implements OnInit {
     named,
     unamed,
     problems,
-    problemsL,
-    problemsM,
-    problemsH,
-    longitude,
-    latitude,
-    raduis,
-    quickLoc,
     datef,
     dateExtra,
     datet,
@@ -43,6 +36,10 @@ export class FilterOptionsComponent implements OnInit {
     this.filterService.showNamed(!named);
     this.filterService.showUnamed(!unamed);
 
+    const problemsL = false;
+    const problemsM = false;
+    const problemsH = false;
+
     if (problems || problemsL || problemsM || problemsH) {
       this.filterService.showProblems(
         problems,
@@ -51,10 +48,10 @@ export class FilterOptionsComponent implements OnInit {
         problemsH
       );
     }
-
+    /*
     if (longitude != 0 || latitude != 0 || raduis != 0) {
       this.filterService.showArea(longitude, latitude, raduis);
-    }
+    }*/
 
     if (datef) {
       if (dateExtra) {

@@ -29,7 +29,7 @@
   </div>
   <br />
   <br />
-  <div class="filter">
+  <!--<div class="filter">
     <input #problemsH class="checks" type="checkbox" value="false" /> Show
     Severe Problems
   </div>
@@ -91,7 +91,7 @@
     Location
   </div>
   <br />
-  <br />
+  <br /> -->
   <div class="horLine"></div>
   <br />
   <div class="filter"><input #datef class="date" type="date" /> Date Taken</div>
@@ -110,11 +110,7 @@
   <div class="horLine"></div>
   <br />
   <div class="filter">
-    <select #operator>
-      <option value=""></option>
-      <option value="Memorial Park">Memorial Park</option>
-      <option value="fountain">Foutain</option>
-    </select>
+    <input #operator class="" type="text" />
     Operator
   </div>
   <br />
@@ -126,13 +122,6 @@
         named.checked,
         unamed.checked,
         problems.checked,
-        problemsL.checked,
-        problemsM.checked,
-        problemsH.checked,
-        longitude.checked,
-        latitude.value,
-        raduis.value,
-        quickLoc.value,
         datef.value,
         dateExtra.checked,
         datet.value,
@@ -146,3 +135,13 @@
   <br />
   <div class="horLine"></div>
 </div>
+
+<!--
+        problemsL.checked,
+        problemsM.checked,
+        problemsH.checked,
+        longitude.checked,
+        latitude.value,
+        raduis.value,
+        quickLoc.value,
+-->
