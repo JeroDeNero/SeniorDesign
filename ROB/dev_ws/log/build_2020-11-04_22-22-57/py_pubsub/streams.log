@@ -1,0 +1,22 @@
+[1.083s] Invoking command in '/home/rob/SeniorDesign/ROB/dev_ws/src/py_pubsub': PYTHONPATH=/home/rob/SeniorDesign/ROB/dev_ws/install/py_pubsub/lib/python3.6/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/py_pubsub build --build-base /home/rob/SeniorDesign/ROB/dev_ws/build/py_pubsub/build install --prefix /home/rob/SeniorDesign/ROB/dev_ws/install/py_pubsub --record /home/rob/SeniorDesign/ROB/dev_ws/build/py_pubsub/install.log --single-version-externally-managed
+[1.501s] running egg_info
+[1.501s] writing ../../build/py_pubsub/py_pubsub.egg-info/PKG-INFO
+[1.501s] writing dependency_links to ../../build/py_pubsub/py_pubsub.egg-info/dependency_links.txt
+[1.502s] writing entry points to ../../build/py_pubsub/py_pubsub.egg-info/entry_points.txt
+[1.502s] writing requirements to ../../build/py_pubsub/py_pubsub.egg-info/requires.txt
+[1.502s] writing top-level names to ../../build/py_pubsub/py_pubsub.egg-info/top_level.txt
+[1.548s] reading manifest file '../../build/py_pubsub/py_pubsub.egg-info/SOURCES.txt'
+[1.550s] writing manifest file '../../build/py_pubsub/py_pubsub.egg-info/SOURCES.txt'
+[1.550s] running build
+[1.550s] running build_py
+[1.550s] running install
+[1.550s] running install_lib
+[1.554s] running install_data
+[1.554s] running install_egg_info
+[1.559s] removing '/home/rob/SeniorDesign/ROB/dev_ws/install/py_pubsub/lib/python3.6/site-packages/py_pubsub-0.0.0-py3.6.egg-info' (and everything under it)
+[1.559s] Copying ../../build/py_pubsub/py_pubsub.egg-info to /home/rob/SeniorDesign/ROB/dev_ws/install/py_pubsub/lib/python3.6/site-packages/py_pubsub-0.0.0-py3.6.egg-info
+[1.560s] running install_scripts
+[1.588s] Installing listener script to /home/rob/SeniorDesign/ROB/dev_ws/install/py_pubsub/lib/py_pubsub
+[1.589s] Installing talker script to /home/rob/SeniorDesign/ROB/dev_ws/install/py_pubsub/lib/py_pubsub
+[1.589s] writing list of installed files to '/home/rob/SeniorDesign/ROB/dev_ws/build/py_pubsub/install.log'
+[1.639s] Invoked command in '/home/rob/SeniorDesign/ROB/dev_ws/src/py_pubsub' returned '0': PYTHONPATH=/home/rob/SeniorDesign/ROB/dev_ws/install/py_pubsub/lib/python3.6/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/py_pubsub build --build-base /home/rob/SeniorDesign/ROB/dev_ws/build/py_pubsub/build install --prefix /home/rob/SeniorDesign/ROB/dev_ws/install/py_pubsub --record /home/rob/SeniorDesign/ROB/dev_ws/build/py_pubsub/install.log --single-version-externally-managed
