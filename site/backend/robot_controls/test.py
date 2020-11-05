@@ -84,11 +84,11 @@ servo_max = 10000
 # pull the values from the board output for SCL and SDA and plug in
 
 pwm1 = Adafruit_PCA9685.PCA9685(address=0x41, busnum=1)
-pwm2 = Adafruit_PCA9685.PCA9685(address=0x40, busnum=1)
+#pwm2 = Adafruit_PCA9685.PCA9685(address=0x40, busnum=1)
 
 time.sleep(3)
 pwm.set_pwm_freq(1600)
-pwm2.set_pwm_freq(60)
+#pwm2.set_pwm_freq(60)
 
 servosRest = 303
 
@@ -187,8 +187,8 @@ try:
 #
         print('Power to Max')
 
-        pwm2.set_pwm(0, 0, servosRest)
-        pwm2.set_pwm(1, 0, topServoMax)
+        #pwm2.set_pwm(0, 0, servosRest)
+        #pwm2.set_pwm(1, 0, topServoMax)
 
         pwm.set_pwm(0, 4096, 0)
         pwm.set_pwm(1, 4096, 0)
@@ -218,8 +218,8 @@ try:
         print('y2 = ' + str((yCount2 / 1440) / end))
         print('Stopping')
 
-        pwm2.set_pwm(0, 0, servosRest)
-        pwm2.set_pwm(1, 0, servosRest)
+        #pwm2.set_pwm(0, 0, servosRest)
+        #pwm2.set_pwm(1, 0, servosRest)
 
         pwm.set_pwm(0, 0, 0)
         pwm.set_pwm(1, 0, 0)
