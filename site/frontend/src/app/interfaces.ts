@@ -25,7 +25,3 @@ export interface Tag {
 export interface numHash {
   [index: number]: boolean;
 }
-
-export interface Ihash {
-  [key: string]: number;
-}

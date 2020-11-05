@@ -44,6 +44,7 @@ def create_app(test_config=None):
     from . import delete
     from . import get
     from . import streams
+    from . import commands
     from . import export
 
     app.register_blueprint(save.bp)

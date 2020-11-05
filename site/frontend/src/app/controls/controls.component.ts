@@ -1,9 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { Ihash } from '../interfaces';
 import { Socket } from 'ngx-socket-io';
 import { StreamService } from '../stream.service';
 import { Controller } from '../classes';
-import { emit } from 'process';
 
 @Component({
   selector: 'app-controls',
@@ -11,28 +9,27 @@ import { emit } from 'process';
   styleUrls: ['./controls.component.css'],
 })
 export class ControlsComponent implements OnInit {
-  private lastPressed: String = '';
-
   @HostListener('document:keydown', ['$event'])
   handleKeyboardPress(event: KeyboardEvent) {
-    console.log(event);
     if (!event.repeat) {
-      if (event.key !== this.lastPressed) {
-        this.lastPressed = event.key;
-
+      const action: String = this.keyboardEnum[event.key];
+      if (action && !this.commandState.has(action)) {
         try {
-          const action: String = this.keyboardEnum[event.key];
-
-          if (event.key.includes('arrow')) {
+          this.commandState.set(action, true);
+          if (action.includes('cam')) {
             this.onCamClickD(action);
-          } else if (action.includes('speed')) {
-            //call speed function
+          } else if (action === 'speedUp') {
+            this.slider += 5;
+            this.socketEmit('speed');
+          } else if (action === 'speedDown') {
+            this.slider -= 5;
+            this.socketEmit('speed');
           } else if (action === 'binary') {
             this.onBinClick('True');
-          } else if (action === ' capture') {
+          } else if (action === 'capture') {
             this.caputerImage();
-          } else if (action) {
-            this.onCamClickD(action);
+          } else {
+            this.onClickD(action);
           }
         } catch {
           console.log("doesn't exist");
@@ -45,19 +42,16 @@ export class ControlsComponent implements OnInit {
   handleKeyboardlift(event: KeyboardEvent) {
     try {
       const action: String = this.keyboardEnum[event.key];
+      this.commandState.delete(action);
 
-      if (event.key.includes('arrow')) {
+      if (action.includes('cam')) {
         this.onCamClickR(action);
-      } else if (action === 'speedUp') {
-        this.slider += 5;
-        this.socketEmit('speed');
-      } else if (action === 'speedDown') {
-        this.slider -= 5;
-        this.socketEmit('speed');
       } else if (action === 'binary') {
         this.onBinClick('False');
+      } else if (action.includes('speed') || action === 'capture') {
+        return;
       } else if (action) {
-        this.onCamClickR(action);
+        this.onClickR(action);
       }
     } catch {
       console.log("doesn't exist");
@@ -83,8 +77,7 @@ export class ControlsComponent implements OnInit {
     console.log('Gamepad disconnected');
   }
 
-  movementState: Ihash;
-  camState: Ihash;
+  commandState = new Map();
 
   gamepadInterval;
   intervalRunning: boolean = false;
@@ -99,64 +92,47 @@ export class ControlsComponent implements OnInit {
     // get speed from python
   }
 
-  setMovementStates() {
-    this.movementState = {
-      forward: 0,
-      backward: 0,
-      left: 0,
-      right: 0,
-    };
+  setSingleMovement(target: String, value: boolean) {
+    this.commandState.set(target, value);
   }
 
   onClickD(button) {
-    this.setMovementStates;
-    this.movementState[button] = this.slider;
-
     if (button === 'left') {
-      this.socketEmit('movement', 'turn', this.slider * -1);
+      this.socketEmit('movement', 'turn', (this.slider / 100) * -1);
     } else if (button === 'right') {
-      this.socketEmit('movement', 'turn', this.slider);
+      this.socketEmit('movement', 'turn', this.slider / 100);
     } else if (button === 'back') {
-      this.socketEmit('movement', 'straight', this.slider * -1);
+      this.socketEmit('movement', 'straight', (this.slider / 100) * -1);
     } else {
-      this.socketEmit('movement', 'straight', this.slider);
+      this.socketEmit('movement', 'straight', this.slider / 100);
     }
   }
 
   onClickR(button) {
-    if (!this.movementState[button]) {
-      this.movementState[button] = 0;
-
-      if (button === 'left' || button === 'right') {
-        this.socketEmit('movement', 'turn', 0);
-      } else {
-        this.socketEmit('movement', 'straight', 0);
-      }
+    if (button === 'camLeft' || button === 'camRight') {
+      this.socketEmit('movement', 'turn', 0);
+    } else {
+      this.socketEmit('movement', 'straight', 0);
     }
   }
 
   onCamClickD(button) {
-    if (button === 'left') {
-      this.socketEmit('movement', 'turn', this.slider * -1);
-    } else if (button === 'right') {
-      this.socketEmit('movement', 'turn', this.slider);
-    }
-    if (button === 'down') {
-      this.socketEmit('movement', 'straight', this.slider * -1);
+    if (button === 'camLeft') {
+      this.socketEmit('camera', 'x', (this.slider / 100) * -1);
+    } else if (button === 'camRight') {
+      this.socketEmit('camera', 'x', this.slider / 100);
+    } else if (button === 'camDown') {
+      this.socketEmit('camera', 'y', (this.slider / 100) * -1);
     } else {
-      this.socketEmit('movement', 'straight', this.slider);
+      this.socketEmit('camera', 'y', this.slider / 100);
     }
   }
 
   onCamClickR(button) {
-    if (!this.movementState[button]) {
-      this.movementState[button] = 0;
-
-      if (button === 'left' || button === 'right') {
-        this.socketEmit('camera', 'x', 0);
-      } else {
-        this.socketEmit('camera', 'y', 0);
-      }
+    if (button === 'camLeft' || button === 'camRight') {
+      this.socketEmit('camera', 'x', 0);
+    } else {
+      this.socketEmit('camera', 'y', 0);
     }
   }
 
@@ -169,17 +145,22 @@ export class ControlsComponent implements OnInit {
   }
 
   addGamepad(gamepad: Gamepad) {
-    console.log(gamepad);
+    console.log('Gamepad connected');
     try {
       this.gamepads[gamepad.index] = gamepad;
+      this.controllers[gamepad.index] = new Controller(gamepad);
+      this.prevControllers[gamepad.index] = new Controller(gamepad);
     } catch {
       this.gamepads.push(gamepad);
+      this.controllers.push(new Controller(gamepad));
+      this.prevControllers.push(new Controller(gamepad));
     }
   }
 
   removeGamepad(gamepad: Gamepad) {
     this.gamepads.splice(gamepad.index, 1, null);
-    console.log(this.gamepads);
+    this.controllers.splice(gamepad.index, 1, null);
+    this.prevControllers.splice(gamepad.index, 1, null);
   }
 
   updateStatus() {
@@ -190,10 +171,10 @@ export class ControlsComponent implements OnInit {
     this.gamepads.forEach((gamepad: Gamepad, index) => {
       if (!this.controllers[index]) {
         this.controllers.push(new Controller(gamepad));
+        return;
       } else if (gamepad.timestamp === this.controllers[index].timestamp) {
         return;
       } else {
-        this.prevControllers[index] = this.controllers[index];
         this.controllers[index].updateController(gamepad);
       }
 
@@ -204,6 +185,7 @@ export class ControlsComponent implements OnInit {
         ) {
           this.socketEmit('stop');
         }
+        this.prevControllers[index].updateController(gamepad);
         return;
       }
 
@@ -239,21 +221,30 @@ export class ControlsComponent implements OnInit {
       if (
         this.controllers[index].axes[0] !==
           this.prevControllers[index].axes[0] &&
-        this.controllers[index].axes[0] &&
-        this.controllers[index].axes[0] >= this.controllers[index].axes[1]
+        Math.abs(this.controllers[index].axes[0]) >
+          Math.abs(this.controllers[index].axes[1])
       ) {
         this.socketEmit('movement', 'turn', this.controllers[index].axes[0]);
       } else if (
         this.controllers[index].axes[1] !==
           this.prevControllers[index].axes[1] &&
-        this.controllers[index].axes[1] &&
-        this.controllers[index].axes[1] >= this.controllers[index].axes[0]
+        Math.abs(this.controllers[index].axes[1]) >
+          Math.abs(this.controllers[index].axes[0])
       ) {
         this.socketEmit(
           'movement',
           'straight',
-          this.controllers[index].axes[1]
+          this.controllers[index].axes[1] * -1
         );
+      } else if (
+        (this.controllers[index].axes[1] !==
+          this.prevControllers[index].axes[1] ||
+          this.controllers[index].axes[0] !==
+            this.prevControllers[index].axes[0]) &&
+        this.controllers[index].axes[0] === 0 &&
+        this.controllers[index].axes[1] === 0
+      ) {
+        this.socketEmit('stop');
       }
 
       if (
@@ -269,8 +260,9 @@ export class ControlsComponent implements OnInit {
           this.prevControllers[index].axes[3] &&
         this.controllers[index].axes[3]
       ) {
-        this.socketEmit('camera', 'y', this.controllers[index].axes[2]);
+        this.socketEmit('camera', 'y', this.controllers[index].axes[2] * -1);
       }
+      this.prevControllers[index].updateController(gamepad);
     });
   }
 
@@ -296,13 +288,16 @@ export class ControlsComponent implements OnInit {
     } else if (channel === 'binary') {
       this.socket.emit(channel, command);
     } else if (channel === 'speed') {
-      this.socket.emit(channel, this.slider);
+      this.socket.emit(channel, this.slider / 100);
     } else if (command) {
       const speed = args || args <= 0 ? args : 1;
-      this.socket.emit(channel, { command: command, speed: speed });
+      this.socket.emit(channel, command, speed);
     } else {
       this.socket.emit(command);
     }
+  }
+  refocus() {
+    this.streamService.refocus();
   }
 
   private keyboardEnum = Object.freeze({
@@ -310,11 +305,11 @@ export class ControlsComponent implements OnInit {
     a: 'left',
     d: 'right',
     s: 'back',
-    ArrowUp: 'Up',
-    ArrowLeft: 'left',
-    ArrowRight: 'right',
-    ArrowDown: 'down',
-    q: 'binaryAct',
+    ArrowUp: 'camUp',
+    ArrowLeft: 'camLeft',
+    ArrowRight: 'camRight',
+    ArrowDown: 'camDown',
+    q: 'binary',
     e: 'capture',
     r: 'speedUp',
     f: 'speedDown',
