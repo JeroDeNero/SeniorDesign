@@ -4,7 +4,7 @@
 import os
 import glob
 
-TARGETPATH = "data_management/../../frontend/src/assets/Data"
+TARGETPATH = "data_management/../../frontend/dist/site/assets/Data"
 
 
 def removeRun(pipeID, date):
