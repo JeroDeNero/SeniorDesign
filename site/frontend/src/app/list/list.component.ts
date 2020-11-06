@@ -69,6 +69,11 @@ export class ListComponent implements OnInit {
     window.open(`http://${API_URL}/export/folder/${pipeID}!${strDate}`);
   }
 
+  getImage(date, pipeID, targ) {
+    const strDate = this.dateHandlerService.generateDate(date);
+    window.open(`http://${API_URL}/export/iamge/${pipeID}!${strDate}!${targ}`);
+  }
+
   exportShape(date, lat, long) {
     const strDate = this.dateHandlerService.generateDate(date);
     window.open(`http://${API_URL}/export/tag/${strDate}b${long}b${lat}b`);

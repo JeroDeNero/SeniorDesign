@@ -60,7 +60,7 @@ def exportTag(target):
     try:
         return send_from_directory("temp/", filename="coord.shp", as_attachment=True)
     except:
-        print("unable to send file")
+        print("unable to send .shp file")
         return ("unable to send file")
 
     return""
@@ -84,11 +84,40 @@ def exportFolder(path):
     directory = "data_management/../../frontend/dist/site/assets/Data/{}/".format(
         pipeID)
 
-    shutil.make_archive("data_management/temp/{}".format(fileName), 'zip',
-                        directory, date)
+    try:
+        shutil.make_archive("data_management/temp/{}".format(fileName), 'zip',
+                            directory, date)
+    except:
+        print("Failed to make zip")
+        return ("unable to make file")
 
     try:
         return send_from_directory("temp/", filename='{}.zip'.format(fileName), as_attachment=True)
     except:
-        print("failed")
+        print("Failed to send zip")
+        return ("unable to send file")
+
+
+@ bp.route('/image/<path>')
+def exportImage(path):
+    global TMPLOC
+
+    # [0] = pipe ID, [1] = date/time taken, [2] tag position
+    parsedTarget = path.split('!')
+
+    pipeID = parsedTarget[0]
+    date = parsedTarget[1]
+    tagNum = parsedTarget[2]
+
+    directory = "../../frontend/dist/site/assets/Data/{}/{}/tags/".format(
+        pipeID, date)
+    target = 'tag' + tagNum + '.jpg'
+
+    print(directory)
+    print(target)
+
+    try:
+        return send_from_directory(directory, filename=target, as_attachment=True)
+    except:
+        print("failed to send Image")
         return ("unable to send file")
