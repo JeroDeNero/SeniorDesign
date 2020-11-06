@@ -131,7 +131,7 @@ export class RunService {
       .pipe(
         tap(() => {
           console.log('added run');
-          this.allRunsData[type].push(runToAdd);
+          this.allRunsData[type].unshift(runToAdd);
         }),
         catchError(this.handleError<Run>())
       );
