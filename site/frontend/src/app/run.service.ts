@@ -84,39 +84,6 @@ export class RunService {
     }
   }
 
-  getShapeFile(date, lat, long): Observable<any> {
-    const strDate = this.dateHandlerService.generateDate(date);
-
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/x-qgis',
-    });
-    const options = { headers: headers };
-
-    return this.http
-      .get<any>(
-        `http://${API_URL}/export/tag/b${strDate}b${long}b${lat}b`,
-        options
-      )
-      .pipe(
-        tap((_) => console.log('fetched shape file')),
-        catchError(this.handleError<Run>(null))
-      );
-  }
-
-  getFolder(dir) {
-    console.log(dir);
-    return this.http
-      .post<any>(
-        `http://${API_URL}/export/folder`,
-        { dir: dir },
-        this.httpOptions
-      )
-      .pipe(
-        tap((_) => console.log('fetched shape file')),
-        catchError(this.handleError<Run>(null))
-      );
-  }
-
   getEditRun(): Observable<Run> {
     return this.editRun.asObservable();
   }

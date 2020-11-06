@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { DateHandlerService } from '../date-handler.service';
+import { API_URL } from '../env';
 import { Run, numHash } from '../interfaces';
 import { RunService } from '../run.service';
 import { ToggleService } from '../toggle.service';
@@ -17,7 +18,7 @@ export class ListComponent implements OnInit {
   constructor(
     private runService: RunService,
     private toggleService: ToggleService,
-    private datahandlerService: DateHandlerService
+    private dateHandlerService: DateHandlerService
   ) {}
 
   ngOnInit(): void {
@@ -57,20 +58,19 @@ export class ListComponent implements OnInit {
   }
 
   setVideo(pipeID, date) {
-    const video = `assets/Data/${pipeID}/${this.datahandlerService.generateDate(
+    const video = `assets/Data/${pipeID}/${this.dateHandlerService.generateDate(
       date
     )}/outputtedVideo.mp4`;
     this.toggleService.setVideo(video);
   }
 
   getFile(date, pipeID) {
-    const dir = `assets/Data/${pipeID}/${this.datahandlerService.generateDate(
-      date
-    )}/`;
-    this.runService.getFolder(dir);
+    const strDate = this.dateHandlerService.generateDate(date);
+    window.open(`http://${API_URL}/export/folder/${pipeID}!${strDate}`);
   }
 
   exportShape(date, lat, long) {
-    this.runService.getShapeFile(date, lat, long).subscribe();
+    const strDate = this.dateHandlerService.generateDate(date);
+    window.open(`http://${API_URL}/export/tag/${strDate}b${long}b${lat}b`);
   }
 }
