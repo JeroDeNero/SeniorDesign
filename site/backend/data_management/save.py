@@ -133,6 +133,21 @@ def editRun():
     return jsonify({})
 
 
+@ bp.route('/editPin', methods=(['POST']))
+def editPin():
+    """edits a runs tagged status"""
+    db = getDb()
+    userInput = request.json
+
+    query = ("UPDATE Video SET "
+             "Tagged = {} "
+             "WHERE Id = {} ".format(userInput["tagged"], userInput["id"]))
+
+    sendCommand(db, query)
+
+    return jsonify({})
+
+
 def updateVideo(db, targ, name, driverName, tagged):
     """updates information in the Video table"""
     query = ("UPDATE Video SET "

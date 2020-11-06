@@ -31,16 +31,30 @@
           </div>
         </div>
       </div>
-      <button class="download" (click)="getFile(run.DateTaken, run.PipeID)">
-        Download File
-      </button>
-      <button
-        class="dropdown"
-        *ngIf="run.tags | getNumOfTags"
-        (click)="toggleTag(run.Id)"
-      >
-        v
-      </button>
+      <div class="flex-grid">
+        <div class="colSmall">
+          <input
+            class="pinned"
+            type="checkbox"
+            [checked]="run.Tagged > 0"
+            (change)="changePrio(run)"
+          />
+        </div>
+        <div class="colLong">
+          <button class="download" (click)="getFile(run.DateTaken, run.PipeID)">
+            Download File
+          </button>
+        </div>
+        <div class="colSmall">
+          <button
+            class="dropdown"
+            *ngIf="run.tags | getNumOfTags"
+            (click)="toggleTag(run.Id)"
+          >
+            v
+          </button>
+        </div>
+      </div>
       <div class="taggedBox" *ngIf="(run.tags | getNumOfTags) && run.ShowTag">
         <div class="horLine"></div>
         <div *ngFor="let tag of run.tags">

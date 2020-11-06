@@ -58,15 +58,29 @@ export class ListComponent implements OnInit {
 
     this.runService.deleteTag(target).subscribe();
 
-    console.log(runPos);
-    console.log(this.getTagIndex(runPos, target));
-
     this.runs[runPos].tags.splice(this.getTagIndex(runPos, target), 1);
   }
 
   getTagIndex(runID, target) {
     const lambda = (element: Tag) => element.Id === target;
     return this.runs[runID].tags.findIndex(lambda);
+  }
+
+  changePrio(target: Run) {
+    if (!target.Tagged) {
+      target.Tagged = 1;
+      this.runService.allRunsData[0].unshift(target);
+    } else {
+      target.Tagged = 0;
+      if (target.Name) {
+        this.runService.allRunsData[1].unshift(target);
+      } else this.runService.allRunsData[2].unshift(target);
+    }
+
+    const index = this.getRunIndex(target);
+    this.runs.splice(this.getRunIndex(target), 1);
+
+    this.runService.changePin(target).subscribe();
   }
 
   setVideo(pipeID, date) {

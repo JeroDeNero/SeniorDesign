@@ -149,7 +149,22 @@ export class RunService {
         this.httpOptions
       )
       .pipe(
-        tap((_) => console.log('updated run id =${run.Id}')),
+        tap((_) =>
+          console.log(`updated run id =${this.editRun.getValue().Id}`)
+        ),
+        catchError(this.handleError<any>())
+      );
+  }
+
+  changePin(run: Run): Observable<any> {
+    return this.http
+      .post(
+        `http://${API_URL}/save/editPin`,
+        { id: run.Id, tagged: run.Tagged },
+        this.httpOptions
+      )
+      .pipe(
+        tap((_) => console.log(`updated run id =${run.Id}`)),
         catchError(this.handleError<any>())
       );
   }
