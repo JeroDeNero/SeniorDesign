@@ -4,8 +4,7 @@
   <div class="horLine"></div>
   <br />
   <div class="filter">
-    <input #favorites class="checks" type="checkbox" value="false" /> Hide
-    Favorites
+    <input #pinned class="checks" type="checkbox" value="false" /> Hide Pinned
   </div>
   <br />
   <br />
@@ -118,7 +117,7 @@
   <button
     (click)="
       filter(
-        favorites.checked,
+        pinned.checked,
         named.checked,
         unamed.checked,
         problems.checked,

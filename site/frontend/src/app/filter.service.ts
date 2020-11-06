@@ -25,7 +25,7 @@ export class FilterService {
         run.ShowRun = true;
       });
     });
-    this.toggleService.setShowFavorites(true);
+    this.toggleService.setShowPinned(true);
     this.toggleService.setShowNamed(true);
     this.toggleService.setShowUnamed(true);
   }
@@ -42,8 +42,8 @@ export class FilterService {
     });
   }
 
-  showFavorites(value) {
-    this.toggleService.setShowFavorites(value);
+  showPinned(value) {
+    this.toggleService.setShowPinned(value);
   }
 
   showNamed(value) {

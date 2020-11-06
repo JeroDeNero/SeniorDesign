@@ -12,7 +12,7 @@ export class ToggleService {
 
   showSettings: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
-  showFavorites: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
+  showPinned: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
   showNamed: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
   showUnamed: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
 
@@ -103,12 +103,12 @@ export class ToggleService {
     return this.buttonOp.asObservable();
   }
 
-  setShowFavorites(value) {
-    this.showFavorites.next(value);
+  setShowPinned(value) {
+    this.showPinned.next(value);
   }
 
-  getShowFavorites() {
-    return this.showFavorites.asObservable();
+  getShowPinned() {
+    return this.showPinned.asObservable();
   }
 
   setShowNamed(value) {

@@ -21,18 +21,9 @@ export class FilterOptionsComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  filter(
-    favorites,
-    named,
-    unamed,
-    problems,
-    datef,
-    dateExtra,
-    datet,
-    operator
-  ) {
+  filter(pinned, named, unamed, problems, datef, dateExtra, datet, operator) {
     this.filterService.filtered = true;
-    this.filterService.showFavorites(!favorites);
+    this.filterService.showPinned(!pinned);
     this.filterService.showNamed(!named);
     this.filterService.showUnamed(!unamed);
 
