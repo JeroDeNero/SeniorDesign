@@ -56,10 +56,12 @@ Lat: {{ tag.Lat }}       Long: {{ tag.Longi }}</pre
             >
             <a
               class="view button"
-              (click)="exportShape(run.PipeID, run.DateTaken, tag.Position)"
+              (click)="getImage(run.PipeID, run.DateTaken, tag.Position)"
               >View</a
             >
-            <a class="delete button" (click)="deleteTag(tag.Id)">Delete</a>
+            <a class="delete button" (click)="deleteTag(run.Id, tag.Id)"
+              >Delete</a
+            >
           </div>
         </div>
       </div>

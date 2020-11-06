@@ -35,12 +35,12 @@ def run():
 def deleteTag():
     """Recieves a remove tag request"""
 
-    targetID = request.json["Id"]
-    date = request.json["date"]
-    position = request.json["position"]
+    data = request.json
+
+    tagID = data.get("Id")
 
     db = getDb()
-    deleteTagTask(db, request.json["Id"])
+    deleteTagTask(db, tagID)
     db.close()
 
     return jsonify({})

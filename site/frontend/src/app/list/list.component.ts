@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { DateHandlerService } from '../date-handler.service';
 import { API_URL } from '../env';
-import { Run, numHash } from '../interfaces';
+import { Run, numHash, Tag } from '../interfaces';
 import { RunService } from '../run.service';
 import { ToggleService } from '../toggle.service';
 
@@ -53,8 +53,20 @@ export class ListComponent implements OnInit {
     return this.runs.findIndex(lambda);
   }
 
-  deleteTag(target) {
+  deleteTag(runId, target) {
+    const runPos = this.getRunIndex(runId);
+
     this.runService.deleteTag(target).subscribe();
+
+    console.log(runPos);
+    console.log(this.getTagIndex(runPos, target));
+
+    this.runs[runPos].tags.splice(this.getTagIndex(runPos, target), 1);
+  }
+
+  getTagIndex(runID, target) {
+    const lambda = (element: Tag) => element.Id === target;
+    return this.runs[runID].tags.findIndex(lambda);
   }
 
   setVideo(pipeID, date) {
