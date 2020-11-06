@@ -1,0 +1,23 @@
+[0.913s] Invoking command in '/home/rob/SeniorDesign/ROB/dev_ws/src/teleop_twist_keyboard': PYTHONPATH=/home/rob/SeniorDesign/ROB/dev_ws/install/teleop_twist_keyboard/lib/python3.6/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/teleop_twist_keyboard build --build-base /home/rob/SeniorDesign/ROB/dev_ws/build/teleop_twist_keyboard/build install --prefix /home/rob/SeniorDesign/ROB/dev_ws/install/teleop_twist_keyboard --record /home/rob/SeniorDesign/ROB/dev_ws/build/teleop_twist_keyboard/install.log --single-version-externally-managed
+[1.307s] running egg_info
+[1.308s] writing ../../build/teleop_twist_keyboard/teleop_twist_keyboard.egg-info/PKG-INFO
+[1.308s] writing dependency_links to ../../build/teleop_twist_keyboard/teleop_twist_keyboard.egg-info/dependency_links.txt
+[1.308s] writing entry points to ../../build/teleop_twist_keyboard/teleop_twist_keyboard.egg-info/entry_points.txt
+[1.308s] writing requirements to ../../build/teleop_twist_keyboard/teleop_twist_keyboard.egg-info/requires.txt
+[1.309s] writing top-level names to ../../build/teleop_twist_keyboard/teleop_twist_keyboard.egg-info/top_level.txt
+[1.347s] reading manifest file '../../build/teleop_twist_keyboard/teleop_twist_keyboard.egg-info/SOURCES.txt'
+[1.348s] writing manifest file '../../build/teleop_twist_keyboard/teleop_twist_keyboard.egg-info/SOURCES.txt'
+[1.348s] running build
+[1.348s] running build_py
+[1.348s] running install
+[1.349s] running install_lib
+[1.352s] running install_data
+[1.352s] copying package.xml -> /home/rob/SeniorDesign/ROB/dev_ws/install/teleop_twist_keyboard/share/teleop_twist_keyboard
+[1.353s] running install_egg_info
+[1.357s] removing '/home/rob/SeniorDesign/ROB/dev_ws/install/teleop_twist_keyboard/lib/python3.6/site-packages/teleop_twist_keyboard-2.3.2-py3.6.egg-info' (and everything under it)
+[1.357s] Copying ../../build/teleop_twist_keyboard/teleop_twist_keyboard.egg-info to /home/rob/SeniorDesign/ROB/dev_ws/install/teleop_twist_keyboard/lib/python3.6/site-packages/teleop_twist_keyboard-2.3.2-py3.6.egg-info
+[1.358s] running install_scripts
+[1.387s] Installing keyboard_subscriber script to /home/rob/SeniorDesign/ROB/dev_ws/install/teleop_twist_keyboard/lib/teleop_twist_keyboard
+[1.387s] Installing teleop_twist_keyboard script to /home/rob/SeniorDesign/ROB/dev_ws/install/teleop_twist_keyboard/lib/teleop_twist_keyboard
+[1.387s] writing list of installed files to '/home/rob/SeniorDesign/ROB/dev_ws/build/teleop_twist_keyboard/install.log'
+[1.412s] Invoked command in '/home/rob/SeniorDesign/ROB/dev_ws/src/teleop_twist_keyboard' returned '0': PYTHONPATH=/home/rob/SeniorDesign/ROB/dev_ws/install/teleop_twist_keyboard/lib/python3.6/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/teleop_twist_keyboard build --build-base /home/rob/SeniorDesign/ROB/dev_ws/build/teleop_twist_keyboard/build install --prefix /home/rob/SeniorDesign/ROB/dev_ws/install/teleop_twist_keyboard --record /home/rob/SeniorDesign/ROB/dev_ws/build/teleop_twist_keyboard/install.log --single-version-externally-managed
