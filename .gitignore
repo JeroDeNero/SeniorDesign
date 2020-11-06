@@ -13,3 +13,4 @@ site/flask.sh
 site/frontend/**/**/env.ts
 site/frontend/**/*.env
 site/**/*.env
+.vscode/.ropeproject/config.py
