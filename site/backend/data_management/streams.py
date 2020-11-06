@@ -89,6 +89,9 @@ def emitCams():
     if (COUNT > 0 and not VIDEO[0]):
         VIDEO[0] = Video(0, 20)
 
+    if (COUNT > 0 and not VIDEO[0]):
+        VIDEO[0] = Video(0, 20)
+
     print(COUNT)
 
     if (COUNT > 0 and 0 not in VIDEO):

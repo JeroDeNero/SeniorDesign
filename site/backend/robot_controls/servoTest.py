@@ -29,20 +29,24 @@ while 0:
         kit.servo[1].angle=degree
 
     time.sleep(0.5)
+    p = range(180,0, -1)
+    sweep = range(180,0, -1)
     sweep = range(180,5, -1)
-    #sweep = range(180,0, -1)
+    
     for degree in sweep :
         kit.servo[0].angle=degree
         kit.servo[1].angle=degree
 
+    sweep = range(0,180)
     sweep = range(5,180)
-    #sweep = range(0,180)
+
     for degree in sweep :
         kit.servo[0].angle=degree
         kit.servo[1].angle=180 - degree
 
+    sweep = range(0,180)
     sweep = range(5,180)
-    #sweep = range(0,180)
+
     for degree in sweep :
         kit.servo[0].angle=180 - degree
         kit.servo[1].angle=degree
