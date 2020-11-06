@@ -1,0 +1,226 @@
+[1.976s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'build']
+[1.977s] DEBUG:colcon:Parsed command line arguments: Namespace(ament_cmake_args=None, base_paths=['.'], build_base='build', catkin_cmake_args=None, catkin_skip_building_tests=False, cmake_args=None, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, cmake_target=None, cmake_target_skip_unavailable=False, continue_on_error=False, event_handlers=None, executor='parallel', ignore_user_meta=False, install_base='install', log_base=None, log_level=None, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0x7f9eb62a58>>, merge_install=False, metas=['./colcon.meta'], packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_end=None, packages_ignore=None, packages_ignore_regex=None, packages_select=None, packages_select_build_failed=False, packages_select_by_dep=None, packages_select_regex=None, packages_select_test_failures=False, packages_skip=None, packages_skip_build_finished=False, packages_skip_by_dep=None, packages_skip_regex=None, packages_skip_test_passed=False, packages_skip_up_to=None, packages_start=None, packages_up_to=None, packages_up_to_regex=None, parallel_workers=4, paths=None, symlink_install=False, test_result_base=None, verb_extension=<colcon_core.verb.build.BuildVerb object at 0x7f9eb62a58>, verb_name='build', verb_parser=<colcon_defaults.argument_parser.defaults.DefaultArgumentsDecorator object at 0x7f9eb62da0>)
+[2.066s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[2.067s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[2.067s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[2.067s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[2.068s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[2.069s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[2.070s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/home/sewerbot/SeniorDesign/ROB/dev_ws'
+[2.070s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[2.071s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[2.072s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[2.072s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[2.072s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[2.073s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[2.073s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[2.073s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[2.073s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[2.152s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['cmake', 'python']
+[2.152s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'cmake'
+[2.152s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python'
+[2.153s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['python_setup_py']
+[2.153s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python_setup_py'
+[2.154s] Level 1:colcon.colcon_core.package_identification:_identify(ROB) by extensions ['ignore', 'ignore_ament_install']
+[2.154s] Level 1:colcon.colcon_core.package_identification:_identify(ROB) by extension 'ignore'
+[2.155s] Level 1:colcon.colcon_core.package_identification:_identify(ROB) by extension 'ignore_ament_install'
+[2.155s] Level 1:colcon.colcon_core.package_identification:_identify(ROB) by extensions ['colcon_pkg']
+[2.155s] Level 1:colcon.colcon_core.package_identification:_identify(ROB) by extension 'colcon_pkg'
+[2.156s] Level 1:colcon.colcon_core.package_identification:_identify(ROB) by extensions ['colcon_meta']
+[2.156s] Level 1:colcon.colcon_core.package_identification:_identify(ROB) by extension 'colcon_meta'
+[2.156s] Level 1:colcon.colcon_core.package_identification:_identify(ROB) by extensions ['ros']
+[2.156s] Level 1:colcon.colcon_core.package_identification:_identify(ROB) by extension 'ros'
+[2.157s] Level 1:colcon.colcon_core.package_identification:_identify(ROB) by extensions ['cmake', 'python']
+[2.157s] Level 1:colcon.colcon_core.package_identification:_identify(ROB) by extension 'cmake'
+[2.158s] Level 1:colcon.colcon_core.package_identification:_identify(ROB) by extension 'python'
+[2.158s] Level 1:colcon.colcon_core.package_identification:_identify(ROB) by extensions ['python_setup_py']
+[2.158s] Level 1:colcon.colcon_core.package_identification:_identify(ROB) by extension 'python_setup_py'
+[2.159s] Level 1:colcon.colcon_core.package_identification:_identify(ROB/dev_ws) by extensions ['ignore', 'ignore_ament_install']
+[2.159s] Level 1:colcon.colcon_core.package_identification:_identify(ROB/dev_ws) by extension 'ignore'
+[2.160s] Level 1:colcon.colcon_core.package_identification:_identify(ROB/dev_ws) by extension 'ignore_ament_install'
+[2.160s] Level 1:colcon.colcon_core.package_identification:_identify(ROB/dev_ws) by extensions ['colcon_pkg']
+[2.160s] Level 1:colcon.colcon_core.package_identification:_identify(ROB/dev_ws) by extension 'colcon_pkg'
+[2.161s] Level 1:colcon.colcon_core.package_identification:_identify(ROB/dev_ws) by extensions ['colcon_meta']
+[2.161s] Level 1:colcon.colcon_core.package_identification:_identify(ROB/dev_ws) by extension 'colcon_meta'
+[2.161s] Level 1:colcon.colcon_core.package_identification:_identify(ROB/dev_ws) by extensions ['ros']
+[2.161s] Level 1:colcon.colcon_core.package_identification:_identify(ROB/dev_ws) by extension 'ros'
+[2.162s] Level 1:colcon.colcon_core.package_identification:_identify(ROB/dev_ws) by extensions ['cmake', 'python']
+[2.162s] Level 1:colcon.colcon_core.package_identification:_identify(ROB/dev_ws) by extension 'cmake'
+[2.163s] Level 1:colcon.colcon_core.package_identification:_identify(ROB/dev_ws) by extension 'python'
+[2.163s] Level 1:colcon.colcon_core.package_identification:_identify(ROB/dev_ws) by extensions ['python_setup_py']
+[2.163s] Level 1:colcon.colcon_core.package_identification:_identify(ROB/dev_ws) by extension 'python_setup_py'
+[2.164s] Level 1:colcon.colcon_core.package_identification:_identify(ROB/dev_ws/src) by extensions ['ignore', 'ignore_ament_install']
+[2.165s] Level 1:colcon.colcon_core.package_identification:_identify(ROB/dev_ws/src) by extension 'ignore'
+[2.165s] Level 1:colcon.colcon_core.package_identification:_identify(ROB/dev_ws/src) by extension 'ignore_ament_install'
+[2.165s] Level 1:colcon.colcon_core.package_identification:_identify(ROB/dev_ws/src) by extensions ['colcon_pkg']
+[2.166s] Level 1:colcon.colcon_core.package_identification:_identify(ROB/dev_ws/src) by extension 'colcon_pkg'
+[2.166s] Level 1:colcon.colcon_core.package_identification:_identify(ROB/dev_ws/src) by extensions ['colcon_meta']
+[2.166s] Level 1:colcon.colcon_core.package_identification:_identify(ROB/dev_ws/src) by extension 'colcon_meta'
+[2.166s] Level 1:colcon.colcon_core.package_identification:_identify(ROB/dev_ws/src) by extensions ['ros']
+[2.167s] Level 1:colcon.colcon_core.package_identification:_identify(ROB/dev_ws/src) by extension 'ros'
+[2.167s] Level 1:colcon.colcon_core.package_identification:_identify(ROB/dev_ws/src) by extensions ['cmake', 'python']
+[2.167s] Level 1:colcon.colcon_core.package_identification:_identify(ROB/dev_ws/src) by extension 'cmake'
+[2.168s] Level 1:colcon.colcon_core.package_identification:_identify(ROB/dev_ws/src) by extension 'python'
+[2.168s] Level 1:colcon.colcon_core.package_identification:_identify(ROB/dev_ws/src) by extensions ['python_setup_py']
+[2.168s] Level 1:colcon.colcon_core.package_identification:_identify(ROB/dev_ws/src) by extension 'python_setup_py'
+[2.169s] Level 1:colcon.colcon_core.package_identification:_identify(ROB/dev_ws/src/teleop_twist_keyboard) by extensions ['ignore', 'ignore_ament_install']
+[2.169s] Level 1:colcon.colcon_core.package_identification:_identify(ROB/dev_ws/src/teleop_twist_keyboard) by extension 'ignore'
+[2.170s] Level 1:colcon.colcon_core.package_identification:_identify(ROB/dev_ws/src/teleop_twist_keyboard) by extension 'ignore_ament_install'
+[2.170s] Level 1:colcon.colcon_core.package_identification:_identify(ROB/dev_ws/src/teleop_twist_keyboard) by extensions ['colcon_pkg']
+[2.170s] Level 1:colcon.colcon_core.package_identification:_identify(ROB/dev_ws/src/teleop_twist_keyboard) by extension 'colcon_pkg'
+[2.171s] Level 1:colcon.colcon_core.package_identification:_identify(ROB/dev_ws/src/teleop_twist_keyboard) by extensions ['colcon_meta']
+[2.171s] Level 1:colcon.colcon_core.package_identification:_identify(ROB/dev_ws/src/teleop_twist_keyboard) by extension 'colcon_meta'
+[2.171s] Level 1:colcon.colcon_core.package_identification:_identify(ROB/dev_ws/src/teleop_twist_keyboard) by extensions ['ros']
+[2.171s] Level 1:colcon.colcon_core.package_identification:_identify(ROB/dev_ws/src/teleop_twist_keyboard) by extension 'ros'
+[2.172s] Level 1:colcon.colcon_core.package_identification:_identify(ROB/dev_ws/src/teleop_twist_keyboard) by extensions ['cmake', 'python']
+[2.172s] Level 1:colcon.colcon_core.package_identification:_identify(ROB/dev_ws/src/teleop_twist_keyboard) by extension 'cmake'
+[2.173s] Level 1:colcon.colcon_core.package_identification:_identify(ROB/dev_ws/src/teleop_twist_keyboard) by extension 'python'
+[2.173s] Level 1:colcon.colcon_core.package_identification:_identify(ROB/dev_ws/src/teleop_twist_keyboard) by extensions ['python_setup_py']
+[2.173s] Level 1:colcon.colcon_core.package_identification:_identify(ROB/dev_ws/src/teleop_twist_keyboard) by extension 'python_setup_py'
+[2.174s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extensions ['ignore', 'ignore_ament_install']
+[2.174s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extension 'ignore'
+[2.175s] Level 1:colcon.colcon_core.package_identification:_identify(build) ignored
+[2.177s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extensions ['ignore', 'ignore_ament_install']
+[2.177s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extension 'ignore'
+[2.177s] Level 1:colcon.colcon_core.package_identification:_identify(install) ignored
+[2.178s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extensions ['ignore', 'ignore_ament_install']
+[2.179s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extension 'ignore'
+[2.179s] Level 1:colcon.colcon_core.package_identification:_identify(log) ignored
+[2.180s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ignore', 'ignore_ament_install']
+[2.180s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore'
+[2.181s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore_ament_install'
+[2.181s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_pkg']
+[2.181s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_pkg'
+[2.182s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_meta']
+[2.182s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_meta'
+[2.182s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ros']
+[2.182s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ros'
+[2.183s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['cmake', 'python']
+[2.183s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'cmake'
+[2.184s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python'
+[2.184s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['python_setup_py']
+[2.184s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python_setup_py'
+[2.185s] Level 1:colcon.colcon_core.package_identification:_identify(src/py_pubsub) by extensions ['ignore', 'ignore_ament_install']
+[2.186s] Level 1:colcon.colcon_core.package_identification:_identify(src/py_pubsub) by extension 'ignore'
+[2.186s] Level 1:colcon.colcon_core.package_identification:_identify(src/py_pubsub) by extension 'ignore_ament_install'
+[2.187s] Level 1:colcon.colcon_core.package_identification:_identify(src/py_pubsub) by extensions ['colcon_pkg']
+[2.187s] Level 1:colcon.colcon_core.package_identification:_identify(src/py_pubsub) by extension 'colcon_pkg'
+[2.187s] Level 1:colcon.colcon_core.package_identification:_identify(src/py_pubsub) by extensions ['colcon_meta']
+[2.187s] Level 1:colcon.colcon_core.package_identification:_identify(src/py_pubsub) by extension 'colcon_meta'
+[2.188s] Level 1:colcon.colcon_core.package_identification:_identify(src/py_pubsub) by extensions ['ros']
+[2.188s] Level 1:colcon.colcon_core.package_identification:_identify(src/py_pubsub) by extension 'ros'
+[2.205s] DEBUG:colcon.colcon_core.package_identification:Package 'src/py_pubsub' with type 'ros.ament_python' and name 'py_pubsub'
+[2.206s] Level 1:colcon.colcon_core.package_identification:_identify(src/teleop_twist_keyboard) by extensions ['ignore', 'ignore_ament_install']
+[2.207s] Level 1:colcon.colcon_core.package_identification:_identify(src/teleop_twist_keyboard) by extension 'ignore'
+[2.208s] Level 1:colcon.colcon_core.package_identification:_identify(src/teleop_twist_keyboard) by extension 'ignore_ament_install'
+[2.208s] Level 1:colcon.colcon_core.package_identification:_identify(src/teleop_twist_keyboard) by extensions ['colcon_pkg']
+[2.209s] Level 1:colcon.colcon_core.package_identification:_identify(src/teleop_twist_keyboard) by extension 'colcon_pkg'
+[2.209s] Level 1:colcon.colcon_core.package_identification:_identify(src/teleop_twist_keyboard) by extensions ['colcon_meta']
+[2.209s] Level 1:colcon.colcon_core.package_identification:_identify(src/teleop_twist_keyboard) by extension 'colcon_meta'
+[2.210s] Level 1:colcon.colcon_core.package_identification:_identify(src/teleop_twist_keyboard) by extensions ['ros']
+[2.210s] Level 1:colcon.colcon_core.package_identification:_identify(src/teleop_twist_keyboard) by extension 'ros'
+[2.214s] DEBUG:colcon.colcon_core.package_identification:Package 'src/teleop_twist_keyboard' with type 'ros.ament_python' and name 'teleop_twist_keyboard'
+[2.214s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[2.215s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[2.216s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[2.216s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[2.216s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[2.501s] Level 5:colcon.colcon_core.verb:set package 'py_pubsub' build argument 'cmake_args' from command line to 'None'
+[2.501s] Level 5:colcon.colcon_core.verb:set package 'py_pubsub' build argument 'cmake_target' from command line to 'None'
+[2.501s] Level 5:colcon.colcon_core.verb:set package 'py_pubsub' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[2.501s] Level 5:colcon.colcon_core.verb:set package 'py_pubsub' build argument 'cmake_clean_cache' from command line to 'False'
+[2.502s] Level 5:colcon.colcon_core.verb:set package 'py_pubsub' build argument 'cmake_clean_first' from command line to 'False'
+[2.502s] Level 5:colcon.colcon_core.verb:set package 'py_pubsub' build argument 'cmake_force_configure' from command line to 'False'
+[2.502s] Level 5:colcon.colcon_core.verb:set package 'py_pubsub' build argument 'ament_cmake_args' from command line to 'None'
+[2.502s] Level 5:colcon.colcon_core.verb:set package 'py_pubsub' build argument 'catkin_cmake_args' from command line to 'None'
+[2.502s] Level 5:colcon.colcon_core.verb:set package 'py_pubsub' build argument 'catkin_skip_building_tests' from command line to 'False'
+[2.503s] DEBUG:colcon.colcon_core.verb:Building package 'py_pubsub' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/sewerbot/SeniorDesign/ROB/dev_ws/build/py_pubsub', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/sewerbot/SeniorDesign/ROB/dev_ws/install/py_pubsub', 'merge_install': False, 'path': '/home/sewerbot/SeniorDesign/ROB/dev_ws/src/py_pubsub', 'symlink_install': False, 'test_result_base': None}
+[2.533s] Level 5:colcon.colcon_core.verb:set package 'teleop_twist_keyboard' build argument 'cmake_args' from command line to 'None'
+[2.533s] Level 5:colcon.colcon_core.verb:set package 'teleop_twist_keyboard' build argument 'cmake_target' from command line to 'None'
+[2.534s] Level 5:colcon.colcon_core.verb:set package 'teleop_twist_keyboard' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[2.534s] Level 5:colcon.colcon_core.verb:set package 'teleop_twist_keyboard' build argument 'cmake_clean_cache' from command line to 'False'
+[2.534s] Level 5:colcon.colcon_core.verb:set package 'teleop_twist_keyboard' build argument 'cmake_clean_first' from command line to 'False'
+[2.534s] Level 5:colcon.colcon_core.verb:set package 'teleop_twist_keyboard' build argument 'cmake_force_configure' from command line to 'False'
+[2.535s] Level 5:colcon.colcon_core.verb:set package 'teleop_twist_keyboard' build argument 'ament_cmake_args' from command line to 'None'
+[2.535s] Level 5:colcon.colcon_core.verb:set package 'teleop_twist_keyboard' build argument 'catkin_cmake_args' from command line to 'None'
+[2.535s] Level 5:colcon.colcon_core.verb:set package 'teleop_twist_keyboard' build argument 'catkin_skip_building_tests' from command line to 'False'
+[2.535s] DEBUG:colcon.colcon_core.verb:Building package 'teleop_twist_keyboard' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/sewerbot/SeniorDesign/ROB/dev_ws/build/teleop_twist_keyboard', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/sewerbot/SeniorDesign/ROB/dev_ws/install/teleop_twist_keyboard', 'merge_install': False, 'path': '/home/sewerbot/SeniorDesign/ROB/dev_ws/src/teleop_twist_keyboard', 'symlink_install': False, 'test_result_base': None}
+[2.538s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[2.596s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[2.597s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/sewerbot/SeniorDesign/ROB/dev_ws/src/py_pubsub' with build type 'ament_python'
+[2.598s] Level 1:colcon.colcon_core.shell:create_environment_hook('py_pubsub', 'ament_prefix_path')
+[2.656s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[2.657s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sewerbot/SeniorDesign/ROB/dev_ws/install/py_pubsub/share/py_pubsub/hook/ament_prefix_path.ps1'
+[2.661s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/sewerbot/SeniorDesign/ROB/dev_ws/install/py_pubsub/share/py_pubsub/hook/ament_prefix_path.dsv'
+[2.665s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sewerbot/SeniorDesign/ROB/dev_ws/install/py_pubsub/share/py_pubsub/hook/ament_prefix_path.sh'
+[2.674s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[2.675s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[2.853s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/sewerbot/SeniorDesign/ROB/dev_ws/src/teleop_twist_keyboard' with build type 'ament_python'
+[2.854s] Level 1:colcon.colcon_core.shell:create_environment_hook('teleop_twist_keyboard', 'ament_prefix_path')
+[2.862s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sewerbot/SeniorDesign/ROB/dev_ws/install/teleop_twist_keyboard/share/teleop_twist_keyboard/hook/ament_prefix_path.ps1'
+[2.864s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/sewerbot/SeniorDesign/ROB/dev_ws/install/teleop_twist_keyboard/share/teleop_twist_keyboard/hook/ament_prefix_path.dsv'
+[2.866s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sewerbot/SeniorDesign/ROB/dev_ws/install/teleop_twist_keyboard/share/teleop_twist_keyboard/hook/ament_prefix_path.sh'
+[2.873s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[2.874s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[5.883s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/sewerbot/SeniorDesign/ROB/dev_ws/src/py_pubsub'
+[5.889s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[5.889s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[9.038s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/sewerbot/SeniorDesign/ROB/dev_ws/src/teleop_twist_keyboard'
+[9.044s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[9.045s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[9.206s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/sewerbot/SeniorDesign/ROB/dev_ws/src/py_pubsub': PYTHONPATH=/home/sewerbot/SeniorDesign/ROB/dev_ws/install/py_pubsub/lib/python3.6/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/py_pubsub build --build-base /home/sewerbot/SeniorDesign/ROB/dev_ws/build/py_pubsub/build install --prefix /home/sewerbot/SeniorDesign/ROB/dev_ws/install/py_pubsub --record /home/sewerbot/SeniorDesign/ROB/dev_ws/build/py_pubsub/install.log --single-version-externally-managed
+[9.278s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/sewerbot/SeniorDesign/ROB/dev_ws/src/teleop_twist_keyboard': PYTHONPATH=/home/sewerbot/SeniorDesign/ROB/dev_ws/install/teleop_twist_keyboard/lib/python3.6/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/teleop_twist_keyboard build --build-base /home/sewerbot/SeniorDesign/ROB/dev_ws/build/teleop_twist_keyboard/build install --prefix /home/sewerbot/SeniorDesign/ROB/dev_ws/install/teleop_twist_keyboard --record /home/sewerbot/SeniorDesign/ROB/dev_ws/build/teleop_twist_keyboard/install.log --single-version-externally-managed
+[13.233s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/sewerbot/SeniorDesign/ROB/dev_ws/src/teleop_twist_keyboard' returned '0': PYTHONPATH=/home/sewerbot/SeniorDesign/ROB/dev_ws/install/teleop_twist_keyboard/lib/python3.6/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/teleop_twist_keyboard build --build-base /home/sewerbot/SeniorDesign/ROB/dev_ws/build/teleop_twist_keyboard/build install --prefix /home/sewerbot/SeniorDesign/ROB/dev_ws/install/teleop_twist_keyboard --record /home/sewerbot/SeniorDesign/ROB/dev_ws/build/teleop_twist_keyboard/install.log --single-version-externally-managed
+[13.285s] Level 1:colcon.colcon_core.environment:checking '/home/sewerbot/SeniorDesign/ROB/dev_ws/install/teleop_twist_keyboard' for CMake module files
+[13.288s] Level 1:colcon.colcon_core.environment:checking '/home/sewerbot/SeniorDesign/ROB/dev_ws/install/teleop_twist_keyboard' for CMake config files
+[13.294s] Level 1:colcon.colcon_core.environment:checking '/home/sewerbot/SeniorDesign/ROB/dev_ws/install/teleop_twist_keyboard/lib'
+[13.295s] Level 1:colcon.colcon_core.environment:checking '/home/sewerbot/SeniorDesign/ROB/dev_ws/install/teleop_twist_keyboard/bin'
+[13.295s] Level 1:colcon.colcon_core.environment:checking '/home/sewerbot/SeniorDesign/ROB/dev_ws/install/teleop_twist_keyboard/lib/pkgconfig/teleop_twist_keyboard.pc'
+[13.296s] Level 1:colcon.colcon_core.environment:checking '/home/sewerbot/SeniorDesign/ROB/dev_ws/install/teleop_twist_keyboard/lib/python3.6/site-packages'
+[13.296s] Level 1:colcon.colcon_core.shell:create_environment_hook('teleop_twist_keyboard', 'pythonpath')
+[13.302s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sewerbot/SeniorDesign/ROB/dev_ws/install/teleop_twist_keyboard/share/teleop_twist_keyboard/hook/pythonpath.ps1'
+[13.305s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/sewerbot/SeniorDesign/ROB/dev_ws/install/teleop_twist_keyboard/share/teleop_twist_keyboard/hook/pythonpath.dsv'
+[13.307s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sewerbot/SeniorDesign/ROB/dev_ws/install/teleop_twist_keyboard/share/teleop_twist_keyboard/hook/pythonpath.sh'
+[13.309s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(teleop_twist_keyboard)
+[13.315s] INFO:colcon.colcon_core.shell:Creating package script '/home/sewerbot/SeniorDesign/ROB/dev_ws/install/teleop_twist_keyboard/share/teleop_twist_keyboard/package.ps1'
+[13.321s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/sewerbot/SeniorDesign/ROB/dev_ws/install/teleop_twist_keyboard/share/teleop_twist_keyboard/package.dsv'
+[13.326s] INFO:colcon.colcon_core.shell:Creating package script '/home/sewerbot/SeniorDesign/ROB/dev_ws/install/teleop_twist_keyboard/share/teleop_twist_keyboard/package.sh'
+[13.332s] INFO:colcon.colcon_core.shell:Creating package script '/home/sewerbot/SeniorDesign/ROB/dev_ws/install/teleop_twist_keyboard/share/teleop_twist_keyboard/package.bash'
+[13.338s] INFO:colcon.colcon_core.shell:Creating package script '/home/sewerbot/SeniorDesign/ROB/dev_ws/install/teleop_twist_keyboard/share/teleop_twist_keyboard/package.zsh'
+[13.344s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/sewerbot/SeniorDesign/ROB/dev_ws/install/teleop_twist_keyboard/share/colcon-core/packages/teleop_twist_keyboard)
+[13.357s] Level 1:colcon.colcon_core.environment:checking '/home/sewerbot/SeniorDesign/ROB/dev_ws/install/py_pubsub' for CMake module files
+[13.362s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/sewerbot/SeniorDesign/ROB/dev_ws/src/py_pubsub' returned '0': PYTHONPATH=/home/sewerbot/SeniorDesign/ROB/dev_ws/install/py_pubsub/lib/python3.6/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/py_pubsub build --build-base /home/sewerbot/SeniorDesign/ROB/dev_ws/build/py_pubsub/build install --prefix /home/sewerbot/SeniorDesign/ROB/dev_ws/install/py_pubsub --record /home/sewerbot/SeniorDesign/ROB/dev_ws/build/py_pubsub/install.log --single-version-externally-managed
+[13.364s] Level 1:colcon.colcon_core.environment:checking '/home/sewerbot/SeniorDesign/ROB/dev_ws/install/py_pubsub' for CMake config files
+[13.369s] Level 1:colcon.colcon_core.environment:checking '/home/sewerbot/SeniorDesign/ROB/dev_ws/install/py_pubsub/lib'
+[13.370s] Level 1:colcon.colcon_core.environment:checking '/home/sewerbot/SeniorDesign/ROB/dev_ws/install/py_pubsub/bin'
+[13.370s] Level 1:colcon.colcon_core.environment:checking '/home/sewerbot/SeniorDesign/ROB/dev_ws/install/py_pubsub/lib/pkgconfig/py_pubsub.pc'
+[13.371s] Level 1:colcon.colcon_core.environment:checking '/home/sewerbot/SeniorDesign/ROB/dev_ws/install/py_pubsub/lib/python3.6/site-packages'
+[13.371s] Level 1:colcon.colcon_core.shell:create_environment_hook('py_pubsub', 'pythonpath')
+[13.377s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sewerbot/SeniorDesign/ROB/dev_ws/install/py_pubsub/share/py_pubsub/hook/pythonpath.ps1'
+[13.379s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/sewerbot/SeniorDesign/ROB/dev_ws/install/py_pubsub/share/py_pubsub/hook/pythonpath.dsv'
+[13.381s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sewerbot/SeniorDesign/ROB/dev_ws/install/py_pubsub/share/py_pubsub/hook/pythonpath.sh'
+[13.383s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(py_pubsub)
+[13.389s] INFO:colcon.colcon_core.shell:Creating package script '/home/sewerbot/SeniorDesign/ROB/dev_ws/install/py_pubsub/share/py_pubsub/package.ps1'
+[13.391s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/sewerbot/SeniorDesign/ROB/dev_ws/install/py_pubsub/share/py_pubsub/package.dsv'
+[13.394s] INFO:colcon.colcon_core.shell:Creating package script '/home/sewerbot/SeniorDesign/ROB/dev_ws/install/py_pubsub/share/py_pubsub/package.sh'
+[13.396s] INFO:colcon.colcon_core.shell:Creating package script '/home/sewerbot/SeniorDesign/ROB/dev_ws/install/py_pubsub/share/py_pubsub/package.bash'
+[13.399s] INFO:colcon.colcon_core.shell:Creating package script '/home/sewerbot/SeniorDesign/ROB/dev_ws/install/py_pubsub/share/py_pubsub/package.zsh'
+[13.401s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/sewerbot/SeniorDesign/ROB/dev_ws/install/py_pubsub/share/colcon-core/packages/py_pubsub)
+[13.402s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[13.404s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[13.405s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished with '0'
+[13.405s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[13.502s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[13.503s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[13.503s] INFO:colcon.colcon_notification.desktop_notification:Sending desktop notification using 'notify2'
+[13.715s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[13.724s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/sewerbot/SeniorDesign/ROB/dev_ws/install/local_setup.ps1'
+[13.738s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/sewerbot/SeniorDesign/ROB/dev_ws/install/_local_setup_util_ps1.py'
+[13.752s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/sewerbot/SeniorDesign/ROB/dev_ws/install/setup.ps1'
+[13.847s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/sewerbot/SeniorDesign/ROB/dev_ws/install/local_setup.sh'
+[13.857s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/sewerbot/SeniorDesign/ROB/dev_ws/install/_local_setup_util_sh.py'
+[13.859s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/sewerbot/SeniorDesign/ROB/dev_ws/install/setup.sh'
+[13.953s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/sewerbot/SeniorDesign/ROB/dev_ws/install/local_setup.bash'
+[13.958s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/sewerbot/SeniorDesign/ROB/dev_ws/install/setup.bash'
+[14.041s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/sewerbot/SeniorDesign/ROB/dev_ws/install/local_setup.zsh'
+[14.045s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/sewerbot/SeniorDesign/ROB/dev_ws/install/setup.zsh'

@@ -1,0 +1,22 @@
+[6.605s] Invoking command in '/home/sewerbot/SeniorDesign/ROB/dev_ws/src/py_pubsub': PYTHONPATH=/home/sewerbot/SeniorDesign/ROB/dev_ws/install/py_pubsub/lib/python3.6/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/py_pubsub build --build-base /home/sewerbot/SeniorDesign/ROB/dev_ws/build/py_pubsub/build install --prefix /home/sewerbot/SeniorDesign/ROB/dev_ws/install/py_pubsub --record /home/sewerbot/SeniorDesign/ROB/dev_ws/build/py_pubsub/install.log --single-version-externally-managed
+[9.955s] running egg_info
+[9.959s] writing ../../build/py_pubsub/py_pubsub.egg-info/PKG-INFO
+[9.960s] writing dependency_links to ../../build/py_pubsub/py_pubsub.egg-info/dependency_links.txt
+[9.961s] writing entry points to ../../build/py_pubsub/py_pubsub.egg-info/entry_points.txt
+[9.962s] writing requirements to ../../build/py_pubsub/py_pubsub.egg-info/requires.txt
+[9.962s] writing top-level names to ../../build/py_pubsub/py_pubsub.egg-info/top_level.txt
+[10.259s] reading manifest file '../../build/py_pubsub/py_pubsub.egg-info/SOURCES.txt'
+[10.267s] writing manifest file '../../build/py_pubsub/py_pubsub.egg-info/SOURCES.txt'
+[10.268s] running build
+[10.268s] running build_py
+[10.274s] running install
+[10.276s] running install_lib
+[10.293s] running install_data
+[10.299s] running install_egg_info
+[10.319s] removing '/home/sewerbot/SeniorDesign/ROB/dev_ws/install/py_pubsub/lib/python3.6/site-packages/py_pubsub-0.0.0-py3.6.egg-info' (and everything under it)
+[10.321s] Copying ../../build/py_pubsub/py_pubsub.egg-info to /home/sewerbot/SeniorDesign/ROB/dev_ws/install/py_pubsub/lib/python3.6/site-packages/py_pubsub-0.0.0-py3.6.egg-info
+[10.327s] running install_scripts
+[10.512s] Installing listener script to /home/sewerbot/SeniorDesign/ROB/dev_ws/install/py_pubsub/lib/py_pubsub
+[10.513s] Installing talker script to /home/sewerbot/SeniorDesign/ROB/dev_ws/install/py_pubsub/lib/py_pubsub
+[10.515s] writing list of installed files to '/home/sewerbot/SeniorDesign/ROB/dev_ws/build/py_pubsub/install.log'
+[10.761s] Invoked command in '/home/sewerbot/SeniorDesign/ROB/dev_ws/src/py_pubsub' returned '0': PYTHONPATH=/home/sewerbot/SeniorDesign/ROB/dev_ws/install/py_pubsub/lib/python3.6/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/py_pubsub build --build-base /home/sewerbot/SeniorDesign/ROB/dev_ws/build/py_pubsub/build install --prefix /home/sewerbot/SeniorDesign/ROB/dev_ws/install/py_pubsub --record /home/sewerbot/SeniorDesign/ROB/dev_ws/build/py_pubsub/install.log --single-version-externally-managed

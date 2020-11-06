@@ -1,4 +1,5 @@
 from __future__ import division
+import sys
 from sys import exit
 from signal import signal, SIGINT
 import time
@@ -7,6 +8,16 @@ import time
 from geometry_msgs.msg import Twist
 import rclpy
 from rclpy.node import Node
+
+# example import file
+# import sys
+# insert at 1, 0 is the script path (or '' in REPL)
+# sys.path.insert(1, '../../../site/backend/robot_controls/')
+# import test.py
+
+# cal suggests for import
+#from robotcontroler/-pat-to-directory- import function/class-name
+#from ./-pat-to-directory- import function/class-name
 
 # DIR = motor1, DIR2 = motor2, GPIO.LOW = forward, GPIO.HIGH = backward
 def testMotors(speed):
@@ -73,7 +84,8 @@ class KeyboardSubscriber(Node):
         else:
             speed = 'stopped'
 
-        testMotors(speed)
+        
+        #testMotors(speed)
         time.sleep(1)
         #signal(SIGINT, handler)
 

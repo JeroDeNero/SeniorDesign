@@ -1,0 +1,26 @@
+[6.635s] Invoking command in '/home/sewerbot/SeniorDesign/ROB/dev_ws/src/teleop_twist_keyboard': PYTHONPATH=/home/sewerbot/SeniorDesign/ROB/dev_ws/install/teleop_twist_keyboard/lib/python3.6/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/teleop_twist_keyboard build --build-base /home/sewerbot/SeniorDesign/ROB/dev_ws/build/teleop_twist_keyboard/build install --prefix /home/sewerbot/SeniorDesign/ROB/dev_ws/install/teleop_twist_keyboard --record /home/sewerbot/SeniorDesign/ROB/dev_ws/build/teleop_twist_keyboard/install.log --single-version-externally-managed
+[9.560s] running egg_info
+[9.564s] writing ../../build/teleop_twist_keyboard/teleop_twist_keyboard.egg-info/PKG-INFO
+[9.565s] writing dependency_links to ../../build/teleop_twist_keyboard/teleop_twist_keyboard.egg-info/dependency_links.txt
+[9.566s] writing entry points to ../../build/teleop_twist_keyboard/teleop_twist_keyboard.egg-info/entry_points.txt
+[9.567s] writing requirements to ../../build/teleop_twist_keyboard/teleop_twist_keyboard.egg-info/requires.txt
+[9.568s] writing top-level names to ../../build/teleop_twist_keyboard/teleop_twist_keyboard.egg-info/top_level.txt
+[9.831s] reading manifest file '../../build/teleop_twist_keyboard/teleop_twist_keyboard.egg-info/SOURCES.txt'
+[9.838s] writing manifest file '../../build/teleop_twist_keyboard/teleop_twist_keyboard.egg-info/SOURCES.txt'
+[9.845s] running build
+[9.846s] running build_py
+[9.849s] copying teleop_twist_keyboard.py -> /home/sewerbot/SeniorDesign/ROB/dev_ws/build/teleop_twist_keyboard/build/lib
+[9.849s] running install
+[9.850s] running install_lib
+[9.852s] copying /home/sewerbot/SeniorDesign/ROB/dev_ws/build/teleop_twist_keyboard/build/lib/teleop_twist_keyboard.py -> /home/sewerbot/SeniorDesign/ROB/dev_ws/install/teleop_twist_keyboard/lib/python3.6/site-packages
+[9.866s] running install_data
+[9.870s] copying resource/teleop_twist_keyboard -> /home/sewerbot/SeniorDesign/ROB/dev_ws/install/teleop_twist_keyboard/share/ament_index/resource_index/packages
+[9.872s] copying package.xml -> /home/sewerbot/SeniorDesign/ROB/dev_ws/install/teleop_twist_keyboard/share/teleop_twist_keyboard
+[9.873s] running install_egg_info
+[9.896s] removing '/home/sewerbot/SeniorDesign/ROB/dev_ws/install/teleop_twist_keyboard/lib/python3.6/site-packages/teleop_twist_keyboard-2.3.2-py3.6.egg-info' (and everything under it)
+[9.899s] Copying ../../build/teleop_twist_keyboard/teleop_twist_keyboard.egg-info to /home/sewerbot/SeniorDesign/ROB/dev_ws/install/teleop_twist_keyboard/lib/python3.6/site-packages/teleop_twist_keyboard-2.3.2-py3.6.egg-info
+[9.902s] running install_scripts
+[10.120s] Installing keyboard_subscriber script to /home/sewerbot/SeniorDesign/ROB/dev_ws/install/teleop_twist_keyboard/lib/teleop_twist_keyboard
+[10.121s] Installing teleop_twist_keyboard script to /home/sewerbot/SeniorDesign/ROB/dev_ws/install/teleop_twist_keyboard/lib/teleop_twist_keyboard
+[10.122s] writing list of installed files to '/home/sewerbot/SeniorDesign/ROB/dev_ws/build/teleop_twist_keyboard/install.log'
+[10.242s] Invoked command in '/home/sewerbot/SeniorDesign/ROB/dev_ws/src/teleop_twist_keyboard' returned '0': PYTHONPATH=/home/sewerbot/SeniorDesign/ROB/dev_ws/install/teleop_twist_keyboard/lib/python3.6/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/teleop_twist_keyboard build --build-base /home/sewerbot/SeniorDesign/ROB/dev_ws/build/teleop_twist_keyboard/build install --prefix /home/sewerbot/SeniorDesign/ROB/dev_ws/install/teleop_twist_keyboard --record /home/sewerbot/SeniorDesign/ROB/dev_ws/build/teleop_twist_keyboard/install.log --single-version-externally-managed
