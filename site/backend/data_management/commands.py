@@ -27,7 +27,7 @@ def stopCam(target):
         os.environ.pop('stop')
 
     os.environ['stop'] = 'True'
-    roboto.stopCamera(target)
+    socketio.start_background_task(roboto.stopCamera(target))
 
 
 @socketio.on('speed')
@@ -50,9 +50,9 @@ def movement(state, value):
     os.environ['movementVal'] = str(value)
 
     if state == 'straight':
-        roboto.moveStraight(value)
+        socketio.start_background_task(roboto.moveStraight(value))
     else:
-        roboto.rotate(value)
+        socketio.start_background_task(roboto.rotate(value))
 
 
 @socketio.on('camera')
@@ -66,9 +66,9 @@ def camera(state, value):
     os.environ['camera'] = state
     os.environ['cameraVal'] = str(value)
 
-    roboto.moveCamera(state, value)
+    socketio.start_background_task(roboto.moveCamera(state, value))
 
 
 @socketio.on('camHolt')
 def camHolt():
-    roboto.holdCamera()
+    socketio.start_background_task(roboto.holdCamera())
