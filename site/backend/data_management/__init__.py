@@ -6,10 +6,10 @@ from flask import Flask, render_template
 from flask_cors import CORS
 from flask_socketio import SocketIO
 
-from data_management import robotSetup
+from data_management.robotSetup import Robot
 
 socketio = SocketIO(cors_allowed_origins="*")
-roboto = robotSetup.Robot()
+roboto = Robot()
 
 
 def create_app(test_config=None):
