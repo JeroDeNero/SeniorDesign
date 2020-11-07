@@ -3,7 +3,9 @@ import sys
 from sys import exit
 from signal import signal, SIGINT
 import time
-
+# uncomment for Nano
+# import Jetson.GPIO as GPIO
+# import Adafruit_PCA9685
 # test.py above
 from geometry_msgs.msg import Twist
 import rclpy

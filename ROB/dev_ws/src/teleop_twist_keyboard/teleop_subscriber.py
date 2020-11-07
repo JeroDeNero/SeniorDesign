@@ -3,7 +3,9 @@ import sys
 from sys import exit
 from signal import signal, SIGINT
 import time
-
+# uncomment for Nano
+# import Jetson.GPIO as GPIO
+# import Adafruit_PCA9685
 # test.py above
 from geometry_msgs.msg import Twist
 import rclpy
@@ -19,14 +21,40 @@ from rclpy.node import Node
 #from robotcontroler/-pat-to-directory- import function/class-name
 #from ./-pat-to-directory- import function/class-name
 
-# DIR = motor1, DIR2 = motor2, GPIO.LOW = forward, GPIO.HIGH = backward
 def testMotors(speed):
-    print('speed: %s' % speed)
-    # for turning, will need to expand params to (leftSpeed, rightSpeed)
-    # ex. turn left, leftSpeed = 0 or stopped, rightSpeed = 0.5 or low
-    # pwm1.set_pwm(0,2000,0) = left motor low
-    # pwm1.set_pwm(1, 4096, 0) = right motor high
+    self.get_logger().info('speed: %s' % speed)
     
+    if speed == 'low_foward':
+        ## set GPIO.HIGH
+        # GPIO.output(DIR, GPIO.HIGH)
+        # GPIO.output(DIR2, GPIO.HIGH)
+        # pwm1.set_pwm(0,2000,0)
+        # pwm1.set_pwm(1,2000,0)
+        print('forward: GPIO.HIGH, pwm: 2000')
+    if speed == 'high_foward':
+        # GPIO.output(DIR, GPIO.HIGH)
+        # GPIO.output(DIR2, GPIO.HIGH)
+        # pwm1.set_pwm(0,4096,0)
+        # pwm1.set_pwm(1,4096,0)
+        print('forward: GPIO.HIGH, pwm: 4096')
+    if speed == 'low_backward':
+        # GPIO.output(DIR, GPIO.LOW)
+        # GPIO.output(DIR2, GPIO.LOW)
+        # pwm1.set_pwm(0,2000,0)
+        # pwm1.set_pwm(1,2000,0)
+        print('backward: GPIO.LOW, pwm: 2000')
+     if speed == 'high_backward':
+        # GPIO.output(DIR, GPIO.LOW)
+        # GPIO.output(DIR2, GPIO.LOW)
+        # pwm1.set_pwm(0,4096,0)
+        # pwm1.set_pwm(1,4096,0)
+        print('backward: GPIO.LOW, pwm: 4096')
+    if speed == 'stopped':
+        # pwm1.set_pwm(0,0,0)
+        # pwm1.set_pwm(1,0,0)  
+        print('pwm: 0')  
+    
+
     #while True:
         #timer = 5
         # GPIO.output(DIR, GPIO.LOW)
@@ -72,6 +100,8 @@ class KeyboardSubscriber(Node):
         DIR = 40
         DIR2 = 38
         safeNumber = 7
+        speed = ''
+        print('before assign speed: ', speed)
 
         if msg.linear.x > 0 and msg.linear.x <= 0.5:
             speed = 'low_forward'
@@ -84,10 +114,10 @@ class KeyboardSubscriber(Node):
         else:
             speed = 'stopped'
 
-        
-        #testMotors(speed)
-        time.sleep(1)
-        #signal(SIGINT, handler)
+        print('before testMotors() speed: ', speed)
+        testMotors(speed)
+        # time.sleep(1)
+        # signal(SIGINT, handler)
 
 def main(args=None):
     rclpy.init(args=args)

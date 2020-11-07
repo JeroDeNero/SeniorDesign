@@ -194,11 +194,15 @@ class Motor:
         else:
             self.encoderTotal += 1
 
+        self.lastEncoder = 'x'
+
     def yCallback(self, _pin):
         if self.lastEncoder == 'y':
             self.encoderTotal += 2
         else:
             self.encoderTotal += 1
+
+        self.lastEncoder = 'y'
 
     def rotate(self, percent):
         if self.reversed:

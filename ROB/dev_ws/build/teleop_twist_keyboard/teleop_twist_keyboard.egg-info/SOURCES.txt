@@ -1,9 +1,6 @@
-README.md
 package.xml
 setup.cfg
 setup.py
-teleop_subscriber.py
-teleop_twist_keyboard.py
 ../../build/teleop_twist_keyboard/teleop_twist_keyboard.egg-info/PKG-INFO
 ../../build/teleop_twist_keyboard/teleop_twist_keyboard.egg-info/SOURCES.txt
 ../../build/teleop_twist_keyboard/teleop_twist_keyboard.egg-info/dependency_links.txt
@@ -11,7 +8,12 @@ teleop_twist_keyboard.py
 ../../build/teleop_twist_keyboard/teleop_twist_keyboard.egg-info/requires.txt
 ../../build/teleop_twist_keyboard/teleop_twist_keyboard.egg-info/top_level.txt
 ../../build/teleop_twist_keyboard/teleop_twist_keyboard.egg-info/zip-safe
+launch/launchKeyboard.launch.py
 resource/teleop_twist_keyboard
-test/test_copyright.py
-test/test_flake8.py
-test/test_pep257.py
+teleop_twist_keyboard.egg-info/PKG-INFO
+teleop_twist_keyboard.egg-info/SOURCES.txt
+teleop_twist_keyboard.egg-info/dependency_links.txt
+teleop_twist_keyboard.egg-info/entry_points.txt
+teleop_twist_keyboard.egg-info/requires.txt
+teleop_twist_keyboard.egg-info/top_level.txt
+teleop_twist_keyboard.egg-info/zip-safe
