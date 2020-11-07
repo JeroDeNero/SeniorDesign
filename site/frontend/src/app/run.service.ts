@@ -17,7 +17,7 @@ export class RunService {
     this.createEmptyRun()
   );
 
-  arrayIndex: number[];
+  index: number;
 
   private newRun: BehaviorSubject<Run> = new BehaviorSubject<Run>(
     this.createEmptyRun()
@@ -138,9 +138,17 @@ export class RunService {
   }
 
   updateRun(): Observable<any> {
-    this.allRunsData[this.arrayIndex[0]][
-      this.arrayIndex[1]
-    ] = this.editRun.getValue();
+    const index = this.getRunIndex(this.editRun.getValue().Id, this.index);
+    console.log(Boolean(this.editRun.getValue().Name));
+    if (this.index > 0) {
+      if (this.index === 1 && !this.editRun.getValue().Name) {
+        this.allRunsData[this.index].splice(index, 1);
+        this.allRunsData[2].unshift(this.editRun.getValue());
+      } else if (this.index === 2 && this.editRun.getValue().Name) {
+        this.allRunsData[this.index].splice(index, 1);
+        this.allRunsData[1].unshift(this.editRun.getValue());
+      }
+    }
 
     return this.http
       .post(
@@ -195,6 +203,11 @@ export class RunService {
         tap((_) => console.log('deleted tag')),
         catchError(this.handleError<Run>())
       );
+  }
+
+  getRunIndex(target, index) {
+    const lambda = (element: Run) => element.Id === target;
+    return this.allRunsData[index].findIndex(lambda);
   }
 
   httpOptions = {

@@ -17,12 +17,13 @@
         value="{{ this.targRun.DriverName || '' }}"
       />
       <br />
-      <label for="PipeID">PipeID*: </label>
+      <label for="PipeID">PipeID Locked: </label>
       <input
         #pipeID
         id="PipeID"
         type="text"
         value="{{ this.targRun.PipeID || '' }}"
+        readonly
       />
       <br />
       <label for="Direction">Direction*: </label>
@@ -33,7 +34,7 @@
         value="{{ this.targRun.Direction || '' }}"
       />
       <br />
-      <label for="lat">Latitude: </label>
+      <label for="lat">Latitude Locked: </label>
       <input
         #lat
         id="lat"
@@ -41,9 +42,10 @@
         min="-90"
         max="90"
         value="{{ this.targRun.Lat || 0 }}"
+        readonly
       />
       <br />
-      <label for="long">Longitude: </label>
+      <label for="long">Longitude Locked: </label>
       <input
         #long
         id="long"
@@ -51,6 +53,7 @@
         min="-180"
         max="180"
         value="{{ this.targRun.Longi || 0 }}"
+        readonly
       />
       <br />
       <br />

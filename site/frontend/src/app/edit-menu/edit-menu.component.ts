@@ -38,6 +38,8 @@ export class EditMenuComponent implements OnInit {
 
     this.runService.setEditRun(this.targRun);
     this.runService.updateRun().subscribe();
+    alert('Updated Run');
+    this.toggleService.toggleHideEdit();
   }
 
   cancelBut() {

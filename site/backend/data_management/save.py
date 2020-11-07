@@ -129,7 +129,7 @@ def editRun():
     userInput = request.json
 
     updateVideo(db, userInput["Id"], userInput["Name"],
-                userInput["DriverName"], userInput["Tagged"])
+                userInput["DriverName"], userInput["Tagged"], userInput["Direction"])
     return jsonify({})
 
 
@@ -148,11 +148,11 @@ def editPin():
     return jsonify({})
 
 
-def updateVideo(db, targ, name, driverName, tagged):
+def updateVideo(db, targ, name, driverName, tagged, direction):
     """updates information in the Video table"""
     query = ("UPDATE Video SET "
-             "Name = '{}', DriverName = '{}', Tagged = {} "
-             "WHERE Id = {} ".format(name, driverName, tagged, targ))
+             "Name = '{}', DriverName = '{}', Tagged = {}, Direction = '{}' "
+             "WHERE Id = {} ".format(name, driverName, tagged, direction, targ))
 
     sendCommand(db, query)
 
