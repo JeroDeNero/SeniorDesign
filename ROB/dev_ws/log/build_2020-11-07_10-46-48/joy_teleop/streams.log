@@ -1,0 +1,45 @@
+[0.480s] Invoking command in '/home/rob/SeniorDesign/ROB/dev_ws/src/teleop_tools/joy_teleop': AMENT_PREFIX_PATH=/home/rob/SeniorDesign/ROB/dev_ws/install/teleop_tools_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/rob/SeniorDesign/ROB/dev_ws/install/teleop_tools_msgs:${CMAKE_PREFIX_PATH} LD_LIBRARY_PATH=/home/rob/SeniorDesign/ROB/dev_ws/install/teleop_tools_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/rob/SeniorDesign/ROB/dev_ws/install/joy_teleop/lib/python3.6/site-packages:/home/rob/SeniorDesign/ROB/dev_ws/install/teleop_tools_msgs/lib/python3.6/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../../build/joy_teleop build --build-base /home/rob/SeniorDesign/ROB/dev_ws/build/joy_teleop/build install --prefix /home/rob/SeniorDesign/ROB/dev_ws/install/joy_teleop --record /home/rob/SeniorDesign/ROB/dev_ws/build/joy_teleop/install.log --single-version-externally-managed
+[0.876s] running egg_info
+[0.877s] creating ../../../build/joy_teleop/joy_teleop.egg-info
+[0.877s] writing ../../../build/joy_teleop/joy_teleop.egg-info/PKG-INFO
+[0.877s] writing dependency_links to ../../../build/joy_teleop/joy_teleop.egg-info/dependency_links.txt
+[0.877s] writing entry points to ../../../build/joy_teleop/joy_teleop.egg-info/entry_points.txt
+[0.878s] writing requirements to ../../../build/joy_teleop/joy_teleop.egg-info/requires.txt
+[0.878s] writing top-level names to ../../../build/joy_teleop/joy_teleop.egg-info/top_level.txt
+[0.881s] writing manifest file '../../../build/joy_teleop/joy_teleop.egg-info/SOURCES.txt'
+[0.915s] reading manifest file '../../../build/joy_teleop/joy_teleop.egg-info/SOURCES.txt'
+[0.916s] writing manifest file '../../../build/joy_teleop/joy_teleop.egg-info/SOURCES.txt'
+[0.916s] running build
+[0.916s] running build_py
+[0.916s] creating /home/rob/SeniorDesign/ROB/dev_ws/build/joy_teleop/build
+[0.917s] creating /home/rob/SeniorDesign/ROB/dev_ws/build/joy_teleop/build/lib
+[0.917s] creating /home/rob/SeniorDesign/ROB/dev_ws/build/joy_teleop/build/lib/joy_teleop
+[0.917s] copying joy_teleop/incrementer_server.py -> /home/rob/SeniorDesign/ROB/dev_ws/build/joy_teleop/build/lib/joy_teleop
+[0.917s] copying joy_teleop/__init__.py -> /home/rob/SeniorDesign/ROB/dev_ws/build/joy_teleop/build/lib/joy_teleop
+[0.917s] copying joy_teleop/joy_teleop.py -> /home/rob/SeniorDesign/ROB/dev_ws/build/joy_teleop/build/lib/joy_teleop
+[0.917s] running install
+[0.917s] running install_lib
+[0.918s] creating /home/rob/SeniorDesign/ROB/dev_ws/install/joy_teleop/lib/python3.6/site-packages/joy_teleop
+[0.918s] copying /home/rob/SeniorDesign/ROB/dev_ws/build/joy_teleop/build/lib/joy_teleop/incrementer_server.py -> /home/rob/SeniorDesign/ROB/dev_ws/install/joy_teleop/lib/python3.6/site-packages/joy_teleop
+[0.918s] copying /home/rob/SeniorDesign/ROB/dev_ws/build/joy_teleop/build/lib/joy_teleop/__init__.py -> /home/rob/SeniorDesign/ROB/dev_ws/install/joy_teleop/lib/python3.6/site-packages/joy_teleop
+[0.918s] copying /home/rob/SeniorDesign/ROB/dev_ws/build/joy_teleop/build/lib/joy_teleop/joy_teleop.py -> /home/rob/SeniorDesign/ROB/dev_ws/install/joy_teleop/lib/python3.6/site-packages/joy_teleop
+[0.920s] byte-compiling /home/rob/SeniorDesign/ROB/dev_ws/install/joy_teleop/lib/python3.6/site-packages/joy_teleop/incrementer_server.py to incrementer_server.cpython-36.pyc
+[0.920s] byte-compiling /home/rob/SeniorDesign/ROB/dev_ws/install/joy_teleop/lib/python3.6/site-packages/joy_teleop/__init__.py to __init__.cpython-36.pyc
+[0.920s] byte-compiling /home/rob/SeniorDesign/ROB/dev_ws/install/joy_teleop/lib/python3.6/site-packages/joy_teleop/joy_teleop.py to joy_teleop.cpython-36.pyc
+[0.922s] running install_data
+[0.922s] copying package.xml -> /home/rob/SeniorDesign/ROB/dev_ws/install/joy_teleop/share/joy_teleop
+[0.923s] creating /home/rob/SeniorDesign/ROB/dev_ws/install/joy_teleop/share/joy_teleop/config
+[0.923s] copying config/joy_teleop_example.yaml -> /home/rob/SeniorDesign/ROB/dev_ws/install/joy_teleop/share/joy_teleop/config
+[0.923s] creating /home/rob/SeniorDesign/ROB/dev_ws/install/joy_teleop/share/joy_teleop/launch
+[0.923s] copying launch/example.launch.py -> /home/rob/SeniorDesign/ROB/dev_ws/install/joy_teleop/share/joy_teleop/launch
+[0.923s] creating /home/rob/SeniorDesign/ROB/dev_ws/install/joy_teleop/share/ament_index
+[0.923s] creating /home/rob/SeniorDesign/ROB/dev_ws/install/joy_teleop/share/ament_index/resource_index
+[0.923s] creating /home/rob/SeniorDesign/ROB/dev_ws/install/joy_teleop/share/ament_index/resource_index/packages
+[0.923s] copying resource/joy_teleop -> /home/rob/SeniorDesign/ROB/dev_ws/install/joy_teleop/share/ament_index/resource_index/packages
+[0.924s] running install_egg_info
+[0.926s] Copying ../../../build/joy_teleop/joy_teleop.egg-info to /home/rob/SeniorDesign/ROB/dev_ws/install/joy_teleop/lib/python3.6/site-packages/joy_teleop-0.3.0-py3.6.egg-info
+[0.927s] running install_scripts
+[0.950s] Installing incrementer_server script to /home/rob/SeniorDesign/ROB/dev_ws/install/joy_teleop/lib/joy_teleop
+[0.950s] Installing joy_teleop script to /home/rob/SeniorDesign/ROB/dev_ws/install/joy_teleop/lib/joy_teleop
+[0.951s] writing list of installed files to '/home/rob/SeniorDesign/ROB/dev_ws/build/joy_teleop/install.log'
+[0.970s] Invoked command in '/home/rob/SeniorDesign/ROB/dev_ws/src/teleop_tools/joy_teleop' returned '0': AMENT_PREFIX_PATH=/home/rob/SeniorDesign/ROB/dev_ws/install/teleop_tools_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/rob/SeniorDesign/ROB/dev_ws/install/teleop_tools_msgs:${CMAKE_PREFIX_PATH} LD_LIBRARY_PATH=/home/rob/SeniorDesign/ROB/dev_ws/install/teleop_tools_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/rob/SeniorDesign/ROB/dev_ws/install/joy_teleop/lib/python3.6/site-packages:/home/rob/SeniorDesign/ROB/dev_ws/install/teleop_tools_msgs/lib/python3.6/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../../build/joy_teleop build --build-base /home/rob/SeniorDesign/ROB/dev_ws/build/joy_teleop/build install --prefix /home/rob/SeniorDesign/ROB/dev_ws/install/joy_teleop --record /home/rob/SeniorDesign/ROB/dev_ws/build/joy_teleop/install.log --single-version-externally-managed

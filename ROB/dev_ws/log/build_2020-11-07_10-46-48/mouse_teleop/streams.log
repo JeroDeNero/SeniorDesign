@@ -1,0 +1,21 @@
+[2.464s] Invoking command in '/home/rob/SeniorDesign/ROB/dev_ws/src/teleop_tools/mouse_teleop': PYTHONPATH=/home/rob/SeniorDesign/ROB/dev_ws/install/mouse_teleop/lib/python3.6/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../../build/mouse_teleop build --build-base /home/rob/SeniorDesign/ROB/dev_ws/build/mouse_teleop/build install --prefix /home/rob/SeniorDesign/ROB/dev_ws/install/mouse_teleop --record /home/rob/SeniorDesign/ROB/dev_ws/build/mouse_teleop/install.log --single-version-externally-managed
+[3.214s] running egg_info
+[3.215s] writing ../../../build/mouse_teleop/mouse_teleop.egg-info/PKG-INFO
+[3.215s] writing dependency_links to ../../../build/mouse_teleop/mouse_teleop.egg-info/dependency_links.txt
+[3.215s] writing entry points to ../../../build/mouse_teleop/mouse_teleop.egg-info/entry_points.txt
+[3.215s] writing requirements to ../../../build/mouse_teleop/mouse_teleop.egg-info/requires.txt
+[3.215s] writing top-level names to ../../../build/mouse_teleop/mouse_teleop.egg-info/top_level.txt
+[3.257s] reading manifest file '../../../build/mouse_teleop/mouse_teleop.egg-info/SOURCES.txt'
+[3.258s] writing manifest file '../../../build/mouse_teleop/mouse_teleop.egg-info/SOURCES.txt'
+[3.258s] running build
+[3.258s] running build_py
+[3.259s] running install
+[3.259s] running install_lib
+[3.262s] running install_data
+[3.263s] running install_egg_info
+[3.267s] removing '/home/rob/SeniorDesign/ROB/dev_ws/install/mouse_teleop/lib/python3.6/site-packages/mouse_teleop-0.3.0-py3.6.egg-info' (and everything under it)
+[3.267s] Copying ../../../build/mouse_teleop/mouse_teleop.egg-info to /home/rob/SeniorDesign/ROB/dev_ws/install/mouse_teleop/lib/python3.6/site-packages/mouse_teleop-0.3.0-py3.6.egg-info
+[3.268s] running install_scripts
+[3.297s] Installing mouse_teleop script to /home/rob/SeniorDesign/ROB/dev_ws/install/mouse_teleop/lib/mouse_teleop
+[3.297s] writing list of installed files to '/home/rob/SeniorDesign/ROB/dev_ws/build/mouse_teleop/install.log'
+[3.323s] Invoked command in '/home/rob/SeniorDesign/ROB/dev_ws/src/teleop_tools/mouse_teleop' returned '0': PYTHONPATH=/home/rob/SeniorDesign/ROB/dev_ws/install/mouse_teleop/lib/python3.6/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../../build/mouse_teleop build --build-base /home/rob/SeniorDesign/ROB/dev_ws/build/mouse_teleop/build install --prefix /home/rob/SeniorDesign/ROB/dev_ws/install/mouse_teleop --record /home/rob/SeniorDesign/ROB/dev_ws/build/mouse_teleop/install.log --single-version-externally-managed
