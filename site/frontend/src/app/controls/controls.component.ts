@@ -109,7 +109,7 @@ export class ControlsComponent implements OnInit {
   }
 
   onClickR(button) {
-    if (button === 'camLeft' || button === 'camRight') {
+    if (button === 'left' || button === 'right') {
       this.socketEmit('movement', 'turn', 0);
     } else {
       this.socketEmit('movement', 'straight', 0);
@@ -130,9 +130,9 @@ export class ControlsComponent implements OnInit {
 
   onCamClickR(button) {
     if (button === 'camLeft' || button === 'camRight') {
-      this.socketEmit('camera', 'x', 0);
+      this.socketEmit('stopCam', 'x');
     } else {
-      this.socketEmit('camera', 'y', 0);
+      this.socketEmit('stopCam', 'y');
     }
   }
 
@@ -184,6 +184,17 @@ export class ControlsComponent implements OnInit {
           this.prevControllers[index].buttons[5]
         ) {
           this.socketEmit('stop');
+        }
+        this.prevControllers[index].updateController(gamepad);
+        return;
+      }
+
+      if (this.controllers[index].buttons[6] > 0) {
+        if (
+          this.controllers[index].buttons[6] !==
+          this.prevControllers[index].buttons[6]
+        ) {
+          this.socketEmit('camHolt');
         }
         this.prevControllers[index].updateController(gamepad);
         return;
@@ -287,13 +298,15 @@ export class ControlsComponent implements OnInit {
       this.socket.emit(channel);
     } else if (channel === 'binary') {
       this.socket.emit(channel, command);
+    } else if (channel === 'stopCam') {
+      this.socket.emit(channel, command);
     } else if (channel === 'speed') {
-      this.socket.emit(channel, this.slider / 100);
+      this.socket.emit(channel, this.slider / 100); //does it really need this info
     } else if (command) {
       const speed = args || args <= 0 ? args : 1;
       this.socket.emit(channel, command, speed);
     } else {
-      this.socket.emit(command);
+      this.socket.emit(channel);
     }
   }
   refocus() {

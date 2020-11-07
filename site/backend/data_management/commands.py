@@ -1,6 +1,7 @@
 import os
 
 from data_management import socketio
+from data_management import roboto
 
 
 @socketio.on('binary')
@@ -17,6 +18,16 @@ def stop():
         os.environ.pop('stop')
 
     os.environ['stop'] = 'True'
+    roboto.stopMotor()
+
+
+@socketio.on('stopCam')
+def stopCam(target):
+    if ('stop' in os.environ):
+        os.environ.pop('stop')
+
+    os.environ['stop'] = 'True'
+    roboto.stopCamera(target)
 
 
 @socketio.on('speed')
@@ -38,6 +49,11 @@ def movement(state, value):
     os.environ['movement'] = state
     os.environ['movementVal'] = str(value)
 
+    if state == 'straight':
+        roboto.moveStraight(value)
+    else:
+        roboto.rotate(value)
+
 
 @socketio.on('camera')
 def camera(state, value):
@@ -49,3 +65,10 @@ def camera(state, value):
 
     os.environ['camera'] = state
     os.environ['cameraVal'] = str(value)
+
+    roboto.moveCamera(state, value)
+
+
+@socketio.on('camHolt')
+def camHolt():
+    roboto.holdCamera()

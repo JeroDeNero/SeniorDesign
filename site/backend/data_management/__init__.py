@@ -1,11 +1,15 @@
 import os
 import asyncio
+
 from dotenv import load_dotenv
 from flask import Flask, render_template
 from flask_cors import CORS
 from flask_socketio import SocketIO
 
+from data_management import robotSetup
+
 socketio = SocketIO(cors_allowed_origins="*")
+roboto = robotSetup.Robot()
 
 
 def create_app(test_config=None):
@@ -46,6 +50,7 @@ def create_app(test_config=None):
     from . import streams
     from . import commands
     from . import export
+    from . import robotSetup
 
     app.register_blueprint(save.bp)
     app.register_blueprint(delete.bp)
