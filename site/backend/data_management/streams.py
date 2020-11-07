@@ -23,13 +23,12 @@ VIDEO = []
 def on_connect():
     print('[INFO] WebClient connected.')
     global COUNT
-    
+
     COUNT = COUNT + 1
 
     if COUNT == 1:
         time.sleep(1)
         socketio.start_background_task(emitCams)
-    
 
 
 @socketio.on('disconnect')
@@ -61,12 +60,14 @@ def capture(cam):
 
         TAGCOUNT = TAGCOUNT + 1
 
+
 @socketio.on('refocus')
 def refocus():
     global VIDEO
 
     for item in VIDEO:
         item.refocus()
+
 
 @socketio.on('startRecording')
 def startRecording():
@@ -99,10 +100,13 @@ def emitCams():
         os.environ.pop('MAIN_FPS')
         os.environ.pop('SECONDARY_FPS')
         load_dotenv("data_management/../.env")
-        VIDEO.insert(0, Video( 0, int(os.environ.get("MAIN_FPS")), 0, True))
+        VIDEO.insert(0, Video(-1, int(os.environ.get("MAIN_FPS")), 0, False))
 
-    while COUNT > 0  and 0 not in VIDEO and not REBOOT:
-        socketio.start_background_task(VIDEO[0].genCam())
+    try:
+        while COUNT > 0 and not VIDEO[0].reboot and not REBOOT:
+            VIDEO[0].genCam()
+    except:
+        print('failed to create camera')
 
     if 0 in VIDEO:
         del VIDEO[0]

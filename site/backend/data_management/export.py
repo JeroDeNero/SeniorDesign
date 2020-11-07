@@ -2,6 +2,8 @@
 """to stop pylint from complainign about any excepts"""
 
 import shapefile
+import shutil
+import glob
 import os
 
 from datetime import datetime
@@ -10,42 +12,36 @@ from flask import(
     Blueprint, send_from_directory, send_file, request
 )
 
-from data_management.db import getDb
 from data_management.get import getOldest, getRun, getTag, getVideo
 from data_management.delete import garbageCollector
+from data_management.tempFileManger import remove
 
 bp = Blueprint('export', __name__, url_prefix='/export')
 
 CORS(bp)
 
-SHPFILE = "data_management/temp/"
+TMPLOC = "data_management/temp/"
 
 
 @bp.route('/tag/<target>')
 def exportTag(target):
-    global SHPFILE
-
-    db = getDb()
+    global TMPLOC
 
     try:
-        os.remove(SHPFILE + "coord.shp")
+        os.remove(TMPLOC + "coord.shp")
     except:
         print("new previous file.")
 
-    print(target)
+    # have to use "get" so I have ended up with magic numbers sorry.
+    # [0] = date [1] = long [2] = lat
+    parsedTarget = target.split('b')
 
-    # have to use get so I have ended up with magic numbers sorry.
-    # [1] = date [2] = long [3] = lat
-    parsedTarget = str(request).split('b')
-
-    print(parsedTarget)
-
-    theDate = datetime.strptime(parsedTarget[1], '%Y-%m-%d_%H:%M:%S')
-    longitude = float(parsedTarget[2])
-    latitude = float(parsedTarget[3])
+    theDate = datetime.strptime(parsedTarget[0], '%Y-%m-%d_%H:%M:%S')
+    longitude = float(parsedTarget[1])
+    latitude = float(parsedTarget[2])
 
     # writing a new shapefile
-    sfw = shapefile.Writer(SHPFILE + "coord.shp", shapeType=shapefile.POINT)
+    sfw = shapefile.Writer(TMPLOC + "coord.shp", shapeType=shapefile.POINT)
     sfw.autobalance = True  # alternatively can be set to 1 for true
 
     # setting up the fields for writing the data to the shapefile
@@ -60,27 +56,68 @@ def exportTag(target):
     sfw.record(longitude, latitude, theDate)
 
     sfw.close()
-    db.close()
-
-    return send_from_directory("temp/", filename="coord.shp", as_attachment=True)
 
     try:
-        return send_file("temp/coord.shp", as_attachment=True)
+        return send_from_directory("temp/", filename="coord.shp", as_attachment=True)
     except:
-        print("unable to send file")
+        print("unable to send .shp file")
         return ("unable to send file")
 
     return""
 
 
-@ bp.route('/folder/<path>', methods=(['POST']))
-def exportFolder():
-    target = request.json
+@ bp.route('/folder/<path>')
+def exportFolder(path):
+    global TMPLOC
 
+    remove(glob.glob('data_management/temp/*.zip'))
+
+    # [0] = pipe ID, [1] = date/time taken
+    parsedTarget = path.split('!')
+
+    pipeID = parsedTarget[0]
+    date = parsedTarget[1]
+    print(path)
+    print(parsedTarget)
+
+    fileName = "{}_{}_Data".format(pipeID, date)
+    directory = "data_management/../../frontend/dist/site/assets/Data/{}/".format(
+        pipeID)
+
+    try:
+        shutil.make_archive("data_management/temp/{}".format(fileName), 'zip',
+                            directory, date)
+    except:
+        print("Failed to make zip")
+        return ("unable to make file")
+
+    try:
+        return send_from_directory("temp/", filename='{}.zip'.format(fileName), as_attachment=True)
+    except:
+        print("Failed to send zip")
+        return ("unable to send file")
+
+
+@ bp.route('/image/<path>')
+def exportImage(path):
+    global TMPLOC
+
+    # [0] = pipe ID, [1] = date/time taken, [2] tag position
+    parsedTarget = path.split('!')
+
+    pipeID = parsedTarget[0]
+    date = parsedTarget[1]
+    tagNum = parsedTarget[2]
+
+    directory = "../../frontend/dist/site/assets/Data/{}/{}/tags/".format(
+        pipeID, date)
+    target = 'tag' + tagNum + '.jpg'
+
+    print(directory)
     print(target)
 
     try:
-        return send_from_directory("data_management/../../frontend/src/assets/Data/", filename=target["dir"], as_attachment=True)
+        return send_from_directory(directory, filename=target, as_attachment=True)
     except:
-        print("failed")
-        return ({"unable to send file"})
+        print("failed to send Image")
+        return ("unable to send file")

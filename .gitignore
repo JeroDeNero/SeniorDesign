@@ -9,3 +9,8 @@ site/backend/robot_controls/.vscode/.ropeproject/config.py
 site/backend/robot_controls/.vscode/.ropeproject/objectdb
 site/backend/data_management/.vscode/.ropeproject/config.py
 site/backend/data_management/.vscode/.ropeproject/objectdb
+site/flask.sh
+site/frontend/**/**/env.ts
+site/frontend/**/*.env
+site/**/*.env
+.vscode/.ropeproject/config.py

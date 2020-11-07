@@ -31,21 +31,35 @@
           </div>
         </div>
       </div>
-      <button class="download" (click)="getFile(run.DateTaken, run.PipeID)">
-        Download File
-      </button>
-      <button
-        class="dropdown"
-        *ngIf="run.tags | getNumOfTags"
-        (click)="toggleTag(run.Id)"
-      >
-        v
-      </button>
+      <div class="flex-grid">
+        <div class="colSmall">
+          <input
+            class="pinned"
+            type="checkbox"
+            [checked]="run.Tagged > 0"
+            (change)="changePrio(run)"
+          />
+        </div>
+        <div class="colLong">
+          <button class="download" (click)="getFile(run.DateTaken, run.PipeID)">
+            Download File
+          </button>
+        </div>
+        <div class="colSmall">
+          <button
+            class="dropdown"
+            *ngIf="run.tags | getNumOfTags"
+            (click)="toggleTag(run.Id)"
+          >
+            v
+          </button>
+        </div>
+      </div>
       <div class="taggedBox" *ngIf="(run.tags | getNumOfTags) && run.ShowTag">
         <div class="horLine"></div>
         <div *ngFor="let tag of run.tags">
           <pre>
-Tagged Location {{ tag.Id }}
+Tagged Location {{ tag.Position }}
 Lat: {{ tag.Lat }}       Long: {{ tag.Longi }}</pre
           >
           <div class="linkHolder">
@@ -54,8 +68,14 @@ Lat: {{ tag.Lat }}       Long: {{ tag.Longi }}</pre
               (click)="exportShape(run.DateTaken, tag.Lat, tag.Longi)"
               >Export</a
             >
-            <a class="view button">View</a>
-            <a class="delete button" (click)="deleteTag(tag.Id)">Delete</a>
+            <a
+              class="view button"
+              (click)="getImage(run.PipeID, run.DateTaken, tag.Position)"
+              >View</a
+            >
+            <a class="delete button" (click)="deleteTag(run.Id, tag.Id)"
+              >Delete</a
+            >
           </div>
         </div>
       </div>

@@ -32,8 +32,9 @@ div.mainPage {
 
 div.video {
   position: relative;
-  width: 100%;
+  width: auto;
   height: 60%;
+  min-width: 790px;
   min-height: 450px;
   flex-wrap: wrap;
   margin-bottom: 25px;

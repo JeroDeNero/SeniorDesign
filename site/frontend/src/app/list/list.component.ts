@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { DateHandlerService } from '../date-handler.service';
-import { Run, numHash } from '../interfaces';
+import { API_URL } from '../env';
+import { Run, numHash, Tag } from '../interfaces';
 import { RunService } from '../run.service';
 import { ToggleService } from '../toggle.service';
 
@@ -17,7 +18,7 @@ export class ListComponent implements OnInit {
   constructor(
     private runService: RunService,
     private toggleService: ToggleService,
-    private datahandlerService: DateHandlerService
+    private dateHandlerService: DateHandlerService
   ) {}
 
   ngOnInit(): void {
@@ -37,7 +38,7 @@ export class ListComponent implements OnInit {
 
   editData(target: Run) {
     this.runService.setEditRun(target);
-    this.runService.arrayIndex = [this.id, this.getRunIndex(target)];
+    this.runService.index = this.id;
     this.toggleService.setHideEdit(false);
   }
 
@@ -52,25 +53,56 @@ export class ListComponent implements OnInit {
     return this.runs.findIndex(lambda);
   }
 
-  deleteTag(target) {
+  deleteTag(runId, target) {
+    const runPos = this.getRunIndex(runId);
+
     this.runService.deleteTag(target).subscribe();
+
+    this.runs[runPos].tags.splice(this.getTagIndex(runPos, target), 1);
+  }
+
+  getTagIndex(runID, target) {
+    const lambda = (element: Tag) => element.Id === target;
+    return this.runs[runID].tags.findIndex(lambda);
+  }
+
+  changePrio(target: Run) {
+    const index = this.getRunIndex(target.Id);
+
+    this.runs.splice(index, 1);
+
+    if (!target.Tagged) {
+      target.Tagged = 1;
+      this.runService.allRunsData[0].unshift(target);
+    } else {
+      target.Tagged = 0;
+      if (target.Name) {
+        this.runService.allRunsData[1].unshift(target);
+      } else this.runService.allRunsData[2].unshift(target);
+    }
+
+    this.runService.changePin(target).subscribe();
   }
 
   setVideo(pipeID, date) {
-    const video = `assets/Data/${pipeID}/${this.datahandlerService.generateDate(
+    const video = `assets/Data/${pipeID}/${this.dateHandlerService.generateDate(
       date
     )}/outputtedVideo.mp4`;
     this.toggleService.setVideo(video);
   }
 
   getFile(date, pipeID) {
-    const dir = `assets/Data/${pipeID}/${this.datahandlerService.generateDate(
-      date
-    )}/`;
-    this.runService.getFolder(dir);
+    const strDate = this.dateHandlerService.generateDate(date);
+    window.open(`http://${API_URL}/export/folder/${pipeID}!${strDate}`);
+  }
+
+  getImage(pipeID, date, targ) {
+    const strDate = this.dateHandlerService.generateDate(date);
+    window.open(`http://${API_URL}/export/image/${pipeID}!${strDate}!${targ}`);
   }
 
   exportShape(date, lat, long) {
-    this.runService.getShapeFile(date, lat, long).subscribe();
+    const strDate = this.dateHandlerService.generateDate(date);
+    window.open(`http://${API_URL}/export/tag/${strDate}b${long}b${lat}b`);
   }
 }

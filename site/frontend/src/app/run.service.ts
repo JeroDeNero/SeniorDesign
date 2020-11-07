@@ -17,7 +17,7 @@ export class RunService {
     this.createEmptyRun()
   );
 
-  arrayIndex: number[];
+  index: number;
 
   private newRun: BehaviorSubject<Run> = new BehaviorSubject<Run>(
     this.createEmptyRun()
@@ -84,39 +84,6 @@ export class RunService {
     }
   }
 
-  getShapeFile(date, lat, long): Observable<any> {
-    const strDate = this.dateHandlerService.generateDate(date);
-
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/x-qgis',
-    });
-    const options = { headers: headers };
-
-    return this.http
-      .get<any>(
-        `http://${API_URL}/export/tag/b${strDate}b${long}b${lat}b`,
-        options
-      )
-      .pipe(
-        tap((_) => console.log('fetched shape file')),
-        catchError(this.handleError<Run>(null))
-      );
-  }
-
-  getFolder(dir) {
-    console.log(dir);
-    return this.http
-      .post<any>(
-        `http://${API_URL}/export/folder`,
-        { dir: dir },
-        this.httpOptions
-      )
-      .pipe(
-        tap((_) => console.log('fetched shape file')),
-        catchError(this.handleError<Run>(null))
-      );
-  }
-
   getEditRun(): Observable<Run> {
     return this.editRun.asObservable();
   }
@@ -164,16 +131,24 @@ export class RunService {
       .pipe(
         tap(() => {
           console.log('added run');
-          this.allRunsData[type].push(runToAdd);
+          this.allRunsData[type].unshift(runToAdd);
         }),
         catchError(this.handleError<Run>())
       );
   }
 
   updateRun(): Observable<any> {
-    this.allRunsData[this.arrayIndex[0]][
-      this.arrayIndex[1]
-    ] = this.editRun.getValue();
+    const index = this.getRunIndex(this.editRun.getValue().Id, this.index);
+    console.log(Boolean(this.editRun.getValue().Name));
+    if (this.index > 0) {
+      if (this.index === 1 && !this.editRun.getValue().Name) {
+        this.allRunsData[this.index].splice(index, 1);
+        this.allRunsData[2].unshift(this.editRun.getValue());
+      } else if (this.index === 2 && this.editRun.getValue().Name) {
+        this.allRunsData[this.index].splice(index, 1);
+        this.allRunsData[1].unshift(this.editRun.getValue());
+      }
+    }
 
     return this.http
       .post(
@@ -182,7 +157,22 @@ export class RunService {
         this.httpOptions
       )
       .pipe(
-        tap((_) => console.log('updated run id =${run.Id}')),
+        tap((_) =>
+          console.log(`updated run id =${this.editRun.getValue().Id}`)
+        ),
+        catchError(this.handleError<any>())
+      );
+  }
+
+  changePin(run: Run): Observable<any> {
+    return this.http
+      .post(
+        `http://${API_URL}/save/editPin`,
+        { id: run.Id, tagged: run.Tagged },
+        this.httpOptions
+      )
+      .pipe(
+        tap((_) => console.log(`updated run id =${run.Id}`)),
         catchError(this.handleError<any>())
       );
   }
@@ -213,6 +203,11 @@ export class RunService {
         tap((_) => console.log('deleted tag')),
         catchError(this.handleError<Run>())
       );
+  }
+
+  getRunIndex(target, index) {
+    const lambda = (element: Run) => element.Id === target;
+    return this.allRunsData[index].findIndex(lambda);
   }
 
   httpOptions = {

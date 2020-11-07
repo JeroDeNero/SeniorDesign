@@ -48,8 +48,6 @@ signal(SIGINT, handler)
 
 GPIO.setmode(GPIO.BOARD)
 
-safeNumber = 7
-
 DIR = 40
 DIR2 = 38
 safeNumber = 7
@@ -84,12 +82,6 @@ pwm.set_pwm_freq(1600)
 pwm2.set_pwm_freq(60)
 
 servosRest = 303
-
-topServoMin = 303
-topServoMax = 438
-
-botServoMin = 246
-botServoMax = 360
 
 top_servo_min = 303
 top_servo_max = 438
