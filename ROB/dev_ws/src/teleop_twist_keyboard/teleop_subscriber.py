@@ -22,7 +22,7 @@ from rclpy.node import Node
 #from ./-pat-to-directory- import function/class-name
 
 def testMotors(speed):
-    self.get_logger().info('speed: %s' % speed)
+    print('speed: %s' % speed)
     
     if speed == 'low_foward':
         ## set GPIO.HIGH
@@ -43,7 +43,7 @@ def testMotors(speed):
         # pwm1.set_pwm(0,2000,0)
         # pwm1.set_pwm(1,2000,0)
         print('backward: GPIO.LOW, pwm: 2000')
-     if speed == 'high_backward':
+    if speed == 'high_backward':
         # GPIO.output(DIR, GPIO.LOW)
         # GPIO.output(DIR2, GPIO.LOW)
         # pwm1.set_pwm(0,4096,0)
