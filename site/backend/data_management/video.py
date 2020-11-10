@@ -35,7 +35,7 @@ class Video(object):
     recordTime = time.time()
 
     def __init__(self, target, fps, flip, jetson):
-
+        print(jetson)
         if jetson:
             # Jetson setup
             #(capture_width, capture_height, display_width, display_height, framerate, flip_method)

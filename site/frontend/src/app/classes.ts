@@ -49,7 +49,7 @@ export class Controller {
     this.buttons[5] = controller.buttons[5].value;
     this.buttons[6] = (controller.axes[2].valueOf() + 1) / 2 - this.pre6;
     this.buttons[7] = (controller.axes[5].valueOf() + 1) / 2 - this.pre7;
-    if (controller.buttons.length < 12) {
+    if (controller.buttons.length > 12) {
       this.buttons[8] = controller.buttons[8].value;
       this.buttons[9] = controller.buttons[9].value;
       this.buttons[10] = controller.buttons[11].value;
@@ -60,7 +60,7 @@ export class Controller {
       this.buttons[9] = controller.buttons[7].value;
       this.buttons[10] = controller.buttons[9].value;
       this.buttons[11] = controller.buttons[10].value;
-      this.buttons[16] = controller.buttons[18].value;
+      this.buttons[16] = controller.buttons[8].value;
     }
     this.buttons[12] = Math.max(0, controller.axes[6].valueOf());
     this.buttons[13] = Math.max(0, -1 * controller.axes[6].valueOf());
