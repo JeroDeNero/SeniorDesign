@@ -27,6 +27,7 @@ def stopCam(target):
         os.environ.pop('stop')
 
     os.environ['stop'] = 'True'
+    print("stop Cam")
     socketio.start_background_task(roboto.stopCamera(target))
 
 
