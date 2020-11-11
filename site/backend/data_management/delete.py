@@ -104,8 +104,5 @@ def garbageCollector():
 
         tagQuery = deleteTagTask(db, vidID)
         deleteIt(db, tagQuery)
-
-        pipeQuery = deletePipeTask(db, pipeID)
-        deleteIt(db, pipeQuery)
-
+        
     return
