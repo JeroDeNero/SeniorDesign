@@ -44,6 +44,140 @@ button.pullOutMenu {
    color: #FFFFFF;
 }
 
+div.tab {
+    display: flex;
+    height: 49px;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+    z-index: 18;
+}
+
+div.dropDown-Content {
+    background-color: #f1f1f1;
+    display: relative;
+    z-index: 18;
+}
+
+a.close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0px;
+    width: 20px;
+    border-radius: 0 0 0 100%;
+    border-style: solid;
+    border-width: 1px;
+    border-right: none;
+    border-top: none;
+    background-color: rgba(255, 0, 0, 0.555);
+    text-align: center;
+    z-index: 20;
+    transition: 0.3s;
+}
+
+a.ribbon {
+    background-color: inherit;
+    color: black;
+    float: left;
+    border: none;
+    outline: none;
+    padding: 14px 0px;
+    transition: 0.3s;
+}
+
+/* Change background color of buttons on hover */
+
+a.ribbon:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+
+a.ribbon.active {
+    background-color: #ccc;
+}
+
+button.action {
+    height: 80px;
+    width: 80px;
+    border-radius: 100%;
+    background-color: red;
+    color: black;
+    opacity: 0.85;
+}
+
+input.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 1px;
+    background: black;
+    border-radius: 5px;
+    border-width: 10px;
+    outline: none;
+    opacity: 0.9;
+    -webkit-transition: 0.2s;
+    transition: opacity 0.2s;
+}
+
+input.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    background-image: url(../../assets/Images/Mini_UCF_logo_2.0.png);
+    background-color: rgba(0, 0, 0, 0);
+    cursor: pointer;
+}
+
+svg {
+    fill: white;
+    stroke: black;
+    stroke-width: 2px;
+}
+  
+path:hover {
+    fill: #f7a521;
+    fill-opacity: 1;
+    cursor: pointer;
+}
+
+a.video:hover {
+    background-color: #fbb034;
+    background-image: linear-gradient(338deg, #f5a626 0%, #ffcc00 74%);
+}
+
+/* Change background color of buttons on hover */
+
+a.button:hover {
+    color: black;
+    background-color: rgb(238, 238, 238);
+}
+
+/* Create an active/current tablink class */
+
+a .active {
+    color: black;
+    background-color: rgb(238, 238, 238);
+}
+
+a.delete {
+    color: red;
+}
+
+/* Change background color of buttons on hover */
+
+a.delete:hover {
+    color: black;
+    background-color: red;
+}
+  
+/* Create an active/current tablink class */
+  
+a.delete .active {
+    color: black;
+    background-color: red;
+}
+
 div.list {
     height: calc(100% - 177px);
     overflow-y: scroll;
