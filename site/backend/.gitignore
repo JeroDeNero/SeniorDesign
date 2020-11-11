@@ -13,6 +13,8 @@
 *egg-info
 
 */stream/
+*/__pycache__
+*/sewerBot
 
 robot_py/robot-env/
 
