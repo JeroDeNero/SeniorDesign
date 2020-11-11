@@ -23,10 +23,12 @@ VIDEO = []
 def on_connect():
     print('[INFO] WebClient connected.')
     global COUNT
-    if COUNT == 0:
-        time.sleep(1)
-        _thread.start_new_thread(emitCams, ())
+
     COUNT = COUNT + 1
+
+    if COUNT == 1:
+        time.sleep(1)
+        socketio.start_background_task(emitCams)
 
 
 @socketio.on('disconnect')
@@ -41,7 +43,7 @@ def capture(cam):
     global VIDEO
     global TAGCOUNT
 
-    if VIDEO[cam]:
+    if (COUNT > 0 and 0 not in VIDEO):
         img = VIDEO[cam].getFrame()
         cv2.imwrite('data_management/temp/tag{}.jpg'.format(TAGCOUNT), img)
 
@@ -51,12 +53,20 @@ def capture(cam):
         # send frontend details
 
         socketio.emit("addTag",
-                      {"count ": TAGCOUNT,
-                       " lat ": 0,
-                       " long ": 0,
-                       " Timestamp ": timerCapture})
+                      {"Position": TAGCOUNT,
+                       "Lat": 0,
+                       "Longi": 0,
+                       "VideoTime": timerCapture})
 
         TAGCOUNT = TAGCOUNT + 1
+
+
+@socketio.on('refocus')
+def refocus():
+    global VIDEO
+
+    for item in VIDEO:
+        item.refocus()
 
 
 @socketio.on('startRecording')
@@ -77,22 +87,32 @@ def endRecording():
 def emitCams():
     global COUNT
     global VIDEO
-    global REBOOT
+    if (COUNT > 0 and not VIDEO[0]):
+        VIDEO[0] = Video(0, 20)
+
+    if (COUNT > 0 and not VIDEO[0]):
+        VIDEO[0] = Video(0, 20)
+
+    print(COUNT)
 
     if (COUNT > 0 and 0 not in VIDEO):
         REBOOT = False
         os.environ.pop('MAIN_FPS')
         os.environ.pop('SECONDARY_FPS')
         load_dotenv("data_management/../.env")
-        VIDEO.insert(0, Video(-1, int(os.environ.get("MAIN_FPS"))))
+        VIDEO.insert(0, Video(-1, int(os.environ.get("MAIN_FPS")), 0, False))
 
-    while COUNT > 0 and 0 not in VIDEO and not REBOOT:
-        VIDEO[0].genCam()
+    try:
+        while COUNT > 0 and not VIDEO[0].reboot and not REBOOT:
+            VIDEO[0].genCam()
+    except:
+        print('failed to create camera')
 
-    del VIDEO[0]
+    if 0 in VIDEO:
+        del VIDEO[0]
     VIDEO = []
 
-    if COUNT > 0:
+    if COUNT < 0:
         emitCams()
 
 

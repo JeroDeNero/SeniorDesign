@@ -1,4 +1,5 @@
 import os
+import json
 
 from flask import Blueprint, jsonify, request
 from flask_cors import CORS
@@ -22,7 +23,7 @@ def settings():
     mainCam = data['mainCamFPS']
     secondaryCam = data['backCamFPS']
 
-    if 'WHEEL_RADIUS' not in os.environ is None:
+    if 'WHEEL_RADIUS' not in os.environ:
         os.environ['WHEEL_RADIUS'] = '6'
     elif (wheelRadius and wheelRadius != os.environ.get('WHEEL_RADIUS')):
         os.environ.pop('WHEEL_RADIUS')
@@ -99,6 +100,20 @@ def newRun():
         videoID = sendCommand(db, query)
         videoData = getVideo(db, videoID)
 
+        for tag in tags:
+            print(type(tag))
+            query = ("INSERT INTO TaggedLocs (Position, Lat, Longi, VideoTime)"
+                     "VALUES ({}, {}, {}, {})".format(
+                         tag["Position"], tag["Lat"], tag["Longi"], tag["VideoTime"]))
+            print(query)
+            tagID = sendCommand(db, query)
+
+            query = ("INSERT INTO VideoToTags (VideoID, TagID)"
+                     "VALUES ({}, {})".format(
+                         videoID, tagID))
+            print(query)
+            sendCommand(db, query)
+
         moveFiles(videoData.get('PipeID'), str(
             videoData.get('DateTaken')).replace(' ', '_'))
 
@@ -107,22 +122,37 @@ def newRun():
     return jsonify({})
 
 
-@bp.route('/editRun', methods=(['POST']))
+@ bp.route('/editRun', methods=(['POST']))
 def editRun():
     """edits a runs information"""
     db = getDb()
     userInput = request.json
 
     updateVideo(db, userInput["Id"], userInput["Name"],
-                userInput["DriverName"], userInput["Tagged"])
+                userInput["DriverName"], userInput["Tagged"], userInput["Direction"])
     return jsonify({})
 
 
-def updateVideo(db, targ, name, driverName, tagged):
+@ bp.route('/editPin', methods=(['POST']))
+def editPin():
+    """edits a runs tagged status"""
+    db = getDb()
+    userInput = request.json
+
+    query = ("UPDATE Video SET "
+             "Tagged = {} "
+             "WHERE Id = {} ".format(userInput["tagged"], userInput["id"]))
+
+    sendCommand(db, query)
+
+    return jsonify({})
+
+
+def updateVideo(db, targ, name, driverName, tagged, direction):
     """updates information in the Video table"""
     query = ("UPDATE Video SET "
-             "Name = '{}', DriverName = '{}', Tagged = {} "
-             "WHERE Id = {} ".format(name, driverName, tagged, targ))
+             "Name = '{}', DriverName = '{}', Tagged = {}, Direction = '{}' "
+             "WHERE Id = {} ".format(name, driverName, tagged, direction, targ))
 
     sendCommand(db, query)
 

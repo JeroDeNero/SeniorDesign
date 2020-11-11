@@ -21,27 +21,15 @@ export class FilterOptionsComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  filter(
-    favorites,
-    named,
-    unamed,
-    problems,
-    problemsL,
-    problemsM,
-    problemsH,
-    longitude,
-    latitude,
-    raduis,
-    quickLoc,
-    datef,
-    dateExtra,
-    datet,
-    operator
-  ) {
+  filter(pinned, named, unamed, problems, datef, dateExtra, datet, operator) {
     this.filterService.filtered = true;
-    this.filterService.showFavorites(!favorites);
+    this.filterService.showPinned(!pinned);
     this.filterService.showNamed(!named);
     this.filterService.showUnamed(!unamed);
+
+    const problemsL = false;
+    const problemsM = false;
+    const problemsH = false;
 
     if (problems || problemsL || problemsM || problemsH) {
       this.filterService.showProblems(
@@ -51,10 +39,10 @@ export class FilterOptionsComponent implements OnInit {
         problemsH
       );
     }
-
+    /*
     if (longitude != 0 || latitude != 0 || raduis != 0) {
       this.filterService.showArea(longitude, latitude, raduis);
-    }
+    }*/
 
     if (datef) {
       if (dateExtra) {

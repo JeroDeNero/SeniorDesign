@@ -25,7 +25,7 @@ export class FilterService {
         run.ShowRun = true;
       });
     });
-    this.toggleService.setShowFavorites(true);
+    this.toggleService.setShowPinned(true);
     this.toggleService.setShowNamed(true);
     this.toggleService.setShowUnamed(true);
   }
@@ -42,8 +42,8 @@ export class FilterService {
     });
   }
 
-  showFavorites(value) {
-    this.toggleService.setShowFavorites(value);
+  showPinned(value) {
+    this.toggleService.setShowPinned(value);
   }
 
   showNamed(value) {
@@ -58,7 +58,7 @@ export class FilterService {
     //type is severity of the problem, this is not currently tracked on the yet though
     this.runService.allRunsData.forEach((runs) => {
       runs.forEach((run) => {
-        if (run.tag && run.tag.length < 1) {
+        if (run.tags && run.tags.length < 1) {
           run.ShowRun = false;
         }
       });

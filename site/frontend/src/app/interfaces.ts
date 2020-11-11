@@ -11,7 +11,7 @@ export interface Run {
   Longi?: number;
   image?: HTMLImageElement;
   Tagged?: number;
-  tag?: Tag[];
+  tags?: Tag[];
 }
 
 export interface Tag {
@@ -19,7 +19,7 @@ export interface Tag {
   Position: number;
   Lat: number;
   Longi: number;
-  TimeStamp?: number;
+  VideoTime?: number;
 }
 
 export interface numHash {

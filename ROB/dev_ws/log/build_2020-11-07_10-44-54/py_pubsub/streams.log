@@ -1,0 +1,32 @@
+[2.306s] Invoking command in '/home/rob/SeniorDesign/ROB/dev_ws/src/py_pubsub': PYTHONPATH=/home/rob/SeniorDesign/ROB/dev_ws/install/py_pubsub/lib/python3.6/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/py_pubsub build --build-base /home/rob/SeniorDesign/ROB/dev_ws/build/py_pubsub/build install --prefix /home/rob/SeniorDesign/ROB/dev_ws/install/py_pubsub --record /home/rob/SeniorDesign/ROB/dev_ws/build/py_pubsub/install.log --single-version-externally-managed
+[3.039s] running egg_info
+[3.041s] writing ../../build/py_pubsub/py_pubsub.egg-info/PKG-INFO
+[3.041s] writing dependency_links to ../../build/py_pubsub/py_pubsub.egg-info/dependency_links.txt
+[3.041s] writing entry points to ../../build/py_pubsub/py_pubsub.egg-info/entry_points.txt
+[3.042s] writing requirements to ../../build/py_pubsub/py_pubsub.egg-info/requires.txt
+[3.042s] writing top-level names to ../../build/py_pubsub/py_pubsub.egg-info/top_level.txt
+[3.120s] reading manifest file '../../build/py_pubsub/py_pubsub.egg-info/SOURCES.txt'
+[3.122s] writing manifest file '../../build/py_pubsub/py_pubsub.egg-info/SOURCES.txt'
+[3.122s] running build
+[3.122s] running build_py
+[3.124s] copying py_pubsub/subscriber_member_function.py -> /home/rob/SeniorDesign/ROB/dev_ws/build/py_pubsub/build/lib/py_pubsub
+[3.125s] copying py_pubsub/publisher_member_function.py -> /home/rob/SeniorDesign/ROB/dev_ws/build/py_pubsub/build/lib/py_pubsub
+[3.125s] copying py_pubsub/__init__.py -> /home/rob/SeniorDesign/ROB/dev_ws/build/py_pubsub/build/lib/py_pubsub
+[3.125s] running install
+[3.126s] running install_lib
+[3.126s] copying /home/rob/SeniorDesign/ROB/dev_ws/build/py_pubsub/build/lib/py_pubsub/subscriber_member_function.py -> /home/rob/SeniorDesign/ROB/dev_ws/install/py_pubsub/lib/python3.6/site-packages/py_pubsub
+[3.126s] copying /home/rob/SeniorDesign/ROB/dev_ws/build/py_pubsub/build/lib/py_pubsub/publisher_member_function.py -> /home/rob/SeniorDesign/ROB/dev_ws/install/py_pubsub/lib/python3.6/site-packages/py_pubsub
+[3.126s] copying /home/rob/SeniorDesign/ROB/dev_ws/build/py_pubsub/build/lib/py_pubsub/__init__.py -> /home/rob/SeniorDesign/ROB/dev_ws/install/py_pubsub/lib/python3.6/site-packages/py_pubsub
+[3.130s] byte-compiling /home/rob/SeniorDesign/ROB/dev_ws/install/py_pubsub/lib/python3.6/site-packages/py_pubsub/subscriber_member_function.py to subscriber_member_function.cpython-36.pyc
+[3.130s] byte-compiling /home/rob/SeniorDesign/ROB/dev_ws/install/py_pubsub/lib/python3.6/site-packages/py_pubsub/publisher_member_function.py to publisher_member_function.cpython-36.pyc
+[3.131s] byte-compiling /home/rob/SeniorDesign/ROB/dev_ws/install/py_pubsub/lib/python3.6/site-packages/py_pubsub/__init__.py to __init__.cpython-36.pyc
+[3.131s] running install_data
+[3.132s] copying resource/py_pubsub -> /home/rob/SeniorDesign/ROB/dev_ws/install/py_pubsub/share/ament_index/resource_index/packages
+[3.133s] copying package.xml -> /home/rob/SeniorDesign/ROB/dev_ws/install/py_pubsub/share/py_pubsub
+[3.133s] running install_egg_info
+[3.140s] removing '/home/rob/SeniorDesign/ROB/dev_ws/install/py_pubsub/lib/python3.6/site-packages/py_pubsub-0.0.0-py3.6.egg-info' (and everything under it)
+[3.140s] Copying ../../build/py_pubsub/py_pubsub.egg-info to /home/rob/SeniorDesign/ROB/dev_ws/install/py_pubsub/lib/python3.6/site-packages/py_pubsub-0.0.0-py3.6.egg-info
+[3.144s] running install_scripts
+[3.179s] Installing listener script to /home/rob/SeniorDesign/ROB/dev_ws/install/py_pubsub/lib/py_pubsub
+[3.179s] Installing talker script to /home/rob/SeniorDesign/ROB/dev_ws/install/py_pubsub/lib/py_pubsub
+[3.179s] writing list of installed files to '/home/rob/SeniorDesign/ROB/dev_ws/build/py_pubsub/install.log'

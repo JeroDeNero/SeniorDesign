@@ -1,0 +1,4 @@
+[console_scripts]
+keyboard_subscriber = teleop_subscriber:main
+teleop_twist_keyboard = teleop_twist_keyboard:main
+

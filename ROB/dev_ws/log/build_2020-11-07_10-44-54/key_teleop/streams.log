@@ -1,0 +1,39 @@
+[2.374s] Invoking command in '/home/rob/SeniorDesign/ROB/dev_ws/src/teleop_tools/key_teleop': PYTHONPATH=/home/rob/SeniorDesign/ROB/dev_ws/install/key_teleop/lib/python3.6/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../../build/key_teleop build --build-base /home/rob/SeniorDesign/ROB/dev_ws/build/key_teleop/build install --prefix /home/rob/SeniorDesign/ROB/dev_ws/install/key_teleop --record /home/rob/SeniorDesign/ROB/dev_ws/build/key_teleop/install.log --single-version-externally-managed
+[3.041s] running egg_info
+[3.042s] creating ../../../build/key_teleop/key_teleop.egg-info
+[3.042s] writing ../../../build/key_teleop/key_teleop.egg-info/PKG-INFO
+[3.043s] writing dependency_links to ../../../build/key_teleop/key_teleop.egg-info/dependency_links.txt
+[3.043s] writing entry points to ../../../build/key_teleop/key_teleop.egg-info/entry_points.txt
+[3.043s] writing requirements to ../../../build/key_teleop/key_teleop.egg-info/requires.txt
+[3.043s] writing top-level names to ../../../build/key_teleop/key_teleop.egg-info/top_level.txt
+[3.047s] writing manifest file '../../../build/key_teleop/key_teleop.egg-info/SOURCES.txt'
+[3.116s] reading manifest file '../../../build/key_teleop/key_teleop.egg-info/SOURCES.txt'
+[3.117s] writing manifest file '../../../build/key_teleop/key_teleop.egg-info/SOURCES.txt'
+[3.117s] running build
+[3.117s] running build_py
+[3.118s] creating /home/rob/SeniorDesign/ROB/dev_ws/build/key_teleop/build
+[3.118s] creating /home/rob/SeniorDesign/ROB/dev_ws/build/key_teleop/build/lib
+[3.118s] creating /home/rob/SeniorDesign/ROB/dev_ws/build/key_teleop/build/lib/key_teleop
+[3.118s] copying key_teleop/__init__.py -> /home/rob/SeniorDesign/ROB/dev_ws/build/key_teleop/build/lib/key_teleop
+[3.118s] copying key_teleop/key_teleop.py -> /home/rob/SeniorDesign/ROB/dev_ws/build/key_teleop/build/lib/key_teleop
+[3.118s] running install
+[3.119s] running install_lib
+[3.119s] creating /home/rob/SeniorDesign/ROB/dev_ws/install/key_teleop/lib/python3.6/site-packages/key_teleop
+[3.119s] copying /home/rob/SeniorDesign/ROB/dev_ws/build/key_teleop/build/lib/key_teleop/__init__.py -> /home/rob/SeniorDesign/ROB/dev_ws/install/key_teleop/lib/python3.6/site-packages/key_teleop
+[3.120s] copying /home/rob/SeniorDesign/ROB/dev_ws/build/key_teleop/build/lib/key_teleop/key_teleop.py -> /home/rob/SeniorDesign/ROB/dev_ws/install/key_teleop/lib/python3.6/site-packages/key_teleop
+[3.122s] byte-compiling /home/rob/SeniorDesign/ROB/dev_ws/install/key_teleop/lib/python3.6/site-packages/key_teleop/__init__.py to __init__.cpython-36.pyc
+[3.122s] byte-compiling /home/rob/SeniorDesign/ROB/dev_ws/install/key_teleop/lib/python3.6/site-packages/key_teleop/key_teleop.py to key_teleop.cpython-36.pyc
+[3.123s] running install_data
+[3.124s] copying package.xml -> /home/rob/SeniorDesign/ROB/dev_ws/install/key_teleop/share/key_teleop
+[3.124s] creating /home/rob/SeniorDesign/ROB/dev_ws/install/key_teleop/share/key_teleop/config
+[3.124s] copying config/key_teleop.yaml -> /home/rob/SeniorDesign/ROB/dev_ws/install/key_teleop/share/key_teleop/config
+[3.124s] creating /home/rob/SeniorDesign/ROB/dev_ws/install/key_teleop/share/ament_index
+[3.125s] creating /home/rob/SeniorDesign/ROB/dev_ws/install/key_teleop/share/ament_index/resource_index
+[3.125s] creating /home/rob/SeniorDesign/ROB/dev_ws/install/key_teleop/share/ament_index/resource_index/packages
+[3.125s] copying resource/key_teleop -> /home/rob/SeniorDesign/ROB/dev_ws/install/key_teleop/share/ament_index/resource_index/packages
+[3.125s] running install_egg_info
+[3.130s] Copying ../../../build/key_teleop/key_teleop.egg-info to /home/rob/SeniorDesign/ROB/dev_ws/install/key_teleop/lib/python3.6/site-packages/key_teleop-0.3.0-py3.6.egg-info
+[3.131s] running install_scripts
+[3.170s] Installing key_teleop script to /home/rob/SeniorDesign/ROB/dev_ws/install/key_teleop/lib/key_teleop
+[3.170s] writing list of installed files to '/home/rob/SeniorDesign/ROB/dev_ws/build/key_teleop/install.log'
+[3.208s] Invoked command in '/home/rob/SeniorDesign/ROB/dev_ws/src/teleop_tools/key_teleop' returned '0': PYTHONPATH=/home/rob/SeniorDesign/ROB/dev_ws/install/key_teleop/lib/python3.6/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../../build/key_teleop build --build-base /home/rob/SeniorDesign/ROB/dev_ws/build/key_teleop/build install --prefix /home/rob/SeniorDesign/ROB/dev_ws/install/key_teleop --record /home/rob/SeniorDesign/ROB/dev_ws/build/key_teleop/install.log --single-version-externally-managed

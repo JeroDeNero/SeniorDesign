@@ -1,0 +1,35 @@
+[1.113s] Invoking command in '/home/rob/SeniorDesign/ROB/dev_ws/build/movement': /usr/bin/cmake /home/rob/SeniorDesign/ROB/dev_ws/ROB/dev_ws/src/teleop_twist_keyboard/ROB/stormBot_ws/src/movement -DCATKIN_INSTALL_INTO_PREFIX_ROOT=0 -DCMAKE_INSTALL_PREFIX=/home/rob/SeniorDesign/ROB/dev_ws/install/movement
+[1.734s] -- The C compiler identification is GNU 7.5.0
+[1.735s] -- The CXX compiler identification is GNU 7.5.0
+[1.736s] -- Check for working C compiler: /usr/bin/cc
+[1.736s] -- Check for working C compiler: /usr/bin/cc -- works
+[1.736s] -- Detecting C compiler ABI info
+[1.736s] -- Detecting C compiler ABI info - done
+[1.736s] -- Detecting C compile features
+[1.970s] -- Detecting C compile features - done
+[1.973s] -- Check for working CXX compiler: /usr/bin/c++
+[2.120s] -- Check for working CXX compiler: /usr/bin/c++ -- works
+[2.121s] -- Detecting CXX compiler ABI info
+[2.276s] -- Detecting CXX compiler ABI info - done
+[2.285s] -- Detecting CXX compile features
+[3.142s] -- Detecting CXX compile features - done
+[3.180s] CMake Error at CMakeLists.txt:10 (find_package):
+[3.181s]   By not providing "Findcatkin.cmake" in CMAKE_MODULE_PATH this project has
+[3.181s]   asked CMake to find a package configuration file provided by "catkin", but
+[3.181s]   CMake did not find one.
+[3.182s] 
+[3.182s]   Could not find a package configuration file provided by "catkin" with any
+[3.182s]   of the following names:
+[3.182s] 
+[3.183s]     catkinConfig.cmake
+[3.183s]     catkin-config.cmake
+[3.183s] 
+[3.183s]   Add the installation prefix of "catkin" to CMAKE_PREFIX_PATH or set
+[3.184s]   "catkin_DIR" to a directory containing one of the above files.  If "catkin"
+[3.184s]   provides a separate development package or SDK, be sure it has been
+[3.184s]   installed.
+[3.184s] 
+[3.184s] 
+[3.185s] -- Configuring incomplete, errors occurred!
+[3.185s] See also "/home/rob/SeniorDesign/ROB/dev_ws/build/movement/CMakeFiles/CMakeOutput.log".
+[3.186s] Invoked command in '/home/rob/SeniorDesign/ROB/dev_ws/build/movement' returned '1': /usr/bin/cmake /home/rob/SeniorDesign/ROB/dev_ws/ROB/dev_ws/src/teleop_twist_keyboard/ROB/stormBot_ws/src/movement -DCATKIN_INSTALL_INTO_PREFIX_ROOT=0 -DCMAKE_INSTALL_PREFIX=/home/rob/SeniorDesign/ROB/dev_ws/install/movement

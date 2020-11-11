@@ -7,6 +7,7 @@ import { catchError, tap } from 'rxjs/operators';
 import { Run, Tag } from './interfaces';
 
 import { API_URL } from './env';
+import { DateHandlerService } from './date-handler.service';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +17,7 @@ export class RunService {
     this.createEmptyRun()
   );
 
-  arrayIndex: number[];
+  index: number;
 
   private newRun: BehaviorSubject<Run> = new BehaviorSubject<Run>(
     this.createEmptyRun()
@@ -28,7 +29,10 @@ export class RunService {
 
   allRunsData: Run[][];
 
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+    private dateHandlerService: DateHandlerService
+  ) {
     this.getRuns().subscribe((data) => {
       this.setAllRuns(data);
     });
@@ -62,7 +66,7 @@ export class RunService {
   }
 
   addTag(tag: Tag): void {
-    this.newRunData.tag.push(tag);
+    this.newRunData.tags.push(tag);
     console.log(this.newRunData);
   }
 
@@ -78,33 +82,6 @@ export class RunService {
     if (run.Id !== this.editRun.getValue().Id) {
       this.editRun.next(run);
     }
-  }
-
-  getShapeFile(date, lat, long): Observable<any> {
-    return this.http
-      .post<any>(
-        `http://${API_URL}/export/tags`,
-        { date: date, lat: lat, long: long },
-        this.httpOptions
-      )
-      .pipe(
-        tap((_) => console.log('fetched shape file')),
-        catchError(this.handleError<Run>(null))
-      );
-  }
-
-  getFolder(dir) {
-    console.log(dir);
-    return this.http
-      .post<any>(
-        `http://${API_URL}/export/folder`,
-        { dir: dir },
-        this.httpOptions
-      )
-      .pipe(
-        tap((_) => console.log('fetched shape file')),
-        catchError(this.handleError<Run>(null))
-      );
   }
 
   getEditRun(): Observable<Run> {
@@ -154,16 +131,24 @@ export class RunService {
       .pipe(
         tap(() => {
           console.log('added run');
-          this.allRunsData[type].push(runToAdd);
+          this.allRunsData[type].unshift(runToAdd);
         }),
         catchError(this.handleError<Run>())
       );
   }
 
   updateRun(): Observable<any> {
-    this.allRunsData[this.arrayIndex[0]][
-      this.arrayIndex[1]
-    ] = this.editRun.getValue();
+    const index = this.getRunIndex(this.editRun.getValue().Id, this.index);
+    console.log(Boolean(this.editRun.getValue().Name));
+    if (this.index > 0) {
+      if (this.index === 1 && !this.editRun.getValue().Name) {
+        this.allRunsData[this.index].splice(index, 1);
+        this.allRunsData[2].unshift(this.editRun.getValue());
+      } else if (this.index === 2 && this.editRun.getValue().Name) {
+        this.allRunsData[this.index].splice(index, 1);
+        this.allRunsData[1].unshift(this.editRun.getValue());
+      }
+    }
 
     return this.http
       .post(
@@ -172,15 +157,38 @@ export class RunService {
         this.httpOptions
       )
       .pipe(
-        tap((_) => console.log('updated run id =${run.Id}')),
+        tap((_) =>
+          console.log(`updated run id =${this.editRun.getValue().Id}`)
+        ),
         catchError(this.handleError<any>())
       );
   }
 
-  deleteRun(run: Run | number): Observable<any> {
+  changePin(run: Run): Observable<any> {
+    return this.http
+      .post(
+        `http://${API_URL}/save/editPin`,
+        { id: run.Id, tagged: run.Tagged },
+        this.httpOptions
+      )
+      .pipe(
+        tap((_) => console.log(`updated run id =${run.Id}`)),
+        catchError(this.handleError<any>())
+      );
+  }
+
+  deleteRun(run: Run | number, date: Date, pipeID: String): Observable<any> {
     const id = typeof run === 'number' ? run : run.Id;
     return this.http
-      .post<any>(`http://${API_URL}/delete/run`, { Id: id }, this.httpOptions)
+      .post<any>(
+        `http://${API_URL}/delete/run`,
+        {
+          Id: id,
+          date: this.dateHandlerService.generateDate(date),
+          pipeID: pipeID,
+        },
+        this.httpOptions
+      )
       .pipe(
         tap((_) => console.log('deleted run')),
         catchError(this.handleError<Run>())
@@ -197,22 +205,27 @@ export class RunService {
       );
   }
 
+  getRunIndex(target, index) {
+    const lambda = (element: Run) => element.Id === target;
+    return this.allRunsData[index].findIndex(lambda);
+  }
+
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
 
   createEmptyRun() {
     return {
-      Name: null,
+      Name: '',
       DriverName: '',
       PipeID: '',
       Direction: '',
       Tagged: 0,
       Lat: 0,
       Longi: 0,
-      ShowRun: false,
+      ShowRun: true,
       ShowTag: false,
-      tag: [],
+      tags: [],
     };
   }
 }

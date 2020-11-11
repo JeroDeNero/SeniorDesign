@@ -54,7 +54,29 @@
     </div>
     <div class="col"></div>
     <div class="colSmall"></div>
-    <div class="colLong"></div>
+    <div class="colLong">
+      <p class="range-field">
+        <input
+          type="range"
+          min="0"
+          max="100"
+          [value]="this.slider"
+          class="slider"
+          (input)="this.slider = $event.target.value"
+        /><span
+          class="thumb"
+          style="
+            left: 0px;
+            height: 0px;
+            width: 0px;
+            top: 10px;
+            margin-left: -6px;
+          "
+        >
+          <span class="value">{{ this.slider || 0 }}</span></span
+        >
+      </p>
+    </div>
     <div class="colSmall"></div>
   </div>
 
@@ -83,7 +105,12 @@
       </svg>
     </div>
     <div class="col">
-      <button class="action" (mousedown)="onBinClick()"></button>
+      <button
+        class="action"
+        (mousedown)="onBinClick('True')"
+        (mouseup)="onClickR('False')"
+        (mouseleave)="onClickR('False')"
+      ></button>
     </div>
     <div class="col">
       <svg width="90" height="90" class="right">
@@ -215,27 +242,7 @@
     <div class="col"></div>
     <div class="colSmall"></div>
     <div class="colLong">
-      <p class="range-field">
-        <input
-          type="range"
-          min="0"
-          max="100"
-          [value]="this.slider"
-          class="slider"
-          (input)="this.slider = $event.target.value"
-        /><span
-          class="thumb"
-          style="
-            left: 0px;
-            height: 0px;
-            width: 0px;
-            top: 10px;
-            margin-left: -6px;
-          "
-        >
-          <span class="value">{{ this.slider || 0 }}</span></span
-        >
-      </p>
+      <a class="button" (click)="refocus()"> refocus </a>
     </div>
     <div class="colSmall"></div>
   </div>

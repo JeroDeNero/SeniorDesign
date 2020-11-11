@@ -1,0 +1,40 @@
+{
+  "package_name": "teleop_tools_msgs",
+  "output_dir": "/home/rob/SeniorDesign/ROB/dev_ws/build/teleop_tools_msgs/rosidl_generator_py/teleop_tools_msgs",
+  "template_dir": "/home/rob/ros2_dashing/install/rosidl_generator_py/share/rosidl_generator_py/cmake/../resource",
+  "idl_tuples": [
+    "/home/rob/SeniorDesign/ROB/dev_ws/build/teleop_tools_msgs/rosidl_adapter/teleop_tools_msgs:action/Increment.idl"
+  ],
+  "ros_interface_dependencies": [
+    "action_msgs:/home/rob/ros2_dashing/install/action_msgs/share/action_msgs/msg/GoalInfo.idl",
+    "action_msgs:/home/rob/ros2_dashing/install/action_msgs/share/action_msgs/msg/GoalStatus.idl",
+    "action_msgs:/home/rob/ros2_dashing/install/action_msgs/share/action_msgs/msg/GoalStatusArray.idl",
+    "action_msgs:/home/rob/ros2_dashing/install/action_msgs/share/action_msgs/srv/CancelGoal.idl",
+    "builtin_interfaces:/home/rob/ros2_dashing/install/builtin_interfaces/share/builtin_interfaces/msg/Duration.idl",
+    "builtin_interfaces:/home/rob/ros2_dashing/install/builtin_interfaces/share/builtin_interfaces/msg/Time.idl",
+    "unique_identifier_msgs:/home/rob/ros2_dashing/install/unique_identifier_msgs/share/unique_identifier_msgs/msg/UUID.idl"
+  ],
+  "target_dependencies": [
+    "/home/rob/ros2_dashing/install/rosidl_generator_py/share/rosidl_generator_py/cmake/../../../lib/rosidl_generator_py/rosidl_generator_py",
+    "/home/rob/ros2_dashing/install/rosidl_generator_py/lib/python3.6/site-packages/rosidl_generator_py/__init__.py",
+    "/home/rob/ros2_dashing/install/rosidl_generator_py/lib/python3.6/site-packages/rosidl_generator_py/generate_py_impl.py",
+    "/home/rob/ros2_dashing/install/rosidl_generator_py/share/rosidl_generator_py/cmake/../resource/_action_pkg_typesupport_entry_point.c.em",
+    "/home/rob/ros2_dashing/install/rosidl_generator_py/share/rosidl_generator_py/cmake/../resource/_action.py.em",
+    "/home/rob/ros2_dashing/install/rosidl_generator_py/share/rosidl_generator_py/cmake/../resource/_idl_pkg_typesupport_entry_point.c.em",
+    "/home/rob/ros2_dashing/install/rosidl_generator_py/share/rosidl_generator_py/cmake/../resource/_idl_support.c.em",
+    "/home/rob/ros2_dashing/install/rosidl_generator_py/share/rosidl_generator_py/cmake/../resource/_idl.py.em",
+    "/home/rob/ros2_dashing/install/rosidl_generator_py/share/rosidl_generator_py/cmake/../resource/_msg_pkg_typesupport_entry_point.c.em",
+    "/home/rob/ros2_dashing/install/rosidl_generator_py/share/rosidl_generator_py/cmake/../resource/_msg_support.c.em",
+    "/home/rob/ros2_dashing/install/rosidl_generator_py/share/rosidl_generator_py/cmake/../resource/_msg.py.em",
+    "/home/rob/ros2_dashing/install/rosidl_generator_py/share/rosidl_generator_py/cmake/../resource/_srv_pkg_typesupport_entry_point.c.em",
+    "/home/rob/ros2_dashing/install/rosidl_generator_py/share/rosidl_generator_py/cmake/../resource/_srv.py.em",
+    "/home/rob/SeniorDesign/ROB/dev_ws/build/teleop_tools_msgs/rosidl_adapter/teleop_tools_msgs/action/Increment.idl",
+    "/home/rob/ros2_dashing/install/action_msgs/share/action_msgs/msg/GoalInfo.idl",
+    "/home/rob/ros2_dashing/install/action_msgs/share/action_msgs/msg/GoalStatus.idl",
+    "/home/rob/ros2_dashing/install/action_msgs/share/action_msgs/msg/GoalStatusArray.idl",
+    "/home/rob/ros2_dashing/install/action_msgs/share/action_msgs/srv/CancelGoal.idl",
+    "/home/rob/ros2_dashing/install/builtin_interfaces/share/builtin_interfaces/msg/Duration.idl",
+    "/home/rob/ros2_dashing/install/builtin_interfaces/share/builtin_interfaces/msg/Time.idl",
+    "/home/rob/ros2_dashing/install/unique_identifier_msgs/share/unique_identifier_msgs/msg/UUID.idl"
+  ]
+}

@@ -25,7 +25,7 @@ export class AppComponent {
   pullOutBar: boolean = true;
   hideFilter: boolean = true;
   resetFilter: boolean = true;
-  showFavorites: boolean;
+  showPinned: boolean;
   showNamed: boolean;
   showUnamed: boolean;
   title = 'site';
@@ -68,8 +68,8 @@ export class AppComponent {
       this.runService.addTag(data);
     });
 
-    this.toggleService.getShowFavorites().subscribe((value) => {
-      this.showFavorites = value;
+    this.toggleService.getShowPinned().subscribe((value) => {
+      this.showPinned = value;
     });
 
     this.toggleService.getShowNamed().subscribe((value) => {
