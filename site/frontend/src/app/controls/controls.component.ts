@@ -64,7 +64,7 @@ export class ControlsComponent implements OnInit {
     if (!this.intervalRunning) {
       this.gamepadInterval = setInterval(() => {
         this.updateStatus();
-      }, 750);
+      }, 900);
     }
   }
 
@@ -118,13 +118,13 @@ export class ControlsComponent implements OnInit {
 
   onCamClickD(button) {
     if (button === 'camLeft') {
-      this.socketEmit('camera', 'x', (this.slider / 100) * -1);
+      this.socketEmit('camera', 'x', 1);
     } else if (button === 'camRight') {
-      this.socketEmit('camera', 'x', this.slider / 100);
+      this.socketEmit('camera', 'x', -1);
     } else if (button === 'camDown') {
-      this.socketEmit('camera', 'y', (this.slider / 100) * -1);
+      this.socketEmit('camera', 'y', -1);
     } else {
-      this.socketEmit('camera', 'y', this.slider / 100);
+      this.socketEmit('camera', 'y', 1);
     }
   }
 
@@ -232,6 +232,7 @@ export class ControlsComponent implements OnInit {
       if (
         this.controllers[index].axes[0] !==
           this.prevControllers[index].axes[0] &&
+        Math.abs(this.controllers[index].axes[0]) > 0.15 &&
         Math.abs(this.controllers[index].axes[0]) >
           Math.abs(this.controllers[index].axes[1])
       ) {
@@ -239,6 +240,7 @@ export class ControlsComponent implements OnInit {
       } else if (
         this.controllers[index].axes[1] !==
           this.prevControllers[index].axes[1] &&
+        Math.abs(this.controllers[index].axes[1]) > 0.15 &&
         Math.abs(this.controllers[index].axes[1]) >
           Math.abs(this.controllers[index].axes[0])
       ) {
@@ -261,6 +263,7 @@ export class ControlsComponent implements OnInit {
       if (
         this.controllers[index].axes[2] !==
           this.prevControllers[index].axes[2] &&
+        Math.abs(this.controllers[index].axes[2]) > 0.15 &&
         this.controllers[index].axes[2]
       ) {
         this.socketEmit('camera', 'x', this.controllers[index].axes[2]);
@@ -269,6 +272,7 @@ export class ControlsComponent implements OnInit {
       if (
         this.controllers[index].axes[3] !==
           this.prevControllers[index].axes[3] &&
+        Math.abs(this.controllers[index].axes[3]) > 0.15 &&
         this.controllers[index].axes[3]
       ) {
         this.socketEmit('camera', 'y', this.controllers[index].axes[2] * -1);
@@ -300,6 +304,7 @@ export class ControlsComponent implements OnInit {
       this.socket.emit(channel, command);
     } else if (channel === 'stopCam') {
       this.socket.emit(channel, command);
+      console.log('stopCam');
     } else if (channel === 'speed') {
       this.socket.emit(channel, this.slider / 100); //does it really need this info
     } else if (command) {

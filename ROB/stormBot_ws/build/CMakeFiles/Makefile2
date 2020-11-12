@@ -408,11 +408,16 @@ clean: gtest/googlemock/gtest/CMakeFiles/gtest.dir/clean
 # Directory level rules for directory movement
 
 # Convenience name for "all" pass in the directory.
-movement/all: movement/CMakeFiles/movement_generate_messages.dir/all
+movement/all:
 
 .PHONY : movement/all
 
 # Convenience name for "clean" pass in the directory.
+<<<<<<< HEAD
+<<<<<<< HEAD
+movement/clean:
+=======
+=======
 movement/clean: movement/CMakeFiles/movement_genpy.dir/clean
 movement/clean: movement/CMakeFiles/movement_generate_messages_py.dir/clean
 movement/clean: movement/CMakeFiles/movement_gennodejs.dir/clean
@@ -421,6 +426,7 @@ movement/clean: movement/CMakeFiles/movement_genlisp.dir/clean
 movement/clean: movement/CMakeFiles/movement_generate_messages_eus.dir/clean
 movement/clean: movement/CMakeFiles/movement_gencpp.dir/clean
 movement/clean: movement/CMakeFiles/movement_generate_messages_cpp.dir/clean
+>>>>>>> 880a5c0ade58a5261688987de691d1d44aa2f7cd
 movement/clean: movement/CMakeFiles/roscpp_generate_messages_py.dir/clean
 movement/clean: movement/CMakeFiles/roscpp_generate_messages_eus.dir/clean
 movement/clean: movement/CMakeFiles/roscpp_generate_messages_lisp.dir/clean
@@ -440,7 +446,11 @@ movement/clean: movement/CMakeFiles/std_msgs_generate_messages_eus.dir/clean
 movement/clean: movement/CMakeFiles/std_msgs_generate_messages_nodejs.dir/clean
 movement/clean: movement/CMakeFiles/roscpp_generate_messages_nodejs.dir/clean
 movement/clean: movement/CMakeFiles/std_msgs_generate_messages_py.dir/clean
+<<<<<<< HEAD
+>>>>>>> fb31484fad3229ef1572f22829b12fdf2af1357c
+=======
 movement/clean: movement/CMakeFiles/movement_generate_messages.dir/clean
+>>>>>>> 880a5c0ade58a5261688987de691d1d44aa2f7cd
 
 .PHONY : movement/clean
 
@@ -450,6 +460,8 @@ movement/preinstall:
 .PHONY : movement/preinstall
 
 #=============================================================================
+<<<<<<< HEAD
+=======
 # Target rules for target movement/CMakeFiles/movement_genpy.dir
 
 # All Build rule for target.
@@ -5974,6 +5986,7 @@ mobile_robot/preinstall:
 .PHONY : mobile_robot/preinstall
 
 #=============================================================================
+>>>>>>> 880a5c0ade58a5261688987de691d1d44aa2f7cd
 # Special targets to cleanup operation of make.
 
 # Special rule to run CMake to check the build system integrity.

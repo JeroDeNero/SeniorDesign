@@ -46,3 +46,21 @@ svg.up {
 svg.down {
   transform: rotate(90deg);
 }
+
+a.button {
+  cursor: pointer;
+  padding: 4px 6px;
+  transition: 0.3s;
+  border-radius: 4px;
+  background-color: inherit;
+}
+
+a.button:hover {
+  color: black;
+  background-color: rgb(238, 238, 238);
+}
+
+a .active {
+  color: black;
+  background-color: rgb(238, 238, 238);
+}

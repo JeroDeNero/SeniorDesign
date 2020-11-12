@@ -87,11 +87,6 @@ def endRecording():
 def emitCams():
     global COUNT
     global VIDEO
-    if (COUNT > 0 and not VIDEO[0]):
-        VIDEO[0] = Video(0, 20)
-
-    if (COUNT > 0 and not VIDEO[0]):
-        VIDEO[0] = Video(0, 20)
 
     print(COUNT)
 
@@ -100,7 +95,7 @@ def emitCams():
         os.environ.pop('MAIN_FPS')
         os.environ.pop('SECONDARY_FPS')
         load_dotenv("data_management/../.env")
-        VIDEO.insert(0, Video(-1, int(os.environ.get("MAIN_FPS")), 0, False))
+        VIDEO.insert(0, Video(0, int(os.environ.get("MAIN_FPS")), 0, True))
 
     try:
         while COUNT > 0 and not VIDEO[0].reboot and not REBOOT:

@@ -49,6 +49,9 @@ class Robot:
     servoAddress = 0x40
     servoBusNum = 1
 
+    botServoPos = 0
+    botServoMin = 246
+    botServoRest = 293
     servoRest = 303
 
     botServoPos = 0
@@ -57,6 +60,7 @@ class Robot:
 
     topServoPos = 1
     topServoMin = 303
+    topServoRest = 303
     topServoMax = 438
 
     def __init__(self):
@@ -68,9 +72,9 @@ class Robot:
         self.rightMotor = Motor(self.motor2EncoderXPin, self.motor2EncoderYPin, self.motorEncoderPR, self.motorAddress,
                                 self.motorBusNum, self.rightMotorLoc, self.motor2DIR, self.rightMotoReversed, self.motorFrequency)
 
-        self.botServo = Servo(self.botServoMin, self.servoRest, self.botServoMax,
+        self.botServo = Servo(self.botServoMin, self.botServoRest, self.botServoMax,
                               self.botServoPos, self.servoAddress, self.servoBusNum, self.servofrequency)
-        self.topServo = Servo(self.topServoMin, self.servoRest, self.topServoMax,
+        self.topServo = Servo(self.topServoMin, self.topServoRest, self.topServoMax,
                               self.topServoPos, self.servoAddress, self.servoBusNum, self.servofrequency)
 
         self.stop()
@@ -79,13 +83,14 @@ class Robot:
 
     def setupBot(self):
 
-        signal(SIGINT, handler)
+        #signal(SIGINT, handler)
 
         GPIO.setmode(GPIO.BOARD)
 
+        GPIO.setup(self.safeNumber, GPIO.OUT)
+
         GPIO.output(self. safeNumber, GPIO.HIGH)
 
-        GPIO.setup(self.safeNumber, GPIO.OUT)
         GPIO.setup(self.motor1DIR, GPIO.OUT)
         GPIO.setup(self.motor2DIR, GPIO.OUT)
         GPIO.setup(self.motor1EncoderXPin, GPIO.IN)
@@ -96,16 +101,18 @@ class Robot:
         time.sleep(0.1)
 
     def moveCamera(self, state, value):
+        print(state)
         if state == 'x':
             self.botServo.goto(value)
         else:
             self.topServo.goto(value)
 
     def stopCamera(self, *pos):
+        print("stopping camera, ", pos)
         if pos is None:
-            self.botServo.stop()
-            self.topServo.stop()
-        elif pos == 'x':
+            _thread.start_new_thread(self.botServo.stop())
+            _thread.start_new_thread(self.topServo.stop())
+        elif 'x' in pos:
             self.botServo.stop()
         else:
             self.topServo.stop()
@@ -128,16 +135,16 @@ class Robot:
 
     def moveStraight(self, value):
         try:
-            _thread.start_new_thread(self.leftMotor.rotate(value))
-            _thread.start_new_thread(self.leftMotor.rotate(value))
+            self.leftMotor.rotate(value)
+            self.rightMotor.rotate(value)
         except:
             print("failed to move")
             self.stopMotor()
 
     def rotate(self, value):
         try:
-            _thread.start_new_thread(self.leftMotor.rotate(value))
-            _thread.start_new_thread(self.rightMotor.rotate(value))
+            self.leftMotor.rotate(value)
+            self.rightMotor.rotate(value * -1)
         except:
             print("failed to move")
             self.stopMotor()
@@ -146,7 +153,7 @@ class Robot:
         try:
             distance1 = self.leftMotor.stop()
             distance2 = self.rightMotor.stop()
-            distance = (distance1 + distance2) / 2
+
             print(distance)
             print(math.pi * 2 * 0.5 * distance)
         except:
@@ -215,7 +222,10 @@ class Motor:
         else:
             return
 
-        self.pwmController.set_pwm(self.motorPos, self.maxSpeed * percent, 0)
+        self.pwmController.set_pwm(
+            self.motorPos, round(self.maxSpeed * percent), 0)
+
+        print(percent)
 
     def stop(self):
         self.pwmController.set_pwm(self.motorPos, 0, 0)
@@ -245,31 +255,39 @@ class Servo:
         if not self.servoHold:
             self.servoStop = True
             deviation = 0
+            print(percent)
             if percent < 0:
+                print(self.servoMin)
                 deviation = (self.servoRest - self.servoMin) * percent
+                print(deviation)
             elif percent > 0:
                 deviation = (self.servoMax - self.servoRest) * percent
+                print(self.servoMax)
+                print(deviation)
 
-            self.servoStop = False
+            self.stop()
 
-            _thread.start_new_thread(self.travel(self.servoRest - deviation))
+            self.travel(self.servoRest - deviation)
 
     def travel(self, target):
         if (self.servoPos - target) == 0:
             return
-        interval = (self.servoPos - target)/abs(self.servoPos - target)
-        while not self.servoStop or not self.servoHold or self.servoPos != target:
+        interval = (self.servoPos - target) / abs(self.servoPos - target) * -1
+        while not self.servoStop and not self.servoHold and self.servoPos != round(target):
+
+            print('position ' + str(self.servoPos) + ' target: ' + str(target))
 
             self.servoPos += interval
-            self.pwmController.set_pwm(self.servoNum, 0, self.servoPos)
-            time.sleep(0.1)
+            self.pwmController.set_pwm(self.servoNum, 0, round(self.servoPos))
+            time.sleep(0.001)
 
     def rest(self):
         self.pwmController.set_pwm(self.servoNum, 0, self.servoRest)
 
     def stop(self):
+        print("stopping servo " + str(self.servoNum))
         self.servoStop = True
-        time.sleep(0.11)
+        time.sleep(0.005)
         self.servoStop = False
 
     def servoHoldToggle(self):

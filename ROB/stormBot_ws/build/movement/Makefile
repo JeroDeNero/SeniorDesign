@@ -79,6 +79,38 @@ install/strip/fast: preinstall/fast
 	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
 .PHONY : install/strip/fast
 
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
+
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+
+.PHONY : list_install_components/fast
+
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
+
 # Special rule for the target install/local
 install/local: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
@@ -102,27 +134,6 @@ rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
 
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
-
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
-
-.PHONY : list_install_components/fast
-
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
-
 # Special rule for the target install
 install: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
@@ -135,6 +146,23 @@ install/fast: preinstall/fast
 	/usr/bin/cmake -P cmake_install.cmake
 .PHONY : install/fast
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/usr/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+
+.PHONY : test/fast
+
+>>>>>>> fb31484fad3229ef1572f22829b12fdf2af1357c
+=======
+>>>>>>> 880a5c0ade58a5261688987de691d1d44aa2f7cd
 # The main all target
 all: cmake_check_build_system
 	cd /home/rob/Desktop/repo/SeniorDesign/ROB/stormBot_ws/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/rob/Desktop/repo/SeniorDesign/ROB/stormBot_ws/build/CMakeFiles /home/rob/Desktop/repo/SeniorDesign/ROB/stormBot_ws/build/movement/CMakeFiles/progress.marks
@@ -167,6 +195,8 @@ depend:
 	cd /home/rob/Desktop/repo/SeniorDesign/ROB/stormBot_ws/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
+<<<<<<< HEAD
+=======
 # Convenience name for target.
 movement/CMakeFiles/movement_genpy.dir/rule:
 	cd /home/rob/Desktop/repo/SeniorDesign/ROB/stormBot_ws/build && $(MAKE) -f CMakeFiles/Makefile2 movement/CMakeFiles/movement_genpy.dir/rule
@@ -572,6 +602,9 @@ std_msgs_generate_messages_py/fast:
 	cd /home/rob/Desktop/repo/SeniorDesign/ROB/stormBot_ws/build && $(MAKE) -f movement/CMakeFiles/std_msgs_generate_messages_py.dir/build.make movement/CMakeFiles/std_msgs_generate_messages_py.dir/build
 .PHONY : std_msgs_generate_messages_py/fast
 
+<<<<<<< HEAD
+>>>>>>> fb31484fad3229ef1572f22829b12fdf2af1357c
+=======
 # Convenience name for target.
 movement/CMakeFiles/movement_generate_messages.dir/rule:
 	cd /home/rob/Desktop/repo/SeniorDesign/ROB/stormBot_ws/build && $(MAKE) -f CMakeFiles/Makefile2 movement/CMakeFiles/movement_generate_messages.dir/rule
@@ -587,6 +620,7 @@ movement_generate_messages/fast:
 	cd /home/rob/Desktop/repo/SeniorDesign/ROB/stormBot_ws/build && $(MAKE) -f movement/CMakeFiles/movement_generate_messages.dir/build.make movement/CMakeFiles/movement_generate_messages.dir/build
 .PHONY : movement_generate_messages/fast
 
+>>>>>>> 880a5c0ade58a5261688987de691d1d44aa2f7cd
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -596,6 +630,18 @@ help:
 	@echo "... test"
 	@echo "... movement_genpy"
 	@echo "... install/strip"
+<<<<<<< HEAD
+<<<<<<< HEAD
+	@echo "... edit_cache"
+	@echo "... list_install_components"
+	@echo "... test"
+	@echo "... install/local"
+	@echo "... rebuild_cache"
+	@echo "... install"
+=======
+	@echo "... install/local"
+	@echo "... rebuild_cache"
+=======
 	@echo "... movement_generate_messages_py"
 	@echo "... movement_gennodejs"
 	@echo "... movement_generate_messages_nodejs"
@@ -605,6 +651,7 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... movement_gencpp"
 	@echo "... movement_generate_messages_cpp"
+>>>>>>> 880a5c0ade58a5261688987de691d1d44aa2f7cd
 	@echo "... list_install_components"
 	@echo "... roscpp_generate_messages_py"
 	@echo "... roscpp_generate_messages_eus"
@@ -627,7 +674,12 @@ help:
 	@echo "... std_msgs_generate_messages_nodejs"
 	@echo "... roscpp_generate_messages_nodejs"
 	@echo "... std_msgs_generate_messages_py"
+<<<<<<< HEAD
+	@echo "... test"
+>>>>>>> fb31484fad3229ef1572f22829b12fdf2af1357c
+=======
 	@echo "... movement_generate_messages"
+>>>>>>> 880a5c0ade58a5261688987de691d1d44aa2f7cd
 .PHONY : help
 
 

@@ -18,14 +18,15 @@ from rclpy.node import Node
 # import test.py
 
 # cal suggests for import
-#from robotcontroler/-pat-to-directory- import function/class-name
-#from ./-pat-to-directory- import function/class-name
+# from robotcontroler/-pat-to-directory- import function/class-name
+# from ./-pat-to-directory- import function/class-name
+
 
 def testMotors(speed):
-    print('speed: %s' % speed)
-    
+    self.get_logger().info('speed: %s' % speed)
+
     if speed == 'low_foward':
-        ## set GPIO.HIGH
+        # set GPIO.HIGH
         # GPIO.output(DIR, GPIO.HIGH)
         # GPIO.output(DIR2, GPIO.HIGH)
         # pwm1.set_pwm(0,2000,0)
@@ -43,7 +44,7 @@ def testMotors(speed):
         # pwm1.set_pwm(0,2000,0)
         # pwm1.set_pwm(1,2000,0)
         print('backward: GPIO.LOW, pwm: 2000')
-    if speed == 'high_backward':
+     if speed == 'high_backward':
         # GPIO.output(DIR, GPIO.LOW)
         # GPIO.output(DIR2, GPIO.LOW)
         # pwm1.set_pwm(0,4096,0)
@@ -55,29 +56,29 @@ def testMotors(speed):
         print('pwm: 0')  
     
 
-    #while True:
-        #timer = 5
+    # while True:
+        # timer = 5
         # GPIO.output(DIR, GPIO.LOW)
         # GPIO.output(DIR2, GPIO.LOW)
         # pwm1.set_pwm(0,2000,0)
         # pwm1.set_pwm(1,2000,0)
-        #time.sleep(timer)
-        #print('DIR changed1')
+        # time.sleep(timer)
+        # print('DIR changed1')
         # GPIO.output(DIR, GPIO.HIGH)
         # GPIO.output(DIR2, GPIO.HIGH)
-        #time.sleep(timer)
-        #print('Power to Max')
+        # time.sleep(timer)
+        # print('Power to Max')
         # pwm1.set_pwm(0, 4096, 0)
         # pwm1.set_pwm(1, 4096, 0)
-        #time.sleep(timer)
-        #print('DIR changed2')
+        # time.sleep(timer)
+        # print('DIR changed2')
         # GPIO.output(DIR, GPIO.LOW)
         # GPIO.output(DIR2, GPIO.LOW)
-        #time.sleep(timer)
-        #print('Stopping')
+        # time.sleep(timer)
+        # print('Stopping')
         # pwm1.set_pwm(0,0,0)
         # pwm1.set_pwm(1,0,0)
-        #time.sleep(timer)
+        # time.sleep(timer)
         # signal(SIGINT, handler)
 
 class KeyboardSubscriber(Node):
