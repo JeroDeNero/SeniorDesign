@@ -1,2 +1,2 @@
-movement
+diff_drive:mobile_robot:mobile_robot_base:mobile_robot_description:mobile_robot_simulation:movement:ros_essentials_cpp
 -DCATKIN_DEVEL_PREFIX=/home/rob/Desktop/repo/SeniorDesign/ROB/stormBot_ws/devel -DCMAKE_INSTALL_PREFIX=/home/rob/Desktop/repo/SeniorDesign/ROB/stormBot_ws/install -G Unix Makefiles

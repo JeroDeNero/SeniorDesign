@@ -132,6 +132,12 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/home/rob/Desktop/repo/SeniorDesign/ROB/stormBot_ws/build/gtest/cmake_install.cmake")
   include("/home/rob/Desktop/repo/SeniorDesign/ROB/stormBot_ws/build/movement/cmake_install.cmake")
+  include("/home/rob/Desktop/repo/SeniorDesign/ROB/stormBot_ws/build/ros_essentials_cpp/cmake_install.cmake")
+  include("/home/rob/Desktop/repo/SeniorDesign/ROB/stormBot_ws/build/diff_drive/cmake_install.cmake")
+  include("/home/rob/Desktop/repo/SeniorDesign/ROB/stormBot_ws/build/mobile_robot_simulation/cmake_install.cmake")
+  include("/home/rob/Desktop/repo/SeniorDesign/ROB/stormBot_ws/build/mobile_robot_base/cmake_install.cmake")
+  include("/home/rob/Desktop/repo/SeniorDesign/ROB/stormBot_ws/build/mobile_robot_description/cmake_install.cmake")
+  include("/home/rob/Desktop/repo/SeniorDesign/ROB/stormBot_ws/build/mobile_robot/cmake_install.cmake")
 
 endif()
 

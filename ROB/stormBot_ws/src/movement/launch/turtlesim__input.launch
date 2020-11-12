@@ -1,0 +1,4 @@
+<launch>
+    <include file="$(find movement)/launch/turtlesim_tele.launch" />
+    <node pkg="movement" type="move.py" name="turtleInput" />
+</launch>

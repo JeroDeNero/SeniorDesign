@@ -52,6 +52,10 @@ class Robot:
     botServoPos = 0
     botServoMin = 246
     botServoRest = 293
+    servoRest = 303
+
+    botServoPos = 0
+    botServoMin = 246
     botServoMax = 360
 
     topServoPos = 1
@@ -84,7 +88,7 @@ class Robot:
         GPIO.setmode(GPIO.BOARD)
 
         GPIO.setup(self.safeNumber, GPIO.OUT)
-        
+
         GPIO.output(self. safeNumber, GPIO.HIGH)
 
         GPIO.setup(self.motor1DIR, GPIO.OUT)
@@ -149,7 +153,7 @@ class Robot:
         try:
             distance1 = self.leftMotor.stop()
             distance2 = self.rightMotor.stop()
-        
+
             print(distance)
             print(math.pi * 2 * 0.5 * distance)
         except:
@@ -218,7 +222,8 @@ class Motor:
         else:
             return
 
-        self.pwmController.set_pwm(self.motorPos, round(self.maxSpeed * percent), 0)
+        self.pwmController.set_pwm(
+            self.motorPos, round(self.maxSpeed * percent), 0)
 
         print(percent)
 
@@ -259,7 +264,7 @@ class Servo:
                 deviation = (self.servoMax - self.servoRest) * percent
                 print(self.servoMax)
                 print(deviation)
-            
+
             self.stop()
 
             self.travel(self.servoRest - deviation)
@@ -268,12 +273,12 @@ class Servo:
         if (self.servoPos - target) == 0:
             return
         interval = (self.servoPos - target) / abs(self.servoPos - target) * -1
-        while not  self.servoStop and not self.servoHold and self.servoPos != round(target):
-    
-            print('position ' + str(self.servoPos) + ' target: ' +  str(target))
+        while not self.servoStop and not self.servoHold and self.servoPos != round(target):
+
+            print('position ' + str(self.servoPos) + ' target: ' + str(target))
 
             self.servoPos += interval
-            self.pwmController.set_pwm(self.servoNum, 0,round(self.servoPos))
+            self.pwmController.set_pwm(self.servoNum, 0, round(self.servoPos))
             time.sleep(0.001)
 
     def rest(self):

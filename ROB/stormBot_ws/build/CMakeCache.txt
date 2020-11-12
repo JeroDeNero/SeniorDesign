@@ -245,6 +245,9 @@ LSB_RELEASE_EXECUTABLE:FILEPATH=/usr/bin/lsb_release
 //Path to a program.
 NOSETESTS:FILEPATH=/usr/bin/nosetests-2.7
 
+//The directory containing a CMake configuration file for OpenCV.
+OpenCV_DIR:PATH=/usr/share/OpenCV
+
 //Path to a program.
 PYTHON_EXECUTABLE:FILEPATH=/usr/bin/python2
 
@@ -284,11 +287,62 @@ _gtest_INCLUDES:FILEPATH=/usr/include/gtest/gtest.h
 //Path to a file.
 _gtest_SOURCES:FILEPATH=/usr/src/gtest/src/gtest.cc
 
+//Path to a file.
+_path_name:FILEPATH=/home/rob/Desktop/repo/SeniorDesign/ROB/stormBot_ws/src/diff_drive/tests
+
+//The directory containing a CMake configuration file for actionlib.
+actionlib_DIR:PATH=/opt/ros/melodic/share/actionlib/cmake
+
+//The directory containing a CMake configuration file for actionlib_msgs.
+actionlib_msgs_DIR:PATH=/opt/ros/melodic/share/actionlib_msgs/cmake
+
 //The directory containing a CMake configuration file for catkin.
 catkin_DIR:PATH=/opt/ros/melodic/share/catkin/cmake
 
+//The directory containing a CMake configuration file for class_loader.
+class_loader_DIR:PATH=/opt/ros/melodic/share/class_loader/cmake
+
 //The directory containing a CMake configuration file for cpp_common.
 cpp_common_DIR:PATH=/opt/ros/melodic/share/cpp_common/cmake
+
+//The directory containing a CMake configuration file for cv_bridge.
+cv_bridge_DIR:PATH=/opt/ros/melodic/share/cv_bridge/cmake
+
+//Value Computed by CMake
+diff_drive_BINARY_DIR:STATIC=/home/rob/Desktop/repo/SeniorDesign/ROB/stormBot_ws/build/diff_drive
+
+//Value Computed by CMake
+diff_drive_SOURCE_DIR:STATIC=/home/rob/Desktop/repo/SeniorDesign/ROB/stormBot_ws/src/diff_drive
+
+//The directory containing a CMake configuration file for dynamic_reconfigure.
+dynamic_reconfigure_DIR:PATH=/opt/ros/melodic/share/dynamic_reconfigure/cmake
+
+//The directory containing a CMake configuration file for gazebo_msgs.
+gazebo_msgs_DIR:PATH=/opt/ros/melodic/share/gazebo_msgs/cmake
+
+//The directory containing a CMake configuration file for gazebo_ros.
+gazebo_ros_DIR:PATH=/opt/ros/melodic/share/gazebo_ros/cmake
+
+//The directory containing a CMake configuration file for gencpp.
+gencpp_DIR:PATH=/opt/ros/melodic/share/gencpp/cmake
+
+//The directory containing a CMake configuration file for geneus.
+geneus_DIR:PATH=/opt/ros/melodic/share/geneus/cmake
+
+//The directory containing a CMake configuration file for genlisp.
+genlisp_DIR:PATH=/opt/ros/melodic/share/genlisp/cmake
+
+//The directory containing a CMake configuration file for genmsg.
+genmsg_DIR:PATH=/opt/ros/melodic/share/genmsg/cmake
+
+//The directory containing a CMake configuration file for gennodejs.
+gennodejs_DIR:PATH=/opt/ros/melodic/share/gennodejs/cmake
+
+//The directory containing a CMake configuration file for genpy.
+genpy_DIR:PATH=/opt/ros/melodic/share/genpy/cmake
+
+//The directory containing a CMake configuration file for geometry_msgs.
+geometry_msgs_DIR:PATH=/opt/ros/melodic/share/geometry_msgs/cmake
 
 //Value Computed by CMake
 gmock_BINARY_DIR:STATIC=/home/rob/Desktop/repo/SeniorDesign/ROB/stormBot_ws/build/gtest/googlemock
@@ -339,6 +393,24 @@ gtest_hide_internal_symbols:BOOL=OFF
 //Dependencies for the target
 gtest_main_LIB_DEPENDS:STATIC=general;-lpthread;general;gtest;
 
+//The directory containing a CMake configuration file for image_transport.
+image_transport_DIR:PATH=/opt/ros/melodic/share/image_transport/cmake
+
+//The directory containing a CMake configuration file for interactive_markers.
+interactive_markers_DIR:PATH=/opt/ros/melodic/share/interactive_markers/cmake
+
+//The directory containing a CMake configuration file for joint_state_publisher.
+joint_state_publisher_DIR:PATH=/opt/ros/melodic/share/joint_state_publisher/cmake
+
+//The directory containing a CMake configuration file for kdl_parser.
+kdl_parser_DIR:PATH=/opt/ros/melodic/share/kdl_parser/cmake
+
+//The directory containing a CMake configuration file for laser_geometry.
+laser_geometry_DIR:PATH=/opt/ros/melodic/share/laser_geometry/cmake
+
+//Dependencies for the target
+laserscan_lib_LIB_DEPENDS:STATIC=general;/opt/ros/melodic/lib/libcv_bridge.so;general;/usr/lib/x86_64-linux-gnu/libopencv_core.so.3.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_imgproc.so.3.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_imgcodecs.so.3.2.0;general;/opt/ros/melodic/lib/libimage_transport.so;general;/opt/ros/melodic/lib/libmessage_filters.so;general;/opt/ros/melodic/lib/libclass_loader.so;general;/usr/lib/libPocoFoundation.so;general;/usr/lib/x86_64-linux-gnu/libdl.so;general;/opt/ros/melodic/lib/libroscpp.so;general;/opt/ros/melodic/lib/librosconsole.so;general;/opt/ros/melodic/lib/librosconsole_log4cxx.so;general;/opt/ros/melodic/lib/librosconsole_backend_interface.so;general;/usr/lib/x86_64-linux-gnu/liblog4cxx.so;general;/usr/lib/x86_64-linux-gnu/libboost_regex.so;general;/opt/ros/melodic/lib/libxmlrpcpp.so;general;/opt/ros/melodic/lib/libroslib.so;general;/opt/ros/melodic/lib/librospack.so;general;/usr/lib/x86_64-linux-gnu/libpython2.7.so;general;/usr/lib/x86_64-linux-gnu/libboost_filesystem.so;general;/usr/lib/x86_64-linux-gnu/libboost_program_options.so;general;/usr/lib/x86_64-linux-gnu/libtinyxml2.so;general;/opt/ros/melodic/lib/libroscpp_serialization.so;general;/opt/ros/melodic/lib/librostime.so;general;/opt/ros/melodic/lib/libcpp_common.so;general;/usr/lib/x86_64-linux-gnu/libboost_system.so;general;/usr/lib/x86_64-linux-gnu/libboost_thread.so;general;/usr/lib/x86_64-linux-gnu/libboost_chrono.so;general;/usr/lib/x86_64-linux-gnu/libboost_date_time.so;general;/usr/lib/x86_64-linux-gnu/libboost_atomic.so;general;/usr/lib/x86_64-linux-gnu/libpthread.so;general;/usr/lib/x86_64-linux-gnu/libconsole_bridge.so.0.4;general;utility_lib;
+
 //Path to a library.
 lib:FILEPATH=lib-NOTFOUND
 
@@ -346,13 +418,67 @@ lib:FILEPATH=lib-NOTFOUND
 message_runtime_DIR:PATH=/opt/ros/melodic/share/message_runtime/cmake
 
 //Value Computed by CMake
+mobile_robot_BINARY_DIR:STATIC=/home/rob/Desktop/repo/SeniorDesign/ROB/stormBot_ws/build/mobile_robot
+
+//Value Computed by CMake
+mobile_robot_SOURCE_DIR:STATIC=/home/rob/Desktop/repo/SeniorDesign/ROB/stormBot_ws/src/mobile_robot
+
+//Value Computed by CMake
+mobile_robot_base_BINARY_DIR:STATIC=/home/rob/Desktop/repo/SeniorDesign/ROB/stormBot_ws/build/mobile_robot_base
+
+//The directory containing a CMake configuration file for mobile_robot_base.
+mobile_robot_base_DIR:PATH=/home/rob/Desktop/repo/SeniorDesign/ROB/stormBot_ws/devel/share/mobile_robot_base/cmake
+
+//Value Computed by CMake
+mobile_robot_base_SOURCE_DIR:STATIC=/home/rob/Desktop/repo/SeniorDesign/ROB/stormBot_ws/src/mobile_robot_base
+
+//Value Computed by CMake
+mobile_robot_description_BINARY_DIR:STATIC=/home/rob/Desktop/repo/SeniorDesign/ROB/stormBot_ws/build/mobile_robot_description
+
+//The directory containing a CMake configuration file for mobile_robot_description.
+mobile_robot_description_DIR:PATH=/home/rob/Desktop/repo/SeniorDesign/ROB/stormBot_ws/devel/share/mobile_robot_description/cmake
+
+//Value Computed by CMake
+mobile_robot_description_SOURCE_DIR:STATIC=/home/rob/Desktop/repo/SeniorDesign/ROB/stormBot_ws/src/mobile_robot_description
+
+//Value Computed by CMake
+mobile_robot_simulation_BINARY_DIR:STATIC=/home/rob/Desktop/repo/SeniorDesign/ROB/stormBot_ws/build/mobile_robot_simulation
+
+//The directory containing a CMake configuration file for mobile_robot_simulation.
+mobile_robot_simulation_DIR:PATH=/home/rob/Desktop/repo/SeniorDesign/ROB/stormBot_ws/devel/share/mobile_robot_simulation/cmake
+
+//Value Computed by CMake
+mobile_robot_simulation_SOURCE_DIR:STATIC=/home/rob/Desktop/repo/SeniorDesign/ROB/stormBot_ws/src/mobile_robot_simulation
+
+//Value Computed by CMake
 movement_BINARY_DIR:STATIC=/home/rob/Desktop/repo/SeniorDesign/ROB/stormBot_ws/build/movement
 
 //Value Computed by CMake
 movement_SOURCE_DIR:STATIC=/home/rob/Desktop/repo/SeniorDesign/ROB/stormBot_ws/src/movement
 
+//The directory containing a CMake configuration file for nav_msgs.
+nav_msgs_DIR:PATH=/opt/ros/melodic/share/nav_msgs/cmake
+
+//The directory containing a CMake configuration file for pluginlib.
+pluginlib_DIR:PATH=/opt/ros/melodic/share/pluginlib/cmake
+
+//The directory containing a CMake configuration file for resource_retriever.
+resource_retriever_DIR:PATH=/opt/ros/melodic/share/resource_retriever/cmake
+
+//The directory containing a CMake configuration file for robot_state_publisher.
+robot_state_publisher_DIR:PATH=/opt/ros/melodic/share/robot_state_publisher/cmake
+
+//Value Computed by CMake
+ros_essentials_cpp_BINARY_DIR:STATIC=/home/rob/Desktop/repo/SeniorDesign/ROB/stormBot_ws/build/ros_essentials_cpp
+
+//Value Computed by CMake
+ros_essentials_cpp_SOURCE_DIR:STATIC=/home/rob/Desktop/repo/SeniorDesign/ROB/stormBot_ws/src/ros_essentials_cpp
+
 //The directory containing a CMake configuration file for rosconsole.
 rosconsole_DIR:PATH=/opt/ros/melodic/share/rosconsole/cmake
+
+//The directory containing a CMake configuration file for rosconsole_bridge.
+rosconsole_bridge_DIR:PATH=/opt/ros/melodic/share/rosconsole_bridge/cmake
 
 //The directory containing a CMake configuration file for roscpp.
 roscpp_DIR:PATH=/opt/ros/melodic/share/roscpp/cmake
@@ -363,17 +489,71 @@ roscpp_serialization_DIR:PATH=/opt/ros/melodic/share/roscpp_serialization/cmake
 //The directory containing a CMake configuration file for roscpp_traits.
 roscpp_traits_DIR:PATH=/opt/ros/melodic/share/roscpp_traits/cmake
 
+//The directory containing a CMake configuration file for rosgraph.
+rosgraph_DIR:PATH=/opt/ros/melodic/share/rosgraph/cmake
+
 //The directory containing a CMake configuration file for rosgraph_msgs.
 rosgraph_msgs_DIR:PATH=/opt/ros/melodic/share/rosgraph_msgs/cmake
+
+//The directory containing a CMake configuration file for roslib.
+roslib_DIR:PATH=/opt/ros/melodic/share/roslib/cmake
+
+//The directory containing a CMake configuration file for rospack.
+rospack_DIR:PATH=/opt/ros/melodic/share/rospack/cmake
 
 //The directory containing a CMake configuration file for rospy.
 rospy_DIR:PATH=/opt/ros/melodic/share/rospy/cmake
 
+//The directory containing a CMake configuration file for rostest.
+rostest_DIR:PATH=/opt/ros/melodic/share/rostest/cmake
+
 //The directory containing a CMake configuration file for rostime.
 rostime_DIR:PATH=/opt/ros/melodic/share/rostime/cmake
 
+//The directory containing a CMake configuration file for rviz.
+rviz_DIR:PATH=/opt/ros/melodic/share/rviz/cmake
+
+//The directory containing a CMake configuration file for sensor_msgs.
+sensor_msgs_DIR:PATH=/opt/ros/melodic/share/sensor_msgs/cmake
+
 //The directory containing a CMake configuration file for std_msgs.
 std_msgs_DIR:PATH=/opt/ros/melodic/share/std_msgs/cmake
+
+//The directory containing a CMake configuration file for std_srvs.
+std_srvs_DIR:PATH=/opt/ros/melodic/share/std_srvs/cmake
+
+//The directory containing a CMake configuration file for tf2.
+tf2_DIR:PATH=/opt/ros/melodic/share/tf2/cmake
+
+//The directory containing a CMake configuration file for tf2_kdl.
+tf2_kdl_DIR:PATH=/opt/ros/melodic/share/tf2_kdl/cmake
+
+//The directory containing a CMake configuration file for tf2_msgs.
+tf2_msgs_DIR:PATH=/opt/ros/melodic/share/tf2_msgs/cmake
+
+//The directory containing a CMake configuration file for tf2_py.
+tf2_py_DIR:PATH=/opt/ros/melodic/share/tf2_py/cmake
+
+//The directory containing a CMake configuration file for tf2_ros.
+tf2_ros_DIR:PATH=/opt/ros/melodic/share/tf2_ros/cmake
+
+//The directory containing a CMake configuration file for tf.
+tf_DIR:PATH=/opt/ros/melodic/share/tf/cmake
+
+//The directory containing a CMake configuration file for trajectory_msgs.
+trajectory_msgs_DIR:PATH=/opt/ros/melodic/share/trajectory_msgs/cmake
+
+//The directory containing a CMake configuration file for urdf.
+urdf_DIR:PATH=/opt/ros/melodic/share/urdf/cmake
+
+//Dependencies for target
+utility_lib_LIB_DEPENDS:STATIC=
+
+//The directory containing a CMake configuration file for visualization_msgs.
+visualization_msgs_DIR:PATH=/opt/ros/melodic/share/visualization_msgs/cmake
+
+//The directory containing a CMake configuration file for xacro.
+xacro_DIR:PATH=/opt/ros/melodic/share/xacro/cmake
 
 //The directory containing a CMake configuration file for xmlrpcpp.
 xmlrpcpp_DIR:PATH=/opt/ros/melodic/share/xmlrpcpp/cmake
@@ -488,7 +668,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=5
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=11
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP
@@ -529,6 +709,8 @@ CMAKE_STRIP-ADVANCED:INTERNAL=1
 CMAKE_UNAME:INTERNAL=/bin/uname
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
+//Details about finding OpenCV
+FIND_PACKAGE_MESSAGE_DETAILS_OpenCV:INTERNAL=[/usr][v3.2.0()]
 //Details about finding PythonInterp
 FIND_PACKAGE_MESSAGE_DETAILS_PythonInterp:INTERNAL=[/usr/bin/python2][v2.7.17()]
 //Details about finding Threads
