@@ -1,4 +1,6 @@
 from flask_cors import CORS
+import shutil
+
 from flask import(
     Blueprint, request, jsonify
 )
@@ -90,8 +92,29 @@ def deleteIt(db, queury):
 
 def garbageCollector():
     # Jero here
-    # TODO
+    db = getDb()
+
     # Get available space
+    total, used, free = shutil.disk_usage("/")
+
     # while space is less that 20% delete oldest unamed file
-    # get oldest takes db, and
+    while(free/total < 0.2):
+        # using shutil to calculate disk usage
+        total, used, free = shutil.disk_usage("/")
+
+        # get oldest takes db, and
+        oldest = getOldest(db)
+        vidID = oldest.get('Id')
+        pipeID = oldest.get('PipeID')
+
+        # Create and execute multiple queries to free up space
+        runQuery = deleteRunTask(db, vidID)
+        deleteIt(db, runQuery)
+
+        vidQuery = deleteVideoTask(db, vidID)
+        deleteIt(db, vidQuery)
+
+        tagQuery = deleteTagTask(db, vidID)
+        deleteIt(db, tagQuery)
+
     return

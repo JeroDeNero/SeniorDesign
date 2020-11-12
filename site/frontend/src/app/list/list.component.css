@@ -51,11 +51,6 @@ a.video {
   border-radius: 5px;
 }
 
-a.video:hover {
-  background-color: #fbb034;
-  background-image: linear-gradient(338deg, #f5a626 0%, #ffcc00 74%);
-}
-
 a.button {
   margin: auto 5px;
   padding: 4px 6px;
@@ -65,36 +60,4 @@ a.button {
   cursor: pointer;
   transition: 0.3s;
   background-color: inherit;
-}
-
-/* Change background color of buttons on hover */
-
-a.button:hover {
-  color: black;
-  background-color: rgb(238, 238, 238);
-}
-
-/* Create an active/current tablink class */
-
-a .active {
-  color: black;
-  background-color: rgb(238, 238, 238);
-}
-
-a.delete {
-  color: red;
-}
-
-/* Change background color of buttons on hover */
-
-a.delete:hover {
-  color: black;
-  background-color: red;
-}
-
-/* Create an active/current tablink class */
-
-a.delete .active {
-  color: black;
-  background-color: red;
 }

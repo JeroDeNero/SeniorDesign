@@ -169,8 +169,8 @@ def getOldest(db):
 
     # gets oldest untagged unamed file
     for vid in results:
-        theID = vid[0]
-        if(vid[2] == 0 and vid[1] == None and flag == 0):
+        theID = vid.get('Id')
+        if(vid.get('Tagged') == 0 and vid.get('Name') == None and flag == 0):
             query = ("SELECT FROM Video "
                      "WHERE Id = '{}'".format(theID))
             video.execute(query)
@@ -178,11 +178,11 @@ def getOldest(db):
             flag = 1
             break
 
-    # if none exist, go to named and unpinned
+    # if none exist, try to get named and unpinned
     if(flag == 0):
         for vid in results:
-            theID = vid[0]
-            if(vid[2] == 0):
+            theID = vid.get('Id')
+            if(vid.get('Tagged') == 0):
                 query = ("SELECT FROM Video "
                          "WHERE Id = '{}'".format(theID))
                 video.execute(query)
@@ -190,9 +190,9 @@ def getOldest(db):
                 flag = 1
                 break
 
-    # else go to pinned
+    # else go to oldest pinned
     if(flag == 0):
-        theID = results[0][0]
+        theID = results[0].get('Id')
         query = ("SELECT FROM Video "
                  "WHERE Id = '{}'".format(theID))
         video.execute(query)

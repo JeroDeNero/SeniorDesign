@@ -232,8 +232,8 @@ export class ControlsComponent implements OnInit {
       if (
         this.controllers[index].axes[0] !==
           this.prevControllers[index].axes[0] &&
-	Math.abs(this.controllers[index].axes[0]) > 0.15 && 
-	Math.abs(this.controllers[index].axes[0]) >
+        Math.abs(this.controllers[index].axes[0]) > 0.15 &&
+        Math.abs(this.controllers[index].axes[0]) >
           Math.abs(this.controllers[index].axes[1])
       ) {
         this.socketEmit('movement', 'turn', this.controllers[index].axes[0]);
@@ -241,7 +241,7 @@ export class ControlsComponent implements OnInit {
         this.controllers[index].axes[1] !==
           this.prevControllers[index].axes[1] &&
         Math.abs(this.controllers[index].axes[1]) > 0.15 &&
-	Math.abs(this.controllers[index].axes[1]) >
+        Math.abs(this.controllers[index].axes[1]) >
           Math.abs(this.controllers[index].axes[0])
       ) {
         this.socketEmit(
@@ -263,16 +263,16 @@ export class ControlsComponent implements OnInit {
       if (
         this.controllers[index].axes[2] !==
           this.prevControllers[index].axes[2] &&
-	Math.abs(this.controllers[index].axes[2]) > 0.15 &&
-	this.controllers[index].axes[2]
+        Math.abs(this.controllers[index].axes[2]) > 0.15 &&
+        this.controllers[index].axes[2]
       ) {
         this.socketEmit('camera', 'x', this.controllers[index].axes[2]);
       }
 
       if (
         this.controllers[index].axes[3] !==
-	  this.prevControllers[index].axes[3] &&
-	Math.abs(this.controllers[index].axes[3]) > 0.15 &&
+          this.prevControllers[index].axes[3] &&
+        Math.abs(this.controllers[index].axes[3]) > 0.15 &&
         this.controllers[index].axes[3]
       ) {
         this.socketEmit('camera', 'y', this.controllers[index].axes[2] * -1);
@@ -303,8 +303,8 @@ export class ControlsComponent implements OnInit {
     } else if (channel === 'binary') {
       this.socket.emit(channel, command);
     } else if (channel === 'stopCam') {
-    	this.socket.emit(channel, command);
-	console.log('stopCam')
+      this.socket.emit(channel, command);
+      console.log('stopCam');
     } else if (channel === 'speed') {
       this.socket.emit(channel, this.slider / 100); //does it really need this info
     } else if (command) {
