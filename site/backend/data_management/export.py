@@ -121,3 +121,38 @@ def exportImage(path):
     except:
         print("failed to send Image")
         return ("unable to send file")
+
+def exportAllTag(db, runID):
+    
+    tagCursor = db.cursor(dictionary = True, buffered = True)
+    requestTags = ("SELECT * FROM TaggedLocs "
+                   "WHERE Id = {}".format(runID))
+    
+    tagCursor.execute(requestTags)
+
+    # writing a new shapefile
+    sfw = shapefile.Writer(TMPLOC + "coord.shp", shapeType=shapefile.POINT)
+    sfw.autobalance = True  # alternatively can be set to 1 for true
+
+    sfw.field('xcord', 'N')  # xcoordinate
+    sfw.field('ycord', 'N')  # ycoordinate
+
+    i = 0
+    for tag in tagCursor:
+        longitude = float(tag[2])
+        latitude = float(tag[3])
+
+        print("{} {}".format(longitude, latitude))
+        sfw.point(longitude, latitude)  # write to shapefile
+        sfw.record('point' + i)
+        i += 1
+
+    sfw.close()
+
+    try:
+        return send_from_directory("temp/", filename="completeRun.shp", as_attachment=True)
+    except:
+        print("unable to send .shp file")
+        return ("unable to send file")
+
+    return""
